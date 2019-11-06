@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html 
+    lang="en-us"
+    class="no-js"
+>
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="">
+    <meta name="description" content="">
+    
+    <meta name="generator" content="Hugo 0.59.0" />
+    <meta name="generation-date" content="2019-11-06 19:45:08.8815917 &#43;0800 CST m=&#43;0.349975501">
+    <title>拾遗ms-sql stored procedure &middot; 云亦海</title>
+    <link rel="shortcut icon" href="https://gerrywp.github.io/img/favicon.ico">
+    <link rel="icon" href="https://gerrywp.github.io/img/favicon.ico">
+    
+<link rel="stylesheet" href="https://gerrywp.github.io/css/materialize.min.css">
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/font-awesome.min.css">
+
+
+    
+    <link rel="stylesheet" href="https://gerrywp.github.io/css/styles/railscasts.css">
+
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/lightbox.css">
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/main.css">
+
+
+    <script src="https://gerrywp.github.io/js/modernizr-latest.js"></script>
+    <script src="https://gerrywp.github.io/js/lazysizes.min.js"></script>
+    <script src="https://gerrywp.github.io/js/ls.noscript.min.js"></script>
+
+    <script>
+        window.lazySizesConfig = window.lazySizesConfig || {};
+        lazySizesConfig.addClasses = true;
+        lazySizesConfig.loadMode = 2;
+    </script>
+
+    
+</head>
+
+
+
+<body class="page-colors minimum-viewport-height">
+    
+
+<nav class="main-menu menu-colors">
+    <ul class="menu menu-colors no-list-float">
+        <li><a href="https://gerrywp.github.io/"><i class="fa fa-home fa-2x"></i></a></li>
+        <li>
+            <a href="#!"><i class="fa fa-bars fa-2x"></i></a>
+
+            
+            <ul class="menu flexible-width menu-colors no-list-float">
+                
+                
+                    <li class="active">
+                    
+                        <a href="https://gerrywp.github.io//post/">
+                            
+                            <span>Posts</span>
+                        </a>
+                    
+                    </li>
+                
+            </ul>
+        </li>
+        <li><a href="#!" data-lightbox-id="searchbox"><i class="fa fa-search fa-2x"></i></a></li>
+        
+            <li class="blue-grey-text" style="border-top: 1px solid;"></li>
+            
+        
+        <li class="blue-grey-text" style="border-top: 1px solid;"></li>
+        <li>
+            <a href="" type="application/rss+xml" target="_blank">
+                <i class="fa fa-rss fa-2x"></i>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<div id="searchbox" class="no-display">
+    <div class="valign-wrapper fill-container">
+        <div class="valign large-form horizontal-center-hack">
+            <form method="get" id="search" action="http://duckduckgo.com/">
+    <input type="hidden" name="sites"value="https://gerrywp.github.io/"/>
+    <input type="hidden" name="ka" value="h"/>
+    <input type="hidden" name="k7" value="#fafafa"/>
+    <input type="hidden" name="kj" value="#3f3f3f"/>
+    <input type="hidden" name="ky" value="#fafafa"/>
+    <input type="hidden" name="kx" value="b"/>
+    <input type="hidden" name="kt" value="Helvetica"/>
+    <input type="text" name="q" maxlength="255" placeholder="Search"/>
+    <input type="submit" value="DuckDuckGo Search" style="visibility: hidden;" />
+</form>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    <div class="main-content">
+        <div class="center-space">
+            <div class="article-colors">
+                
+                <article>
+                    <header>
+                        <h1 class="article-title">拾遗ms-sql stored procedure</h1>
+                        <time class="date-color">Fri Mar 17, 2017</time>
+                        <span class="separator">|</span>
+                        
+<ul class="categories">
+    <li>
+        <i class="fa fa-book"></i>
+    </li>
+    
+        <li><a href="https://gerrywp.github.io/categories/sql">sql</a></li>
+    
+</ul>
+
+
+                        <span class="separator">|</span>
+                        
+<ul class="tags">
+    <li>
+        <i class="fa fa-tags"></i>
+    </li>
+    
+        <li><a href="https://gerrywp.github.io/tags/tag1">tag1</a></li>
+    
+</ul>
+
+
+                    </header>
+
+                    <hr>
+
+                    <section>
+                        
+                            <p>一直以来sql都只使用用了最简单的功能，仅限于增删改查。最近因项目需要，要将所有的查询都改成存储过程。也就是说要将所有的业务逻辑放在了数据库端来处理。
+老实说以前业务的东西都是用高级语言代码来做，存储过程写的少，所以还是有很多东西不熟悉并值得考究的，仅以文字记之。</p>
+
+<h3 id="判断存储过程存在与否">判断存储过程存在与否</h3>
+
+<p>sql脚本常用语句。</p>
+
+<pre><code class="language-sql">--第一参数，存储过程名称。第二参数，对象类型为存储过程
+IF OBJECT_ID('sp_name','P') IS NOT NULL
+DROP PROCEDURE sp_name
+GO
+--或者
+IF EXISTS(SELECT 1 FROM SYSOBJECTS WHERE NAME='sp_name' AND TYPE='P')
+DROP PROCEDURE sp_name
+GO
+</code></pre>
+
+<h3 id="declare-variable-and-set-value-变量声明和赋值">declare variable and set value(变量声明和赋值)</h3>
+
+<p><strong>关键字declare/set</strong>
+使用declare声明变量，并使用set给变量赋值。<br />
+本地变量使用@前缀标示,全局变量使用@@前缀标示。</p>
+
+<pre><code class="language-sql">--声明变量
+declare @local_variable INT; --局部变量  
+declare @@global_variable INT;--全局
+--或者这样
+declare @local_variable INT,@@global_variable INT;
+--赋值变量
+set @local_variable=1;
+set @@global_variable=1;
+--初始化变量
+declare @local_variable INT=1;--声明并赋值
+</code></pre>
+
+<h4 id="select-variable-column与set赋值区别">select @variable=column与set赋值区别</h4>
+
+<p>推荐使用set对变量进行赋值，以避免不必要的错误。</p>
+
+<ol>
+<li><p>查询返回多个值</p>
+
+<pre><code class="language-sql">decalre @id uniqueidentifier;
+--返回多个值，set报错
+set @id=(select id from student);
+--错误信息：子查询返回的值多于一个。当子查询跟随在 =、!=、&lt;、&lt;=、&gt;、&gt;= 之后，或子查询用作表达式时，这种情况是不允许的。
+select @id=id from student;--此时@id的值为查询结果集中，最后一行的值。
+</code></pre></li>
+
+<li><p>查询返回NULL</p></li>
+</ol>
+
+<p>set赋值情况：变量为空，select赋值情况:变量保持原有值</p>
+
+<pre><code class="language-sql">decalre @name nvarchar(100);
+set @name='pai';
+set @name=(select name from student where id='-1');
+print @name;--null值
+set @name='pai';
+select @name=name from student where id='-1';
+print @name;-- pai
+</code></pre>
+
+<h3 id="table-variable-temporary-table-表变量和临时表">table variable&amp;temporary table(表变量和临时表)</h3>
+
+<pre><code class="language-sql">declare @table-variable TABLE(
+    column-name datatype,
+    column-name datatype
+);--声明表变量
+select * into #temporary-table from table;--取出数据插入临时表
+--must drop #temporary-table
+drop table #remprary-table
+</code></pre>
+
+<p>使用<strong>临时表</strong>可以声明也可以不用声明，临时表命名必须以#开头，以标示是一张临时表。  
+临时表存放在本地System Databases下的tempdb数据库Temporary Tables下面。</p>
+
+<h3 id="select-into-insert-into-与表">[select * [into]|insert [into]]与表</h3>
+
+<p>select * into 后面接的一定是<strong>表</strong>(或者临时表)，不可以使用变量、表变量。<br />
+insert into 后面可以接表变量。
+语法：select * into [table|#temporary-table]</p>
+
+<pre><code class="language-sql">declare @users table(
+    userName varchar(50)
+});
+select name into @users from users; --错误用法
+select name into #tempUser from users;--正确用法
+--insert into 后面可接表变量
+--方式1
+insert into @users select name from users;
+--方式2
+insert into @users exec sp_executesql N'sqlstr',param-string,param
+</code></pre>
+
+<h3 id="存储过程返回数据集和变量赋值">存储过程返回数据集和变量赋值</h3>
+
+<p>存储过程默认会返回所有select查询的数据集，有几个select语句就会返回几个数据集。<br />
+如果想让查询出来的数据集结果只做中间表，需要将查询结果赋值给变量，有以下几种方式：</p>
+
+<pre><code class="language-sql">declare @name varchar(50);
+--以下查询结果并不会返回给存储过程调用者
+select @name=name from users;--方式1
+set @name=(select name from users);--方式2
+--将查询结果返回给调用者
+select @name;
+</code></pre>
+
+<h3 id="exec-exec-sp-executesql">exec &amp; exec sp_executesql</h3>
+
+<p>exec 和 exec sp_executesql 都可以用来执行dynamic sql(动态sql语句),后者的功能强大很多，并且允许有返回值。</p>
+
+<pre><code class="language-sql">DECLARE @result int   
+DECLARE @sqlStr nvarchar(500);
+DECLARE @paramDefinition nvarchar(500);
+
+DECLARE @tableName nvarchar(50)  
+SET @tableName = N'products'  
+
+SELECT @sqlStr = N'SELECT @resultOut = MAX(ID) FROM ' + @tablename;-- exec sp_executesql 必须使用unicode字符串，因此字符串前面要带上N 
+SET @paramDefinition = N'@resultOut int OUTPUT';
+
+EXEC sp_executesql @sqlStr, @paramDefinition, @resultOut=@result OUTPUT;
+--返回结果集给调用者
+SELECT @retval; 
+</code></pre>
+                        
+                    </section>
+
+                    <footer class="right-align">
+                        <p><small>Copyright &#169; Gerry</small></p>
+                    </footer>
+
+                    
+
+
+                </article>
+            </div>
+        </div>
+    </div>
+
+    
+<script src="https://gerrywp.github.io/js/jquery-2.1.4.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/materialize.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/imagesloaded.pkgd.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/masonry.pkgd.min.js"></script>
+
+
+    
+    <script src="https://gerrywp.github.io/js/highlight.pack.js"></script>
+
+
+
+<script src="https://gerrywp.github.io/js/lightbox.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/jquery.infinitescroll.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/main.js"></script>
+
+
+</body>
+
+</html>
+
+
+
+
+

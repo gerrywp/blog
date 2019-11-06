@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html 
+    lang="en-us"
+    class="no-js"
+>
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="">
+    <meta name="description" content="">
+    
+    <meta name="generator" content="Hugo 0.59.0" />
+    <meta name="generation-date" content="2019-11-06 19:45:08.8945943 &#43;0800 CST m=&#43;0.362978101">
+    <title>委托和反射 &middot; 云亦海</title>
+    <link rel="shortcut icon" href="https://gerrywp.github.io/img/favicon.ico">
+    <link rel="icon" href="https://gerrywp.github.io/img/favicon.ico">
+    
+<link rel="stylesheet" href="https://gerrywp.github.io/css/materialize.min.css">
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/font-awesome.min.css">
+
+
+    
+    <link rel="stylesheet" href="https://gerrywp.github.io/css/styles/railscasts.css">
+
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/lightbox.css">
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/main.css">
+
+
+    <script src="https://gerrywp.github.io/js/modernizr-latest.js"></script>
+    <script src="https://gerrywp.github.io/js/lazysizes.min.js"></script>
+    <script src="https://gerrywp.github.io/js/ls.noscript.min.js"></script>
+
+    <script>
+        window.lazySizesConfig = window.lazySizesConfig || {};
+        lazySizesConfig.addClasses = true;
+        lazySizesConfig.loadMode = 2;
+    </script>
+
+    
+</head>
+
+
+
+<body class="page-colors minimum-viewport-height">
+    
+
+<nav class="main-menu menu-colors">
+    <ul class="menu menu-colors no-list-float">
+        <li><a href="https://gerrywp.github.io/"><i class="fa fa-home fa-2x"></i></a></li>
+        <li>
+            <a href="#!"><i class="fa fa-bars fa-2x"></i></a>
+
+            
+            <ul class="menu flexible-width menu-colors no-list-float">
+                
+                
+                    <li class="active">
+                    
+                        <a href="https://gerrywp.github.io//post/">
+                            
+                            <span>Posts</span>
+                        </a>
+                    
+                    </li>
+                
+            </ul>
+        </li>
+        <li><a href="#!" data-lightbox-id="searchbox"><i class="fa fa-search fa-2x"></i></a></li>
+        
+            <li class="blue-grey-text" style="border-top: 1px solid;"></li>
+            
+        
+        <li class="blue-grey-text" style="border-top: 1px solid;"></li>
+        <li>
+            <a href="" type="application/rss+xml" target="_blank">
+                <i class="fa fa-rss fa-2x"></i>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<div id="searchbox" class="no-display">
+    <div class="valign-wrapper fill-container">
+        <div class="valign large-form horizontal-center-hack">
+            <form method="get" id="search" action="http://duckduckgo.com/">
+    <input type="hidden" name="sites"value="https://gerrywp.github.io/"/>
+    <input type="hidden" name="ka" value="h"/>
+    <input type="hidden" name="k7" value="#fafafa"/>
+    <input type="hidden" name="kj" value="#3f3f3f"/>
+    <input type="hidden" name="ky" value="#fafafa"/>
+    <input type="hidden" name="kx" value="b"/>
+    <input type="hidden" name="kt" value="Helvetica"/>
+    <input type="text" name="q" maxlength="255" placeholder="Search"/>
+    <input type="submit" value="DuckDuckGo Search" style="visibility: hidden;" />
+</form>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    <div class="main-content">
+        <div class="center-space">
+            <div class="article-colors">
+                
+                <article>
+                    <header>
+                        <h1 class="article-title">委托和反射</h1>
+                        <time class="date-color">Thu Jan 19, 2017</time>
+                        <span class="separator">|</span>
+                        
+<ul class="categories">
+    <li>
+        <i class="fa fa-book"></i>
+    </li>
+    
+        <li><a href="https://gerrywp.github.io/categories/csharp">csharp</a></li>
+    
+</ul>
+
+
+                        <span class="separator">|</span>
+                        
+<ul class="tags">
+    <li>
+        <i class="fa fa-tags"></i>
+    </li>
+    
+        <li><a href="https://gerrywp.github.io/tags/tag1">tag1</a></li>
+    
+</ul>
+
+
+                    </header>
+
+                    <hr>
+
+                    <section>
+                        
+                            <p>反射的性能问题一直是广为诟病的，但反射所消耗的这一点性能并不算什么。因为通常情况下的业务逻辑都不会很复杂，我们只是使用反射
+来处理一些常规编码难以迄及的特殊场景。</p>
+
+<h3 id="反射">反射</h3>
+
+<p>说反射性能低下是相对而言的，相对于function的直接调用，反射的性能确实有所下降。在这里不去讨论反射的原理知识，代码如下：</p>
+
+<pre><code class="language-c#">static void Main(String[] args)
+{
+    const int COUNTER=5000000;//计数次数
+    //反射调用
+    var methodInfo=typeof(SampleClass).GetMethod(&quot;Add&quot;);
+    SampleClass sampleClass1=new SampleClass();
+    for(Int32 i=0;i&lt;COUNTER;i++)
+    {
+        methodInfo.Invoke(sampleClass1,1,2);//反射调用
+    }
+}
+
+public class SampleClass
+{
+    public Int32 Add(Int32 i1,Int32 i2)
+    {
+        return i1+i2;
+    }
+}
+</code></pre>
+
+<p>无疑上面的代码效率是低下的，因为在循环里面使用了Invoke调用，Invoke的内部有以下几个地方严重影响性能。</p>
+
+<ol>
+<li>实参1,2传递给object[] parameters的形参，装箱(boxing) //装箱 耗时耗内存</li>
+<li>要将object[]类型的形参，拆箱(unboxing)成Add(Int32,Int32)可以调用的Int32类型的参数 //拆箱 耗时耗内存</li>
+<li>Invoke内部会做参数的校验(validate) //耗时</li>
+<li>CLR确保调用者(caller)拥有被调用成员的访问权限</li>
+</ol>
+
+<p>当然如果不是因为大量的循环，其实以上三点所说的性能问题对于现如今的CPU根本就是九牛一毛。
+总结：我们应该避免在复杂度较高的或大量循环里面使用反射的方法调用</p>
+
+<p>进一步讨论，假如我们确实有这样的场景，必须要使用反射(runtime-动态调用),并且要用到big循环以及复杂度高的计算,那性能问题是不是就没有办法解决了？</p>
+
+<h3 id="委托-delegate">委托(Delegate)</h3>
+
+<p>什么是委托？关键字 <code>delegate</code></p>
+
+<pre><code class="language-c#">delegate void Feedback(Int32 i);
+</code></pre>
+
+<p>这就是委托,看起来是不是很简单？委托其实就是函数指针(c/c++),通过 <code>delegate</code>我们可以将函数当做参数传递。(不知道什么是函数指针，请百度)
+<code>delegate</code>简单的背后，compilers(编译器csc.exe)和CLR(公共语言运行时)为我们做了大量的工作。当compilers看到以上的代码，它会将我们的代码
+编译成如下的<code>class</code></p>
+
+<pre><code class="language-c#">internal class Feedback : System.MulticastDelegate 
+{
+// Constructor
+public Feedback(Object @object, IntPtr method);
+// Method with same prototype as specified by the source code
+public virtual void Invoke(Int32 value);
+// Methods allowing the callback to be called asynchronously
+public virtual IAsyncResult BeginInvoke(Int32 value,AsyncCallback callback, Object @object);
+public virtual void EndInvoke(IAsyncResult result);
+}
+</code></pre>
+
+<h5 id="比较delegate-invoke-methodinfo-invoke-delegate-dynamicinvoke">比较Delegate.Invoke()、MethodInfo.Invoke()、Delegate.DynamicInvoke()</h5>
+
+<ol>
+<li>Delegate.Invoke()，因为已知了函数的参数类型，避免了装箱和拆箱(参数校验等)，所以在效率上快很多。</li>
+<li>Delegate.DynamicInvoke()和MethodInfo.Invoke()有着同样的问题(装箱、参数校验),
+而事实上Delegate.DynamicInvoke()更甚，操作更繁琐，效率低于MethodInfo.Invoke()一个数量级。</li>
+</ol>
+
+<p><strong>使用delegate改进refelection method invoke</strong>代码如下:</p>
+
+<pre><code class="language-c#">static void Main(String[] args)
+{
+    const int COUNTER=5000000;//计数次数
+    //反射调用
+    var methodInfo=typeof(SampleClass).GetMethod(&quot;Add&quot;);
+    SampleClass sampleClass1=new SampleClass();
+    var dlgService=(Func&lt;Int32,Int32,Int32&gt;)Delegate.CreateDelegate(typeof(Func&lt;Int32,Int32,Int32&gt;)
+    ,sampleClass1,methodInfo);
+    for(Int32 i=0;i&lt;COUNTER;i++)
+    {
+        dlgService(1,2);//方式1
+        //dlgService.Invoke(1,2) //方式2，与方式1等价，效率一样
+    }
+}
+
+public class SampleClass
+{
+    public Int32 Add(Int32 i1,Int32 i2)
+    {
+        return i1+i2;
+    }
+}
+</code></pre>
+
+<p>以上代码使用了Func<T1,T2>泛型委托,简化了代码,当然还可以使用lambda表达式来处理</p>
+
+<p>参考文献</p>
+
+<blockquote>
+<ol>
+<li>《CLR VIA C#》</li>
+</ol>
+</blockquote>
+                        
+                    </section>
+
+                    <footer class="right-align">
+                        <p><small>Copyright &#169; Gerry</small></p>
+                    </footer>
+
+                    
+
+
+                </article>
+            </div>
+        </div>
+    </div>
+
+    
+<script src="https://gerrywp.github.io/js/jquery-2.1.4.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/materialize.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/imagesloaded.pkgd.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/masonry.pkgd.min.js"></script>
+
+
+    
+    <script src="https://gerrywp.github.io/js/highlight.pack.js"></script>
+
+
+
+<script src="https://gerrywp.github.io/js/lightbox.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/jquery.infinitescroll.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/main.js"></script>
+
+
+</body>
+
+</html>
+
+
+
+
+

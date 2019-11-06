@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html 
+    lang="en-us"
+    class="no-js"
+>
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="">
+    <meta name="description" content="">
+    
+    <meta name="generator" content="Hugo 0.59.0" />
+    <meta name="generation-date" content="2019-11-06 19:45:08.8215914 &#43;0800 CST m=&#43;0.289975201">
+    <title>putty配置并使用 &middot; 云亦海</title>
+    <link rel="shortcut icon" href="https://gerrywp.github.io/img/favicon.ico">
+    <link rel="icon" href="https://gerrywp.github.io/img/favicon.ico">
+    
+<link rel="stylesheet" href="https://gerrywp.github.io/css/materialize.min.css">
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/font-awesome.min.css">
+
+
+    
+    <link rel="stylesheet" href="https://gerrywp.github.io/css/styles/railscasts.css">
+
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/lightbox.css">
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/main.css">
+
+
+    <script src="https://gerrywp.github.io/js/modernizr-latest.js"></script>
+    <script src="https://gerrywp.github.io/js/lazysizes.min.js"></script>
+    <script src="https://gerrywp.github.io/js/ls.noscript.min.js"></script>
+
+    <script>
+        window.lazySizesConfig = window.lazySizesConfig || {};
+        lazySizesConfig.addClasses = true;
+        lazySizesConfig.loadMode = 2;
+    </script>
+
+    
+</head>
+
+
+
+<body class="page-colors minimum-viewport-height">
+    
+
+<nav class="main-menu menu-colors">
+    <ul class="menu menu-colors no-list-float">
+        <li><a href="https://gerrywp.github.io/"><i class="fa fa-home fa-2x"></i></a></li>
+        <li>
+            <a href="#!"><i class="fa fa-bars fa-2x"></i></a>
+
+            
+            <ul class="menu flexible-width menu-colors no-list-float">
+                
+                
+                    <li class="active">
+                    
+                        <a href="https://gerrywp.github.io//post/">
+                            
+                            <span>Posts</span>
+                        </a>
+                    
+                    </li>
+                
+            </ul>
+        </li>
+        <li><a href="#!" data-lightbox-id="searchbox"><i class="fa fa-search fa-2x"></i></a></li>
+        
+            <li class="blue-grey-text" style="border-top: 1px solid;"></li>
+            
+        
+        <li class="blue-grey-text" style="border-top: 1px solid;"></li>
+        <li>
+            <a href="" type="application/rss+xml" target="_blank">
+                <i class="fa fa-rss fa-2x"></i>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<div id="searchbox" class="no-display">
+    <div class="valign-wrapper fill-container">
+        <div class="valign large-form horizontal-center-hack">
+            <form method="get" id="search" action="http://duckduckgo.com/">
+    <input type="hidden" name="sites"value="https://gerrywp.github.io/"/>
+    <input type="hidden" name="ka" value="h"/>
+    <input type="hidden" name="k7" value="#fafafa"/>
+    <input type="hidden" name="kj" value="#3f3f3f"/>
+    <input type="hidden" name="ky" value="#fafafa"/>
+    <input type="hidden" name="kx" value="b"/>
+    <input type="hidden" name="kt" value="Helvetica"/>
+    <input type="text" name="q" maxlength="255" placeholder="Search"/>
+    <input type="submit" value="DuckDuckGo Search" style="visibility: hidden;" />
+</form>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    <div class="main-content">
+        <div class="center-space">
+            <div class="article-colors">
+                
+                <article>
+                    <header>
+                        <h1 class="article-title">putty配置并使用</h1>
+                        <time class="date-color">Sun Oct 29, 2017</time>
+                        <span class="separator">|</span>
+                        
+<ul class="categories">
+    <li>
+        <i class="fa fa-book"></i>
+    </li>
+    
+        <li><a href="https://gerrywp.github.io/categories/windows">windows</a></li>
+    
+</ul>
+
+
+                        <span class="separator">|</span>
+                        
+<ul class="tags">
+    <li>
+        <i class="fa fa-tags"></i>
+    </li>
+    
+        <li><a href="https://gerrywp.github.io/tags/tag1">tag1</a></li>
+    
+</ul>
+
+
+                    </header>
+
+                    <hr>
+
+                    <section>
+                        
+                            <p>配置putyy能够自动登陆、开启显示密码、在下达完整个命令之后才发送至服务端！</p>
+
+<h3 id="设置自动登陆">设置自动登陆</h3>
+
+<p>windows下右键属性，给启动命令添加如下参数</p>
+
+<pre><code class="language-shell">&quot;C:\Program Files\PuTTY\putty.exe&quot; -load &quot;sessionname&quot; -l &quot;username&quot; -pw &quot;password&quot;
+# 示例
+&quot;C:\Program Files\PuTTY\putty.exe&quot; -load &quot;banwagong&quot; -l &quot;pai&quot; -pw &quot;123456&quot;
+</code></pre>
+
+<p><img src="../pictures/QQ20171029112826.png" alt="图片" title="点我显示" /></p>
+
+<h3 id="部分配置说明">部分配置说明</h3>
+
+<p>Line discipline 选项：(推荐使用auto)
+1. Local echo ：
+如果此选项关闭的话，则输入的字符不会显示在 PuTTY ，这里我们选择auto。</p>
+
+<ol>
+<li>Local line editing ：(推荐使用auto)
+当输入任意一个字符时， PuTTY 会立即传送到远端，当此选项开启时， PuTTY会一直等到有换行符出现时，才会把整行指令传送到远端,设为auto。</li>
+</ol>
+
+<p><img src="../pictures/QQ20171029120630.png" alt="图片" title="点我显示" /></p>
+
+<blockquote>
+<p>参考</p>
+</blockquote>
+
+<p><a href="https://bcc16.ncu.edu.tw/6/putty/puttyt.html" title="点我访问">Terminal panel</a></p>
+                        
+                    </section>
+
+                    <footer class="right-align">
+                        <p><small>Copyright &#169; Gerry</small></p>
+                    </footer>
+
+                    
+
+
+                </article>
+            </div>
+        </div>
+    </div>
+
+    
+<script src="https://gerrywp.github.io/js/jquery-2.1.4.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/materialize.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/imagesloaded.pkgd.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/masonry.pkgd.min.js"></script>
+
+
+    
+    <script src="https://gerrywp.github.io/js/highlight.pack.js"></script>
+
+
+
+<script src="https://gerrywp.github.io/js/lightbox.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/jquery.infinitescroll.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/main.js"></script>
+
+
+</body>
+
+</html>
+
+
+
+
+

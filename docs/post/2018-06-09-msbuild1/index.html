@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html 
+    lang="en-us"
+    class="no-js"
+>
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="">
+    <meta name="description" content="">
+    
+    <meta name="generator" content="Hugo 0.59.0" />
+    <meta name="generation-date" content="2019-11-06 19:45:08.7645923 &#43;0800 CST m=&#43;0.232976101">
+    <title>msbuild(1)-基本使用 &middot; 云亦海</title>
+    <link rel="shortcut icon" href="https://gerrywp.github.io/img/favicon.ico">
+    <link rel="icon" href="https://gerrywp.github.io/img/favicon.ico">
+    
+<link rel="stylesheet" href="https://gerrywp.github.io/css/materialize.min.css">
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/font-awesome.min.css">
+
+
+    
+    <link rel="stylesheet" href="https://gerrywp.github.io/css/styles/railscasts.css">
+
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/lightbox.css">
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/main.css">
+
+
+    <script src="https://gerrywp.github.io/js/modernizr-latest.js"></script>
+    <script src="https://gerrywp.github.io/js/lazysizes.min.js"></script>
+    <script src="https://gerrywp.github.io/js/ls.noscript.min.js"></script>
+
+    <script>
+        window.lazySizesConfig = window.lazySizesConfig || {};
+        lazySizesConfig.addClasses = true;
+        lazySizesConfig.loadMode = 2;
+    </script>
+
+    
+</head>
+
+
+
+<body class="page-colors minimum-viewport-height">
+    
+
+<nav class="main-menu menu-colors">
+    <ul class="menu menu-colors no-list-float">
+        <li><a href="https://gerrywp.github.io/"><i class="fa fa-home fa-2x"></i></a></li>
+        <li>
+            <a href="#!"><i class="fa fa-bars fa-2x"></i></a>
+
+            
+            <ul class="menu flexible-width menu-colors no-list-float">
+                
+                
+                    <li class="active">
+                    
+                        <a href="https://gerrywp.github.io//post/">
+                            
+                            <span>Posts</span>
+                        </a>
+                    
+                    </li>
+                
+            </ul>
+        </li>
+        <li><a href="#!" data-lightbox-id="searchbox"><i class="fa fa-search fa-2x"></i></a></li>
+        
+            <li class="blue-grey-text" style="border-top: 1px solid;"></li>
+            
+        
+        <li class="blue-grey-text" style="border-top: 1px solid;"></li>
+        <li>
+            <a href="" type="application/rss+xml" target="_blank">
+                <i class="fa fa-rss fa-2x"></i>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<div id="searchbox" class="no-display">
+    <div class="valign-wrapper fill-container">
+        <div class="valign large-form horizontal-center-hack">
+            <form method="get" id="search" action="http://duckduckgo.com/">
+    <input type="hidden" name="sites"value="https://gerrywp.github.io/"/>
+    <input type="hidden" name="ka" value="h"/>
+    <input type="hidden" name="k7" value="#fafafa"/>
+    <input type="hidden" name="kj" value="#3f3f3f"/>
+    <input type="hidden" name="ky" value="#fafafa"/>
+    <input type="hidden" name="kx" value="b"/>
+    <input type="hidden" name="kt" value="Helvetica"/>
+    <input type="text" name="q" maxlength="255" placeholder="Search"/>
+    <input type="submit" value="DuckDuckGo Search" style="visibility: hidden;" />
+</form>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    <div class="main-content">
+        <div class="center-space">
+            <div class="article-colors">
+                
+                <article>
+                    <header>
+                        <h1 class="article-title">msbuild(1)-基本使用</h1>
+                        <time class="date-color">Sat Jun 09, 2018</time>
+                        <span class="separator">|</span>
+                        
+<ul class="categories">
+    <li>
+        <i class="fa fa-book"></i>
+    </li>
+    
+        <li><a href="https://gerrywp.github.io/categories/csharp">csharp</a></li>
+    
+</ul>
+
+
+                        <span class="separator">|</span>
+                        
+<ul class="tags">
+    <li>
+        <i class="fa fa-tags"></i>
+    </li>
+    
+        <li><a href="https://gerrywp.github.io/tags/tag1">tag1</a></li>
+    
+</ul>
+
+
+                    </header>
+
+                    <hr>
+
+                    <section>
+                        
+                            <p>　　使用MS的开发工具<strong>Visual Studio</strong>(以下简称VS)不得不使用msbuild进行项目的构建。VS能简化很多工作，同时也隐藏了很多内部实现细节。
+其中包括点击&rdquo;部署&rdquo;(publish)的时候VS通过msbuild为我们做了哪些工作？msbuild的使用
+在官方网站<a href="https://msdn.microsoft.com/zh-cn/library/dd393574.aspx?f=255&amp;MSPPError=-2147217396" title="点我访问">msbuild1</a>有详细的使用说明，做如下归纳！</p>
+
+<h3 id="property属性-自定义变量">Property属性(自定义变量)</h3>
+
+<p>通常构建系统需要使用到自定义变量，便于扩展和修改。</p>
+
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;!--根元素，表示一个项目--&gt;
+&lt;!--DefaultTargets用于定默认执行的目标--&gt;
+&lt;Project DefaultTargets=&quot;build&quot; xmlns=&quot;http://schemas.microsoft.com/developer/msbuild/2003&quot;&gt;
+	&lt;!--属性都要包含在PropertyGroup元素内部--&gt;
+	&lt;PropertyGroup&gt;
+	&lt;!--声明一个&quot;MyVar&quot;变量，其值为&quot;hello world&quot;--&gt;
+	&lt;MyVar&gt;hello world&lt;/MyVar&gt;
+	&lt;/PropertyGroup&gt;
+	&lt;!--目标--&gt;
+	&lt;Target Name=&quot;build&quot;&gt;
+     &lt;!--MSBuild提供的一个内置任务，用于生成记录信息用$(属性名)来引用属性的值--&gt;
+	 &lt;Message Text=&quot;$(MyVar)&quot;&gt;&lt;/Message&gt;
+	&lt;/Target&gt;
+&lt;/Project&gt;
+</code></pre>
+
+<p>说明：申明了一个MyVar的变量，然后在后面的Target中使用。变量取值无论在cmd批处理，还是在linux的shell中都是通过$来取值！</p>
+
+<h4 id="msbuild的保留属性-全局变量">msbuild的保留属性(全局变量)</h4>
+
+<p>msbuild自己保留了一些全局变量，通过这些变量可以很方便的进行文件定位！例如，$(MSBuildProjectFile) 返回项目文件，其中包括文件扩展名的完整文件名。
+<a href="https://msdn.microsoft.com/zh-cn/library/ms164309.aspx" title="点我访问">MSBuild 保留属性和已知属性</a></p>
+
+<h4 id="函数属性-可以进行一些变量的处理">函数属性(可以进行一些变量的处理)</h4>
+
+<h3 id="itemgroup项-引用文件的集合">ItemGroup项(引用文件的集合)</h3>
+
+<p>可定义一组经由外部引入的文件，通常将这类型文件作为Task的输入参数进行调用！</p>
+
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;Project DefaultTargets=&quot;build&quot; xmlns=&quot;http://schemas.microsoft.com/developer/msbuild/2003&quot;&gt;
+  &lt;!--项都要包含在ItemGroup元素内部--&gt;
+  &lt;ItemGroup&gt;
+    &lt;!--声明一个&quot;CSFile&quot;的项，Include表示引入&quot;csfile1.cs&quot;文件--&gt;
+    &lt;CSFile Include=&quot;csfile1.cs&quot;&gt;
+      &lt;!--Version表示项的元数据（附加信息）--&gt;
+      &lt;Version&gt;1.0.0.0&lt;/Version&gt;
+    &lt;/CSFile&gt;
+    &lt;!--也可用&quot;;&quot;一次引入多个文件--&gt;
+    &lt;CSFile Include=&quot;csfile2.cs;csfile3.cs&quot;/&gt;
+  &lt;/ItemGroup&gt;
+  &lt;Target Name=&quot;build&quot;&gt;
+    &lt;!--@引用项的值，默认以&quot;;&quot;分割开--&gt;
+    &lt;!--输出&quot;csfile1.cs;csfile2.cs;csfile3.cs&quot;--&gt;
+    &lt;Message Text=&quot;@(CSFile)&quot;&gt;&lt;/Message&gt;
+    &lt;!--可以加第二个参数替换默认的&quot;;&quot;分隔符--&gt;
+    &lt;!--输出&quot;csfile1.cs+csfile2.cs+csfile3.cs&quot;--&gt;
+    &lt;Message Text=&quot;@(CSFile,'+')&quot;&gt;&lt;/Message&gt;
+    &lt;!--%引用项的元数据，输出&quot;1.0.0.0&quot;--&gt;
+    &lt;Message Text=&quot;%(CSFile.Version)&quot;&gt;&lt;/Message&gt;
+  &lt;/Target&gt;
+&lt;/Project&gt;
+</code></pre>
+
+<p>说明：@符号有import的功能的意思！项是外部引入文件，所以在使用它的时候用@符号引用(在css中也是使用@符号做引用)。</p>
+
+<h4 id="将-引用文件的集合-传递给任务">将&rdquo;引用文件的集合&rdquo;传递给任务</h4>
+
+<p><strong>You must use wildcards with items to specifiy the inputs for a build; you cannot specify the inputs using the Sources attribute in MSBuild tasks such as Csc or Vbc. The following example is not valid in a project file:</strong></p>
+
+<pre><code class="language-xml">&lt;CSC Sources=&quot;*.cs&quot;&gt;...&lt;/CSC&gt;
+</code></pre>
+
+<p>当有多个文件要传递给task处理的时候，必须通过&rdquo;文件集合&rdquo;(ItemGroup)使用通配符的方式来指定&rdquo;输入文件&rdquo;！</p>
+
+<h3 id="visual-studio-vs-与msbuild的集成">Visual Studio(VS)与msbuild的集成</h3>
+
+<p>新建web项目都会生成一个*.csproj的msbuild的工程文件，这个工程文件就是供IDE调用msbuild进行项目构建的时候使用的。我们使用notepad++打开，文件结构如下：</p>
+
+<pre><code class="language-xml">  &lt;!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets. --&gt;
+  &lt;Target Name=&quot;BeforeBuild&quot;&gt;
+	&lt;Message Text=&quot;BeforeBuild my website!&quot;&gt;&lt;/Message&gt;
+  &lt;/Target&gt;
+  &lt;Target Name=&quot;AfterBuild&quot;&gt;
+	&lt;Message Text=&quot;AfterBuild my website!&quot;&gt;&lt;/Message&gt;
+  &lt;/Target&gt;
+</code></pre>
+
+<p>我们使用右键项目build，在build前后分别会调用&rdquo;BeforeBuild&rdquo;和&rdquo;AfterBuild&rdquo;的目标。
+但是我们在&rdquo;Output&rdquo;窗口并没有看到输出的消息，这应该是IDE过滤了msbuild的构建消息。
+<img src="/pictures/20180609225719.png" alt="output" title="点我显示" />
+但是我们通过cmd命令行运行的时候是可以看到输出消息的！
+<img src="/pictures/20180609230302.png" alt="output" title="点我显示" />
+可以看出msbuild自动调用了&rdquo;BeforeBuild&rdquo;和&rdquo;AfterBuild&rdquo;的Target
+如果想在IDE的Output看到输出信息(调试使用)。&gt; 参考<strong>MSBuild(2)</strong></p>
+
+<pre><code class="language-xml">  &lt;Target Name=&quot;BeforeBuild&quot;&gt;
+	&lt;Warning Text=&quot;BeforeBuild my website!&quot;&gt;&lt;/Warning&gt;
+  &lt;/Target&gt;
+</code></pre>
+
+<h4 id="自定义-pubxml部署站点">自定义*.pubxml部署站点</h4>
+
+<p>.pubxml文件配置:</p>
+
+<pre><code class="language-xml">  &lt;Target Name=&quot;AfterBuild&quot;&gt;
+    &lt;Warning Text=&quot;obj\$(LastUsedPlatform)\$(LastUsedBuildConfiguration)\Package\PackageTmp\Content\test.css&quot;&gt;&lt;/Warning&gt;
+    &lt;Delete Files=&quot;@(Item)&quot;&gt;&lt;/Delete&gt;
+  &lt;/Target&gt;
+</code></pre>
+
+<p>在.pubxml中我们添加了一个名为&rdquo;AfterBuild&rdquo;的Target，但是这个Target在通过IDE点击发布的时候是并不会被调用执行的。如果希望在pubxml中使用Target可以按如下配置：</p>
+
+<pre><code class="language-xml">  &lt;Target Name=&quot;DelCss&quot; AfterTargets=&quot;AfterBuild&quot;&gt;
+    &lt;Warning Text=&quot;obj\$(LastUsedPlatform)\$(LastUsedBuildConfiguration)\Package\PackageTmp\Content\test.css&quot;&gt;&lt;/Warning&gt;
+    &lt;Delete Files=&quot;@(Item)&quot;&gt;&lt;/Delete&gt;
+  &lt;/Target&gt;
+</code></pre>
+
+<ol>
+<li>给Target一个非&rdquo;AfterBuild&rdquo;关键字的名字，比如示例中的&rdquo;DelCss&rdquo;</li>
+<li>给Target添加键值对AfterTargets=&ldquo;AfterBuild&rdquo;</li>
+</ol>
+
+<p>猜测：VS似乎并不是直接使用msbuild <em>.pubxml来构建发布过程，而是将</em>.pubxml整合进主工程的工程文件(*.csproj)中去，然后msbuild *.csproj</p>
+
+<h4 id="pubxml中的文件路径">pubxml中的文件路径</h4>
+
+<p>由于pubxml文件最终会整合到*.csproj文件中去，所以.pubxml中的文件相对路径是根据.csproj文件来的。
+比如目录结构如下：
+- website<br />
+  - site.csproj<br />
+  - Properties<br />
+    - PublishProfiles<br />
+      - site.pubxml<br />
+  - obj</p>
+
+<p>要在<em>.pubxml中引用obj文件夹底下的文件，在pubxml中使用相对于site.csproj的文件路径即可：&rdquo;obj*.</em>&ldquo;</p>
+                        
+                    </section>
+
+                    <footer class="right-align">
+                        <p><small>Copyright &#169; Gerry</small></p>
+                    </footer>
+
+                    
+
+
+                </article>
+            </div>
+        </div>
+    </div>
+
+    
+<script src="https://gerrywp.github.io/js/jquery-2.1.4.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/materialize.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/imagesloaded.pkgd.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/masonry.pkgd.min.js"></script>
+
+
+    
+    <script src="https://gerrywp.github.io/js/highlight.pack.js"></script>
+
+
+
+<script src="https://gerrywp.github.io/js/lightbox.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/jquery.infinitescroll.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/main.js"></script>
+
+
+</body>
+
+</html>
+
+
+
+
+

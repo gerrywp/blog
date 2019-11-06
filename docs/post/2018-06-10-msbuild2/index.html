@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html 
+    lang="en-us"
+    class="no-js"
+>
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="">
+    <meta name="description" content="">
+    
+    <meta name="generator" content="Hugo 0.59.0" />
+    <meta name="generation-date" content="2019-11-06 19:45:08.7605931 &#43;0800 CST m=&#43;0.228976901">
+    <title> msbuild(2)-In Visual Studio &middot; 云亦海</title>
+    <link rel="shortcut icon" href="https://gerrywp.github.io/img/favicon.ico">
+    <link rel="icon" href="https://gerrywp.github.io/img/favicon.ico">
+    
+<link rel="stylesheet" href="https://gerrywp.github.io/css/materialize.min.css">
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/font-awesome.min.css">
+
+
+    
+    <link rel="stylesheet" href="https://gerrywp.github.io/css/styles/railscasts.css">
+
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/lightbox.css">
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/main.css">
+
+
+    <script src="https://gerrywp.github.io/js/modernizr-latest.js"></script>
+    <script src="https://gerrywp.github.io/js/lazysizes.min.js"></script>
+    <script src="https://gerrywp.github.io/js/ls.noscript.min.js"></script>
+
+    <script>
+        window.lazySizesConfig = window.lazySizesConfig || {};
+        lazySizesConfig.addClasses = true;
+        lazySizesConfig.loadMode = 2;
+    </script>
+
+    
+</head>
+
+
+
+<body class="page-colors minimum-viewport-height">
+    
+
+<nav class="main-menu menu-colors">
+    <ul class="menu menu-colors no-list-float">
+        <li><a href="https://gerrywp.github.io/"><i class="fa fa-home fa-2x"></i></a></li>
+        <li>
+            <a href="#!"><i class="fa fa-bars fa-2x"></i></a>
+
+            
+            <ul class="menu flexible-width menu-colors no-list-float">
+                
+                
+                    <li class="active">
+                    
+                        <a href="https://gerrywp.github.io//post/">
+                            
+                            <span>Posts</span>
+                        </a>
+                    
+                    </li>
+                
+            </ul>
+        </li>
+        <li><a href="#!" data-lightbox-id="searchbox"><i class="fa fa-search fa-2x"></i></a></li>
+        
+            <li class="blue-grey-text" style="border-top: 1px solid;"></li>
+            
+        
+        <li class="blue-grey-text" style="border-top: 1px solid;"></li>
+        <li>
+            <a href="" type="application/rss+xml" target="_blank">
+                <i class="fa fa-rss fa-2x"></i>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<div id="searchbox" class="no-display">
+    <div class="valign-wrapper fill-container">
+        <div class="valign large-form horizontal-center-hack">
+            <form method="get" id="search" action="http://duckduckgo.com/">
+    <input type="hidden" name="sites"value="https://gerrywp.github.io/"/>
+    <input type="hidden" name="ka" value="h"/>
+    <input type="hidden" name="k7" value="#fafafa"/>
+    <input type="hidden" name="kj" value="#3f3f3f"/>
+    <input type="hidden" name="ky" value="#fafafa"/>
+    <input type="hidden" name="kx" value="b"/>
+    <input type="hidden" name="kt" value="Helvetica"/>
+    <input type="text" name="q" maxlength="255" placeholder="Search"/>
+    <input type="submit" value="DuckDuckGo Search" style="visibility: hidden;" />
+</form>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    <div class="main-content">
+        <div class="center-space">
+            <div class="article-colors">
+                
+                <article>
+                    <header>
+                        <h1 class="article-title"> msbuild(2)-In Visual Studio</h1>
+                        <time class="date-color">Sun Jun 10, 2018</time>
+                        <span class="separator">|</span>
+                        
+<ul class="categories">
+    <li>
+        <i class="fa fa-book"></i>
+    </li>
+    
+        <li><a href="https://gerrywp.github.io/categories/csharp">csharp</a></li>
+    
+</ul>
+
+
+                        <span class="separator">|</span>
+                        
+<ul class="tags">
+    <li>
+        <i class="fa fa-tags"></i>
+    </li>
+    
+        <li><a href="https://gerrywp.github.io/tags/tag1">tag1</a></li>
+    
+</ul>
+
+
+                    </header>
+
+                    <hr>
+
+                    <section>
+                        
+                            <p>　　使用<strong>Visual Stuido</strong>(以下简称VS)发布(publish)web application到文件系统(File System)的时候，我们希望可以定制待发布的前端文件，并且在msbuild deploy的时候对构建流程进行处理！如何做呢？</p>
+
+<h3 id="pubxml的配置">*.pubxml的配置</h3>
+
+<p>vs-msbuild发布的流程如下：
+1. 编译依赖的各个项目工程
+2. 编译web主站点
+3. 拷贝html+css+view文件到obj目录下的临时文件夹中(例如：<code>obj\x86\Release\Package\PackageTmp\</code>)
+4. 拷贝步骤(3)的文件到.pubxml指定的&rdquo;publishUrl&rdquo;中去</p>
+
+<p>通常我们想做的事情是在以上步骤的第三步之后，对临时生成的PackageTmp做定制化处理(custom)!<br />
+通过<strong>GatherAllFilesToPublish</strong>这个可以办到：</p>
+
+<pre><code class="language-xml">&lt;!--.pubxml的配置文件中添加如下节点--&gt;
+  &lt;Target Name=&quot;CustomPostPublishActions&quot; AfterTargets=&quot;GatherAllFilesToPublish&quot; &gt;
+    &lt;Exec Command=&quot;echo Post-PUBLISH event: Active configuration is: $(ConfigurationName)&quot; /&gt;
+  &lt;/Target&gt;
+</code></pre>
+
+<p>并且透过Exec任务结合echo命令打印出调试信息！</p>
+
+<h4 id="output中不显示message任务">Output中不显示Message任务</h4>
+
+<p>在此同时解决一下上一篇文章中提到的Message这个任务不在Output中显示的问题。<br />
+方法1：设置Message的Importance=&ldquo;high&rdquo;</p>
+
+<pre><code class="language-xml">  &lt;Target Name=&quot;CustomPostPublishActions&quot; AfterTargets=&quot;GatherAllFilesToPublish&quot; &gt;
+    &lt;Message Importance=&quot;high&quot; Text=&quot;This is debug info!&quot;&gt;&lt;/Message&gt;
+  &lt;/Target&gt;
+</code></pre>
+
+<p>方法2：设置<strong>MSBuild output verbosity</strong>为Detailed，路径如下：<br />
+<code>Tools -&gt; Options -&gt; Projects and Solutinos -&gt; Build and Run -&gt; MSBuild</code>
+如果想看msbuild详细的Build Target顺序，可以将此项设置为<code>Diagnostic</code></p>
+
+<p><img src="/pictures/QQ20180610165051.png" alt="msbuild-output配置" title="点我访问" /></p>
+
+<blockquote>
+<p>说明：写脚本调试，强烈推荐设置成<code>Diagnostic</code>,这样可以看到超详细的msbuild构建信息。例如：加载内置的环境变量，加载msbuild保留属性(resolve-properties)。
+同时由于VS各个版本的不同，构建Target名称不一样，通过这个设置也能快速定位Target，找到定制切入点！</p>
+</blockquote>
+
+<p>如下图c# web构建使用的是<code>C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\Microsoft\VisualStudio\v15.0\Web\Microsoft.Web.Publishing.targets</code>
+这个targets文件，感兴趣的可以研究下这个文件了解详细的构建过程！</p>
+
+<p><img src="/pictures/QQ20180610170738.png" alt="deploy-targets" title="点我访问" /></p>
+
+<p>通过查看<strong>Microsoft.Web.Publishing.targets</strong>文件不难看出<code>GatherAllFilesToPublish</code>是一个空目标，它的依赖目标有一个<code>CopyAllFilesToSingleFolderForPackage</code>,通过设置AfterTarget=&ldquo;CopyAllFilesToSingleFolderForPackage&rdquo;可以自定义web publish流程.</p>
+
+<h3 id="实例-发布前删除非压缩模式的css文件">实例：发布前删除非压缩模式的css文件</h3>
+
+<pre><code class="language-xml">  &lt;Target Name=&quot;CustomPostPublishActions&quot; AfterTargets=&quot;GatherAllFilesToPublish&quot; &gt;
+    &lt;ItemGroup&gt;
+      &lt;CssFiles Include=&quot;$(WPPAllFilesInSingleFolder)\Content\*.css&quot;&gt;&lt;/CssFiles&gt;
+    &lt;/ItemGroup&gt;
+    &lt;Delete Files=&quot;@(CssFiles)&quot;&gt;&lt;/Delete&gt;
+  &lt;/Target&gt;
+</code></pre>
+
+<blockquote>
+<p>小技巧: $(WPPAllFilesInSingleFolder)这个变量通过在Microsoft.Web.Publishing.targets目标文件搜索关键字&rdquo;PackageTemp&rdquo;就可以找到！</p>
+</blockquote>
+                        
+                    </section>
+
+                    <footer class="right-align">
+                        <p><small>Copyright &#169; Gerry</small></p>
+                    </footer>
+
+                    
+
+
+                </article>
+            </div>
+        </div>
+    </div>
+
+    
+<script src="https://gerrywp.github.io/js/jquery-2.1.4.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/materialize.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/imagesloaded.pkgd.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/masonry.pkgd.min.js"></script>
+
+
+    
+    <script src="https://gerrywp.github.io/js/highlight.pack.js"></script>
+
+
+
+<script src="https://gerrywp.github.io/js/lightbox.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/jquery.infinitescroll.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/main.js"></script>
+
+
+</body>
+
+</html>
+
+
+
+
+

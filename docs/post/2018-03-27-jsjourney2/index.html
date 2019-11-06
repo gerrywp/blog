@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html 
+    lang="en-us"
+    class="no-js"
+>
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="">
+    <meta name="description" content="">
+    
+    <meta name="generator" content="Hugo 0.59.0" />
+    <meta name="generation-date" content="2019-11-06 19:45:08.7795927 &#43;0800 CST m=&#43;0.247976501">
+    <title>nodejs之旅(2) &middot; 云亦海</title>
+    <link rel="shortcut icon" href="https://gerrywp.github.io/img/favicon.ico">
+    <link rel="icon" href="https://gerrywp.github.io/img/favicon.ico">
+    
+<link rel="stylesheet" href="https://gerrywp.github.io/css/materialize.min.css">
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/font-awesome.min.css">
+
+
+    
+    <link rel="stylesheet" href="https://gerrywp.github.io/css/styles/railscasts.css">
+
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/lightbox.css">
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/main.css">
+
+
+    <script src="https://gerrywp.github.io/js/modernizr-latest.js"></script>
+    <script src="https://gerrywp.github.io/js/lazysizes.min.js"></script>
+    <script src="https://gerrywp.github.io/js/ls.noscript.min.js"></script>
+
+    <script>
+        window.lazySizesConfig = window.lazySizesConfig || {};
+        lazySizesConfig.addClasses = true;
+        lazySizesConfig.loadMode = 2;
+    </script>
+
+    
+</head>
+
+
+
+<body class="page-colors minimum-viewport-height">
+    
+
+<nav class="main-menu menu-colors">
+    <ul class="menu menu-colors no-list-float">
+        <li><a href="https://gerrywp.github.io/"><i class="fa fa-home fa-2x"></i></a></li>
+        <li>
+            <a href="#!"><i class="fa fa-bars fa-2x"></i></a>
+
+            
+            <ul class="menu flexible-width menu-colors no-list-float">
+                
+                
+                    <li class="active">
+                    
+                        <a href="https://gerrywp.github.io//post/">
+                            
+                            <span>Posts</span>
+                        </a>
+                    
+                    </li>
+                
+            </ul>
+        </li>
+        <li><a href="#!" data-lightbox-id="searchbox"><i class="fa fa-search fa-2x"></i></a></li>
+        
+            <li class="blue-grey-text" style="border-top: 1px solid;"></li>
+            
+        
+        <li class="blue-grey-text" style="border-top: 1px solid;"></li>
+        <li>
+            <a href="" type="application/rss+xml" target="_blank">
+                <i class="fa fa-rss fa-2x"></i>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<div id="searchbox" class="no-display">
+    <div class="valign-wrapper fill-container">
+        <div class="valign large-form horizontal-center-hack">
+            <form method="get" id="search" action="http://duckduckgo.com/">
+    <input type="hidden" name="sites"value="https://gerrywp.github.io/"/>
+    <input type="hidden" name="ka" value="h"/>
+    <input type="hidden" name="k7" value="#fafafa"/>
+    <input type="hidden" name="kj" value="#3f3f3f"/>
+    <input type="hidden" name="ky" value="#fafafa"/>
+    <input type="hidden" name="kx" value="b"/>
+    <input type="hidden" name="kt" value="Helvetica"/>
+    <input type="text" name="q" maxlength="255" placeholder="Search"/>
+    <input type="submit" value="DuckDuckGo Search" style="visibility: hidden;" />
+</form>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    <div class="main-content">
+        <div class="center-space">
+            <div class="article-colors">
+                
+                <article>
+                    <header>
+                        <h1 class="article-title">nodejs之旅(2)</h1>
+                        <time class="date-color">Tue Mar 27, 2018</time>
+                        <span class="separator">|</span>
+                        
+<ul class="categories">
+    <li>
+        <i class="fa fa-book"></i>
+    </li>
+    
+        <li><a href="https://gerrywp.github.io/categories/javascript">javascript</a></li>
+    
+</ul>
+
+
+                        <span class="separator">|</span>
+                        
+<ul class="tags">
+    <li>
+        <i class="fa fa-tags"></i>
+    </li>
+    
+        <li><a href="https://gerrywp.github.io/tags/tag1">tag1</a></li>
+    
+</ul>
+
+
+                    </header>
+
+                    <hr>
+
+                    <section>
+                        
+                            <p>　　express-handlebars服务端模板引擎的局部渲染。非SPA应用程序，在最原始的动态页面并使用了layout布局的情况下，
+我们通常希望能够将index.hbs里面的UI结构和js逻辑部分组合在一起，并且需要将js逻辑统一放置到layout布局页的最底部。
+handlebars的<strong>Block Helper</strong>能够帮我们解决这个问题！</p>
+
+<h3 id="block-helper">Block Helper</h3>
+
+<p>通常我们的layout.hbs文件结构组织如下:</p>
+
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;!--引入css文件--&gt;
+    &lt;link href=&quot;./*.css&quot;/&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;header&gt;&lt;/header&gt;
+    &lt;main&gt;
+      { { {body} } }
+    &lt;/main&gt;
+    &lt;footer&gt;&lt;/footer&gt;
+    &lt;!--javascript 脚本--&gt;
+    &lt;script  src=&quot;./javascripts/jquery.min.js&quot;/&gt;
+    &lt;!--其它页面的脚本放置在这里--&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>index.hbs文件结构如下：</p>
+
+<pre><code class="language-html">&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-12&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+  $(function(){
+    //do something here
+  })();
+&lt;/script&gt;
+</code></pre>
+
+<p>很明显index.hbs页面需要在layout.hbs页面的jquery.js加载之后再加载。也就是在物理顺序上index.hbs页面的js逻辑代码，
+要放置在laout.hbs中<script>最后面引入！<br />
+handlebar的页面渲染流程：</p>
+
+<pre><code class="language-js">  app.get('/', function (req, res, next) {
+    res.render('index');
+});
+</code></pre>
+
+<ol>
+<li>handlebars引擎编译index.hbs生成局部hmtl模板</li>
+<li>引擎编译layout.hbs生成布局html模板</li>
+<li>compine合并步骤(1)&amp;步骤(2)的操作结果,使用步骤(1)结果替换掉步骤(2)中的占位符</li>
+<li>输出最终页面</li>
+</ol>
+
+<p>解决问题的关键在于，步骤(1)使用handlebar引擎编译index.hbs的时候，使用<strong>Block Helper</strong>让引擎生成的js脚本不输出到局部的html模板中，
+而是保存在[引擎全局对象]<strong>memory script</strong>上。等到步骤(3)的时候，用<strong>memory script</strong>替换掉步骤(2)中的script占位符即可！<br />
+具体实现如下：<br />
+在app.js中注册自定义<strong>Block Helper</strong></p>
+
+<pre><code class="language-js">var sectionHelper={section:function(name,options){
+  if(!this.renderSection)this.renderSection={};
+  //将引擎渲染的代码块，保存到引擎对象上
+  this.renderSection[name]=options.fn(this);
+  return null;//让BlockHelper在此次不渲染
+}};
+app.engine('.hbs', exphbs({extname: '.hbs',helpers:sectionHelper}));
+</code></pre>
+
+<p>在index.hbs页面使用app.js中注册的section <strong>Block Helper</strong></p>
+
+<pre><code class="language-html">&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-12&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+//使用注册过section block helper
+{ { #section 'js' } }
+&lt;script&gt;
+  $(function(){
+    //do something here
+  })();
+&lt;/script&gt;
+{ {/section} }
+//此处只是生成了模板的内存数据，并不会在此处渲染html结构
+</code></pre>
+
+<p>在layout.hbs页面渲染index.hbs生成的模板内存数据</p>
+
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;!--引入css文件--&gt;
+    &lt;link href=&quot;./*.css&quot;/&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;header&gt;&lt;/header&gt;
+    &lt;main&gt;
+      { { {body} } }
+    &lt;/main&gt;
+    &lt;footer&gt;&lt;/footer&gt;
+    &lt;!--javascript 脚本--&gt;
+    &lt;script  src=&quot;./javascripts/jquery.min.js&quot;/&gt;
+    &lt;!--其它页面的脚本放置在这里--&gt;
+    &lt;!-- 渲染index.hbs页面的section模板到此位置--&gt;
+    { { {renderSection.js} } }
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<blockquote>
+<p>使用{ { { } } }语法原样输出handlebar-engine上下文context中的renderSection.js变量!</p>
+</blockquote>
+
+<p>备注：<code>{ { {} } }</code>与<code>{ {} }</code>的区别，两者都是求值输出变量，前者对html标签不做转义处理，后者对html标签做了转义处理。</p>
+                        
+                    </section>
+
+                    <footer class="right-align">
+                        <p><small>Copyright &#169; Gerry</small></p>
+                    </footer>
+
+                    
+
+
+                </article>
+            </div>
+        </div>
+    </div>
+
+    
+<script src="https://gerrywp.github.io/js/jquery-2.1.4.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/materialize.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/imagesloaded.pkgd.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/masonry.pkgd.min.js"></script>
+
+
+    
+    <script src="https://gerrywp.github.io/js/highlight.pack.js"></script>
+
+
+
+<script src="https://gerrywp.github.io/js/lightbox.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/jquery.infinitescroll.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/main.js"></script>
+
+
+</body>
+
+</html>
+
+
+
+
+

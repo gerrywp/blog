@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html 
+    lang="en-us"
+    class="no-js"
+>
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="">
+    <meta name="description" content="">
+    
+    <meta name="generator" content="Hugo 0.59.0" />
+    <meta name="generation-date" content="2019-11-06 19:45:08.7805934 &#43;0800 CST m=&#43;0.248977201">
+    <title>nodejs之旅(1) &middot; 云亦海</title>
+    <link rel="shortcut icon" href="https://gerrywp.github.io/img/favicon.ico">
+    <link rel="icon" href="https://gerrywp.github.io/img/favicon.ico">
+    
+<link rel="stylesheet" href="https://gerrywp.github.io/css/materialize.min.css">
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/font-awesome.min.css">
+
+
+    
+    <link rel="stylesheet" href="https://gerrywp.github.io/css/styles/railscasts.css">
+
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/lightbox.css">
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/main.css">
+
+
+    <script src="https://gerrywp.github.io/js/modernizr-latest.js"></script>
+    <script src="https://gerrywp.github.io/js/lazysizes.min.js"></script>
+    <script src="https://gerrywp.github.io/js/ls.noscript.min.js"></script>
+
+    <script>
+        window.lazySizesConfig = window.lazySizesConfig || {};
+        lazySizesConfig.addClasses = true;
+        lazySizesConfig.loadMode = 2;
+    </script>
+
+    
+</head>
+
+
+
+<body class="page-colors minimum-viewport-height">
+    
+
+<nav class="main-menu menu-colors">
+    <ul class="menu menu-colors no-list-float">
+        <li><a href="https://gerrywp.github.io/"><i class="fa fa-home fa-2x"></i></a></li>
+        <li>
+            <a href="#!"><i class="fa fa-bars fa-2x"></i></a>
+
+            
+            <ul class="menu flexible-width menu-colors no-list-float">
+                
+                
+                    <li class="active">
+                    
+                        <a href="https://gerrywp.github.io//post/">
+                            
+                            <span>Posts</span>
+                        </a>
+                    
+                    </li>
+                
+            </ul>
+        </li>
+        <li><a href="#!" data-lightbox-id="searchbox"><i class="fa fa-search fa-2x"></i></a></li>
+        
+            <li class="blue-grey-text" style="border-top: 1px solid;"></li>
+            
+        
+        <li class="blue-grey-text" style="border-top: 1px solid;"></li>
+        <li>
+            <a href="" type="application/rss+xml" target="_blank">
+                <i class="fa fa-rss fa-2x"></i>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<div id="searchbox" class="no-display">
+    <div class="valign-wrapper fill-container">
+        <div class="valign large-form horizontal-center-hack">
+            <form method="get" id="search" action="http://duckduckgo.com/">
+    <input type="hidden" name="sites"value="https://gerrywp.github.io/"/>
+    <input type="hidden" name="ka" value="h"/>
+    <input type="hidden" name="k7" value="#fafafa"/>
+    <input type="hidden" name="kj" value="#3f3f3f"/>
+    <input type="hidden" name="ky" value="#fafafa"/>
+    <input type="hidden" name="kx" value="b"/>
+    <input type="hidden" name="kt" value="Helvetica"/>
+    <input type="text" name="q" maxlength="255" placeholder="Search"/>
+    <input type="submit" value="DuckDuckGo Search" style="visibility: hidden;" />
+</form>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    <div class="main-content">
+        <div class="center-space">
+            <div class="article-colors">
+                
+                <article>
+                    <header>
+                        <h1 class="article-title">nodejs之旅(1)</h1>
+                        <time class="date-color">Thu Mar 22, 2018</time>
+                        <span class="separator">|</span>
+                        
+<ul class="categories">
+    <li>
+        <i class="fa fa-book"></i>
+    </li>
+    
+        <li><a href="https://gerrywp.github.io/categories/javascript">javascript</a></li>
+    
+</ul>
+
+
+                        <span class="separator">|</span>
+                        
+<ul class="tags">
+    <li>
+        <i class="fa fa-tags"></i>
+    </li>
+    
+        <li><a href="https://gerrywp.github.io/tags/tag1">tag1</a></li>
+    
+</ul>
+
+
+                    </header>
+
+                    <hr>
+
+                    <section>
+                        
+                            <p>　　这个系列会一步一步开始使用expressjs+nodejs搭建一个游戏背景音乐在线听网站。从零开始记录每一个细节：包括IDE工具使用细节、环境配置细节、expressjs
+配置细节等等。目的只是为了单纯的练习和使用expressjs+nodejs，在摸索中前进！</p>
+
+<h4 id="准备工作">准备工作</h4>
+
+<p>开发工具使用的是ms的visual studio 2017 有些暴殄天物
+1. visual studio 2017
+2. node.exe &ndash; version 8.5</p>
+
+<h4 id="创建一个basic-expressjs-application">创建一个basic-expressjs application</h4>
+
+<p>新建project,命名为expressappAiyoe。创建完毕后默认目录结构，如下图：
+<img src="/pictures/QQ20180322210357.png" alt="新建项目" title="点我显示" />
+<img src="/pictures/QQ20180322210527.png" alt="项目结构" title="点我显示" /></p>
+
+<p>当然也可以通过<a href="http://expressjs.com/zh-cn/" title="点我访问">expressjs官网网站</a>的<code>express-generator</code>命令行工具来生成需要的站点！
+IDE方便在于不需要记住那么多的命令，使用鼠标搞定。</p>
+
+<h4 id="修改expressjs默认模板引擎pug">修改expressjs默认模板引擎pug</h4>
+
+<p>通过visual studio创建的expressjs项目默认使用的是pug的模板引擎，个人很不喜欢这种类型的模板引擎感觉非常的不直观。pug的前身是jade模板引擎。
+在这里打算使用express-handlebars模板引擎，这个模板引擎是mustache模板engine的一个扩展，可以同时使用在browser-client客户端和web-server服务器端。
+可供express使用的模板引擎还有<a href="https://www.npmjs.com/package/express-ejs-layouts" title="点我访问">express-ejs-layouts</a>,看个人喜好。</p>
+
+<p>在<a href="https://www.npmjs.com/" title="点我访问">npm官网</a>可以搜索到<a href="https://www.npmjs.com/package/express-handlebars" title="点我访问">express-handlebars</a>,
+里面有详细的使用介绍，这里我们只需要把app.js里面相应的view engine代码替换掉并且将views目录下的文件后缀名改为handlebars即可，如下:</p>
+
+<pre><code class="language-javascript">var express = require('express');
+var exphbs  = require('express-handlebars');
+ 
+var app = express();
+ 
+app.engine('handlebars', exphbs({defaultLayout: 'layout'}));
+app.set('view engine', 'handlebars');
+ 
+app.get('/', function (req, res) {
+    res.render('home');
+});
+ 
+app.listen(3000);
+</code></pre>
+
+<p>上面的代码会报错找不到views/layout/layout.handlebars文件。根据express-handlebars文档,设置如下：</p>
+
+<pre><code class="language-javascript">//app.engine('handlebars', exphbs({defaultLayout: 'layout'}));
+app.engine('handlebars', exphbs({defaultLayout: 'layout',layoutsDir:&quot;views&quot;}));
+//The string path to the directory where the layout templates reside.
+</code></pre>
+
+<p>同时handlebars这样的后缀名文件太冗长了，我们需要更短一点的后缀名可以通过设置<code>extname</code>属性来实现。</p>
+
+<pre><code class="language-javascript">app.engine('.hbs', exphbs({defaultLayout: 'layout',layoutsDir:&quot;views&quot;,extname='.hbs'}));
+app.set('view engine', '.hbs');
+</code></pre>
+
+<blockquote>
+<p>注意: extname的值必须与注册engine时call的app.engine(key,value)的<code>key</code>保持一致！</p>
+</blockquote>
+
+<p>文档英文原文如下：
+<code>This value should correspond with the extname under which this view engine is registered with Express when calling app.engine().</code></p>
+
+<p>补充说明:visual studio针对特定后缀名的文件，使用什么样的编辑器打开就有不同的高亮提示，这个是可以定制的。[Tools]-&gt;[Options]-&gt;[Text Editor]-&gt;
+[File Extension]，添加自定义的后缀名，选择对应的编辑器即可，如图：
+<img src="/pictures/QQ20180322212910.png" alt="自定义文件编辑器" title="点我显示" /></p>
+
+<p><code>app.engine()</code>的使用请参考<a href="http://expressjs.com/en/advanced/developing-template-engines.html" title="点我访问">Developing template engines for Express</a></p>
+
+<h4 id="expressappaiyoe端口问题">expressappAiyoe端口问题</h4>
+
+<p>从代码可以看出倘若定义了<code>process.env.PORT</code>环境变量，就使用环境变量指定的端口没有就使用3000</p>
+
+<pre><code class="language-javascript">app.set('port', process.env.PORT || 3000);
+</code></pre>
+
+<p>vsIDE默认通过工程文件指定了1337端口，可以通过右键项目文件-&gt;属性看到，如果把nodejs port这个值删除，通过F5启动的node.exe会随机给我们指定一个端口，
+通过msbuild配置命令行的形式，设置了环境变量<code>process.env.PORT</code>。
+<img src="/pictures/QQ20180322214706.png" alt="项目属性" title="点我显示" /></p>
+
+<h4 id="启动网站">启动网站</h4>
+
+<p>按F5启动网站！</p>
+                        
+                    </section>
+
+                    <footer class="right-align">
+                        <p><small>Copyright &#169; Gerry</small></p>
+                    </footer>
+
+                    
+
+
+                </article>
+            </div>
+        </div>
+    </div>
+
+    
+<script src="https://gerrywp.github.io/js/jquery-2.1.4.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/materialize.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/imagesloaded.pkgd.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/masonry.pkgd.min.js"></script>
+
+
+    
+    <script src="https://gerrywp.github.io/js/highlight.pack.js"></script>
+
+
+
+<script src="https://gerrywp.github.io/js/lightbox.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/jquery.infinitescroll.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/main.js"></script>
+
+
+</body>
+
+</html>
+
+
+
+
+

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html 
+    lang="en-us"
+    class="no-js"
+>
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="">
+    <meta name="description" content="">
+    
+    <meta name="generator" content="Hugo 0.59.0" />
+    <meta name="generation-date" content="2019-11-06 19:45:08.8645924 &#43;0800 CST m=&#43;0.332976201">
+    <title>unicode编码字符集和utf-8、asci编码方式 &middot; 云亦海</title>
+    <link rel="shortcut icon" href="https://gerrywp.github.io/img/favicon.ico">
+    <link rel="icon" href="https://gerrywp.github.io/img/favicon.ico">
+    
+<link rel="stylesheet" href="https://gerrywp.github.io/css/materialize.min.css">
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/font-awesome.min.css">
+
+
+    
+    <link rel="stylesheet" href="https://gerrywp.github.io/css/styles/railscasts.css">
+
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/lightbox.css">
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/main.css">
+
+
+    <script src="https://gerrywp.github.io/js/modernizr-latest.js"></script>
+    <script src="https://gerrywp.github.io/js/lazysizes.min.js"></script>
+    <script src="https://gerrywp.github.io/js/ls.noscript.min.js"></script>
+
+    <script>
+        window.lazySizesConfig = window.lazySizesConfig || {};
+        lazySizesConfig.addClasses = true;
+        lazySizesConfig.loadMode = 2;
+    </script>
+
+    
+</head>
+
+
+
+<body class="page-colors minimum-viewport-height">
+    
+
+<nav class="main-menu menu-colors">
+    <ul class="menu menu-colors no-list-float">
+        <li><a href="https://gerrywp.github.io/"><i class="fa fa-home fa-2x"></i></a></li>
+        <li>
+            <a href="#!"><i class="fa fa-bars fa-2x"></i></a>
+
+            
+            <ul class="menu flexible-width menu-colors no-list-float">
+                
+                
+                    <li class="active">
+                    
+                        <a href="https://gerrywp.github.io//post/">
+                            
+                            <span>Posts</span>
+                        </a>
+                    
+                    </li>
+                
+            </ul>
+        </li>
+        <li><a href="#!" data-lightbox-id="searchbox"><i class="fa fa-search fa-2x"></i></a></li>
+        
+            <li class="blue-grey-text" style="border-top: 1px solid;"></li>
+            
+        
+        <li class="blue-grey-text" style="border-top: 1px solid;"></li>
+        <li>
+            <a href="" type="application/rss+xml" target="_blank">
+                <i class="fa fa-rss fa-2x"></i>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<div id="searchbox" class="no-display">
+    <div class="valign-wrapper fill-container">
+        <div class="valign large-form horizontal-center-hack">
+            <form method="get" id="search" action="http://duckduckgo.com/">
+    <input type="hidden" name="sites"value="https://gerrywp.github.io/"/>
+    <input type="hidden" name="ka" value="h"/>
+    <input type="hidden" name="k7" value="#fafafa"/>
+    <input type="hidden" name="kj" value="#3f3f3f"/>
+    <input type="hidden" name="ky" value="#fafafa"/>
+    <input type="hidden" name="kx" value="b"/>
+    <input type="hidden" name="kt" value="Helvetica"/>
+    <input type="text" name="q" maxlength="255" placeholder="Search"/>
+    <input type="submit" value="DuckDuckGo Search" style="visibility: hidden;" />
+</form>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    <div class="main-content">
+        <div class="center-space">
+            <div class="article-colors">
+                
+                <article>
+                    <header>
+                        <h1 class="article-title">unicode编码字符集和utf-8、asci编码方式</h1>
+                        <time class="date-color">Thu Mar 23, 2017</time>
+                        <span class="separator">|</span>
+                        
+<ul class="categories">
+    <li>
+        <i class="fa fa-book"></i>
+    </li>
+    
+        <li><a href="https://gerrywp.github.io/categories/windows">windows</a></li>
+    
+</ul>
+
+
+                        <span class="separator">|</span>
+                        
+<ul class="tags">
+    <li>
+        <i class="fa fa-tags"></i>
+    </li>
+    
+        <li><a href="https://gerrywp.github.io/tags/tag1">tag1</a></li>
+    
+</ul>
+
+
+                    </header>
+
+                    <hr>
+
+                    <section>
+                        
+                            <p>Unicode是一个编码字符集，统一维护着世界上所有的&rsquo;字符&rsquo;。Unicode只是一个符号集，它只规定了符号的二进制代码，
+却没有规定这个二进制代码应该如何存储。utf8只是Unicode字符集的一个具体的编码(解码)的实现方式之一，其它的还有utf-16
+,utf-32等。</p>
+
+<h3 id="bom-byte-order-mark-又称-零宽度非换行空格-zero-width-no-break-space">BOM(Byte order mark)又称&rdquo;零宽度非换行空格&rdquo;（ZERO WIDTH NO-BREAK SPACE）</h3>
+
+<p>BOM都很熟悉，Notepad++之中就会有，以utf-8有BOM编码、以utf-8无BOM编码。
+因为unicode编码规范并不知道，文档到底使用的是哪一种编码顺序(大小头)。所以规定前1-4个字节标识编码顺序。
+又因为Utf-8没有大小头之分，所以可以使用BOM来标识是使用的那一种编码！<br />
+我们使用Notepad++来看下，&rdquo;我&rdquo;在使用utf-8无BOM编码的情况下的HEX十六进制表示法：
+1. 先要安装Notepad++插件HEX-Editor</p>
+
+<p><img src="../pictures/QQ20170323212337.png" alt="HEX-Editor" /></p>
+
+<p>编码为：e6 88 91</p>
+
+<p><img src="../pictures/QQ20170323212712.png" alt="我code" /></p>
+
+<ol>
+<li>utf-8不带BOM编码情况下，16进制编码为:ef bb bf e6 88 91</li>
+</ol>
+
+<p>由此可见Utf-8编码的BOM为:ef bb bf</p>
+
+<h3 id="asci编码">asci编码</h3>
+
+<p>在中文操作系统下，我们在notepad++下，使用asci码输入中文，其实使用的是操作系统默认GBK编码。<br />
+使用notepad++可以看到，&rdquo;我&rdquo;在ansi下的编码16进制为:ce d2,这个编码正是&rdquo;我&rdquo;在GBK编码字符集中的编码。</p>
+
+<h3 id="notepad-ansi编码输入中文程序无响应">notepad++，ansi编码输入中文程序无响应</h3>
+
+<p>在ansi编码下，默认中文字符会被拆成2个字符。且这个使用的设置是:&ldquo;自动完成-&gt;单词自动完成&rdquo;
+且后边是从&rdquo;第1个字符开始&rdquo;的时候会默认从这个<strong>未知字符</strong>开始自动完成，notepad++就卡死了。<br />
+解决方法：改变从&rdquo;第1个字符开始&rdquo;成&rdquo;第2个字符开始&rdquo;回车即可。</p>
+
+<p><img src="../pictures/QQ20170323220207.png" alt="首选项" /></p>
+
+<blockquote>
+<p>参考文献</p>
+</blockquote>
+
+<ol>
+<li><a href="http://cenalulu.github.io/linux/character-encoding/">十分钟搞清字符集和字符编码</a></li>
+<li><a href="http://www.ietf.org/rfc/rfc3629.txt">如何实现UTF-8编码规范</a></li>
+</ol>
+                        
+                    </section>
+
+                    <footer class="right-align">
+                        <p><small>Copyright &#169; Gerry</small></p>
+                    </footer>
+
+                    
+
+
+                </article>
+            </div>
+        </div>
+    </div>
+
+    
+<script src="https://gerrywp.github.io/js/jquery-2.1.4.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/materialize.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/imagesloaded.pkgd.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/masonry.pkgd.min.js"></script>
+
+
+    
+    <script src="https://gerrywp.github.io/js/highlight.pack.js"></script>
+
+
+
+<script src="https://gerrywp.github.io/js/lightbox.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/jquery.infinitescroll.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/main.js"></script>
+
+
+</body>
+
+</html>
+
+
+
+
+

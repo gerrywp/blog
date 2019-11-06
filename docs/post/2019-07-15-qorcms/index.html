@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html 
+    lang="en-us"
+    class="no-js"
+>
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="">
+    <meta name="description" content="">
+    
+    <meta name="generator" content="Hugo 0.59.0" />
+    <meta name="generation-date" content="2019-11-06 19:45:08.6415931 &#43;0800 CST m=&#43;0.109976901">
+    <title>QOR踩坑日记 &middot; 云亦海</title>
+    <link rel="shortcut icon" href="https://gerrywp.github.io/img/favicon.ico">
+    <link rel="icon" href="https://gerrywp.github.io/img/favicon.ico">
+    
+<link rel="stylesheet" href="https://gerrywp.github.io/css/materialize.min.css">
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/font-awesome.min.css">
+
+
+    
+    <link rel="stylesheet" href="https://gerrywp.github.io/css/styles/railscasts.css">
+
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/lightbox.css">
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/main.css">
+
+
+    <script src="https://gerrywp.github.io/js/modernizr-latest.js"></script>
+    <script src="https://gerrywp.github.io/js/lazysizes.min.js"></script>
+    <script src="https://gerrywp.github.io/js/ls.noscript.min.js"></script>
+
+    <script>
+        window.lazySizesConfig = window.lazySizesConfig || {};
+        lazySizesConfig.addClasses = true;
+        lazySizesConfig.loadMode = 2;
+    </script>
+
+    
+</head>
+
+
+
+<body class="page-colors minimum-viewport-height">
+    
+
+<nav class="main-menu menu-colors">
+    <ul class="menu menu-colors no-list-float">
+        <li><a href="https://gerrywp.github.io/"><i class="fa fa-home fa-2x"></i></a></li>
+        <li>
+            <a href="#!"><i class="fa fa-bars fa-2x"></i></a>
+
+            
+            <ul class="menu flexible-width menu-colors no-list-float">
+                
+                
+                    <li class="active">
+                    
+                        <a href="https://gerrywp.github.io//post/">
+                            
+                            <span>Posts</span>
+                        </a>
+                    
+                    </li>
+                
+            </ul>
+        </li>
+        <li><a href="#!" data-lightbox-id="searchbox"><i class="fa fa-search fa-2x"></i></a></li>
+        
+            <li class="blue-grey-text" style="border-top: 1px solid;"></li>
+            
+        
+        <li class="blue-grey-text" style="border-top: 1px solid;"></li>
+        <li>
+            <a href="" type="application/rss+xml" target="_blank">
+                <i class="fa fa-rss fa-2x"></i>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<div id="searchbox" class="no-display">
+    <div class="valign-wrapper fill-container">
+        <div class="valign large-form horizontal-center-hack">
+            <form method="get" id="search" action="http://duckduckgo.com/">
+    <input type="hidden" name="sites"value="https://gerrywp.github.io/"/>
+    <input type="hidden" name="ka" value="h"/>
+    <input type="hidden" name="k7" value="#fafafa"/>
+    <input type="hidden" name="kj" value="#3f3f3f"/>
+    <input type="hidden" name="ky" value="#fafafa"/>
+    <input type="hidden" name="kx" value="b"/>
+    <input type="hidden" name="kt" value="Helvetica"/>
+    <input type="text" name="q" maxlength="255" placeholder="Search"/>
+    <input type="submit" value="DuckDuckGo Search" style="visibility: hidden;" />
+</form>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    <div class="main-content">
+        <div class="center-space">
+            <div class="article-colors">
+                
+                <article>
+                    <header>
+                        <h1 class="article-title">QOR踩坑日记</h1>
+                        <time class="date-color">Mon Jul 15, 2019</time>
+                        <span class="separator">|</span>
+                        
+<ul class="categories">
+    <li>
+        <i class="fa fa-book"></i>
+    </li>
+    
+        <li><a href="https://gerrywp.github.io/categories/golang">golang</a></li>
+    
+</ul>
+
+
+                        <span class="separator">|</span>
+                        
+<ul class="tags">
+    <li>
+        <i class="fa fa-tags"></i>
+    </li>
+    
+        <li><a href="https://gerrywp.github.io/tags/tag1">tag1</a></li>
+    
+</ul>
+
+
+                    </header>
+
+                    <hr>
+
+                    <section>
+                        
+                            <p>QOR-CMS Open source has lots of bugs.to fix these bugs cost me lots of time.So record them into this
+article!</p>
+
+<h3 id="win10下consle日志乱码问题">Win10下consle日志乱码问题</h3>
+
+<p>我最原始的猜想是不是因为cmd编码的问题，因为系统是中文系统cmd编码是GBK。这里引入另外一个问题，我们每次都要使用<code>chcp 65001</code>将当前code page更改为UTF-8，或者修改注册表：</p>
+
+<pre><code class="language-console">regedit-&gt;[HKEY_LOCAL_MACHINE]\[SOFTWARE]\[Microsoft]\[Command Processor]\
+新建字符串值，
+AutoRun=chcp 65001 &gt;nul 2&gt;&amp;1
+</code></pre>
+
+<p>其实可以在语言和区域(区域-&gt;管理-&gt;更改系统区域设置)通过勾选&rdquo;使用Unicode UTF-8提供全球语言支持&rdquo;即可(谨慎使用，有些软件会出现乱码的现象)，如下图所示:</p>
+
+<p><img src="../pictures/20190715004216.png" alt="编码" title="点我访问" /></p>
+
+<p>然而事实上我发现即使改了编码，在cmd下还是乱码。继续下一个猜测，因为就乱码表现形式来看，日志行使用了背景色，源码使用<code>chi</code>的<code>middleware.Logger</code>中间件来记录日志,在<code>terminal.go</code>源文件里，使用了isTTY来判断当前环境是否是linux-shell环境。使用<code>fmt.Println()</code>打印调试证实是这里出现了问题：</p>
+
+<pre><code class="language-golang">func init() {
+	// This is sort of cheating: if stdout is a character device, we assume
+	// that means it's a TTY. Unfortunately, there are many non-TTY
+	// character devices, but fortunately stdout is rarely set to any of
+	// them.
+	//
+	// We could solve this properly by pulling in a dependency on
+	// code.google.com/p/go.crypto/ssh/terminal, for instance, but as a
+	// heuristic for whether to print in color or in black-and-white, I'd
+	// really rather not.
+	fi, err := os.Stdout.Stat()
+	if err == nil {
+		m := os.ModeDevice | os.ModeCharDevice
+		isTTY = fi.Mode()&amp;m == m
+	}
+}
+</code></pre>
+
+<p><code>isTTY</code>此变量在win10-cmd下被赋值为<code>true</code>,因此我们需要关闭logger中间件的色彩日志记录功能，设置<code>DefaultLogger</code>为自定义的日志格式：</p>
+
+<pre><code class="language-golang">	noneColorLoggerFormatter := middleware.DefaultLogFormatter{
+		Logger:  log.New(os.Stdout, &quot;&quot;, log.LstdFlags),
+		NoColor: true,
+	}
+	middleware.DefaultLogger = middleware.RequestLogger(&amp;noneColorLoggerFormatter)
+	Router.Use(middleware.Logger)
+</code></pre>
+
+<h3 id="bindatafs-binary-data-file-system">bindatafs(binary-data-file-system)</h3>
+
+<p>QOR使用bindatafs组件将所有admin后端使用到的文件打包成二进制文件，编译链接进2进制可执行文件里面去。步骤如下：</p>
+
+<ol>
+<li>配置vs-code的launch.json文件，设置可执行文件参数<code>--compile-templates</code>。</li>
+<li>这样会执行<code>bindatafs.AssetFS.Compile()</code>。</li>
+<li>找到所有被引用过的文件，并拷贝到<code>config\bindatafs\templates</code>目录下，然后生成<code>templates-bindatafs.go</code>文件(请阅读生成的源码)。</li>
+<li>生成可执行程序，使用编译tags做条件编译。默认编译不带任何参数是使用<code>templates.go</code>文件进行编译。</li>
+
+<li><p>可以配置launch.json文件，<code>&quot;buildFlags&quot;: &quot;-tags \'bindatafs\'&quot;</code>开启条件编译，即可将所有文件编译进target文件。</p>
+
+<pre><code class="language-golang">//templates.go
+
+// +build !bindatafs
+</code></pre></li>
+</ol>
+
+<blockquote>
+<p>说明: // +build !bindatafs  即为编译条件</p>
+</blockquote>
+
+<h3 id="gorm异步日志记录">gorm异步日志记录</h3>
+
+<p>gorm错误日志记录采用异步的方式，在新的gorutine里面运行。采用<code>gorm.Logger{revel.TRACE}</code>来记录日志。</p>
+
+<pre><code class="language-golang">db.Model(Product{}).Where(&amp;b).Scan(&amp;b)
+</code></pre>
+
+<p>通过Scan源码了解到，该库使用了<code>s.parent.callbacks.queries</code>回调函数来执行数据库的查询功能。
+而<code>queries</code>回调函数通过<code>Register</code>进行注册，查找所有引用(Find All References)找到<code>query_callback.go-&gt;queryCallback</code>
+方法，在方法内部使用了如下：</p>
+
+<pre><code class="language-golang">//调用Err方法
+scope.Err(err)
+//Err方法内部又调用了
+scope.db.AddError(err)
+//在AddError内部，发现开辟了一个新的gorutine记录错误日志
+if s.logMode == defaultLogMode {
+	go s.print(&quot;error&quot;, fileWithLineNum(), err)
+} else {
+	s.log(err)
+}
+</code></pre>
+
+<p>因为使用了多线程，多线程的调试全凭看源码+猜测然后精准定位，目前没有找到好的调试方法。</p>
+                        
+                    </section>
+
+                    <footer class="right-align">
+                        <p><small>Copyright &#169; Gerry</small></p>
+                    </footer>
+
+                    
+
+
+                </article>
+            </div>
+        </div>
+    </div>
+
+    
+<script src="https://gerrywp.github.io/js/jquery-2.1.4.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/materialize.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/imagesloaded.pkgd.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/masonry.pkgd.min.js"></script>
+
+
+    
+    <script src="https://gerrywp.github.io/js/highlight.pack.js"></script>
+
+
+
+<script src="https://gerrywp.github.io/js/lightbox.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/jquery.infinitescroll.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/main.js"></script>
+
+
+</body>
+
+</html>
+
+
+
+
+

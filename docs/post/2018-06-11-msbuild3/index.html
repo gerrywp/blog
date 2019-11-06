@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html 
+    lang="en-us"
+    class="no-js"
+>
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="">
+    <meta name="description" content="">
+    
+    <meta name="generator" content="Hugo 0.59.0" />
+    <meta name="generation-date" content="2019-11-06 19:45:08.7555929 &#43;0800 CST m=&#43;0.223976701">
+    <title>msbuild(3)-用命令行部署web &middot; 云亦海</title>
+    <link rel="shortcut icon" href="https://gerrywp.github.io/img/favicon.ico">
+    <link rel="icon" href="https://gerrywp.github.io/img/favicon.ico">
+    
+<link rel="stylesheet" href="https://gerrywp.github.io/css/materialize.min.css">
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/font-awesome.min.css">
+
+
+    
+    <link rel="stylesheet" href="https://gerrywp.github.io/css/styles/railscasts.css">
+
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/lightbox.css">
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/main.css">
+
+
+    <script src="https://gerrywp.github.io/js/modernizr-latest.js"></script>
+    <script src="https://gerrywp.github.io/js/lazysizes.min.js"></script>
+    <script src="https://gerrywp.github.io/js/ls.noscript.min.js"></script>
+
+    <script>
+        window.lazySizesConfig = window.lazySizesConfig || {};
+        lazySizesConfig.addClasses = true;
+        lazySizesConfig.loadMode = 2;
+    </script>
+
+    
+</head>
+
+
+
+<body class="page-colors minimum-viewport-height">
+    
+
+<nav class="main-menu menu-colors">
+    <ul class="menu menu-colors no-list-float">
+        <li><a href="https://gerrywp.github.io/"><i class="fa fa-home fa-2x"></i></a></li>
+        <li>
+            <a href="#!"><i class="fa fa-bars fa-2x"></i></a>
+
+            
+            <ul class="menu flexible-width menu-colors no-list-float">
+                
+                
+                    <li class="active">
+                    
+                        <a href="https://gerrywp.github.io//post/">
+                            
+                            <span>Posts</span>
+                        </a>
+                    
+                    </li>
+                
+            </ul>
+        </li>
+        <li><a href="#!" data-lightbox-id="searchbox"><i class="fa fa-search fa-2x"></i></a></li>
+        
+            <li class="blue-grey-text" style="border-top: 1px solid;"></li>
+            
+        
+        <li class="blue-grey-text" style="border-top: 1px solid;"></li>
+        <li>
+            <a href="" type="application/rss+xml" target="_blank">
+                <i class="fa fa-rss fa-2x"></i>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<div id="searchbox" class="no-display">
+    <div class="valign-wrapper fill-container">
+        <div class="valign large-form horizontal-center-hack">
+            <form method="get" id="search" action="http://duckduckgo.com/">
+    <input type="hidden" name="sites"value="https://gerrywp.github.io/"/>
+    <input type="hidden" name="ka" value="h"/>
+    <input type="hidden" name="k7" value="#fafafa"/>
+    <input type="hidden" name="kj" value="#3f3f3f"/>
+    <input type="hidden" name="ky" value="#fafafa"/>
+    <input type="hidden" name="kx" value="b"/>
+    <input type="hidden" name="kt" value="Helvetica"/>
+    <input type="text" name="q" maxlength="255" placeholder="Search"/>
+    <input type="submit" value="DuckDuckGo Search" style="visibility: hidden;" />
+</form>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    <div class="main-content">
+        <div class="center-space">
+            <div class="article-colors">
+                
+                <article>
+                    <header>
+                        <h1 class="article-title">msbuild(3)-用命令行部署web</h1>
+                        <time class="date-color">Mon Jun 11, 2018</time>
+                        <span class="separator">|</span>
+                        
+<ul class="categories">
+    <li>
+        <i class="fa fa-book"></i>
+    </li>
+    
+        <li><a href="https://gerrywp.github.io/categories/csharp">csharp</a></li>
+    
+</ul>
+
+
+                        <span class="separator">|</span>
+                        
+<ul class="tags">
+    <li>
+        <i class="fa fa-tags"></i>
+    </li>
+    
+        <li><a href="https://gerrywp.github.io/tags/tag1">tag1</a></li>
+    
+</ul>
+
+
+                    </header>
+
+                    <hr>
+
+                    <section>
+                        
+                            <p>　　msbuild除了可以构建.proj文件之外，还可用解决方案.sln文件构建目标！</p>
+
+<h3 id="msbuild-sln">msbuild *.sln</h3>
+
+<p>VS文档网站关于如何使用msbuild构建.sln文件中指定的target，描述的已经很清楚了！<br />
+<a href="https://docs.microsoft.com/en-us/visualstudio/msbuild/how-to-build-specific-targets-in-solutions-by-using-msbuild-exe" title="点我访问">How to: Build Specific Targets in Solutions By Using MSBuild.exe</a><br />
+值得注意的是<code>Troubleshooting</code>这一节，可以通过环境变量<code>MSBUILDEMITSOLUTION=1</code>查看msbuild构建运行时的解决方案内部结构：</p>
+
+<pre><code class="language-console"># 在developer command prompt下运行
+set MSBUILDEMITSOLUTION=1
+msbuild aiyoMusic.sln
+</code></pre>
+
+<p>会在当前目录下生成2个文件<code>aiyoMusic.sln.metaproj</code>和<code>aiyoMusic.sln.metaproj.tmp</code></p>
+
+<p><img src="/pictures/QQ20180611221423.png" alt="MSBUILDEMITSOLUTION" title="点我显示" /></p>
+
+<h3 id="command-line-deployment-命令行部署">Command Line Deployment(命令行部署)</h3>
+
+<p><a href="https://docs.microsoft.com/en-us/aspnet/web-forms/overview/deployment/visual-studio-web-deployment/command-line-deployment" title="点我访问">ASP.NET Web Deployment using Visual Studio: Command Line Deployment</a><br />
+上述文章详细描写了自动化部署与持续集成的相关内容，msbuild内部处理程序对发布进行了处理。<br />
+命名空间:Microsoft.TeamFoundation.Build.Workflow.Activities<br />
+<a href="https://docs.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2013/gg433657%28v%3dvs.120%29" title="点我访问">msbuild详细属性</a></p>
+
+<h4 id="msbuild内置属性-deployonbuild-和-publishprofile">msbuild内置属性<code>DeployOnBuild</code>和<code>PublishProfile</code></h4>
+
+<p>使用.sln解决方案文件部署web的时候，如下指定2个参数即可：</p>
+
+<pre><code class="language-console">msbuild aiyoMusic.sln /p:DeployOnBuild=true;PublishProfile=test;Configuration=Release;Platform=x86
+</code></pre>
+
+<blockquote>
+<p>说明：其中PublishProfile的值指定为自定义的.pubxml文件(路径为&rdquo;Properties\PublishProfiles&rdquo;)的名称即可，比如上例的test。</p>
+</blockquote>
+
+<p><img src="/pictures/QQ20180611231217.png" alt="msbuild实例" title="点我显示" /></p>
+
+<hr />
+
+<p><strong>设置Configuration和Platform属性</strong></p>
+
+<p>当我们通过VS手动发布(manually)站点的时候，需要从下拉列表选择发布使用的版本及所用平台，<br />
+<img src="/pictures/QQ20180612220132.png" alt="图片" title="点我显示" /><br />
+等同于给全局变量<code>Configuration</code>与<code>Platform</code>赋值。因此当我们从命令行(command line prompt)执行msbuild构造时，需要手动给全局变量<code>Configuration</code>和<code>Platform</code>赋值！</p>
+                        
+                    </section>
+
+                    <footer class="right-align">
+                        <p><small>Copyright &#169; Gerry</small></p>
+                    </footer>
+
+                    
+
+
+                </article>
+            </div>
+        </div>
+    </div>
+
+    
+<script src="https://gerrywp.github.io/js/jquery-2.1.4.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/materialize.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/imagesloaded.pkgd.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/masonry.pkgd.min.js"></script>
+
+
+    
+    <script src="https://gerrywp.github.io/js/highlight.pack.js"></script>
+
+
+
+<script src="https://gerrywp.github.io/js/lightbox.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/jquery.infinitescroll.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/main.js"></script>
+
+
+</body>
+
+</html>
+
+
+
+
+

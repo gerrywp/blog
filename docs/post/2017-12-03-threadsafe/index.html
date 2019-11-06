@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html 
+    lang="en-us"
+    class="no-js"
+>
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="">
+    <meta name="description" content="">
+    
+    <meta name="generator" content="Hugo 0.59.0" />
+    <meta name="generation-date" content="2019-11-06 19:45:08.7895915 &#43;0800 CST m=&#43;0.257975301">
+    <title>线程安全与非线程安全 &middot; 云亦海</title>
+    <link rel="shortcut icon" href="https://gerrywp.github.io/img/favicon.ico">
+    <link rel="icon" href="https://gerrywp.github.io/img/favicon.ico">
+    
+<link rel="stylesheet" href="https://gerrywp.github.io/css/materialize.min.css">
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/font-awesome.min.css">
+
+
+    
+    <link rel="stylesheet" href="https://gerrywp.github.io/css/styles/railscasts.css">
+
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/lightbox.css">
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/main.css">
+
+
+    <script src="https://gerrywp.github.io/js/modernizr-latest.js"></script>
+    <script src="https://gerrywp.github.io/js/lazysizes.min.js"></script>
+    <script src="https://gerrywp.github.io/js/ls.noscript.min.js"></script>
+
+    <script>
+        window.lazySizesConfig = window.lazySizesConfig || {};
+        lazySizesConfig.addClasses = true;
+        lazySizesConfig.loadMode = 2;
+    </script>
+
+    
+</head>
+
+
+
+<body class="page-colors minimum-viewport-height">
+    
+
+<nav class="main-menu menu-colors">
+    <ul class="menu menu-colors no-list-float">
+        <li><a href="https://gerrywp.github.io/"><i class="fa fa-home fa-2x"></i></a></li>
+        <li>
+            <a href="#!"><i class="fa fa-bars fa-2x"></i></a>
+
+            
+            <ul class="menu flexible-width menu-colors no-list-float">
+                
+                
+                    <li class="active">
+                    
+                        <a href="https://gerrywp.github.io//post/">
+                            
+                            <span>Posts</span>
+                        </a>
+                    
+                    </li>
+                
+            </ul>
+        </li>
+        <li><a href="#!" data-lightbox-id="searchbox"><i class="fa fa-search fa-2x"></i></a></li>
+        
+            <li class="blue-grey-text" style="border-top: 1px solid;"></li>
+            
+        
+        <li class="blue-grey-text" style="border-top: 1px solid;"></li>
+        <li>
+            <a href="" type="application/rss+xml" target="_blank">
+                <i class="fa fa-rss fa-2x"></i>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<div id="searchbox" class="no-display">
+    <div class="valign-wrapper fill-container">
+        <div class="valign large-form horizontal-center-hack">
+            <form method="get" id="search" action="http://duckduckgo.com/">
+    <input type="hidden" name="sites"value="https://gerrywp.github.io/"/>
+    <input type="hidden" name="ka" value="h"/>
+    <input type="hidden" name="k7" value="#fafafa"/>
+    <input type="hidden" name="kj" value="#3f3f3f"/>
+    <input type="hidden" name="ky" value="#fafafa"/>
+    <input type="hidden" name="kx" value="b"/>
+    <input type="hidden" name="kt" value="Helvetica"/>
+    <input type="text" name="q" maxlength="255" placeholder="Search"/>
+    <input type="submit" value="DuckDuckGo Search" style="visibility: hidden;" />
+</form>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    <div class="main-content">
+        <div class="center-space">
+            <div class="article-colors">
+                
+                <article>
+                    <header>
+                        <h1 class="article-title">线程安全与非线程安全</h1>
+                        <time class="date-color">Sun Dec 03, 2017</time>
+                        <span class="separator">|</span>
+                        
+<ul class="categories">
+    <li>
+        <i class="fa fa-book"></i>
+    </li>
+    
+        <li><a href="https://gerrywp.github.io/categories/csharp">csharp</a></li>
+    
+</ul>
+
+
+                        <span class="separator">|</span>
+                        
+<ul class="tags">
+    <li>
+        <i class="fa fa-tags"></i>
+    </li>
+    
+        <li><a href="https://gerrywp.github.io/tags/tag1">tag1</a></li>
+    
+</ul>
+
+
+                    </header>
+
+                    <hr>
+
+                    <section>
+                        
+                            <p>　　c#的多线程编程由于其高级的语法糖(synax)而变化的相对简单，然而又有些神秘莫测。对于线程安全与否与同步(synchronize)经常有人将其混为一谈，其实这是2个不同的概念。</p>
+
+<h3 id="非线程安全">非线程安全</h3>
+
+<p>先来说说线程安全的问题，Show your code(用代码说话)，以MSDN官网的
+<a href="https://msdn.microsoft.com/library/6sh2ey19.aspx?f=255&amp;MSPPError=-2147217396#Anchor_10" title="点我访问">List&lt;T&gt;</a>
+为例：在<code>线程安全</code>这一小节，来自微软官网的描述，
+&gt; 公共静态 (Shared 在 Visual Basic 中) 这种类型的成员是线程安全。 但不保证所有实例成员都是线程安全的。</p>
+
+<pre><code class="language-csharp">//创建控制台应用程序,并编写如下代码
+static void Main(string[] args)
+{
+    do
+    {
+        ParallelList();
+    } while (true);
+}
+static void ParallelList()
+{
+    List&lt;Int32&gt; list = new List&lt;int&gt;();//非线程安全的
+    ParallelLoopResult result= Parallel.For(0, 100000, item =&gt;
+    {
+        list.Add(item);
+    });
+    Console.WriteLine($&quot;parallel is completed: {result.IsCompleted}! &quot;);
+}
+</code></pre>
+
+<ol>
+<li>据官方文档可知，List<T>的实例成员就不是线程安全的。</li>
+<li>所以上述代码在死循环下会抛出异常，为什么会抛出异常不在这次的讨论范围内。</li>
+<li>所以对一个非线程安全的对象进行write操作(写操作包括更新、删除)在多次测试下是会抛出异常的，所以对非线程安全的对象进行写操作的代码是错误的代码！</li>
+</ol>
+
+<h3 id="线程安全">线程安全</h3>
+
+<p>同样是上面的代码，经过MSDN的提醒「公共静态成员是线程安全的」，代码作如下调整</p>
+
+<pre><code class="language-csharp">static List&lt;Int32&gt; list = new List&lt;int&gt;();//线程安全的
+static void Main(string[] args)
+{
+    do
+    {
+        ParallelList(list);
+    } while (true);
+}
+static void ParallelList(List&lt;Int32&gt; temp)
+{
+    //List&lt;Int32&gt; list = new List&lt;int&gt;();//非线程安全的
+    ParallelLoopResult result= Parallel.For(0, 100000, item =&gt;
+    {
+        temp.Add(item);
+    });
+    Console.WriteLine($&quot;parallel is completed: {result.IsCompleted}! &quot;);
+}
+</code></pre>
+
+<ol>
+<li>仅仅是将list变量提升为了公共Static变量</li>
+<li>上述代码无论怎么样运行都不会抛出异常，程序并不会挂掉！</li>
+<li>但是细心的你一定会发现，结果并不是我们想要的，因为list插入值并不对。</li>
+<li>这也是由此要引出多线程的同步的问题。
+&gt; 说明:线程安全的并不代表，操作就是合理的。按照所需业务来说，如果不是您期望的结果，这里就需要有lock，就需要有线程同步。</li>
+</ol>
+
+<h3 id="非线程安全就一定有问题吗">非线程安全就一定有问题吗？</h3>
+
+<p>上面已经讨论到了线程安全与非线程安全的概念问题，如果我们将非线程安全的代码作如下修改：</p>
+
+<pre><code class="language-csharp">static void ParallelList()
+{
+    List&lt;Int32&gt; list = new List&lt;int&gt;();//非线程安全的
+    for(Int32 i=0;i&lt;10000;i++){
+        list.Add(i);
+    }
+    ParallelLoopResult result= Parallel.For(0, 100000, item =&gt;
+    {
+        Int32 currentItem=list[item];
+    });
+    Console.WriteLine($&quot;parallel is completed: {result.IsCompleted}! &quot;);
+}
+</code></pre>
+
+<ol>
+<li>仅仅将多线程的操作由write改为了read，这样多对一个非线程安全的对象实例也是没有任何问题的！</li>
+</ol>
+
+<p><strong>综上所述：</strong></p>
+
+<ol>
+<li>即使线程安全的对象，在进行write写操作的时候,还是必须要使用lock锁同步来保证业务逻辑的一致性和正确性。</li>
+<li>即使是非线程安全的对象，当只进行read操作的时候，线程的安全与否已经不重要了！</li>
+</ol>
+                        
+                    </section>
+
+                    <footer class="right-align">
+                        <p><small>Copyright &#169; Gerry</small></p>
+                    </footer>
+
+                    
+
+
+                </article>
+            </div>
+        </div>
+    </div>
+
+    
+<script src="https://gerrywp.github.io/js/jquery-2.1.4.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/materialize.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/imagesloaded.pkgd.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/masonry.pkgd.min.js"></script>
+
+
+    
+    <script src="https://gerrywp.github.io/js/highlight.pack.js"></script>
+
+
+
+<script src="https://gerrywp.github.io/js/lightbox.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/jquery.infinitescroll.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/main.js"></script>
+
+
+</body>
+
+</html>
+
+
+
+
+

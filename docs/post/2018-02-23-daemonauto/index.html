@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html 
+    lang="en-us"
+    class="no-js"
+>
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="">
+    <meta name="description" content="">
+    
+    <meta name="generator" content="Hugo 0.59.0" />
+    <meta name="generation-date" content="2019-11-06 19:45:08.7825926 &#43;0800 CST m=&#43;0.250976401">
+    <title>Linux守护进程和自启动 &middot; 云亦海</title>
+    <link rel="shortcut icon" href="https://gerrywp.github.io/img/favicon.ico">
+    <link rel="icon" href="https://gerrywp.github.io/img/favicon.ico">
+    
+<link rel="stylesheet" href="https://gerrywp.github.io/css/materialize.min.css">
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/font-awesome.min.css">
+
+
+    
+    <link rel="stylesheet" href="https://gerrywp.github.io/css/styles/railscasts.css">
+
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/lightbox.css">
+
+
+<link rel="stylesheet" href="https://gerrywp.github.io/css/main.css">
+
+
+    <script src="https://gerrywp.github.io/js/modernizr-latest.js"></script>
+    <script src="https://gerrywp.github.io/js/lazysizes.min.js"></script>
+    <script src="https://gerrywp.github.io/js/ls.noscript.min.js"></script>
+
+    <script>
+        window.lazySizesConfig = window.lazySizesConfig || {};
+        lazySizesConfig.addClasses = true;
+        lazySizesConfig.loadMode = 2;
+    </script>
+
+    
+</head>
+
+
+
+<body class="page-colors minimum-viewport-height">
+    
+
+<nav class="main-menu menu-colors">
+    <ul class="menu menu-colors no-list-float">
+        <li><a href="https://gerrywp.github.io/"><i class="fa fa-home fa-2x"></i></a></li>
+        <li>
+            <a href="#!"><i class="fa fa-bars fa-2x"></i></a>
+
+            
+            <ul class="menu flexible-width menu-colors no-list-float">
+                
+                
+                    <li class="active">
+                    
+                        <a href="https://gerrywp.github.io//post/">
+                            
+                            <span>Posts</span>
+                        </a>
+                    
+                    </li>
+                
+            </ul>
+        </li>
+        <li><a href="#!" data-lightbox-id="searchbox"><i class="fa fa-search fa-2x"></i></a></li>
+        
+            <li class="blue-grey-text" style="border-top: 1px solid;"></li>
+            
+        
+        <li class="blue-grey-text" style="border-top: 1px solid;"></li>
+        <li>
+            <a href="" type="application/rss+xml" target="_blank">
+                <i class="fa fa-rss fa-2x"></i>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<div id="searchbox" class="no-display">
+    <div class="valign-wrapper fill-container">
+        <div class="valign large-form horizontal-center-hack">
+            <form method="get" id="search" action="http://duckduckgo.com/">
+    <input type="hidden" name="sites"value="https://gerrywp.github.io/"/>
+    <input type="hidden" name="ka" value="h"/>
+    <input type="hidden" name="k7" value="#fafafa"/>
+    <input type="hidden" name="kj" value="#3f3f3f"/>
+    <input type="hidden" name="ky" value="#fafafa"/>
+    <input type="hidden" name="kx" value="b"/>
+    <input type="hidden" name="kt" value="Helvetica"/>
+    <input type="text" name="q" maxlength="255" placeholder="Search"/>
+    <input type="submit" value="DuckDuckGo Search" style="visibility: hidden;" />
+</form>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    <div class="main-content">
+        <div class="center-space">
+            <div class="article-colors">
+                
+                <article>
+                    <header>
+                        <h1 class="article-title">Linux守护进程和自启动</h1>
+                        <time class="date-color">Fri Feb 23, 2018</time>
+                        <span class="separator">|</span>
+                        
+<ul class="categories">
+    <li>
+        <i class="fa fa-book"></i>
+    </li>
+    
+        <li><a href="https://gerrywp.github.io/categories/linux">linux</a></li>
+    
+</ul>
+
+
+                        <span class="separator">|</span>
+                        
+<ul class="tags">
+    <li>
+        <i class="fa fa-tags"></i>
+    </li>
+    
+        <li><a href="https://gerrywp.github.io/tags/tag1">tag1</a></li>
+    
+</ul>
+
+
+                    </header>
+
+                    <hr>
+
+                    <section>
+                        
+                            <p>　　Linux的服务也是以etc配置的形式完成的，启动一个daemon(守护进程)来提供service(服务)。服务的管理是一个既复杂又细致的工作，Linux提供了两种方式来
+管理服务：一种是透过<code>systemctl</code>这一个命令管理服务，另一种是透过<code>service</code>来管理服务的启动、停止、重启等等，透过<code>chkconfig</code>来管理服务的开机启动与否。
+在此以<code>systemctl</code>应用出来之前和<code>systemctl</code>应用出来之后的服务管理方式分别作介绍！</p>
+
+<h3 id="service-chkconfig-管理service-服务"><code>service&amp;&amp;chkconfig</code>管理service(服务)</h3>
+
+<p>　　daemon的命名规则，所有服务的开发者，在提供服务应用程序的时候都会在服务的名称后加上字母d，d代表的就是daemon的意思。提供的服务是要与端口一一对应的，
+这样守护进程才能对外提供服务。Linux中是通过/etc/services配置文件来定义服务的端口号的。</p>
+
+<pre><code class="language-shell"># 查看服务与端口号的对应关系
+cat /etc/services
+</code></pre>
+
+<h4 id="daemon的启动脚本和启动方式">daemon的启动脚本和启动方式</h4>
+
+<p>　　daemon的启动是个复杂的过程，包括侦测环境、配置文件分析加载等等。所以通常服务应用程序在安装完成之后会提供一个script脚本，帮助使用者完成上述一系列操作。
+daemon的shell script(启动脚本)通常存放在以下几个路径(*代表应用程序名称)：
+* /etc/init.d/* : 启动脚本放置目录
+* /etc/* : 服务各自的配置</p>
+
+<h5 id="etc-init-d-与-etc-rc-d-init-d-之间的关系"><code>/etc/init.d</code>与<code>/etc/rc.d/init.d</code>之间的关系</h5>
+
+<p>　　透过如下命令我们可以看到，其实<code>/etc/init.d</code>是<code>/etc/rc.d/init.d</code>的文件夹软链接档：</p>
+
+<pre><code class="language-shell">ls -alF /etc/init.d
+</code></pre>
+
+<p>因此我们自定义的服务启动程序可以放在<code>/etc/init.d</code>和<code>/etc/rc.d/int.d</code>这两个地方。</p>
+
+<p>名词解析
+&gt; rc(run level control)运行等级控制。.d(directory)代表路径是一个目录</p>
+
+<h5 id="stand-alone服务应用-daemon-的启动">stand alone服务应用(daemon)的启动</h5>
+
+<ul>
+<li><p>可以直接运行脚本以启动</p>
+
+<pre><code class="language-shell"># 直接运行可以查看服务应用程序脚本的使用方法
+/etc/init.d/vsftpd 
+</code></pre></li>
+
+<li><p>透过<code>service</code>命令，其实是一个shell script应用程序脚本,它可以分析下达的参数，完成服务的启动等</p>
+
+<pre><code class="language-shell"># 查看帮助说明
+service -h
+# 查看所有守护进程服务的状态
+service --status-all
+</code></pre></li>
+</ul>
+
+<h5 id="观察系统启动的服务">观察系统启动的服务</h5>
+
+<pre><code class="language-shell">netstat -tulp
+netstat -lnp
+</code></pre>
+
+<h5 id="服务的自启动">服务的自启动</h5>
+
+<p>　　服务启动之后，如果服务器(计算机)重启了，那么服务下次还会自动启动吗？这就需要了解到底我们的Linux主机是如何启动的。
+1. 打开计算机电源，开始读取 BIOS 并进行主机的自我测试；
+2. 透过 BIOS 取得第一个可启动装置，读取主要启动区 (MBR) 取得启动管理程序；
+3. 透过启动管理程序的配置，取得 kernel 并加载内存且侦测系统硬件；
+4. 核心主动呼叫 init 程序；
+5. init 程序开始运行系统初始化 (/etc/rc.d/rc.sysinit)
+6. 依据 init 的配置进行 daemon start (/etc/rc.d/rc[0-6].d/*)
+7. 加载本机配置 (/etc/rc.d/rc.local)
+Linux系统启动时，会进入不同的运行等级(run level)。不同的运行等级有不同的功能和服务。使用<code>chkconfig</code>命令可以查询不同等级有哪些服务会启动！</p>
+
+<pre><code class="language-shell">chkconfig --list
+# 透过这个命令我们可以看到一共有7个运行等级，并且会显示每个daemon服务在不同run level的运行状态
+</code></pre>
+
+<p>其实<code>chkconfig</code>这个命令只是为服务的启动脚本在不同的run level下建立了链接档。
+使用如下命令，可以看出来<code>rc0.d</code>到<code>rc6.d</code>分别对应run level的七个运行等级：</p>
+
+<pre><code class="language-shell">ls /etc/rc.d
+# 实际上chkconfig改变httpd的状态，是在rc0.d ...... rc6.d 中建立了对应的链接档案到`/etc/rc.d/init.d/*`下的具体文件
+chkconfig httpd on
+</code></pre>
+
+<h5 id="创建自己的服务脚本">创建自己的服务脚本</h5>
+
+<p>　　当我们创建自己的shell script服务脚本的时候，如何让chkconfig来管理呢？
+我们只需要在<code>/etc/init.d</code>或者<code>/etc/rc.d/init.d</code>下创建好我们的服务启动脚本，具体的脚本写法我们可以打开系统本有的脚本参照来写！然后我们将自定义的脚本
+加入到<code>chkconfig</code>的控制范围中即可。</p>
+
+<pre><code class="language-shell"># 添加脚本到chkconfig控制
+chkconfig --add myscript
+# 删除脚本控制
+chkconfig --del myscript
+</code></pre>
+
+<p>然后就可以透过chkconfig来管理自定义脚本在不同run level的自启动与否了！</p>
+                        
+                    </section>
+
+                    <footer class="right-align">
+                        <p><small>Copyright &#169; Gerry</small></p>
+                    </footer>
+
+                    
+
+
+                </article>
+            </div>
+        </div>
+    </div>
+
+    
+<script src="https://gerrywp.github.io/js/jquery-2.1.4.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/materialize.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/imagesloaded.pkgd.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/masonry.pkgd.min.js"></script>
+
+
+    
+    <script src="https://gerrywp.github.io/js/highlight.pack.js"></script>
+
+
+
+<script src="https://gerrywp.github.io/js/lightbox.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/jquery.infinitescroll.min.js"></script>
+
+
+<script src="https://gerrywp.github.io/js/main.js"></script>
+
+
+</body>
+
+</html>
+
+
+
+
+
