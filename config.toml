@@ -1,5 +1,5 @@
 # Site settings (baseurl must end with a trailing slash!)
-baseurl = "https://gerrywp.github.io/blog"
+baseurl = "https://gerrywp.github.io/blog/"
 languageCode = "en-us"
 title = "云亦海"
 theme = "grid-side"
