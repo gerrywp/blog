@@ -1,5 +1,5 @@
 # Site settings (baseurl must end with a trailing slash!)
-baseurl = "https://gerrywp.github.io/blog/"
+baseurl = "https://gerrywp.github.io/"
 languageCode = "en-us"
 title = "云亦海"
 theme = "grid-side"
@@ -31,7 +31,7 @@ SectionPagesMenu = "Main"
     #
     #[Params.Post]
     #
-    #   infinite_scroll = false
+    #   infinite_scroll = true
     #
     #[Params.Project]
     #
@@ -67,7 +67,7 @@ SectionPagesMenu = "Main"
         email = "28757750@qq.com"
 
         # Not providing this results in a color being used
-        image = "/img/banner.jpg?timestamp=1927"
+        image = "img/banner.jpg?timestamp=1927"
 
         # This uses the CSS background-position, given the image above is set,
         # useful when you want to adjust where the background-image lands
@@ -137,10 +137,10 @@ SectionPagesMenu = "Main"
             name = "Posts"
 
             # The link to associate with the cell, used when clicked
-            link = "/post/"
+            link = "post/"
 
             # The image to use as a background-image for the cell
-            image = "/img/post.jpg?timestamp=1938"
+            image = "img/post.jpg?timestamp=1938"
 
             # This uses the CSS background-position, given the image above is
             # set, useful when you want to adjust where the background-image
@@ -169,14 +169,14 @@ SectionPagesMenu = "Main"
         [[Params.Cells.List]]
 
             name = "Categories"
-            link = "/categories/"
-            image = "/img/categories.jpg?timestamp=1927"
+            link = "categories/"
+            image = "img/categories.jpg?timestamp=1927"
 
         [[Params.Cells.List]]
 
             name = "Gallery"
-            link = "/gallery/"
-            image = "/img/gallery.jpg?timestamp=1927"
+            link = "gallery/"
+            image = "img/gallery.jpg?timestamp=1927"
 
 #       [[Params.Cells.List]]
 #
