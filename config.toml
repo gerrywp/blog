@@ -1,5 +1,5 @@
 # Site settings (baseurl must end with a trailing slash!)
-baseurl = "https://gerrywp.github.io/"
+baseurl = "https://gerrywp.github.io/blog/"
 languageCode = "en-us"
 title = "云亦海"
 theme = "grid-side"
@@ -29,9 +29,9 @@ SectionPagesMenu = "Main"
     # on/off individually. These values override the infinte_scroll option
     # above.
     #
-    #[Params.Post]
-    #
-    #   infinite_scroll = true
+    [Params.Post]
+    
+       infinite_scroll = false
     #
     #[Params.Project]
     #
@@ -145,7 +145,7 @@ SectionPagesMenu = "Main"
             # This uses the CSS background-position, given the image above is
             # set, useful when you want to adjust where the background-image
             # lands
-            #image_position = "top"
+            image_position = "top"
 
             # The color to use as a fallback if an image is not provided
             #color = "blue"
@@ -161,7 +161,7 @@ SectionPagesMenu = "Main"
             # this to true results in the cell always showing its text
             # and also using a dark overlay to make the white text be more
             # visible
-            #always_show_text = true
+            always_show_text = true
 
             # Grays out the cell and disables click functionality on it
             #disable = true
@@ -171,13 +171,13 @@ SectionPagesMenu = "Main"
             name = "Categories"
             link = "categories/"
             image = "img/categories.jpg?timestamp=1927"
-
+			always_show_text = true
         [[Params.Cells.List]]
 
             name = "Gallery"
             link = "gallery/"
             image = "img/gallery.jpg?timestamp=1927"
-
+			always_show_text = true
 #       [[Params.Cells.List]]
 #
 #           name = "Custom Post Section Name"
