@@ -14,7 +14,7 @@
     <meta name="description" content="">
     
     <meta name="generator" content="Hugo 0.59.0" />
-    <meta name="generation-date" content="2019-11-07 08:56:43.529422 &#43;0800 CST m=&#43;0.326003001">
+    <meta name="generation-date" content="2019-11-07 10:38:14.5873941 &#43;0800 CST m=&#43;0.364970801">
     <title> windows环境下node.exe配置 &middot; 云亦海</title>
     <link rel="shortcut icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
     <link rel="icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
@@ -203,7 +203,7 @@
 <p><a href="https://github.com/nodejs/node/blob/master/lib/module.js#L629" title="点我访问">https://github.com/nodejs/node/blob/master/lib/module.js#L629</a></p>
 </blockquote>
 
-<pre><code class="language-javascript">Module._initPaths = function() {
+<pre><code class="language-js">Module._initPaths = function() {
   const isWindows = process.platform === 'win32';
 
   var homeDir;
@@ -257,7 +257,7 @@ process.execPath===&lsquo;/usr/local/node&rsquo;。Nodejs的官方文档的<stro
 <ul>
 <li><p><strong>全局安装</strong></p>
 
-<pre><code class="language-shell">npm install PACKAGE_NAME -g
+<pre><code class="language-sh">npm install PACKAGE_NAME -g
 </code></pre></li>
 </ul>
 
@@ -266,19 +266,19 @@ process.execPath===&lsquo;/usr/local/node&rsquo;。Nodejs的官方文档的<stro
 并且将可执行脚本(.cmd)文件直接安装到了<code>%appdata\npm\%</code>路径下，我们可以通过<code>npm config ls</code>查看到
 npm全局的默认安装路径,如下图所示(prefix=%appdata%\npm):</p>
 
-<p><img src="../pictures/npm-ls.png" alt="nodeconfig" title="请开启" /></p>
+<p><img src="../../pictures/npm-ls.png" alt="nodeconfig" title="请开启" /></p>
 
 <p>安装node.msi的时候，已经将<code>prefix=%appdata\npm%</code>设置成了PATH环境变量，所以在任何路径都可以直接访问
 .cmd的可执行脚本</p>
 
-<p><img src="../pictures/path-npm.png" alt="path-env" title="请开启" /></p>
+<p><img src="../../pictures/path-npm.png" alt="path-env" title="请开启" /></p>
 
 <p>linux则是使用ln做了一个软链接</p>
 
 <ul>
 <li><p><strong>局部安装</strong></p>
 
-<pre><code class="language-shell">npm install PACKAGE_NAME
+<pre><code class="language-sh">npm install PACKAGE_NAME
 </code></pre></li>
 </ul>
 
@@ -296,7 +296,7 @@ npm安装过程分析大致如下：
 2. npm向registry查询模块压缩包的地址
 3. 下载压缩包存放在~/.npm目录(windows目录为:%appdata%/npm-cache)</p>
 
-<pre><code class="language-shell">npm config get cache //查看缓存压缩包存放的位置
+<pre><code class="language-sh">npm config get cache //查看缓存压缩包存放的位置
 </code></pre>
 
 <ol>
@@ -309,7 +309,7 @@ npm安装过程分析大致如下：
 
 <p><strong>npm config</strong> 命令在%HOMEPATH%目录下生成.npmrc的隐藏文件，存放npm的配置</p>
 
-<pre><code class="language-shell">npm root -g  //方式1:查看npm安装全局模块的默认路径
+<pre><code class="language-sh">npm root -g  //方式1:查看npm安装全局模块的默认路径
 npm config get prefix //方式2
 # 默认情况下的路径为c:\node\node_modules
 
@@ -318,7 +318,7 @@ npm get userconfig //获取用户自定义配置文件路径
 npm get globalconfig //获取系统配置文件路径
 </code></pre>
 
-<pre><code class="language-shell">npm config set prefix c:\\global  //设置npm全局模块安装路径
+<pre><code class="language-sh">npm config set prefix c:\\global  //设置npm全局模块安装路径
 npm config ls
 # ;cli configs
 # user-agent = &quot;npm/1.4.9 node/v4.4.7 win32 ia32&quot;
@@ -330,7 +330,7 @@ npm config ls
 
 <p><strong>npm ls</strong></p>
 
-<pre><code class="language-shell">npm ls     //列出项目已安装模块
+<pre><code class="language-sh">npm ls     //列出项目已安装模块
 npm ls -g  //列出已安装的全局模块
 </code></pre>
 
@@ -339,7 +339,7 @@ npm ls -g  //列出已安装的全局模块
 <p>企业用户访问外网通常使用的是代理模式，因此npm也需要配置成使用代理模式访问外网！  
 通常企业用户的用户名由「域名\用户名」组成，如：「domain\username」</p>
 
-<pre><code class="language-shell"># 手动转义\为%5C
+<pre><code class="language-sh"># 手动转义\为%5C
 npm config set proxy &quot;http://domain%5Cusername:password@servername:port/&quot;
 npm config set https-proxy &quot;http://domain%5Cusername:password@servername:port/&quot;
 # 其中servername的获取方式为，下载.pac文件以文本的方式打开，找到代理服务器地址(包含端口号)
@@ -363,7 +363,7 @@ npm config set https-proxy &quot;http://domain%5Cusername:password@servername:po
 
 <p>为了使自己的模块或者包能够使用npm依赖的所有包，在windows下可以通过在%HOMEPATH%创建一个文件夹映射到npm下的node_modules目录</p>
 
-<pre><code class="language-shell">cd &quot;C:\Program Files\Microsoft Visual Studio 14.0\
+<pre><code class="language-sh">cd &quot;C:\Program Files\Microsoft Visual Studio 14.0\
 Common7\IDE\Extensions\Microsoft\Web Tools\External\npm&quot;
 mklink /J c:\node_modules .\node_modules
 </code></pre>

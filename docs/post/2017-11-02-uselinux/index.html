@@ -14,7 +14,7 @@
     <meta name="description" content="">
     
     <meta name="generator" content="Hugo 0.59.0" />
-    <meta name="generation-date" content="2019-11-07 08:56:43.4544204 &#43;0800 CST m=&#43;0.251001401">
+    <meta name="generation-date" content="2019-11-07 10:38:14.5183967 &#43;0800 CST m=&#43;0.295973401">
     <title>Ubuntu的使用 &middot; 云亦海</title>
     <link rel="shortcut icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
     <link rel="icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
@@ -160,7 +160,7 @@
 
 <p>以上是图形界面的设置，其实是在<code>~/.config/autostart/</code>下创建了一个.Desktop的桌面快捷方式文本文件</p>
 
-<pre><code class="language-shell">[Desktop Entry]
+<pre><code class="language-sh">[Desktop Entry]
 Type=Application
 Encoding=UTF-8
 Exec=/usr/bin/vmware-user
@@ -173,11 +173,10 @@ Comment=虚拟机工具
 Hidden=false # 如果图形界面删除启动项目的话，这个Hidden会被改成true
 </code></pre>
 
-<p>除了用户自己目录可以添加启动项目之外，在系统配置目录下<code>/etc/xdg/autostart/</code>也可以设置系统级的启动项目，其实是一样的。</p>
+<p>除了用户自己目录可以添加启动项目之外，在系统配置目录下<code>/etc/xdg/autostart/</code>也可以设置系统级的启动项目，其实是一样的。
+以上用到.Desktop文件可以直接从<code>/usr/share/applications/</code>目录去拷贝，同理创建桌面快捷方式也是一样，只需要将.Desktop文件拖拽到桌面即可、或者使用命令行。</p>
 
-<p>以上用到.Desktop文件可以直接从<code>/usr/share/applications/</code>目录去拷贝，同理创建桌面快捷方式也是一样，只需要将.Desktop文件拖拽到桌面即可、或者使用命令行。</p>
-
-<pre><code class="language-shell"># 这样就创建了桌面快捷方式
+<pre><code class="language-sh"># 这样就创建了桌面快捷方式
 cd /usr/share/applications/yourapp.desktop ~/Desktop/
 </code></pre>
 
@@ -186,13 +185,13 @@ cd /usr/share/applications/yourapp.desktop ~/Desktop/
 <p>现在新的linux操作系统都开始使用<code>systemd</code>来管理系统服务，摒弃了以前的sysv模式下的<code>service</code> <code>chkconfig</code> <code>init</code>命令。
 为了兼容以前旧的系统服务模式，<code>systemd</code>提供了wrapper包装器，将旧的.sh文件包装成可供<code>systemd</code>使用的<code>.service</code>文件。</p>
 
-<pre><code class="language-shell"># 使用如下命令会在/tmp目录下生成对应的servicename.service文件
+<pre><code class="language-sh"># 使用如下命令会在/tmp目录下生成对应的servicename.service文件
 /lib/systemd/system-generators/systemd-sysv-generator 
 </code></pre>
 
 <p>仅需要拷贝新生成的.service文件到<code>/lib/systemd/system/</code>底下即可。</p>
 
-<pre><code class="language-shell"># 现在可以通过systemctl管理旧的.sh服务了
+<pre><code class="language-sh"># 现在可以通过systemctl管理旧的.sh服务了
 systemd status servicename.service
 systemd enable servicename.service
 </code></pre>
@@ -203,7 +202,7 @@ systemd enable servicename.service
 
 <h3 id="格式化ps内存输出为可读格式">格式化ps内存输出为可读格式</h3>
 
-<pre><code class="language-shell"># 方式1(在printf的格式中务必加上&quot;\n&quot;，才能分行！)
+<pre><code class="language-sh"># 方式1(在printf的格式中务必加上&quot;\n&quot;，才能分行！)
 ps -eo rss,pid,user,command --sort=-rss | awk 'NR==1{printf &quot;%10s\t%s\t%s\t%s\n&quot;,$1,$2,$3,$4} 
 NR&gt;=2{printf &quot;%8.2fMB\t%s\t%s\t%s\n&quot;,$1/1024,$2,$3,$4}' | head -n 10
 # free可以查看总共有多少内存，已经使用了多少！
@@ -218,7 +217,7 @@ ps -eo rss,pid,user,command --sort=-rss | awk '{ for ( x=1 ; x&lt;=NF ; x++ )
 
 <p>使用cat命令创建文件比使用echo创建文件来的更直观，更适用！</p>
 
-<pre><code class="language-shell">......其它shell语法......
+<pre><code class="language-sh">......其它shell语法......
 cat &gt; fileext.Desktop &lt;&lt; eof
 [Desktop Entry]
 Type=Application

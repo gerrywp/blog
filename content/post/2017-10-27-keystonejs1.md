@@ -16,18 +16,20 @@ keystonejs跨平台内容管理系统开发的又一利器。通过定义数据m
 
 #### 安装nodejs
 建议使用nvm来安装nodejs这样可以在不同的版本之间进行切换
-```shell
+
+```sh
 # 直接使用apt安装
 apt install nvm
 nvm install node
 # 遇到node包下载不下来的时候，可以根据提示使用 curl 命令将node包先下载到nvm安装目录下的cache文件夹下
 nvm use node
 ```
+
 #### 安装mongodb
 
 * 在[mongodb官网下载中心](https://www.mongodb.com/download-center#community "点我访问"),获取所需版本的下载链接
 
-```shell
+```sh
 cd ~
 curl -o- https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1604-3.4.10.tgz | bash
 # 解压缩
@@ -46,6 +48,7 @@ chgown -v username /data
 # 启动mongodb服务
 mongod
 ```
+
 备注：注意要手动闯将文件目录`/data/mongodb`并更改所有者
 
 * 开机启动mongod服务(待补充)
@@ -54,13 +57,13 @@ mongod
 
 #### 安装yeoman脚手架
 
-```shell
+```sh
 npm install -g yo
 ```
 
 #### 安装keystonejs yeoman生成器&创建项目
 
-```shell
+```sh
 npm install -g generator-keystone
 # 项目创建
 cd ~/documents
@@ -77,7 +80,7 @@ yo keystone
 
 #### 生成的后台管理界面url路径的更改
 
-```shell
+```sh
 keystone.init({
   'name': 'My Project',
   'admin path': 'dyt'，
@@ -99,23 +102,27 @@ keystone.init({
   
 });
 ```
+
 添加键值对`admin path`，值指定为你想要的任何名字,然后更改页面模板的登录/退出路径。 
 修改`/views/index.hbs`页面里面的内容
+
 ```html
 <p><a href="/keystone/signin" style="margin-right: 10px" class="btn btn-lg btn-primary">Sign in</a> to use the Admin UI.</p>
 更改为
 <p><a href="/dyt/signin" style="margin-right: 10px" class="btn btn-lg btn-primary">Sign in</a> to use the Admin UI.</p>
 ```
+
 其它相关地方修改类同
 
 #### 启动
 
 * 手动启动
 
-```shell
+```sh
 cd ~/documents/myproject
 node keystone.js
 ```
+
 访问`http://127.0.0.1:3000`站点
 
 * 配置服务开机自启动(待续)

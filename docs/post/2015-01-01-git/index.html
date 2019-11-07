@@ -14,7 +14,7 @@
     <meta name="description" content="">
     
     <meta name="generator" content="Hugo 0.59.0" />
-    <meta name="generation-date" content="2019-11-07 08:56:43.529422 &#43;0800 CST m=&#43;0.326003001">
+    <meta name="generation-date" content="2019-11-07 10:38:14.5923954 &#43;0800 CST m=&#43;0.369972101">
     <title>git常用命令 &middot; 云亦海</title>
     <link rel="shortcut icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
     <link rel="icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
@@ -167,7 +167,7 @@ linux下为:<code>/etc/gitconfig</code>文件。</li>
 <p><code>git config --global credential.helper</code><br />
 <strong>&ldquo;store&rdquo;</strong>模式接受一个 --file <path> 参数，可以自定义存放密码的文件路径（默认是<code>~/.git-credentials</code>）。</p>
 
-<pre><code class="language-shell">git config --global credential.helper store --file ~/.my-credentials
+<pre><code class="language-sh">git config --global credential.helper store --file ~/.my-credentials
 </code></pre>
 
 <h3 id="撤销和重置操作">撤销和重置操作</h3>
@@ -176,7 +176,7 @@ linux下为:<code>/etc/gitconfig</code>文件。</li>
 具体的区别参考git-scm的文档说明
 <a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%87%8D%E7%BD%AE%E6%8F%AD%E5%AF%86" title="点我访问">git手册</a></p>
 
-<pre><code class="language-shell">git checkout --hard --filename
+<pre><code class="language-sh">git checkout --hard --filename
 git reset --hard --filename
 </code></pre>
 
@@ -184,7 +184,7 @@ git reset --hard --filename
 
 <p>ubuntu下git默认使用的文本编辑器为nano,使用起来感觉不顺手，可以通过修改配置文件改成自己喜欢的编辑器。</p>
 
-<pre><code class="language-shell">#!/bin/bash
+<pre><code class="language-sh">#!/bin/bash
 # 可以使用git var --help 查看变量设置
 # git config --global --help 
 git config --global core.editor vim
@@ -196,14 +196,14 @@ git config --global -e
 
 <p>option:&ndash;decorate</p>
 
-<pre><code class="language-shell">git log --graph --decorate
+<pre><code class="language-sh">git log --graph --decorate
 # 或者使用format %d 达到同样的效果
 git log --graph --format=%d
 </code></pre>
 
 <h3 id="远程分支">远程分支</h3>
 
-<pre><code class="language-shell"># 查看远程分支
+<pre><code class="language-sh"># 查看远程分支
 git branch -a
 # 删除远程分支和标签
 git push origin --delete &lt;branchname&gt;
@@ -219,12 +219,12 @@ git push origin:
 在「单个组件」···「代码工具」里面选中「适用于windows的git」。</li>
 </ol>
 
-<p><img src="../pictures/QQ20170627205054.png" alt="git in vs" title="请开启" /></p>
+<p><img src="/blog/pictures/QQ20170627205054.png" alt="git in vs" title="请开启" /></p>
 
 <ol>
 <li><p>打开安装好的git-bash,使用ssh-keygen命令生成ssh公钥和私钥</p>
 
-<pre><code class="language-shell">ssh-keygen -t rsa -C&quot;your comment&quot;
+<pre><code class="language-sh">ssh-keygen -t rsa -C&quot;your comment&quot;
 #-t参数 加密类型
 #-C参数 注释
 </code></pre></li>
@@ -237,7 +237,7 @@ git push origin:
 
 <li><p>生成known_hosts文件</p>
 
-<pre><code class="language-shell">ssh -t git@site.com #连接远程服务器
+<pre><code class="language-sh">ssh -t git@site.com #连接远程服务器
 git pull
 </code></pre></li>
 </ol>
@@ -252,12 +252,12 @@ git pull
 
 <p>问题背景：公司有一个私有库我需要拷贝下来，使用git-gui图形页面可以克隆但是使用terminal克隆死活克隆不下来</p>
 
-<pre><code class="language-console">git clone http://192.168.0.30:3000
+<pre><code class="language-sh">git clone http://192.168.0.30:3000
 </code></pre>
 
 <p>这样直接clone会提示无法连接到服务器，我们需要带上用户名密码</p>
 
-<pre><code class="language-console">git clone http://gerry:wp@192.168.0.30:3000
+<pre><code class="language-sh">git clone http://gerry:wp@192.168.0.30:3000
 </code></pre>
 
 <p>说明：gerry是用户名(请注意不是email)，wp是密码</p>

@@ -14,7 +14,7 @@
     <meta name="description" content="">
     
     <meta name="generator" content="Hugo 0.59.0" />
-    <meta name="generation-date" content="2019-11-07 08:56:43.5164215 &#43;0800 CST m=&#43;0.313002501">
+    <meta name="generation-date" content="2019-11-07 10:38:14.5783954 &#43;0800 CST m=&#43;0.355972101">
     <title>Linux(daemon)和管线命令(pipe) &middot; 云亦海</title>
     <link rel="shortcut icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
     <link rel="icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
@@ -170,7 +170,7 @@ Linux有如下的管线命令：
 
 <p>其中的参数代换指令xargs说明一下。因为很多命令不是管线命令，所以可以使用xargs命令将前面的命令结果转成参数形式传递给后续的指令：</p>
 
-<pre><code class="language-shell"># 我们要查询系统里面的所有S99local这个名字文件，并且看它的详细链接
+<pre><code class="language-sh"># 我们要查询系统里面的所有S99local这个名字文件，并且看它的详细链接
 updatedb # 更新资料库
 locate -i s99local | xargs ls -al
 </code></pre>
@@ -183,7 +183,7 @@ locate -i s99local | xargs ls -al
 
 <p>通过复合指令可以动态的获取指令内容，作为参数传递</p>
 
-<pre><code class="language-shell">ls -al $(locate -i s99local)
+<pre><code class="language-sh">ls -al $(locate -i s99local)
 file $(locate -i s99local)
 </code></pre>
 
@@ -194,7 +194,7 @@ file $(locate -i s99local)
 
 <li><p>表示前面指令存储的文件的文件名</p>
 
-<pre><code class="language-shell"># 此时的-代表标准输出，因为小写的-o参数，后面要接outfilename。所以用-符号代替了文件名，输出到标准输出传递给bash
+<pre><code class="language-sh"># 此时的-代表标准输出，因为小写的-o参数，后面要接outfilename。所以用-符号代替了文件名，输出到标准输出传递给bash
 curl -o - https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh | bash
 等同
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh | bash \

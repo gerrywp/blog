@@ -14,7 +14,7 @@
     <meta name="description" content="">
     
     <meta name="generator" content="Hugo 0.59.0" />
-    <meta name="generation-date" content="2019-11-07 08:56:43.4624205 &#43;0800 CST m=&#43;0.259001501">
+    <meta name="generation-date" content="2019-11-07 10:38:14.5243953 &#43;0800 CST m=&#43;0.301972001">
     <title>keystonejs(1)隐晦配置 &middot; 云亦海</title>
     <link rel="shortcut icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
     <link rel="icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
@@ -166,7 +166,7 @@
 
 <p>建议使用nvm来安装nodejs这样可以在不同的版本之间进行切换</p>
 
-<pre><code class="language-shell"># 直接使用apt安装
+<pre><code class="language-sh"># 直接使用apt安装
 apt install nvm
 nvm install node
 # 遇到node包下载不下来的时候，可以根据提示使用 curl 命令将node包先下载到nvm安装目录下的cache文件夹下
@@ -178,7 +178,7 @@ nvm use node
 <ul>
 <li><p>在<a href="https://www.mongodb.com/download-center#community" title="点我访问">mongodb官网下载中心</a>,获取所需版本的下载链接</p>
 
-<pre><code class="language-shell">cd ~
+<pre><code class="language-sh">cd ~
 curl -o- https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1604-3.4.10.tgz | bash
 # 解压缩
 tar -zxvf mongodb-linux-x86_64-ubuntu1604-3.4.10.tgz
@@ -208,12 +208,12 @@ mongod
 
 <h4 id="安装yeoman脚手架">安装yeoman脚手架</h4>
 
-<pre><code class="language-shell">npm install -g yo
+<pre><code class="language-sh">npm install -g yo
 </code></pre>
 
 <h4 id="安装keystonejs-yeoman生成器-创建项目">安装keystonejs yeoman生成器&amp;创建项目</h4>
 
-<pre><code class="language-shell">npm install -g generator-keystone
+<pre><code class="language-sh">npm install -g generator-keystone
 # 项目创建
 cd ~/documents
 mkdir myproject
@@ -229,7 +229,7 @@ yo keystone
 
 <h4 id="生成的后台管理界面url路径的更改">生成的后台管理界面url路径的更改</h4>
 
-<pre><code class="language-shell">keystone.init({
+<pre><code class="language-sh">keystone.init({
   'name': 'My Project',
   'admin path': 'dyt'，
   'host':'127.0.0.1'，//设置本地ip
@@ -266,7 +266,7 @@ yo keystone
 <ul>
 <li><p>手动启动</p>
 
-<pre><code class="language-shell">cd ~/documents/myproject
+<pre><code class="language-sh">cd ~/documents/myproject
 node keystone.js
 </code></pre></li>
 </ul>

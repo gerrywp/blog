@@ -13,7 +13,7 @@ categories = [ "csharp" ]
 为例：在`线程安全`这一小节，来自微软官网的描述，
 > 公共静态 (Shared 在 Visual Basic 中) 这种类型的成员是线程安全。 但不保证所有实例成员都是线程安全的。
 
-```csharp
+```cs
 //创建控制台应用程序,并编写如下代码
 static void Main(string[] args)
 {
@@ -39,7 +39,8 @@ static void ParallelList()
 
 ### 线程安全
 同样是上面的代码，经过MSDN的提醒「公共静态成员是线程安全的」，代码作如下调整
-```csharp
+
+```cs
 static List<Int32> list = new List<int>();//线程安全的
 static void Main(string[] args)
 {
@@ -67,7 +68,8 @@ static void ParallelList(List<Int32> temp)
 
 ### 非线程安全就一定有问题吗？
 上面已经讨论到了线程安全与非线程安全的概念问题，如果我们将非线程安全的代码作如下修改：
-```csharp
+
+```cs
 static void ParallelList()
 {
     List<Int32> list = new List<int>();//非线程安全的
@@ -81,6 +83,7 @@ static void ParallelList()
     Console.WriteLine($"parallel is completed: {result.IsCompleted}! ");
 }
 ``` 
+
 1. 仅仅将多线程的操作由write改为了read，这样多对一个非线程安全的对象实例也是没有任何问题的！
 
 **综上所述：**

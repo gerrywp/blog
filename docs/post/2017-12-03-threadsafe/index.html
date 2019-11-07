@@ -14,7 +14,7 @@
     <meta name="description" content="">
     
     <meta name="generator" content="Hugo 0.59.0" />
-    <meta name="generation-date" content="2019-11-07 08:56:43.4284213 &#43;0800 CST m=&#43;0.225002301">
+    <meta name="generation-date" content="2019-11-07 10:38:14.4983952 &#43;0800 CST m=&#43;0.275971901">
     <title>线程安全与非线程安全 &middot; 云亦海</title>
     <link rel="shortcut icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
     <link rel="icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
@@ -160,7 +160,7 @@
 为例：在<code>线程安全</code>这一小节，来自微软官网的描述，
 &gt; 公共静态 (Shared 在 Visual Basic 中) 这种类型的成员是线程安全。 但不保证所有实例成员都是线程安全的。</p>
 
-<pre><code class="language-csharp">//创建控制台应用程序,并编写如下代码
+<pre><code class="language-cs">//创建控制台应用程序,并编写如下代码
 static void Main(string[] args)
 {
     do
@@ -189,7 +189,7 @@ static void ParallelList()
 
 <p>同样是上面的代码，经过MSDN的提醒「公共静态成员是线程安全的」，代码作如下调整</p>
 
-<pre><code class="language-csharp">static List&lt;Int32&gt; list = new List&lt;int&gt;();//线程安全的
+<pre><code class="language-cs">static List&lt;Int32&gt; list = new List&lt;int&gt;();//线程安全的
 static void Main(string[] args)
 {
     do
@@ -220,7 +220,7 @@ static void ParallelList(List&lt;Int32&gt; temp)
 
 <p>上面已经讨论到了线程安全与非线程安全的概念问题，如果我们将非线程安全的代码作如下修改：</p>
 
-<pre><code class="language-csharp">static void ParallelList()
+<pre><code class="language-cs">static void ParallelList()
 {
     List&lt;Int32&gt; list = new List&lt;int&gt;();//非线程安全的
     for(Int32 i=0;i&lt;10000;i++){

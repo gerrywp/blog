@@ -14,7 +14,7 @@
     <meta name="description" content="">
     
     <meta name="generator" content="Hugo 0.59.0" />
-    <meta name="generation-date" content="2019-11-07 08:56:43.4464207 &#43;0800 CST m=&#43;0.243001701">
+    <meta name="generation-date" content="2019-11-07 10:38:14.5113944 &#43;0800 CST m=&#43;0.288971101">
     <title>es6语法糖(syntax sugar) &middot; 云亦海</title>
     <link rel="shortcut icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
     <link rel="icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
@@ -157,7 +157,7 @@
 
 <p><code>import</code> 和 <code>export</code> 这对孪生兄弟是要成对出现的，因为使用的时候，导入导出要分成2种情况，一种变量带大括号，一种不带括号，如下：</p>
 
-<pre><code class="language-javascript">import React from 'react';//不带大括号的
+<pre><code class="language-js">import React from 'react';//不带大括号的
 import {Component} from 'react';//带大括号的
 export {variableName};
 </code></pre>
@@ -168,7 +168,7 @@ export {variableName};
 
 <p>必须要建立变量与接口一一对应的关系</p>
 
-<pre><code class="language-javascript">//---myclass.js--- 
+<pre><code class="language-js">//---myclass.js--- 
 // 方式1
 class MyClass {
     ...
@@ -189,7 +189,7 @@ import {MyClass} from './myclass.js'
 
 <h4 id="匿名变量-主要由export-default-引起">匿名变量(主要由export default)引起</h4>
 
-<pre><code class="language-javascript">// ---myclass.js---
+<pre><code class="language-js">// ---myclass.js---
 // 导出匿名的class
 export default class MyClass {
 

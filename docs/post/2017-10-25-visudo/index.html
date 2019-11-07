@@ -14,7 +14,7 @@
     <meta name="description" content="">
     
     <meta name="generator" content="Hugo 0.59.0" />
-    <meta name="generation-date" content="2019-11-07 08:56:43.4624205 &#43;0800 CST m=&#43;0.259001501">
+    <meta name="generation-date" content="2019-11-07 10:38:14.5273943 &#43;0800 CST m=&#43;0.304971001">
     <title>sudoers账户的配置 &middot; 云亦海</title>
     <link rel="shortcut icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
     <link rel="icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
@@ -159,20 +159,22 @@
 <ol>
 <li><p><code>useradd</code></p>
 
-<pre><code class="language-shell">useradd admin
+<pre><code class="language-sh">useradd admin
 # useradd 有很多可选参数包括（-u,-g）在此全部使用SELinux的默认设置
 passwd admin
 </code></pre></li>
 </ol>
 
-<p>添加一个admin用户并设置密码。</p>
+<p>添加一个admin用户并设置密码。<br />
+事实上刚才添加的admin账户并不能使用<code>sudo</code>命令，需要在<code>/etc/sudoers</code>内配置</p>
 
-<p>事实上刚才添加的admin账户并不能使用<code>sudo</code>命令，需要在<code>/etc/sudoers</code>内配置
-2. <code>visudo</code>与/etc/sudoers配置文件</p>
+<ol>
+<li><code>visudo</code>与/etc/sudoers配置文件</li>
+</ol>
 
 <p>直接通过<code>vim /etc/sudoers</code>去修改配置文件容易出错并不好，所以推荐使用<code>visudo</code>命令</p>
 
-<pre><code class="language-shell"># 切换到root用户，因为只有root才有权限更改此配置
+<pre><code class="language-sh"># 切换到root用户，因为只有root才有权限更改此配置
 su -
 visudo
 # 找到下面这一行(大約在 98 行左右)
@@ -185,18 +187,18 @@ admin  ALL=(ALL)       ALL
 
 <p>上面的配置可以让admin切换成任何身份，这个权限太大了，将它改成只能切换root</p>
 
-<pre><code class="language-shell">admin ALL=(root)       ALL
+<pre><code class="language-sh">admin ALL=(root)       ALL
 </code></pre>
 
 <p>每次<code>sudo</code>都需要输入密码，能不能【免密码使用sudo】呢？使用如下配置</p>
 
-<pre><code class="language-shell">admin ALL=(root)       NOPASSWD:ALL
+<pre><code class="language-sh">admin ALL=(root)       NOPASSWD:ALL
 </code></pre>
 
 <p><strong>但是上面的配置很恐怖哦，admin用户可以随意更改root的密码！</strong><br />
 需要限制admin用户哪些指令不能使用，因此改进配置如下</p>
 
-<pre><code class="language-shell">admin ALL=(root)       NOPASSWD:ALL,!/usr/bin/passwd,/usr/bin/passwd [A-Za-z]*,!/usr/bin/passwd root,!/usr/sbin/visudo,!/bin/su,!/bin/su (root|-)
+<pre><code class="language-sh">admin ALL=(root)       NOPASSWD:ALL,!/usr/bin/passwd,/usr/bin/passwd [A-Za-z]*,!/usr/bin/passwd root,!/usr/sbin/visudo,!/bin/su,!/bin/su (root|-)
 </code></pre>
 
 <p>上述配置：使用sudo命令执行不需要密码。但是不能修改root密码、不能使用visudo、不能切换到root用户</p>

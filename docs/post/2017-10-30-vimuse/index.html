@@ -14,7 +14,7 @@
     <meta name="description" content="">
     
     <meta name="generator" content="Hugo 0.59.0" />
-    <meta name="generation-date" content="2019-11-07 08:56:43.4544204 &#43;0800 CST m=&#43;0.251001401">
+    <meta name="generation-date" content="2019-11-07 10:38:14.5213963 &#43;0800 CST m=&#43;0.298973001">
     <title>vim使用的一些技巧 &middot; 云亦海</title>
     <link rel="shortcut icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
     <link rel="icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
@@ -161,14 +161,13 @@
 
 <p>执行如下命令即可:</p>
 
-<pre><code class="language-shell">:w !sudo tee %
+<pre><code class="language-sh">:w !sudo tee %
 </code></pre>
 
-<p>备注： 其中%代表当前编辑的文件名</p>
+<p>备注： 其中%代表当前编辑的文件名
+执行完上面的命令会出现如下提示：</p>
 
-<p>执行完上面的命令会出现如下提示：</p>
-
-<pre><code class="language-shell">W12: Warning: File &quot;readonly-file-name&quot; has changed and the buffer was changed in Vim as well
+<pre><code class="language-sh">W12: Warning: File &quot;readonly-file-name&quot; has changed and the buffer was changed in Vim as well
 See &quot;:help W12&quot; for more info.
 [O]K, (L)oad File:
 </code></pre>
@@ -176,10 +175,13 @@ See &quot;:help W12&quot; for more info.
 <p>Vim提示文件更新，询问是确认还是重新加载文件。建议直接输入O，因为这样可以保留Vim的工作状态，比如编辑历史，buffer等，撤消等操作仍然可以继续。而如果选择L，文件会以全新的文件打开，所有的工作状态便丢失了，此时无法执行撤消，buffer中的内容也被清空。</p>
 
 <blockquote>
-<p>参考
-1. <a href="http://feihu.me/blog/2014/vim-write-read-only-file/" title="点我访问">以普通用户启动的Vim如何保存需要root权限的文件</a>
-2. <a href="http://vimcdoc.sourceforge.net/doc/autocmd.html#autocmd-events" title="点我访问">vim手册</a></p>
+<p>参考</p>
 </blockquote>
+
+<ol>
+<li><a href="http://feihu.me/blog/2014/vim-write-read-only-file/" title="点我访问">以普通用户启动的Vim如何保存需要root权限的文件</a></li>
+<li><a href="http://vimcdoc.sourceforge.net/doc/autocmd.html#autocmd-events" title="点我访问">vim手册</a></li>
+</ol>
                         
                     </section>
 

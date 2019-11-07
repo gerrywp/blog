@@ -14,7 +14,7 @@
     <meta name="description" content="">
     
     <meta name="generator" content="Hugo 0.59.0" />
-    <meta name="generation-date" content="2019-11-07 08:56:43.3144205 &#43;0800 CST m=&#43;0.111001501">
+    <meta name="generation-date" content="2019-11-07 10:38:14.3733948 &#43;0800 CST m=&#43;0.150971501">
     <title>go命令详解 &middot; 云亦海</title>
     <link rel="shortcut icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
     <link rel="icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
@@ -140,7 +140,11 @@
         <i class="fa fa-tags"></i>
     </li>
     
-        <li><a href="https://gerrywp.github.io/blog/tags/tag1">tag1</a></li>
+        <li><a href="https://gerrywp.github.io/blog/tags/2019">2019</a></li>
+    
+        <li><a href="https://gerrywp.github.io/blog/tags/go">go</a></li>
+    
+        <li><a href="https://gerrywp.github.io/blog/tags/vscode">vscode</a></li>
     
 </ul>
 
@@ -210,7 +214,7 @@
 <p>编译标签一般会作为源码文件开始处的注释的一部分，例如：</p>
 </blockquote>
 
-<pre><code class="language-console">#template_bindatafs.go
+<pre><code class="language-ps">#template_bindatafs.go
 // +build bindatafs
 
 #template.go
@@ -219,7 +223,7 @@
 
 <p>当使用<code>-tags</code>编译选项编译源码文件或包时候，针对上面的两个文件：</p>
 
-<pre><code class="language-console">//template_bindatafs.go文件(满足tag条件)会被编译
+<pre><code class="language-ps">//template_bindatafs.go文件(满足tag条件)会被编译
 go build -tags &quot;bindatafs&quot; main.go
 //template.go文件(满足tag条件:非&quot;bindatafs&quot;标签)会被编译
 go build main.go
@@ -227,7 +231,7 @@ go build main.go
 
 <p>演示编译main.go文件</p>
 
-<pre><code class="language-console">go build -n -work main.go
+<pre><code class="language-ps">go build -n -work main.go
 #输出如下
 mkdir -p $WORK\b001\
 cat &gt;$WORK\b001\importcfg.link &lt;&lt; 'EOF' # internal
@@ -235,14 +239,33 @@ packagefile command-line-arguments=C:\Users\Gerry\AppData\Local\go-build
 \a1\a1e309cea1802088ffa62859347b42f2bf1807969efe2fd8cf3018d23374ddec-d
 </code></pre>
 
-<p><code>command-line-arguments</code>:命令程序在分析参数的时候如果发现第一个参数是Go源码文件而不是代码包，
+<p><code>command-line-arguments</code>:<br />
+命令程序在分析参数的时候如果发现第一个参数是Go源码文件而不是代码包，
 则会在内部生成一个虚拟代码包。这个虚拟代码包的导入路径和名称都会是command-line-arguments。
-基于<code>go build</code> 的 <code>go install</code>命令和<code>go run</code>命令也有与之一致的操作。
-<code>$WORK</code>变量:会在windows临时目录创建go-build+随机名称的目录C:\Users\Gerry\AppData\Local\Temp\go-build495563082</p>
+基于<code>go build</code> 的 <code>go install</code>命令和<code>go run</code>命令也有与之一致的操作。</p>
 
-<pre><code class="language-console">%temp% or %tmp% #查看生成的go-build495563082目录
+<p><code>$WORK</code>变量:<br />
+会在windows临时目录创建go-build+随机名称的目录C:\Users\Gerry\AppData\Local\Temp\go-build495563082</p>
+
+<pre><code class="language-ps">%temp% or %tmp% #查看生成的go-build495563082目录
 go env #查看go相关的所有环境变量
 </code></pre>
+
+<h3 id="start-without-debugging">Start Without Debugging</h3>
+
+<p>go开启了module模式之后，v1.13版本之前倘若未设置<code>GO111MODULE=on</code>的环境变量的话，<code>go build</code>寻找包依赖规则如下：</p>
+
+<ol>
+<li>如果 <code>go build</code> 命令运行目录有go.mod文件，或者父目录有go.mod文件(递归到根目录)，就使用go module的模块加载方式</li>
+<li>否则的话使用GOPATH、GOROOT方式加载包</li>
+</ol>
+
+<p>很显然，当我们使用vscode-Start Without Debugging的时候，vscode使用的<code>go run</code>命令不是运行在当前project的目录下(猜测应该是运行在vscode安装目录下),
+此时vscode按照GOPATH方式查找包依赖。<br />
+因此当我们project使用的是module方式开发的话，必然会提示我们在GOPATH和GOROOT下找不到相关的依赖包文件。<br />
+如果我们强制开启了<code>GO111MODULE=on</code>,vscode就使用go.mod来查找相关依赖，但是vscode的<code>go run</code>命令又不是运行在当前project目录，所以会提示找不到project
+目录下的自定义子包(因为go会去GOPATH/pkg/mod目录下查找所有的包)并报错，我们必须让<code>Start without Debugging</code>时<code>go run</code>运行在当前目录，
+如何处理(未知，要看vscode源码)？</p>
                         
                     </section>
 

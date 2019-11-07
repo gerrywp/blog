@@ -14,7 +14,7 @@
     <meta name="description" content="">
     
     <meta name="generator" content="Hugo 0.59.0" />
-    <meta name="generation-date" content="2019-11-07 08:56:43.5154213 &#43;0800 CST m=&#43;0.312002301">
+    <meta name="generation-date" content="2019-11-07 10:38:14.5783954 &#43;0800 CST m=&#43;0.355972101">
     <title>setTimeout定时器的使用 &middot; 云亦海</title>
     <link rel="shortcut icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
     <link rel="icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
@@ -157,7 +157,7 @@
 
 <p>可以使用外层函数将setTimeout封装，并使用setTimeout调用外层函数</p>
 
-<pre><code class="language-javascript">function animatedFn(){
+<pre><code class="language-js">function animatedFn(){
   let [vector,timerId]=[Math.random()*5000,null];
   console.log('***');
   timerId=setTimeout((pValue)=&gt;{

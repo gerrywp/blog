@@ -11,7 +11,7 @@ iisexpress轻量，易于安装，安装包不到5M。
 
 默认情况下IIS Express使用的配置文件位于"我的文档"中，路径如下:"我的文档\IIS Express\Config"。
 
-```shell
+```sh
 %homepath%\documents\iisexpress\config
 ```
 

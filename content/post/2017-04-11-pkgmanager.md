@@ -31,7 +31,8 @@ linux的dpkg资料库路径为:`/var/lib/apt/`
 #### centos使用yum安装nodejs环境
 
 通常情况下默认的yum资料库(repo)并不包含有些类型的软件，需要手动添加epel源
-```shell
+
+```sh
 # yum info 命令查看系统是否安装了epel包
 yum info epel-release
 # 安装nodejs
@@ -46,7 +47,8 @@ sudo su -
 #### centos使用官方二进制数据包安装
 
 使用`curl`命令下载官方二进制压缩包
-```shell
+
+```sh
 # 参数大写的-O/--remote-name表示，把输出写到该文件中，使用远程文件名
 curl -O https://nodejs.org/dist/v6.11.5/node-v6.11.5-linux-x64.tar.xz
 # 区别与-o参数
@@ -79,7 +81,7 @@ apt使用的服务器或镜像站点，通过以下配置文件进行配置： �
 deb http://host/debian distribution section1 section2 section3
 deb-src http://host/debian distribution section1 section2 section3
 
-```shell
+```sh
 # See sources.list(5) for more information, especially
 # Remember that you can only use http, ftp or file URIs
 # CDROMs are managed through the apt-cdrom tool.
@@ -91,6 +93,7 @@ deb http://security.debian.org stable/updates main contrib non-free
 #deb-src http://http.us.debian.org/debian stable main contrib non-free
 #deb-src http://non-us.debian.org/debian-non-US stable/non-US main contrib non-free
 ```
+
 1. 目录中包含的是二进制软件包(deb)
 2. 目录中包含的是源码包(deb-src)
 
@@ -100,19 +103,20 @@ deb http://security.debian.org stable/updates main contrib non-free
 PPA:A Personal Package Archive (PPA) is a software repository for uploading source packages to be built and published as an Advanced Packaging Tool repository by Launchpad.  
 可以在[https://launchpad.net/ubuntu/+ppas](https://launchpad.net/ubuntu/+ppas "点我访问")搜索需要的软件，并安装。如图所示：
 
-![图片1](../pictures/QQ20170411212128.png "点我访问")
-![图片2](../pictures/QQ20170411212140.png "点我访问")
-![图片2](../pictures/QQ20170411212145.png "点我访问")
+![图片1](../../pictures/QQ20170411212128.png "点我访问")
+![图片2](../../pictures/QQ20170411212140.png "点我访问")
+![图片2](../../pictures/QQ20170411212145.png "点我访问")
 
-```shell
+```sh
 # systec:所有者(作者、组织),curl-7.35-trusty:库名称
 sudo add-apt-repository ppa:systec/curl-7.35-trusty
 sudo apt-get update
 ```
+
 删除已添加的PPAs  
 1. 仅删除"sources.list.d/\*.list"文件内容
 
-```shell
+```sh
 sudo add-apt-repository --remove ppa:systec/curl-7.35-trusty
 # 下面的命令等价
 sudo apt-add-repository --remove ppa:system/curl-7.35-trusty
@@ -120,7 +124,7 @@ sudo apt-add-repository --remove ppa:system/curl-7.35-trusty
 
 2. (**推荐**)在`/etc/apt/sources.list.d` directory下面找到需删除PPA配置，并删除。
 
-```shell
+```sh
 sudo rm /etc/apt/sources.list.d/xxxx.list*
 ```
 
@@ -130,7 +134,7 @@ sudo rm /etc/apt/sources.list.d/xxxx.list*
 
 [Ubuntu发行版列表](https://zh.wikipedia.org/wiki/Ubuntu%E5%8F%91%E8%A1%8C%E7%89%88%E5%88%97%E8%A1%A8 "点我访问")
 
-```shell
+```sh
 # $(lsb_release -cs)获取系统版本(开发代号)
 # 添加apt server repository
 sudo add-apt-repository \
@@ -145,14 +149,14 @@ sudo apt-add-repository --remove \
 ```
 直接访问下`https://download.docker.com/linux/ubuntu`会发现目录地下有个dists目录，apt默认会到此目录地下寻找软件安装包。  
 
-![图片4](../pictures/QQ20170411213604.png "点我访问")
+![图片4](../../pictures/QQ20170411213604.png "点我访问")
 
 进入<u>dists/</u>目录，就有对应的系统版本号(distribution)：trusty/、xenial/、yakkety/   
 在进入<u>xenial/</u>目录，有对应的节点(section):edge/、pool/、stable/、test/  
 
 #### apt search packagename(搜索apt服务器上指定名称的包)
 
-```shell
+```sh
 apt search curl #列出当前apt server或镜像站点里面的包信息
 apt list        #列出apt server上所有的包
 apt list curl 
@@ -160,7 +164,7 @@ apt list curl
 
 #### apt -y install packagename(从apt server上下载并安装指定包)
 
-```shell
+```sh
 apt -y install curl
 ```
 
@@ -174,7 +178,8 @@ Ubuntu使用MetaPackages提供了跟RedHat的`yum grouplist`相似的功能，�
 使用dpkg命令可以有效的管理包。安装、更新、卸载、查询包。
 
 #### dpkg -l packagename 列出本机是否已经安装了指定的包
-```shell
+
+```sh
 dpkg -l curl
 
 # 删除所有状态为rc的软件及配置文件
@@ -184,6 +189,7 @@ dpkg -l curl
 dpkg -l | grep ^rc | awk 'print $2' | xargs sudo dpkg --purge
 ```
 
-> 参考  
-1. Yum（Yellow dog Updater, Modified）由Duke University团队，修改Yellow Dog Linux的Yellow Dog Updater开发而成，是一个基于RPM包管理的字符前端软件包管理器。能够从指定的服务器自动下载RPM包并且安装，可以处理依赖性关系，并且一次安装所有依赖的软件包，无须繁琐地一次次下载、安装。被Yellow Dog Linux本身，以及Fedora、Red Hat Enterprise Linux采用。【摘自《维基百科》】
+> 参考
+
+1. Yum（Yellow dog Updater, Modified）由Duke University团队，修改Yellow Dog Linux的Yellow Dog Updater开发而成，是一个基于RPM包管理的字符前端软件包管理器。能够从指定的服务器自动下载RPM包并且安装，可以处理依赖性关系，并且一次安装所有依赖的软件包，无须繁琐地一次次下载、安装。被Yellow Dog Linux本身，以及Fedora、Red Hat Enterprise Linux采用。【摘自《维基百科》】  
 2. [DPKG维基百科](https://en.wikipedia.org/wiki/Dpkg "点我访问")

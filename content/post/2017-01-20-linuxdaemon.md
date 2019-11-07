@@ -24,7 +24,7 @@ Linux有如下的管线命令：
 
 其中的参数代换指令xargs说明一下。因为很多命令不是管线命令，所以可以使用xargs命令将前面的命令结果转成参数形式传递给后续的指令：
 
-```shell
+```sh
 # 我们要查询系统里面的所有S99local这个名字文件，并且看它的详细链接
 updatedb # 更新资料库
 locate -i s99local | xargs ls -al
@@ -32,8 +32,9 @@ locate -i s99local | xargs ls -al
 >说明:因为ls并不是管线命令，所以通过xargs将输出转成参数传递给ls，来达到目的。  
 
 #### $(指令)和\`指令\` （推荐）
+
 通过复合指令可以动态的获取指令内容，作为参数传递
-```shell
+```sh
 ls -al $(locate -i s99local)
 file $(locate -i s99local)
 ```
@@ -43,7 +44,7 @@ file $(locate -i s99local)
 1. 表示标准输出(standard output)
 2. 表示前面指令存储的文件的文件名
 
-```shell
+```sh
 # 此时的-代表标准输出，因为小写的-o参数，后面要接outfilename。所以用-符号代替了文件名，输出到标准输出传递给bash
 curl -o - https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh | bash
 等同

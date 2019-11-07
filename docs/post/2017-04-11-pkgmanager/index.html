@@ -14,7 +14,7 @@
     <meta name="description" content="">
     
     <meta name="generator" content="Hugo 0.59.0" />
-    <meta name="generation-date" content="2019-11-07 08:56:43.48842 &#43;0800 CST m=&#43;0.285001001">
+    <meta name="generation-date" content="2019-11-07 10:38:14.5543942 &#43;0800 CST m=&#43;0.331970901">
     <title>linux下的软件管理 &middot; 云亦海</title>
     <link rel="shortcut icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
     <link rel="icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
@@ -200,7 +200,7 @@ linux的dpkg资料库路径为:<code>/var/lib/apt/</code></p>
 
 <p>通常情况下默认的yum资料库(repo)并不包含有些类型的软件，需要手动添加epel源</p>
 
-<pre><code class="language-shell"># yum info 命令查看系统是否安装了epel包
+<pre><code class="language-sh"># yum info 命令查看系统是否安装了epel包
 yum info epel-release
 # 安装nodejs
 curl -sL https://rpm.nodesource.com/setup_6.x | bash -
@@ -215,7 +215,7 @@ sudo su -
 
 <p>使用<code>curl</code>命令下载官方二进制压缩包</p>
 
-<pre><code class="language-shell"># 参数大写的-O/--remote-name表示，把输出写到该文件中，使用远程文件名
+<pre><code class="language-sh"># 参数大写的-O/--remote-name表示，把输出写到该文件中，使用远程文件名
 curl -O https://nodejs.org/dist/v6.11.5/node-v6.11.5-linux-x64.tar.xz
 # 区别与-o参数
 curl -o [文件名] https://nodejs.org/dist/v6.11.5/node-v6.11.5-linux-x64.tar.xz
@@ -248,7 +248,7 @@ MANPATH_MAP /usr/local/node-v6.11.5-linux-x64/bin /usr/local/node-v6.11.5-linux-
 <p>deb <a href="http://host/debian">http://host/debian</a> distribution section1 section2 section3
 deb-src <a href="http://host/debian">http://host/debian</a> distribution section1 section2 section3</p>
 
-<pre><code class="language-shell"># See sources.list(5) for more information, especially
+<pre><code class="language-sh"># See sources.list(5) for more information, especially
 # Remember that you can only use http, ftp or file URIs
 # CDROMs are managed through the apt-cdrom tool.
 deb http://http.us.debian.org/debian stable main contrib non-free
@@ -271,11 +271,11 @@ deb http://security.debian.org stable/updates main contrib non-free
 PPA:A Personal Package Archive (PPA) is a software repository for uploading source packages to be built and published as an Advanced Packaging Tool repository by Launchpad.  
 可以在<a href="https://launchpad.net/ubuntu/+ppas" title="点我访问">https://launchpad.net/ubuntu/+ppas</a>搜索需要的软件，并安装。如图所示：</p>
 
-<p><img src="../pictures/QQ20170411212128.png" alt="图片1" title="点我访问" />
-<img src="../pictures/QQ20170411212140.png" alt="图片2" title="点我访问" />
-<img src="../pictures/QQ20170411212145.png" alt="图片2" title="点我访问" /></p>
+<p><img src="../../pictures/QQ20170411212128.png" alt="图片1" title="点我访问" />
+<img src="../../pictures/QQ20170411212140.png" alt="图片2" title="点我访问" />
+<img src="../../pictures/QQ20170411212145.png" alt="图片2" title="点我访问" /></p>
 
-<pre><code class="language-shell"># systec:所有者(作者、组织),curl-7.35-trusty:库名称
+<pre><code class="language-sh"># systec:所有者(作者、组织),curl-7.35-trusty:库名称
 sudo add-apt-repository ppa:systec/curl-7.35-trusty
 sudo apt-get update
 </code></pre>
@@ -283,7 +283,7 @@ sudo apt-get update
 <p>删除已添加的PPAs<br />
 1. 仅删除&rdquo;sources.list.d/*.list&rdquo;文件内容</p>
 
-<pre><code class="language-shell">sudo add-apt-repository --remove ppa:systec/curl-7.35-trusty
+<pre><code class="language-sh">sudo add-apt-repository --remove ppa:systec/curl-7.35-trusty
 # 下面的命令等价
 sudo apt-add-repository --remove ppa:system/curl-7.35-trusty
 </code></pre>
@@ -291,7 +291,7 @@ sudo apt-add-repository --remove ppa:system/curl-7.35-trusty
 <ol>
 <li><p>(<strong>推荐</strong>)在<code>/etc/apt/sources.list.d</code> directory下面找到需删除PPA配置，并删除。</p>
 
-<pre><code class="language-shell">sudo rm /etc/apt/sources.list.d/xxxx.list*
+<pre><code class="language-sh">sudo rm /etc/apt/sources.list.d/xxxx.list*
 </code></pre></li>
 
 <li><p>通过Software Sources(软件中心)-&gt;软件与更新，删除已添加的软件包</p></li>
@@ -301,7 +301,7 @@ sudo apt-add-repository --remove ppa:system/curl-7.35-trusty
 
 <p><a href="https://zh.wikipedia.org/wiki/Ubuntu%E5%8F%91%E8%A1%8C%E7%89%88%E5%88%97%E8%A1%A8" title="点我访问">Ubuntu发行版列表</a></p>
 
-<pre><code class="language-shell"># $(lsb_release -cs)获取系统版本(开发代号)
+<pre><code class="language-sh"># $(lsb_release -cs)获取系统版本(开发代号)
 # 添加apt server repository
 sudo add-apt-repository \
        &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \
@@ -316,21 +316,21 @@ sudo apt-add-repository --remove \
 
 <p>直接访问下<code>https://download.docker.com/linux/ubuntu</code>会发现目录地下有个dists目录，apt默认会到此目录地下寻找软件安装包。</p>
 
-<p><img src="../pictures/QQ20170411213604.png" alt="图片4" title="点我访问" /></p>
+<p><img src="../../pictures/QQ20170411213604.png" alt="图片4" title="点我访问" /></p>
 
 <p>进入<u>dists/</u>目录，就有对应的系统版本号(distribution)：trusty/、xenial/、yakkety/<br />
 在进入<u>xenial/</u>目录，有对应的节点(section):edge/、pool/、stable/、test/</p>
 
 <h4 id="apt-search-packagename-搜索apt服务器上指定名称的包">apt search packagename(搜索apt服务器上指定名称的包)</h4>
 
-<pre><code class="language-shell">apt search curl #列出当前apt server或镜像站点里面的包信息
+<pre><code class="language-sh">apt search curl #列出当前apt server或镜像站点里面的包信息
 apt list        #列出apt server上所有的包
 apt list curl 
 </code></pre>
 
 <h4 id="apt-y-install-packagename-从apt-server上下载并安装指定包">apt -y install packagename(从apt server上下载并安装指定包)</h4>
 
-<pre><code class="language-shell">apt -y install curl
+<pre><code class="language-sh">apt -y install curl
 </code></pre>
 
 <h4 id="apt的软件群组功能metapackages">apt的软件群组功能MetaPackages</h4>
@@ -344,7 +344,7 @@ apt list curl
 
 <h4 id="dpkg-l-packagename-列出本机是否已经安装了指定的包">dpkg -l packagename 列出本机是否已经安装了指定的包</h4>
 
-<pre><code class="language-shell">dpkg -l curl
+<pre><code class="language-sh">dpkg -l curl
 
 # 删除所有状态为rc的软件及配置文件
 # r: the package is marked for removal.    
@@ -354,10 +354,13 @@ dpkg -l | grep ^rc | awk 'print $2' | xargs sudo dpkg --purge
 </code></pre>
 
 <blockquote>
-<p>参考  
-1. Yum（Yellow dog Updater, Modified）由Duke University团队，修改Yellow Dog Linux的Yellow Dog Updater开发而成，是一个基于RPM包管理的字符前端软件包管理器。能够从指定的服务器自动下载RPM包并且安装，可以处理依赖性关系，并且一次安装所有依赖的软件包，无须繁琐地一次次下载、安装。被Yellow Dog Linux本身，以及Fedora、Red Hat Enterprise Linux采用。【摘自《维基百科》】
-2. <a href="https://en.wikipedia.org/wiki/Dpkg" title="点我访问">DPKG维基百科</a></p>
+<p>参考</p>
 </blockquote>
+
+<ol>
+<li>Yum（Yellow dog Updater, Modified）由Duke University团队，修改Yellow Dog Linux的Yellow Dog Updater开发而成，是一个基于RPM包管理的字符前端软件包管理器。能够从指定的服务器自动下载RPM包并且安装，可以处理依赖性关系，并且一次安装所有依赖的软件包，无须繁琐地一次次下载、安装。被Yellow Dog Linux本身，以及Fedora、Red Hat Enterprise Linux采用。【摘自《维基百科》】<br /></li>
+<li><a href="https://en.wikipedia.org/wiki/Dpkg" title="点我访问">DPKG维基百科</a></li>
+</ol>
                         
                     </section>
 

@@ -14,7 +14,7 @@
     <meta name="description" content="">
     
     <meta name="generator" content="Hugo 0.59.0" />
-    <meta name="generation-date" content="2019-11-07 08:56:43.4454207 &#43;0800 CST m=&#43;0.242001701">
+    <meta name="generation-date" content="2019-11-07 10:38:14.5063943 &#43;0800 CST m=&#43;0.283971001">
     <title>console应用程序progressbar（进度条的实现） &middot; 云亦海</title>
     <link rel="shortcut icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
     <link rel="icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
@@ -156,8 +156,11 @@ github上有很多现成的可以使用。</p>
 
 <h3 id="实现机制">实现机制</h3>
 
-<p>使用的主要方法:
-1. <code>Console.SetCursourPosition()</code></p>
+<p>使用的主要方法:</p>
+
+<ol>
+<li><code>Console.SetCursourPosition()</code></li>
+</ol>
 
 <p>定位光标的位置，在同一个位置上覆盖输出数据即可！</p>
 

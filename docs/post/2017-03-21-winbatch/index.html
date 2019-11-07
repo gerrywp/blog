@@ -14,7 +14,7 @@
     <meta name="description" content="">
     
     <meta name="generator" content="Hugo 0.59.0" />
-    <meta name="generation-date" content="2019-11-07 08:56:43.4994198 &#43;0800 CST m=&#43;0.296000801">
+    <meta name="generation-date" content="2019-11-07 10:38:14.5633941 &#43;0800 CST m=&#43;0.340970801">
     <title>cmd批处理 &middot; 云亦海</title>
     <link rel="shortcut icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
     <link rel="icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
@@ -161,7 +161,7 @@
 
 <p>什么是复合语句？通过组合命令、重定向、管道命令串联起来的,或者以()括号包含起来的就是复合语句。如下：</p>
 
-<pre><code class="language-msshell">@echo off
+<pre><code class="language-ps">@echo off
 set a=4
 set a=5 &amp; echo %a%
 pause
@@ -183,7 +183,7 @@ set /A b=16
 即延迟了对变量的预处理，相当于让复合语句，能够一条一条的预处理-&gt;执行，这样就可以解决问题。<br />
 读取延迟变量的语法为: <code>!variable!</code></p>
 
-<pre><code class="language-msshell">@echo off
+<pre><code class="language-ps">@echo off
 ::开启变量扩展和变量延迟
 setlocal ENABLEEXTENSIONS ENABLEDELAYEDEXPANSION
 
@@ -203,7 +203,7 @@ endlocal
 
 <p>解释：因为do后面的 ()是一个复合语句，每次for循环进入，批处理预处理会先解析后面代码成为如下代码</p>
 
-<pre><code class="language-powershell">do (
+<pre><code class="language-ps">do (
 :: a的值根据循环次数来
 set a=[1,2,3,4,5]
 :: 这里永远是10
@@ -215,7 +215,7 @@ echo 10
 
 <p>cmd下的管道命令|，以这种方式传输,请看以下代码：</p>
 
-<pre><code class="language-msshell">set input=empty
+<pre><code class="language-ps">set input=empty
 echo test | set /p input=
 echo %input%
 </code></pre>
@@ -224,7 +224,7 @@ echo %input%
 <p>结果：empty.看似上面的第二个语句没有赋值成功。</p>
 </blockquote>
 
-<pre><code class="language-msshell">set input=empty
+<pre><code class="language-ps">set input=empty
 echo test | (set /p input= &amp; set input)
 echo %input%
 </code></pre>
@@ -245,7 +245,7 @@ echo %input%
 xargs作用：&rdquo;将标准输入作为命令的参数&rdquo;<br />
 因此dir命令不能跟在管道的后面，因为dir不需要标准输入</p>
 
-<pre><code class="language-msshell">::linux下这样
+<pre><code class="language-ps">::linux下这样
 find . -name &quot;*.java&quot; | xargs accurev keep -c &quot;comment&quot;
 ::cmd下通过for循环来实现
 FOR /F %k in ('dir /s /b *.java') DO accurev keep -c &quot;comment&quot; %k
@@ -257,7 +257,7 @@ FOR /F %k in ('dir /s /b *.java') DO accurev keep -c &quot;comment&quot; %k
 
 <p>有时候我们希望不显示信息到输出界面，可以将输出流定向到垃圾桶</p>
 
-<pre><code class="language-console">del /s  bin\*.exe &gt;nul 2&gt;&amp;1
+<pre><code class="language-ps">del /s  bin\*.exe &gt;nul 2&gt;&amp;1
 #从右往左读，将2错误输出重定向到1标准输出(&amp;取地址操作，取标准输出设备的地址)，然后是&gt;nul将标准输出重定向到垃圾桶
 </code></pre>
 

@@ -14,7 +14,7 @@
     <meta name="description" content="">
     
     <meta name="generator" content="Hugo 0.59.0" />
-    <meta name="generation-date" content="2019-11-07 08:56:43.436421 &#43;0800 CST m=&#43;0.233002001">
+    <meta name="generation-date" content="2019-11-07 10:38:14.5023948 &#43;0800 CST m=&#43;0.279971501">
     <title>cmd实现类似linux下的alias并模拟加载bashrc文件 &middot; 云亦海</title>
     <link rel="shortcut icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
     <link rel="icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
@@ -155,7 +155,7 @@
 
 <h3 id="实现dir的别名-ls">实现dir的别名<code>ls</code></h3>
 
-<pre><code class="language-shell"># 创建批处理文件bashrc.cmd,内容如下
+<pre><code class="language-sh"># 创建批处理文件bashrc.cmd,内容如下
 @echo off
 doskey ls=dir /b $*
 # $* 代表ls命令后面还可以带其他的参数。如:ls /d
@@ -169,7 +169,7 @@ doskey ls=dir /b $*
 <p>批处理文件下载地址：<a href="../assets/bashrc.cmd" title="点我下载">实现别名并开机启动</a>
 一定要使用ASIN编码</p>
 
-<pre><code class="language-shell">:: Purpose-add [autorun alias commands] batch file
+<pre><code class="language-sh">:: Purpose-add [autorun alias commands] batch file
 :: Author-Gerry
 :: Date-2017年11月26日
 
