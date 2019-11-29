@@ -37,6 +37,20 @@ categories = [ "others" ]
 
 [Backend Apps with Webpack](http://jlongster.com/Backend-Apps-with-Webpack--Part-I "点我访问")
 
+### web后台开发框架
+
+收费
+
+1. [easyweb](https://www.easyweb.vip/index "点我访问") 基于layui
+2. [layui-admin](https://www.layui.com/admin/ '点我访问')
+
+免费
+
+1. [vue-element-admin](https://panjiachen.github.io/vue-element-admin-site/zh/guide/ '点我访问')
+2. [adminlte](https://adminlte.io/ '点我访问')
+3. [ligerui](http://www.ligerui.com/ '点我访问')
+4. [ace admin](https://github.com/bopoda/ace '点我访问')
+
 ### c++中const组合引用和指针
 
 1. `const`组合引用    
