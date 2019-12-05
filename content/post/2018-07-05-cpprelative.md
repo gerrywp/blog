@@ -9,18 +9,32 @@ categories = [ "others" ]
 <!--more--> 
 ### minGW(Minimalist GNU for Windows)
 
-目的：开发Window原生应用，可以使用`gcc`、`g++`编译器，不使用~~微软的cl编译器~~,使用qt开发windows应用就会用到minGW,如果只用到标准c++库，
-用minGW编译也是可以跨平台的。  
+目的：开发Window原生应用，可以使用`gcc`、`g++`编译器，不使用~~微软的cl编译器~~。使用qt开发windows应用,若仅使用标准c++库，
+并用minGW编译可实现跨平台。  
 功能：用于开发原生(32位)Windows 应用的开发环境。它主要提供了针对win32应用的GCC、GNU (bin,utils)等工具，
 以及对等于Windows SDK（的子集）的头文件和用于 MinGW 版本 linker 的库文件（so、a等，而不是 VC 的 lib）。     
-下载安装：[minGW](http://www.mingw.org/ '点我访问') 
+下载：  
+* 64位版本
+[mingw64](https://sourceforge.net/projects/mingw-w64/files/) 
+找到**MinGW-W64 GCC-8.1.0**下64位的下载包即可。  
+说明：各版本的区别(会看到下载版本部分名称不同)
+
+1. DWARF:DWARF-2(DW2)EH这需要使用DWARF-2(或DWARF-3)调试信息DW-2EH可以导致可执行文件略显膨胀，因为大的调用堆栈表必须包含在可执行文件中
+2. setjmp/longjmp(SJLJ)。基于SJLJ的EH比DW2 EH慢得多(在没有异常时会惩罚甚至正常执行)，但是可以在没有使用GCC编译的代码或没有调用堆栈的代码上工作
+3. 结构化异常处理SEH(Structured Exception Handling)Windows使用自己的异常处理机制。
+
+* 32位版本
+[minGW](http://www.mingw.org/ '点我访问') 
 点击会跳转到sourceforge站点，下载的是一个在线安装器，安装好之后设置环境变量即可
 
-### Cygwin
+### Cygwin(cygnus win)
 
 目的：提供完整的类Unix环境，适用于在windows桌面下，开发运行于linux系统上的应用   
 功能：提供了一整套的类linux环境，GCC、GNU工具    
-下载：[Cygwin](https://cygwin.com/install.html '点我访问')  
+下载：[Cygwin](https://cygwin.com/install.html '点我访问')
+  
+>备注:Cyg是**cygnus solutions**公司的简称(Cygnus有中文含义:天鹅)
+
 
 ### 安装android-sdk
 
@@ -32,7 +46,7 @@ categories = [ "others" ]
 
 ### makefile实战
 
-```make
+```makefile
 #获取所有cpp文件
 files=$(wildcard *.cpp)
 objs=$(patsubst %.cpp,%.o,$(files))
@@ -70,7 +84,7 @@ debug:
 `objects=*.o`表示通配符同样可以用在变量中。但是*.o不会展开！object的值就是`*.o`。如果你要让通配符在变量中展开，
 也就是让objects的值是所有.o的文件名的集合，那么你可以这样：
 
-```make
+```makefile
 objects:=$(wildcard *.o)
 ```
 具体请参考下面的文档第13页!  
@@ -89,7 +103,7 @@ objects:=$(wildcard *.o)
 
 上面的创建目录的makefile文件处理的并不优雅，其实有更好的方式来处理目录的创建！目录是一个真实存在的文件，因此也可以作为一个target来进行创建
 
-```make
+```makefile
 #此处只列出目录创建部分
 OBJDIR=obj
 BINDIR=bin
@@ -113,7 +127,7 @@ $(OBJDIR):
 
 获取当前操作系统：`$(OS)`
 
-```make
+```makefile
 clean:
   ifeq ($(OS),Windows_NT)
       del /s *.o *.d *.elf *.map *.log
@@ -134,7 +148,7 @@ clean:
 
 5. 因为使用的是makefile文件，编译器使用的g++，**暂时还未找到如何使用VS2017的集成调试工具来调试程序？？？**。
 
-```make
+```makefile
 #附上makefile文件
 exe=$(notdir $(CURDIR)).exe
 dbgexe=Debug/$(exe)

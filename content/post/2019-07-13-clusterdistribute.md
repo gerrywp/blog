@@ -16,7 +16,7 @@ categories = [ "linux" ]
 2. 分流(缓解了单个服务器的压力)
 
 图示:
-![集群](../pictures/cluster.png '点我访问')
+![集群](../../pictures/cluster.png '点我访问')
 
 ### 分布式
 
@@ -27,7 +27,7 @@ categories = [ "linux" ]
 3. 提高系统容错，一个节点宕机了，并不会引起整体系统的瘫痪
 
 图示：
-![分布式](../pictures/distributed.png '点我访问')
+![分布式](../../pictures/distributed.png '点我访问')
 
 #### 负载均衡(反向代理)
 在集群的图中我们看到了**负载均衡层**，负载均衡有几种调度算法，像nginx可以通过配置来处理：

@@ -14,7 +14,7 @@
     <meta name="description" content="">
     
     <meta name="generator" content="Hugo 0.59.0" />
-    <meta name="generation-date" content="2019-11-29 10:32:44.9430972 &#43;0800 CST m=&#43;0.101994701">
+    <meta name="generation-date" content="2019-12-05 14:00:21.8887372 &#43;0800 CST m=&#43;0.116999401">
     <title>git push错误 &middot; 云亦海</title>
     <link rel="shortcut icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
     <link rel="icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
@@ -165,13 +165,13 @@ git-bash下面设置了http_proxy的环境变量。</p>
 
 <li><p>2)查看环境变量。</p>
 
-<pre><code class="language-console">echo $http_proxy
+<pre><code class="language-sh">echo $http_proxy
 env|grep http_proxy
 </code></pre></li>
 
 <li><p>3)在C:\Users\Gerry.bashrc文件里面我手动设置了。</p>
 
-<pre><code class="language-console">export http_proxy=http://127.0.0.1:1080
+<pre><code class="language-sh">export http_proxy=http://127.0.0.1:1080
 </code></pre></li>
 
 <li><p>4)因为Shadowsocks的代理服务器出现了故障，导致代理无法使用，并且git使用的是.bashrc里面的环境变量配置，因此删除即可。</p></li>

@@ -172,12 +172,14 @@ SectionPagesMenu = "Main"
             link = "categories/"
             image = "img/categories.jpg?timestamp=1927"
 			always_show_text = true
+			
         [[Params.Cells.List]]
 
             name = "Gallery"
             link = "gallery/"
             image = "img/gallery.jpg?timestamp=1927"
 			always_show_text = true
+			
 #       [[Params.Cells.List]]
 #
 #           name = "Custom Post Section Name"

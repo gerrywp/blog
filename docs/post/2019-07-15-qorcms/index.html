@@ -14,7 +14,7 @@
     <meta name="description" content="">
     
     <meta name="generator" content="Hugo 0.59.0" />
-    <meta name="generation-date" content="2019-11-29 10:32:45.0250962 &#43;0800 CST m=&#43;0.183993701">
+    <meta name="generation-date" content="2019-12-05 14:00:21.9937389 &#43;0800 CST m=&#43;0.222001101">
     <title>QOR踩坑日记 &middot; 云亦海</title>
     <link rel="shortcut icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
     <link rel="icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
@@ -158,14 +158,14 @@ article!</p>
 
 <p>我最原始的猜想是不是因为cmd编码的问题，因为系统是中文系统cmd编码是GBK。这里引入另外一个问题，我们每次都要使用<code>chcp 65001</code>将当前code page更改为UTF-8，或者修改注册表：</p>
 
-<pre><code class="language-console">regedit-&gt;[HKEY_LOCAL_MACHINE]\[SOFTWARE]\[Microsoft]\[Command Processor]\
+<pre><code class="language-sh">regedit-&gt;[HKEY_LOCAL_MACHINE]\[SOFTWARE]\[Microsoft]\[Command Processor]\
 新建字符串值，
 AutoRun=chcp 65001 &gt;nul 2&gt;&amp;1
 </code></pre>
 
 <p>其实可以在语言和区域(区域-&gt;管理-&gt;更改系统区域设置)通过勾选&rdquo;使用Unicode UTF-8提供全球语言支持&rdquo;即可(谨慎使用，有些软件会出现乱码的现象)，如下图所示:</p>
 
-<p><img src="../pictures/20190715004216.png" alt="编码" title="点我访问" /></p>
+<p><img src="../../pictures/20190715004216.png" alt="编码" title="点我访问" /></p>
 
 <p>然而事实上我发现即使改了编码，在cmd下还是乱码。继续下一个猜测，因为就乱码表现形式来看，日志行使用了背景色，源码使用<code>chi</code>的<code>middleware.Logger</code>中间件来记录日志,在<code>terminal.go</code>源文件里，使用了isTTY来判断当前环境是否是linux-shell环境。使用<code>fmt.Println()</code>打印调试证实是这里出现了问题：</p>
 
