@@ -1,686 +1,496 @@
-<!DOCTYPE html>
-<html 
-    lang="en-us"
-    class="no-js"
->
-
-
+<!doctype html>
+<html lang="zh-CN">
 <head>
+
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="">
-    <meta name="description" content="">
-    
-      <link href="https://gerrywp.github.io/blog/tags/tag1/index.xml" rel="alternate" type="application/rss+xml" title="云亦海" />
-      <link href="https://gerrywp.github.io/blog/tags/tag1/index.xml" rel="feed" type="application/rss+xml" title="云亦海" />
-    
     <meta name="generator" content="Hugo 0.59.0" />
-    <meta name="generation-date" content="2019-12-05 14:00:22.060738 &#43;0800 CST m=&#43;0.289000201">
-    <title>tag1 &middot; 云亦海</title>
-    <link rel="shortcut icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
-    <link rel="icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>tag1 | 云亦海</title>
+    <meta property="og:title" content="tag1 - 云亦海">
+    <meta property="og:type" content="article">
+        
+        
+    <meta name="Keywords" content="golang,go语言,go语言笔记,项目管理,软件架构,公众号,小程序">
+    <meta name="description" content="tag1">
+        
+    <meta name="author" content="gerry">
+    <meta property="og:url" content="https://gerrywp.github.io/tags/tag1/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
     
-<link rel="stylesheet" href="https://gerrywp.github.io/blog/css/materialize.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="alternate" type="application/rss+xml+xml" href="https://gerrywp.github.io/tags/tag1/index.xml" title="云亦海" />
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-
-<link rel="stylesheet" href="https://gerrywp.github.io/blog/css/font-awesome.min.css">
+    
 
 
     
-    <link rel="stylesheet" href="https://gerrywp.github.io/blog/css/styles/railscasts.css">
-
-
-
-<link rel="stylesheet" href="https://gerrywp.github.io/blog/css/lightbox.css">
-
-
-<link rel="stylesheet" href="https://gerrywp.github.io/blog/css/main.css">
-
-
-    <script src="https://gerrywp.github.io/blog/js/modernizr-latest.js"></script>
-    <script src="https://gerrywp.github.io/blog/js/lazysizes.min.js"></script>
-    <script src="https://gerrywp.github.io/blog/js/ls.noscript.min.js"></script>
-
-    <script>
-        window.lazySizesConfig = window.lazySizesConfig || {};
-        lazySizesConfig.addClasses = true;
-        lazySizesConfig.loadMode = 2;
-    </script>
-
     
 </head>
 
 
-
 <body>
-    
-
-<nav class="main-menu menu-colors">
-    <ul class="menu menu-colors no-list-float">
-        <li><a href="https://gerrywp.github.io/blog/"><i class="fa fa-home fa-2x"></i></a></li>
-        <li>
-            <a href="#!"><i class="fa fa-bars fa-2x"></i></a>
-
-            
-            <ul class="menu flexible-width menu-colors no-list-float">
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
                 
+                    <a id="logo" href="https://gerrywp.github.io">
+                        云亦海
+                    </a>
                 
-                    <li >
+                <p class="description">专注于Go语言(golang)、csharp、移动互联网、项目管理、软件架构</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="https://gerrywp.github.io">首页</a>
                     
-                        <a href="/blog/post/">
+                    <a  href="https://gerrywp.github.io/archives/" title="归档">归档</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    
+                    <h3 class="archive-title">
+                        包含标签
+                        <span class="keyword">tag1</span>
+                        的文章
+                    </h3>
+                    
+
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="https://gerrywp.github.io/post/2017-11-24-vs2017setup/">vs2017支持.editorconfig配置</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2017年11月24日
+                            </date>
                             
-                            <span>Posts</span>
-                        </a>
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="https://gerrywp.github.io/categories/csharp">csharp</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                <p>　　visual studio无法全局设置编码，新建的文件有的时候并不是使用utf-8编码的，所有在有的环境下会出现乱码。比如使用babel转嘛js代码的时候。网上找到的解决方案，下载<code>ForeUTF8</code>插件并不能解决问题，当我们新建文件的时候，还要一个个手动通过高级保存，保存为我们想要的编码。所幸百般查找，发现vs是可以支持<code>.editorconfig</code>配置文件的。</p>……
+                                <p class="readmore"><a href="https://gerrywp.github.io/post/2017-11-24-vs2017setup/">阅读全文</a></p>
+                            </div>
+                        </article>
                     
-                    </li>
-                
-            </ul>
-        </li>
-        <li><a href="#!" data-lightbox-id="searchbox"><i class="fa fa-search fa-2x"></i></a></li>
-        
-            <li class="blue-grey-text" style="border-top: 1px solid;"></li>
-            
-        
-        <li class="blue-grey-text" style="border-top: 1px solid;"></li>
-        <li>
-            <a href="https://gerrywp.github.io/blog/tags/tag1/index.xml" type="application/rss+xml" target="_blank">
-                <i class="fa fa-rss fa-2x"></i>
-            </a>
-        </li>
-    </ul>
-</nav>
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="https://gerrywp.github.io/post/2017-11-24-fullstack/">前端那些事儿</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2017年11月24日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="https://gerrywp.github.io/categories/javascript">javascript</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                <p>　　微软系软件开发使用的Visual Studio(VS) IDE强大到令人发指！隐藏了许多技术细节，必然很难定制。nodejs出现之前，创建一个asp.net mvc的项目，client(browser)和server(csharp+iis)是组织在一起的。很少有公司在做asp.net mvc项目的时候会定制msbuild去完成浏览器端代码的构建和发布，比如：
+打包压缩js+css文件,拷贝文件到指定的dist目录,修改view或html文件中的js、css引用路径给路径添加上hash码，同时也拷贝到dist目录。但是通常情况下都是使用的IDE自动构建和一键式发布来deploy website应用。这种情况下想实现client端和server端的分而治之，压根是不可能实现的。nodejs的出现彻底改变了这一现状！</p>……
+                                <p class="readmore"><a href="https://gerrywp.github.io/post/2017-11-24-fullstack/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="https://gerrywp.github.io/post/2017-11-23-consoleprogbar/">console应用程序progressbar（进度条的实现）</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2017年11月23日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="https://gerrywp.github.io/categories/csharp">csharp</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                <p>　　控制台应用程序，有时候需要做文件上传、压缩等(网络/磁盘)I/O处理。为了得到更友好的界面交互，所以需要用到progress bar 进度条。
+github上有很多现成的可以使用。</p>……
+                                <p class="readmore"><a href="https://gerrywp.github.io/post/2017-11-23-consoleprogbar/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="https://gerrywp.github.io/post/2017-11-21-es6syntax/">es6语法糖(syntax sugar)</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2017年11月21日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="https://gerrywp.github.io/categories/javascript">javascript</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                <p>　　es6引入了大量的语法糖，其中有不少是不好理解的，一边实践一边用文字记录之。</p>……
+                                <p class="readmore"><a href="https://gerrywp.github.io/post/2017-11-21-es6syntax/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="https://gerrywp.github.io/post/2017-11-13-poem/">黄梅解语</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2017年11月13日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="https://gerrywp.github.io/categories/article">article</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                <p>05年至今近十几年写了一些杂乱无章的句子。有各大论坛发帖的、空间的、自传小册子里的、朋友圈的。有琥珀也有糟糠，但基本都是无标题的，
+按时间先后顺序搜集起来凑到一起，拟标题为《黄梅解语》，可谓之一语双关。</p>……
+                                <p class="readmore"><a href="https://gerrywp.github.io/post/2017-11-13-poem/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="https://gerrywp.github.io/post/2017-11-06-double11/">双11</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2017年11月6日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="https://gerrywp.github.io/categories/article">article</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                <p>&emsp;&emsp;在无聊的日子，搞些乐子出来！！！有关于双11今天突然闲扯了一些比较有意思的文字，所以想把它记录下来。</p>……
+                                <p class="readmore"><a href="https://gerrywp.github.io/post/2017-11-06-double11/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="https://gerrywp.github.io/post/2017-11-02-uselinux/">Ubuntu的使用</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2017年10月30日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="https://gerrywp.github.io/categories/linux">linux</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                <p>Ubuntu系统使用过程中的常用设置，其中包括启动项目的管理、启动项对应的文件、<code>systemd</code>管理系统服务、<code>systemd-sysv-generator</code>依据旧的SysV脚本生成新的<code>systemd</code>新脚本等等。</p>……
+                                <p class="readmore"><a href="https://gerrywp.github.io/post/2017-11-02-uselinux/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="https://gerrywp.github.io/post/2017-10-30-vimuse/">vim使用的一些技巧</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2017年10月30日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="https://gerrywp.github.io/categories/linux">linux</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                <p>&emsp;&emsp;以普通用户身份vim编辑的文件,如何强制保存？</p>……
+                                <p class="readmore"><a href="https://gerrywp.github.io/post/2017-10-30-vimuse/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="https://gerrywp.github.io/post/2017-10-29-putty/">putty配置并使用</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2017年10月29日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="https://gerrywp.github.io/categories/windows">windows</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                <p>配置putyy能够自动登陆、开启显示密码、在下达完整个命令之后才发送至服务端！</p>……
+                                <p class="readmore"><a href="https://gerrywp.github.io/post/2017-10-29-putty/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="https://gerrywp.github.io/post/2017-10-27-keystonejs1/">keystonejs(1)隐晦配置</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2017年10月27日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="https://gerrywp.github.io/categories/javascript">javascript</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                <p>keystonejs跨平台内容管理系统开发的又一利器。通过定义数据model层，即可完成一个企业型应用站点的开发，并自动生成后台管理界面。
+我们需要做的只是做前端UI，给定模板套样式即可。下面一步一步学习并搭建一个站点起来，并进行二次开发，以一系列文章记录下来。</p>……
+                                <p class="readmore"><a href="https://gerrywp.github.io/post/2017-10-27-keystonejs1/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
 
-<div id="searchbox" class="no-display">
-    <div class="valign-wrapper fill-container">
-        <div class="valign large-form horizontal-center-hack">
-            <form method="get" id="search" action="http://duckduckgo.com/">
-    <input type="hidden" name="sites"value="https://gerrywp.github.io/blog/"/>
-    <input type="hidden" name="ka" value="h"/>
-    <input type="hidden" name="k7" value="#fafafa"/>
-    <input type="hidden" name="kj" value="#3f3f3f"/>
-    <input type="hidden" name="ky" value="#fafafa"/>
-    <input type="hidden" name="kx" value="b"/>
-    <input type="hidden" name="kt" value="Helvetica"/>
-    <input type="text" name="q" maxlength="255" placeholder="Search"/>
-    <input type="submit" value="DuckDuckGo Search" style="visibility: hidden;" />
+                    
+
+
+
+<ol class="page-navigator">
+    
+    <li class="prev">
+        <a href="https://gerrywp.github.io/tags/tag1/page/3/">上一页</a>
+    </li>
+    
+
+    
+    <li >
+        <a href="https://gerrywp.github.io/tags/tag1/">1</a>
+    </li>
+    
+    <li >
+        <a href="https://gerrywp.github.io/tags/tag1/page/2/">2</a>
+    </li>
+    
+    <li >
+        <a href="https://gerrywp.github.io/tags/tag1/page/3/">3</a>
+    </li>
+    
+    <li  class="current">
+        <a href="https://gerrywp.github.io/tags/tag1/page/4/">4</a>
+    </li>
+    
+    <li >
+        <a href="https://gerrywp.github.io/tags/tag1/page/5/">5</a>
+    </li>
+    
+    <li >
+        <a href="https://gerrywp.github.io/tags/tag1/page/6/">6</a>
+    </li>
+    
+    <li >
+        <a href="https://gerrywp.github.io/tags/tag1/page/7/">7</a>
+    </li>
+    
+
+    
+    <li class="next">
+        <a href="https://gerrywp.github.io/tags/tag1/page/5/">下一页</a>
+    </li>
+    
+</ol>
+
+
+
+                </div>
+            </div>
+
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="/search/" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://gerrywp.github.io">
+      <button type="submit" class="submit icon-search"></button>
 </form>
-
-
-        </div>
-    </div>
-</div>
-
-
-
-
-
+    </section>
     
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
     
-        
-    
-
-    
-        
-            
-        
-    
-
-    
-
-    <section class="main-content">
-        <div class="masonry-flex-container infinite-scroll">
-            
-                
-                    <div class="flex-item">
-                        
-<div class="page-item-container">
-    
-    <div class="page-item-content">
-        <header>
-            
-                <time class="page-item-date">Fri Nov 24, 2017</time>
-            
-            <h2 class="page-item-title">vs2017支持.editorconfig配置</h2>
-        </header>
-        <p class="page-item-summary"><p>　　visual studio无法全局设置编码，新建的文件有的时候并不是使用utf-8编码的，所有在有的环境下会出现乱码。比如使用babel转嘛js代码的时候。网上找到的解决方案，下载<code>ForeUTF8</code>插件并不能解决问题，当我们新建文件的时候，还要一个个手动通过高级保存，保存为我们想要的编码。所幸百般查找，发现vs是可以支持<code>.editorconfig</code>配置文件的。</p></p>
-        <a href="https://gerrywp.github.io/blog/post/2017-11-24-vs2017setup/" class="page-item-btn ">
-            Read More
-        </a>
-        <footer>
-            
-<ul class="categories">
     <li>
-        <i class="fa fa-book"></i>
+        <a href="https://gerrywp.github.io/post/2019-10-07-gcmw/" title="git push错误">git push错误</a>
     </li>
     
-        <li><a href="https://gerrywp.github.io/blog/categories/csharp">csharp</a></li>
-    
-</ul>
-
-
-            <span class="separator">|</span>
-            
-<ul class="tags">
     <li>
-        <i class="fa fa-tags"></i>
+        <a href="https://gerrywp.github.io/post/2019-07-15-qorcms/" title="QOR踩坑日记">QOR踩坑日记</a>
     </li>
     
-        <li><a href="https://gerrywp.github.io/blog/tags/tag1">tag1</a></li>
-    
-</ul>
-
-
-        </footer>
-    </div>
-</div>
-
-
-                    </div>
-                
-                    <div class="flex-item">
-                        
-<div class="page-item-container">
-    
-    <div class="page-item-content">
-        <header>
-            
-                <time class="page-item-date">Fri Nov 24, 2017</time>
-            
-            <h2 class="page-item-title">前端那些事儿</h2>
-        </header>
-        <p class="page-item-summary"><p>　　微软系软件开发使用的Visual Studio(VS) IDE强大到令人发指！隐藏了许多技术细节，必然很难定制。nodejs出现之前，创建一个asp.net mvc的项目，client(browser)和server(csharp+iis)是组织在一起的。很少有公司在做asp.net mvc项目的时候会定制msbuild去完成浏览器端代码的构建和发布，比如：
-打包压缩js+css文件,拷贝文件到指定的dist目录,修改view或html文件中的js、css引用路径给路径添加上hash码，同时也拷贝到dist目录。但是通常情况下都是使用的IDE自动构建和一键式发布来deploy website应用。这种情况下想实现client端和server端的分而治之，压根是不可能实现的。nodejs的出现彻底改变了这一现状！</p></p>
-        <a href="https://gerrywp.github.io/blog/post/2017-11-24-fullstack/" class="page-item-btn ">
-            Read More
-        </a>
-        <footer>
-            
-<ul class="categories">
     <li>
-        <i class="fa fa-book"></i>
+        <a href="https://gerrywp.github.io/post/2019-07-13-clusterdistribute/" title="集群和分布式">集群和分布式</a>
     </li>
     
-        <li><a href="https://gerrywp.github.io/blog/categories/javascript">javascript</a></li>
-    
-</ul>
-
-
-            <span class="separator">|</span>
-            
-<ul class="tags">
     <li>
-        <i class="fa fa-tags"></i>
+        <a href="https://gerrywp.github.io/post/2019-07-07-gocommand/" title="go命令详解">go命令详解</a>
     </li>
     
-        <li><a href="https://gerrywp.github.io/blog/tags/tag1">tag1</a></li>
-    
-</ul>
-
-
-        </footer>
-    </div>
-</div>
-
-
-                    </div>
-                
-                    <div class="flex-item">
-                        
-<div class="page-item-container">
-    
-    <div class="page-item-content">
-        <header>
-            
-                <time class="page-item-date">Thu Nov 23, 2017</time>
-            
-            <h2 class="page-item-title">console应用程序progressbar（进度条的实现）</h2>
-        </header>
-        <p class="page-item-summary"><p>　　控制台应用程序，有时候需要做文件上传、压缩等(网络/磁盘)I/O处理。为了得到更友好的界面交互，所以需要用到progress bar 进度条。
-github上有很多现成的可以使用。</p></p>
-        <a href="https://gerrywp.github.io/blog/post/2017-11-23-consoleprogbar/" class="page-item-btn ">
-            Read More
-        </a>
-        <footer>
-            
-<ul class="categories">
     <li>
-        <i class="fa fa-book"></i>
+        <a href="https://gerrywp.github.io/post/2019-07-06-gogetproxy/" title="go get代理设置">go get代理设置</a>
     </li>
     
-        <li><a href="https://gerrywp.github.io/blog/categories/csharp">csharp</a></li>
-    
-</ul>
-
-
-            <span class="separator">|</span>
-            
-<ul class="tags">
     <li>
-        <i class="fa fa-tags"></i>
+        <a href="https://gerrywp.github.io/post/2019-06-20-algorithms/" title="数据结构">数据结构</a>
     </li>
     
-        <li><a href="https://gerrywp.github.io/blog/tags/tag1">tag1</a></li>
-    
-</ul>
-
-
-        </footer>
-    </div>
-</div>
-
-
-                    </div>
-                
-                    <div class="flex-item">
-                        
-<div class="page-item-container">
-    
-    <div class="page-item-content">
-        <header>
-            
-                <time class="page-item-date">Tue Nov 21, 2017</time>
-            
-            <h2 class="page-item-title">es6语法糖(syntax sugar)</h2>
-        </header>
-        <p class="page-item-summary"><p>　　es6引入了大量的语法糖，其中有不少是不好理解的，一边实践一边用文字记录之。</p></p>
-        <a href="https://gerrywp.github.io/blog/post/2017-11-21-es6syntax/" class="page-item-btn ">
-            Read More
-        </a>
-        <footer>
-            
-<ul class="categories">
     <li>
-        <i class="fa fa-book"></i>
+        <a href="https://gerrywp.github.io/post/2018-11-20-gosyntax/" title="GO语言圣经笔记">GO语言圣经笔记</a>
     </li>
     
-        <li><a href="https://gerrywp.github.io/blog/categories/javascript">javascript</a></li>
-    
-</ul>
-
-
-            <span class="separator">|</span>
-            
-<ul class="tags">
     <li>
-        <i class="fa fa-tags"></i>
+        <a href="https://gerrywp.github.io/post/2018-10-20-bwbj/" title="大爱无疆">大爱无疆</a>
     </li>
     
-        <li><a href="https://gerrywp.github.io/blog/tags/tag1">tag1</a></li>
-    
-</ul>
-
-
-        </footer>
-    </div>
-</div>
-
-
-                    </div>
-                
-                    <div class="flex-item">
-                        
-<div class="page-item-container">
-    
-    <div class="page-item-content">
-        <header>
-            
-                <time class="page-item-date">Mon Nov 13, 2017</time>
-            
-            <h2 class="page-item-title">黄梅解语</h2>
-        </header>
-        <p class="page-item-summary"><p>05年至今近十几年写了一些杂乱无章的句子。有各大论坛发帖的、空间的、自传小册子里的、朋友圈的。有琥珀也有糟糠，但基本都是无标题的，
-按时间先后顺序搜集起来凑到一起，拟标题为《黄梅解语》，可谓之一语双关。</p></p>
-        <a href="https://gerrywp.github.io/blog/post/2017-11-13-poem/" class="page-item-btn ">
-            Read More
-        </a>
-        <footer>
-            
-<ul class="categories">
     <li>
-        <i class="fa fa-book"></i>
+        <a href="https://gerrywp.github.io/post/2018-08-16-jsjourney6/" title="nodejs之旅(6)热替换与热加载">nodejs之旅(6)热替换与热加载</a>
     </li>
     
-        <li><a href="https://gerrywp.github.io/blog/categories/article">article</a></li>
-    
-</ul>
-
-
-            <span class="separator">|</span>
-            
-<ul class="tags">
     <li>
-        <i class="fa fa-tags"></i>
+        <a href="https://gerrywp.github.io/post/2018-08-13-jsjourney5/" title="nodejs之旅(5)-form表单">nodejs之旅(5)-form表单</a>
     </li>
     
-        <li><a href="https://gerrywp.github.io/blog/tags/tag1">tag1</a></li>
-    
 </ul>
-
-
-        </footer>
-    </div>
-</div>
-
-
-                    </div>
-                
-                    <div class="flex-item">
-                        
-<div class="page-item-container">
-    
-    <div class="page-item-content">
-        <header>
-            
-                <time class="page-item-date">Mon Nov 06, 2017</time>
-            
-            <h2 class="page-item-title">双11</h2>
-        </header>
-        <p class="page-item-summary"><p>&emsp;&emsp;在无聊的日子，搞些乐子出来！！！有关于双11今天突然闲扯了一些比较有意思的文字，所以想把它记录下来。</p></p>
-        <a href="https://gerrywp.github.io/blog/post/2017-11-06-double11/" class="page-item-btn ">
-            Read More
-        </a>
-        <footer>
-            
-<ul class="categories">
-    <li>
-        <i class="fa fa-book"></i>
-    </li>
-    
-        <li><a href="https://gerrywp.github.io/blog/categories/article">article</a></li>
-    
-</ul>
-
-
-            <span class="separator">|</span>
-            
-<ul class="tags">
-    <li>
-        <i class="fa fa-tags"></i>
-    </li>
-    
-        <li><a href="https://gerrywp.github.io/blog/tags/tag1">tag1</a></li>
-    
-</ul>
-
-
-        </footer>
-    </div>
-</div>
-
-
-                    </div>
-                
-                    <div class="flex-item">
-                        
-<div class="page-item-container">
-    
-    <div class="page-item-content">
-        <header>
-            
-                <time class="page-item-date">Mon Oct 30, 2017</time>
-            
-            <h2 class="page-item-title">Ubuntu的使用</h2>
-        </header>
-        <p class="page-item-summary"><p>Ubuntu系统使用过程中的常用设置，其中包括启动项目的管理、启动项对应的文件、<code>systemd</code>管理系统服务、<code>systemd-sysv-generator</code>依据旧的SysV脚本生成新的<code>systemd</code>新脚本等等。</p></p>
-        <a href="https://gerrywp.github.io/blog/post/2017-11-02-uselinux/" class="page-item-btn ">
-            Read More
-        </a>
-        <footer>
-            
-<ul class="categories">
-    <li>
-        <i class="fa fa-book"></i>
-    </li>
-    
-        <li><a href="https://gerrywp.github.io/blog/categories/linux">linux</a></li>
-    
-</ul>
-
-
-            <span class="separator">|</span>
-            
-<ul class="tags">
-    <li>
-        <i class="fa fa-tags"></i>
-    </li>
-    
-        <li><a href="https://gerrywp.github.io/blog/tags/tag1">tag1</a></li>
-    
-</ul>
-
-
-        </footer>
-    </div>
-</div>
-
-
-                    </div>
-                
-                    <div class="flex-item">
-                        
-<div class="page-item-container">
-    
-    <div class="page-item-content">
-        <header>
-            
-                <time class="page-item-date">Mon Oct 30, 2017</time>
-            
-            <h2 class="page-item-title">vim使用的一些技巧</h2>
-        </header>
-        <p class="page-item-summary"><p>&emsp;&emsp;以普通用户身份vim编辑的文件,如何强制保存？</p></p>
-        <a href="https://gerrywp.github.io/blog/post/2017-10-30-vimuse/" class="page-item-btn ">
-            Read More
-        </a>
-        <footer>
-            
-<ul class="categories">
-    <li>
-        <i class="fa fa-book"></i>
-    </li>
-    
-        <li><a href="https://gerrywp.github.io/blog/categories/linux">linux</a></li>
-    
-</ul>
-
-
-            <span class="separator">|</span>
-            
-<ul class="tags">
-    <li>
-        <i class="fa fa-tags"></i>
-    </li>
-    
-        <li><a href="https://gerrywp.github.io/blog/tags/tag1">tag1</a></li>
-    
-</ul>
-
-
-        </footer>
-    </div>
-</div>
-
-
-                    </div>
-                
-                    <div class="flex-item">
-                        
-<div class="page-item-container">
-    
-    <div class="page-item-content">
-        <header>
-            
-                <time class="page-item-date">Sun Oct 29, 2017</time>
-            
-            <h2 class="page-item-title">putty配置并使用</h2>
-        </header>
-        <p class="page-item-summary"><p>配置putyy能够自动登陆、开启显示密码、在下达完整个命令之后才发送至服务端！</p></p>
-        <a href="https://gerrywp.github.io/blog/post/2017-10-29-putty/" class="page-item-btn ">
-            Read More
-        </a>
-        <footer>
-            
-<ul class="categories">
-    <li>
-        <i class="fa fa-book"></i>
-    </li>
-    
-        <li><a href="https://gerrywp.github.io/blog/categories/windows">windows</a></li>
-    
-</ul>
-
-
-            <span class="separator">|</span>
-            
-<ul class="tags">
-    <li>
-        <i class="fa fa-tags"></i>
-    </li>
-    
-        <li><a href="https://gerrywp.github.io/blog/tags/tag1">tag1</a></li>
-    
-</ul>
-
-
-        </footer>
-    </div>
-</div>
-
-
-                    </div>
-                
-                    <div class="flex-item">
-                        
-<div class="page-item-container">
-    
-    <div class="page-item-content">
-        <header>
-            
-                <time class="page-item-date">Fri Oct 27, 2017</time>
-            
-            <h2 class="page-item-title">keystonejs(1)隐晦配置</h2>
-        </header>
-        <p class="page-item-summary"><p>keystonejs跨平台内容管理系统开发的又一利器。通过定义数据model层，即可完成一个企业型应用站点的开发，并自动生成后台管理界面。
-我们需要做的只是做前端UI，给定模板套样式即可。下面一步一步学习并搭建一个站点起来，并进行二次开发，以一系列文章记录下来。</p></p>
-        <a href="https://gerrywp.github.io/blog/post/2017-10-27-keystonejs1/" class="page-item-btn ">
-            Read More
-        </a>
-        <footer>
-            
-<ul class="categories">
-    <li>
-        <i class="fa fa-book"></i>
-    </li>
-    
-        <li><a href="https://gerrywp.github.io/blog/categories/javascript">javascript</a></li>
-    
-</ul>
-
-
-            <span class="separator">|</span>
-            
-<ul class="tags">
-    <li>
-        <i class="fa fa-tags"></i>
-    </li>
-    
-        <li><a href="https://gerrywp.github.io/blog/tags/tag1">tag1</a></li>
-    
-</ul>
-
-
-        </footer>
-    </div>
-</div>
-
-
-                    </div>
-                
-            
-        </div>
-        
-
-    <ul class="pagination">
-        
-            <li class="waves-effect">
-                <a href="/blog/tags/tag1/page/3/">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-            </li>
-            
-            
-                <li class="waves-effect">
-                    <a href="/blog/tags/tag1/">1</a>
-                </li>
-            
-                <li class="waves-effect">
-                    <a href="/blog/tags/tag1/page/2/">2</a>
-                </li>
-            
-                <li class="waves-effect">
-                    <a href="/blog/tags/tag1/page/3/">3</a>
-                </li>
-            
-                <li class="active">
-                    <a href="/blog/tags/tag1/page/4/">4</a>
-                </li>
-            
-                <li class="waves-effect">
-                    <a href="/blog/tags/tag1/page/5/">5</a>
-                </li>
-            
-                <li class="waves-effect">
-                    <a href="/blog/tags/tag1/page/6/">6</a>
-                </li>
-            
-                <li class="waves-effect">
-                    <a href="/blog/tags/tag1/page/7/">7</a>
-                </li>
-            
-            <li class="waves-effect">
-                <a href="/blog/tags/tag1/page/5/">
-                    <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-        
-    </ul>
-
-
-
     </section>
 
     
-<script src="https://gerrywp.github.io/blog/js/jquery-2.1.4.min.js"></script>
 
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://gerrywp.github.io/categories/article/">article (12)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/csharp/">csharp (9)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/golang/">golang (4)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/javascript/">javascript (16)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/linux/">linux (11)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/others/">others (11)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/sql/">sql (2)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/windows/">windows (7)</a></li>
+    
+</ul>
+    </section>
 
-<script src="https://gerrywp.github.io/blog/js/materialize.min.js"></script>
-
-
-<script src="https://gerrywp.github.io/blog/js/imagesloaded.pkgd.min.js"></script>
-
-
-<script src="https://gerrywp.github.io/blog/js/masonry.pkgd.min.js"></script>
-
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://gerrywp.github.io/tags/2019/">2019</a>
+    
+    <a href="https://gerrywp.github.io/tags/go/">go</a>
+    
+    <a href="https://gerrywp.github.io/tags/tag1/">tag1</a>
+    
+    <a href="https://gerrywp.github.io/tags/vscode/">vscode</a>
+    
+</div>
+    </section>
 
     
-    <script src="https://gerrywp.github.io/blog/js/highlight.pack.js"></script>
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://gerrywp.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="https://gerrywp.github.io">云亦海 By gerry</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
 
 
 
-<script src="https://gerrywp.github.io/blog/js/lightbox.min.js"></script>
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
 
 
-<script src="https://gerrywp.github.io/blog/js/jquery.infinitescroll.min.js"></script>
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
 
 
-<script src="https://gerrywp.github.io/blog/js/main.js"></script>
+
 
 
 </body>
-
 </html>
-
-
-
-
-

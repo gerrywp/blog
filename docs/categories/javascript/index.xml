@@ -2,22 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>javascript on 云亦海</title>
-    <link>https://gerrywp.github.io/blog/categories/javascript/</link>
+    <link>https://gerrywp.github.io/categories/javascript/</link>
     <description>Recent content in javascript on 云亦海</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>Copyright &amp;#169; Gerry</copyright>
+    <language>zh-CN</language>
     <lastBuildDate>Thu, 16 Aug 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://gerrywp.github.io/blog/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://gerrywp.github.io/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>nodejs之旅(6)热替换与热加载</title>
-      <link>https://gerrywp.github.io/blog/post/2018-08-16-jsjourney6/</link>
+      <link>https://gerrywp.github.io/post/2018-08-16-jsjourney6/</link>
       <pubDate>Thu, 16 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/blog/post/2018-08-16-jsjourney6/</guid>
+      <guid>https://gerrywp.github.io/post/2018-08-16-jsjourney6/</guid>
       <description>&lt;p&gt;　　在开发阶段，我们希望每次更改了代码就会响应的改变页面，这种方式在webpack里面叫做
 &lt;strong&gt;热替换HMR&lt;/strong&gt;(hot module replacement)!在react开发中，希望每次更改代码的时候不要刷新整个页面，而是让网页中的React组件渲染代码替换成新的代码。这种方式就叫做热加载(hot load)。在此不使用&lt;code&gt;webpack-dev-server&lt;/code&gt;的&lt;strong&gt;hot&lt;/strong&gt;模式，
 而是在自己搭建的expressjs服务器上，实现热更新和react组件的热加载！&lt;/p&gt;</description>
@@ -25,56 +24,56 @@
     
     <item>
       <title>nodejs之旅(5)-form表单</title>
-      <link>https://gerrywp.github.io/blog/post/2018-08-13-jsjourney5/</link>
+      <link>https://gerrywp.github.io/post/2018-08-13-jsjourney5/</link>
       <pubDate>Mon, 13 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/blog/post/2018-08-13-jsjourney5/</guid>
+      <guid>https://gerrywp.github.io/post/2018-08-13-jsjourney5/</guid>
       <description>&lt;p&gt;　　在web开发中，最重要的数据交互方式首推就该属表单了。html通过表单实现了客户端与服务器端数据的交互。说道表单就不得不说到&lt;code&gt;MIME&lt;/code&gt;类型，此类型
 关系到服务器端和浏览器端处理数据的方式和手段！&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>keystonejs(2)dotenv等常用库</title>
-      <link>https://gerrywp.github.io/blog/post/2018-08-10-keystonejs2/</link>
+      <link>https://gerrywp.github.io/post/2018-08-10-keystonejs2/</link>
       <pubDate>Fri, 10 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/blog/post/2018-08-10-keystonejs2/</guid>
+      <guid>https://gerrywp.github.io/post/2018-08-10-keystonejs2/</guid>
       <description>&lt;p&gt;　　透过keystonejs接触了很多常用的库，查阅npm文档了解它们的基本用法。dotenv从.env文件中加载并设置环境变量。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>nodejs之旅(4)-webpack、babel和antd库的结合</title>
-      <link>https://gerrywp.github.io/blog/post/2018-06-19-jsjourney4/</link>
+      <link>https://gerrywp.github.io/post/2018-06-19-jsjourney4/</link>
       <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/blog/post/2018-06-19-jsjourney4/</guid>
+      <guid>https://gerrywp.github.io/post/2018-06-19-jsjourney4/</guid>
       <description>&lt;p&gt;　　前端(browser)模块性的开发，目前来说就不得不用到webpack(module bundle)打包工具。因为使用了react的&lt;code&gt;JSX&lt;/code&gt;语法，所以必须要用到babel进行转码,因为browser是不认识&lt;code&gt;JSX&lt;/code&gt;语法的。并且由于目前大部分的浏览器对ES6语法(例如：&lt;code&gt;import&lt;/code&gt;和&lt;code&gt;export&lt;/code&gt;等语法并不支持)，也必须用到babel对这类型新的ES6语法进行转码。鉴于前端技术发展的太快了，在此只做基本使用理念的介绍，不对细节做过多的处理！具体的各工具的使用，以在线参考文档为主！&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>nodejs之旅(3)-gulp及调试</title>
-      <link>https://gerrywp.github.io/blog/post/2018-06-17-jsjourney3/</link>
+      <link>https://gerrywp.github.io/post/2018-06-17-jsjourney3/</link>
       <pubDate>Sun, 17 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/blog/post/2018-06-17-jsjourney3/</guid>
+      <guid>https://gerrywp.github.io/post/2018-06-17-jsjourney3/</guid>
       <description>&lt;p&gt;　　gulp通过任务的形式来完成前端的构建，如何调试？&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>nodejs如何创建单例实例</title>
-      <link>https://gerrywp.github.io/blog/post/2018-03-29-singletoninnodejs/</link>
+      <link>https://gerrywp.github.io/post/2018-03-29-singletoninnodejs/</link>
       <pubDate>Thu, 29 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/blog/post/2018-03-29-singletoninnodejs/</guid>
+      <guid>https://gerrywp.github.io/post/2018-03-29-singletoninnodejs/</guid>
       <description>&lt;p&gt;　　How to create singleton in Node.js?这个问题实际是错误的！因为nodejs模块缓存的原因，require(&amp;ldquo;)每次出来的都是单例的！&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>nodejs之旅(2)</title>
-      <link>https://gerrywp.github.io/blog/post/2018-03-27-jsjourney2/</link>
+      <link>https://gerrywp.github.io/post/2018-03-27-jsjourney2/</link>
       <pubDate>Tue, 27 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/blog/post/2018-03-27-jsjourney2/</guid>
+      <guid>https://gerrywp.github.io/post/2018-03-27-jsjourney2/</guid>
       <description>&lt;p&gt;　　express-handlebars服务端模板引擎的局部渲染。非SPA应用程序，在最原始的动态页面并使用了layout布局的情况下，
 我们通常希望能够将index.hbs里面的UI结构和js逻辑部分组合在一起，并且需要将js逻辑统一放置到layout布局页的最底部。
 handlebars的&lt;strong&gt;Block Helper&lt;/strong&gt;能够帮我们解决这个问题！&lt;/p&gt;</description>
@@ -82,49 +81,49 @@ handlebars的&lt;strong&gt;Block Helper&lt;/strong&gt;能够帮我们解决这�
     
     <item>
       <title>nodejs之旅(1)</title>
-      <link>https://gerrywp.github.io/blog/post/2018-03-22-jsjourney1/</link>
+      <link>https://gerrywp.github.io/post/2018-03-22-jsjourney1/</link>
       <pubDate>Thu, 22 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/blog/post/2018-03-22-jsjourney1/</guid>
+      <guid>https://gerrywp.github.io/post/2018-03-22-jsjourney1/</guid>
       <description>&lt;p&gt;　　这个系列会一步一步开始使用expressjs+nodejs搭建一个游戏背景音乐在线听网站。从零开始记录每一个细节：包括IDE工具使用细节、环境配置细节、expressjs
 配置细节等等。目的只是为了单纯的练习和使用expressjs+nodejs，在摸索中前进！&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>前端那些事儿</title>
-      <link>https://gerrywp.github.io/blog/post/2017-11-24-fullstack/</link>
+      <link>https://gerrywp.github.io/post/2017-11-24-fullstack/</link>
       <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/blog/post/2017-11-24-fullstack/</guid>
+      <guid>https://gerrywp.github.io/post/2017-11-24-fullstack/</guid>
       <description>&lt;p&gt;　　微软系软件开发使用的Visual Studio(VS) IDE强大到令人发指！隐藏了许多技术细节，必然很难定制。nodejs出现之前，创建一个asp.net mvc的项目，client(browser)和server(csharp+iis)是组织在一起的。很少有公司在做asp.net mvc项目的时候会定制msbuild去完成浏览器端代码的构建和发布，比如：
 打包压缩js+css文件,拷贝文件到指定的dist目录,修改view或html文件中的js、css引用路径给路径添加上hash码，同时也拷贝到dist目录。但是通常情况下都是使用的IDE自动构建和一键式发布来deploy website应用。这种情况下想实现client端和server端的分而治之，压根是不可能实现的。nodejs的出现彻底改变了这一现状！&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>es6语法糖(syntax sugar)</title>
-      <link>https://gerrywp.github.io/blog/post/2017-11-21-es6syntax/</link>
+      <link>https://gerrywp.github.io/post/2017-11-21-es6syntax/</link>
       <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/blog/post/2017-11-21-es6syntax/</guid>
+      <guid>https://gerrywp.github.io/post/2017-11-21-es6syntax/</guid>
       <description>&lt;p&gt;　　es6引入了大量的语法糖，其中有不少是不好理解的，一边实践一边用文字记录之。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>keystonejs(1)隐晦配置</title>
-      <link>https://gerrywp.github.io/blog/post/2017-10-27-keystonejs1/</link>
+      <link>https://gerrywp.github.io/post/2017-10-27-keystonejs1/</link>
       <pubDate>Fri, 27 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/blog/post/2017-10-27-keystonejs1/</guid>
+      <guid>https://gerrywp.github.io/post/2017-10-27-keystonejs1/</guid>
       <description>&lt;p&gt;keystonejs跨平台内容管理系统开发的又一利器。通过定义数据model层，即可完成一个企业型应用站点的开发，并自动生成后台管理界面。
 我们需要做的只是做前端UI，给定模板套样式即可。下面一步一步学习并搭建一个站点起来，并进行二次开发，以一系列文章记录下来。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>javascript中精准的定时器</title>
-      <link>https://gerrywp.github.io/blog/post/2017-04-21-accuratetimer/</link>
+      <link>https://gerrywp.github.io/post/2017-04-21-accuratetimer/</link>
       <pubDate>Fri, 21 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/blog/post/2017-04-21-accuratetimer/</guid>
+      <guid>https://gerrywp.github.io/post/2017-04-21-accuratetimer/</guid>
       <description>&lt;p&gt;今天偶然看到了一篇讲解javascript各定时器的文章。文章使用对话的方式阐述了&lt;code&gt;setInterval&lt;/code&gt;不足，颇有意思。
 但是觉得不太好理解，原文如下：&lt;br /&gt;
 &lt;a href=&#34;http://imweb.io/topic/56ac67fbe39ca21162ae6c78&#34; title=&#34;点我访问&#34;&gt;setTimeout那些事儿&lt;/a&gt;&lt;br /&gt;
@@ -133,39 +132,39 @@ handlebars的&lt;strong&gt;Block Helper&lt;/strong&gt;能够帮我们解决这�
     
     <item>
       <title>背景图片全屏造成的滚动(滑动)卡顿</title>
-      <link>https://gerrywp.github.io/blog/post/2017-04-08-bgdelay/</link>
+      <link>https://gerrywp.github.io/post/2017-04-08-bgdelay/</link>
       <pubDate>Sat, 08 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/blog/post/2017-04-08-bgdelay/</guid>
+      <guid>https://gerrywp.github.io/post/2017-04-08-bgdelay/</guid>
       <description>&lt;p&gt;web app中用到全屏幕的背景的图片需要占据整个视口(view-port)，必然会用到position:fixed的定位。
 但是由此引发了一个问题，在PC端，没有任何问题，但是在手机端下滑的时候出现了页面卡顿的现象，这个是没法忍受的。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>setTimeout定时器的使用</title>
-      <link>https://gerrywp.github.io/blog/post/2017-03-01.settimeout/</link>
+      <link>https://gerrywp.github.io/post/2017-03-01.settimeout/</link>
       <pubDate>Wed, 01 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/blog/post/2017-03-01.settimeout/</guid>
+      <guid>https://gerrywp.github.io/post/2017-03-01.settimeout/</guid>
       <description>&lt;p&gt;增量随机，很好实现。那如果要实现时间间隔随机，应该如何处理？我们可以使用setTimeout递归调用来实现&lt;/p&gt;</description>
     </item>
     
     <item>
       <title> windows环境下node.exe配置</title>
-      <link>https://gerrywp.github.io/blog/post/2016-12-23-node1/</link>
+      <link>https://gerrywp.github.io/post/2016-12-23-node1/</link>
       <pubDate>Fri, 23 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/blog/post/2016-12-23-node1/</guid>
+      <guid>https://gerrywp.github.io/post/2016-12-23-node1/</guid>
       <description>&lt;p&gt;node.exe-nodejs的可执行环境，其实仅仅只依靠&lt;strong&gt;node.exe&lt;/strong&gt;这个可执行文件就可以了。&lt;strong&gt;npm&lt;/strong&gt;只不过是运行于&lt;strong&gt;node.exe&lt;/strong&gt;环境中的「包管理程序」。
 那么windows下node是如何加载模块的，npm是如何管理包的？&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Jquery的jsonp示例</title>
-      <link>https://gerrywp.github.io/blog/post/2012-11-20-jsonp/</link>
+      <link>https://gerrywp.github.io/post/2012-11-20-jsonp/</link>
       <pubDate>Tue, 20 Nov 2012 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/blog/post/2012-11-20-jsonp/</guid>
+      <guid>https://gerrywp.github.io/post/2012-11-20-jsonp/</guid>
       <description>&lt;p&gt;jsonp实际上就是服务器端实现对客户端函数的回调(callback)&lt;/p&gt;</description>
     </item>
     

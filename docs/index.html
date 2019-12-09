@@ -1,257 +1,506 @@
-<!DOCTYPE html>
-<html 
-    lang="en-us"
-    class="no-js"
->
-
-
-
+<!doctype html>
+<html lang="zh-CN">
 <head>
+
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="">
-    <meta name="description" content="">
-    
-      <link href="https://gerrywp.github.io/blog/index.xml" rel="alternate" type="application/rss+xml" title="云亦海" />
-      <link href="https://gerrywp.github.io/blog/index.xml" rel="feed" type="application/rss+xml" title="云亦海" />
-    
     <meta name="generator" content="Hugo 0.59.0" />
-    <meta name="generation-date" content="2019-12-05 14:00:21.9737372 &#43;0800 CST m=&#43;0.201999401">
-    <title>云亦海 &middot; 云亦海</title>
-    <link rel="shortcut icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
-    <link rel="icon" href="https://gerrywp.github.io/blog/img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>云亦海 | 专注于Go语言(golang)、csharp、移动互联网、项目管理、软件架构</title>
+    <meta property="og:title" content="云亦海 | 专注于Go语言(golang)、csharp、移动互联网、项目管理、软件架构">
+    <meta property="og:type" content="website">
+    <meta name="Keywords" content="golang,go语言,go语言笔记,项目管理,软件架构,公众号,小程序">
+    <meta name="description" content="专注于IT互联网，包括但不限于Go语言(golang)、csharp、项目管理、软件架构等">
+    <meta property="og:url" content="https://gerrywp.github.io/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
     
-<link rel="stylesheet" href="https://gerrywp.github.io/blog/css/materialize.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="alternate" type="application/rss+xml+xml" href="https://gerrywp.github.io/index.xml" title="云亦海" />
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-
-<link rel="stylesheet" href="https://gerrywp.github.io/blog/css/font-awesome.min.css">
+    
 
 
     
-    <link rel="stylesheet" href="https://gerrywp.github.io/blog/css/styles/railscasts.css">
-
-
-
-<link rel="stylesheet" href="https://gerrywp.github.io/blog/css/lightbox.css">
-
-
-<link rel="stylesheet" href="https://gerrywp.github.io/blog/css/main.css">
-
-
-    <script src="https://gerrywp.github.io/blog/js/modernizr-latest.js"></script>
-    <script src="https://gerrywp.github.io/blog/js/lazysizes.min.js"></script>
-    <script src="https://gerrywp.github.io/blog/js/ls.noscript.min.js"></script>
-
-    <script>
-        window.lazySizesConfig = window.lazySizesConfig || {};
-        lazySizesConfig.addClasses = true;
-        lazySizesConfig.loadMode = 2;
-    </script>
-
     
 </head>
 
 
-
-
-<body class="page-colors">
-    <div class="parallax">
-        
-            
-            <div class="parallax__group">
-                <div class="parallax__layer parallax__layer--base">
-                    <div class="valign-wrapper" style="height: 100%;">
-    <span class="valign center white-text" style="
-        display: inline-block;
-        border: 2px solid #FFF;
-        background-color: rgba(0, 0, 0, 0.3);
-        padding: 15px 25px;
-        margin: 0 auto;
-    ">
-        <h2>pai</h2>
-        <h5>28757750@qq.com</h5>
-        
-            <h2><hr></h2>
-            <h5>会当凌绝顶，一览众山小</h5>
-        
-    </span>
-</div>
-
-
-                </div>
-                <div class="parallax__layer parallax__layer--back fullsize-background-image"
-                    
-                        style="background-image: url('https://gerrywp.github.io/blog/img/banner.jpg?timestamp=1927'); background-position: top;"
-                    
-                ></div>
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <h1>
+                        <a id="logo" href="https://gerrywp.github.io">
+                            云亦海
+                        </a>
+                    </h1>
+                
+                <p class="description">专注于Go语言(golang)、csharp、移动互联网、项目管理、软件架构</p>
             </div>
-        
-
-        <div class="parallax__group parallax__group--auto-height">
-            <div class="parallax__layer parallax__layer--base">
-                <div class="row-colors center-align">
-                    <h2 class="no-margin">
-                        <ul class="horizontal no-bullets no-margin">
-                            <li>
-<svg class="face" height="48" viewBox="0 0 24 24" width="48" xmlns="http://www.w3.org/2000/svg">
-    <path d="M9 11.75c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zm6 0c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-.29.02-.58.05-.86 2.36-1.05 4.23-2.98 5.21-5.37C11.07 8.33 14.05 10 17.42 10c.78 0 1.53-.09 2.25-.26.21.71.33 1.47.33 2.26 0 4.41-3.59 8-8 8z"/>
-    <path d="M0 0h24v24H0z" fill="none"/>
-</svg>
-</li>
-                        </ul>
-                    </h2>
-                </div>
-
-                <div class="flex-container">
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://gerrywp.github.io">首页</a>
                     
-                        
-                        <a href="https://gerrywp.github.io/blog/post/" class="flex-item">
-                            <div class="cell
-                                fill-container
-                                no-padding
-                                
-                                
-                                fullsize-background-image
-                            " style="
-                                
-                                    background-image: url('https://gerrywp.github.io/blog/img/post.jpg?timestamp=1938');
-                                
-
-                                
-                                    background-position: top;
-                                
-                                height: 
-                                    33.33vh
-                                ;
-                            ">
-                                
-                                
-                                    <div class="center-items center-text fill-container black-overlay">
-                                        <h3 class="white-text">Posts</h3>
-                                    </div>
-                                
-
-                                
-                                    <div class="highlight-block">
-                                        <h3 class="white-text">Posts</h3>
-                                    </div>
-                                
-                            </div>
-                        </a>
+                    <a  href="https://gerrywp.github.io/archives/" title="归档">归档</a>
                     
-                        
-                        <a href="https://gerrywp.github.io/blog/categories/" class="flex-item">
-                            <div class="cell
-                                fill-container
-                                no-padding
-                                
-                                
-                                fullsize-background-image
-                            " style="
-                                
-                                    background-image: url('https://gerrywp.github.io/blog/img/categories.jpg?timestamp=1927');
-                                
-
-                                
-                                height: 
-                                    33.33vh
-                                ;
-                            ">
-                                
-                                
-                                    <div class="center-items center-text fill-container black-overlay">
-                                        <h3 class="white-text">Categories</h3>
-                                    </div>
-                                
-
-                                
-                                    <div class="highlight-block">
-                                        <h3 class="white-text">Categories</h3>
-                                    </div>
-                                
-                            </div>
-                        </a>
-                    
-                        
-                        <a href="https://gerrywp.github.io/blog/gallery/" class="flex-item">
-                            <div class="cell
-                                fill-container
-                                no-padding
-                                
-                                
-                                fullsize-background-image
-                            " style="
-                                
-                                    background-image: url('https://gerrywp.github.io/blog/img/gallery.jpg?timestamp=1927');
-                                
-
-                                
-                                height: 
-                                    33.33vh
-                                ;
-                            ">
-                                
-                                
-                                    <div class="center-items center-text fill-container black-overlay">
-                                        <h3 class="white-text">Gallery</h3>
-                                    </div>
-                                
-
-                                
-                                    <div class="highlight-block">
-                                        <h3 class="white-text">Gallery</h3>
-                                    </div>
-                                
-                            </div>
-                        </a>
-                    
-                </div>
-
-                
-                    <div class="row-colors right-align">
-                        <ul class="main-page-footer horizontal no-bullets no-margin">
-                            
-                            <li>Copyright &#169; Gerry</li>
-                        </ul>
-                    </div>
-                
+                </nav>
             </div>
         </div>
     </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    
+		    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="https://gerrywp.github.io/post/2019-10-07-gcmw/" title="git push错误" >git push错误</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年10月7日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="https://gerrywp.github.io/categories/linux">linux</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                <p>git push代码的时候，使用了git credential manager for windows工具自动保存密码，但是每次会报告一个错误：HttpRequestException encountered.</p>……
+                            </div>
+                            <p class="readmore"><a href="https://gerrywp.github.io/post/2019-10-07-gcmw/">阅读全文</a></p>
+                        </article>
+                    
+                    
+		    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="https://gerrywp.github.io/post/2019-07-15-qorcms/" title="QOR踩坑日记" >QOR踩坑日记</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年7月15日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="https://gerrywp.github.io/categories/golang">golang</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                <p>QOR-CMS Open source has lots of bugs.to fix these bugs cost me lots of time.So record them into this
+article!</p>……
+                            </div>
+                            <p class="readmore"><a href="https://gerrywp.github.io/post/2019-07-15-qorcms/">阅读全文</a></p>
+                        </article>
+                    
+                    
+		    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="https://gerrywp.github.io/post/2019-07-13-clusterdistribute/" title="集群和分布式" >集群和分布式</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年7月13日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="https://gerrywp.github.io/categories/linux">linux</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                <p>看过很多篇幅的文章说集群和分布式，但是有时候这两个东西还是会搞混淆，并且不是那么容易说的清楚，在这里对这两个
+概念做一个归纳和总结。</p>……
+                            </div>
+                            <p class="readmore"><a href="https://gerrywp.github.io/post/2019-07-13-clusterdistribute/">阅读全文</a></p>
+                        </article>
+                    
+                    
+		    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="https://gerrywp.github.io/post/2019-07-07-gocommand/" title="go命令详解" >go命令详解</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年7月7日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="https://gerrywp.github.io/categories/golang">golang</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                <p>　　go命令使用笔记，对命令的使用做一个总结和归纳</p>……
+                            </div>
+                            <p class="readmore"><a href="https://gerrywp.github.io/post/2019-07-07-gocommand/">阅读全文</a></p>
+                        </article>
+                    
+                    
+		    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="https://gerrywp.github.io/post/2019-07-06-gogetproxy/" title="go get代理设置" >go get代理设置</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年7月6日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="https://gerrywp.github.io/categories/golang">golang</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                <p>　　go大部分站点在国内被墙，想要直接使用<code>go get</code>命令下载包，就必须使用代理，本文使用的是shadowsocks代理访问外部网。</p>……
+                            </div>
+                            <p class="readmore"><a href="https://gerrywp.github.io/post/2019-07-06-gogetproxy/">阅读全文</a></p>
+                        </article>
+                    
+                    
+		    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="https://gerrywp.github.io/post/2019-06-20-algorithms/" title="数据结构" >数据结构</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年6月20日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="https://gerrywp.github.io/categories/others">others</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                <p>　　算法心得，使用golang实现常用的算法。算法导论中阐述了经典常用的数据结构和典型算法。</p>……
+                            </div>
+                            <p class="readmore"><a href="https://gerrywp.github.io/post/2019-06-20-algorithms/">阅读全文</a></p>
+                        </article>
+                    
+                    
+		    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="https://gerrywp.github.io/post/2018-11-20-gosyntax/" title="GO语言圣经笔记" >GO语言圣经笔记</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2018年11月20日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="https://gerrywp.github.io/categories/golang">golang</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                <p>　　本书翻译的版本看的有些别扭，在此把相似的东西进行归类做好常用知识点的笔记！</p>……
+                            </div>
+                            <p class="readmore"><a href="https://gerrywp.github.io/post/2018-11-20-gosyntax/">阅读全文</a></p>
+                        </article>
+                    
+                    
+		    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="https://gerrywp.github.io/post/2018-10-20-bwbj/" title="大爱无疆" >大爱无疆</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2018年10月20日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="https://gerrywp.github.io/categories/article">article</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                <p>　　问渠哪得清如许，唯有源头活水来。</p>……
+                            </div>
+                            <p class="readmore"><a href="https://gerrywp.github.io/post/2018-10-20-bwbj/">阅读全文</a></p>
+                        </article>
+                    
+                    
+		    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="https://gerrywp.github.io/post/2018-08-16-jsjourney6/" title="nodejs之旅(6)热替换与热加载" >nodejs之旅(6)热替换与热加载</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2018年8月16日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="https://gerrywp.github.io/categories/javascript">javascript</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                <p>　　在开发阶段，我们希望每次更改了代码就会响应的改变页面，这种方式在webpack里面叫做
+<strong>热替换HMR</strong>(hot module replacement)!在react开发中，希望每次更改代码的时候不要刷新整个页面，而是让网页中的React组件渲染代码替换成新的代码。这种方式就叫做热加载(hot load)。在此不使用<code>webpack-dev-server</code>的<strong>hot</strong>模式，
+而是在自己搭建的expressjs服务器上，实现热更新和react组件的热加载！</p>……
+                            </div>
+                            <p class="readmore"><a href="https://gerrywp.github.io/post/2018-08-16-jsjourney6/">阅读全文</a></p>
+                        </article>
+                    
+                    
+		    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="https://gerrywp.github.io/post/2018-08-13-jsjourney5/" title="nodejs之旅(5)-form表单" >nodejs之旅(5)-form表单</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2018年8月13日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="https://gerrywp.github.io/categories/javascript">javascript</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                <p>　　在web开发中，最重要的数据交互方式首推就该属表单了。html通过表单实现了客户端与服务器端数据的交互。说道表单就不得不说到<code>MIME</code>类型，此类型
+关系到服务器端和浏览器端处理数据的方式和手段！</p>……
+                            </div>
+                            <p class="readmore"><a href="https://gerrywp.github.io/post/2018-08-13-jsjourney5/">阅读全文</a></p>
+                        </article>
+                    
+                    
+                    
+
+
+
+<ol class="page-navigator">
+    
 
     
-<script src="https://gerrywp.github.io/blog/js/jquery-2.1.4.min.js"></script>
-
-
-<script src="https://gerrywp.github.io/blog/js/materialize.min.js"></script>
-
-
-<script src="https://gerrywp.github.io/blog/js/imagesloaded.pkgd.min.js"></script>
-
-
-<script src="https://gerrywp.github.io/blog/js/masonry.pkgd.min.js"></script>
-
+    <li  class="current">
+        <a href="https://gerrywp.github.io/">1</a>
+    </li>
+    
+    <li >
+        <a href="https://gerrywp.github.io/page/2/">2</a>
+    </li>
+    
+    <li >
+        <a href="https://gerrywp.github.io/page/3/">3</a>
+    </li>
+    
+    <li >
+        <a href="https://gerrywp.github.io/page/4/">4</a>
+    </li>
+    
+    <li >
+        <a href="https://gerrywp.github.io/page/5/">5</a>
+    </li>
+    
+    <li >
+        <a href="https://gerrywp.github.io/page/6/">6</a>
+    </li>
+    
+    <li >
+        <a href="https://gerrywp.github.io/page/7/">7</a>
+    </li>
+    
+    <li >
+        <a href="https://gerrywp.github.io/page/8/">8</a>
+    </li>
+    
 
     
-    <script src="https://gerrywp.github.io/blog/js/highlight.pack.js"></script>
+    <li class="next">
+        <a href="https://gerrywp.github.io/page/2/">下一页</a>
+    </li>
+    
+</ol>
 
 
 
-<script src="https://gerrywp.github.io/blog/js/lightbox.min.js"></script>
+                </div>
+            </div>
+
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="/search/" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://gerrywp.github.io">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-10-07-gcmw/" title="git push错误">git push错误</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-07-15-qorcms/" title="QOR踩坑日记">QOR踩坑日记</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-07-13-clusterdistribute/" title="集群和分布式">集群和分布式</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-07-07-gocommand/" title="go命令详解">go命令详解</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-07-06-gogetproxy/" title="go get代理设置">go get代理设置</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-06-20-algorithms/" title="数据结构">数据结构</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2018-11-20-gosyntax/" title="GO语言圣经笔记">GO语言圣经笔记</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2018-10-20-bwbj/" title="大爱无疆">大爱无疆</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2018-08-16-jsjourney6/" title="nodejs之旅(6)热替换与热加载">nodejs之旅(6)热替换与热加载</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2018-08-13-jsjourney5/" title="nodejs之旅(5)-form表单">nodejs之旅(5)-form表单</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://gerrywp.github.io/categories/article/">article (12)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/csharp/">csharp (9)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/golang/">golang (4)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/javascript/">javascript (16)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/linux/">linux (11)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/others/">others (11)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/sql/">sql (2)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/windows/">windows (7)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://gerrywp.github.io/tags/2019/">2019</a>
+    
+    <a href="https://gerrywp.github.io/tags/go/">go</a>
+    
+    <a href="https://gerrywp.github.io/tags/tag1/">tag1</a>
+    
+    <a href="https://gerrywp.github.io/tags/vscode/">vscode</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://gerrywp.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="https://gerrywp.github.io">云亦海 By gerry</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
 
 
-<script src="https://gerrywp.github.io/blog/js/jquery.infinitescroll.min.js"></script>
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
 
 
-<script src="https://gerrywp.github.io/blog/js/main.js"></script>
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
 
 
 </body>
-
 </html>
-
-
-
-
-
