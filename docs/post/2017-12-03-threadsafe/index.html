@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.59.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>线程安全与非线程安全 | 云亦海</title>
+    <meta property="og:title" content="线程安全与非线程安全 - 云亦海">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2017-12-03T00:00:00&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2017-12-03T00:00:00&#43;08:00">
+        
+    <meta name="Keywords" content="golang,go语言,go语言笔记,项目管理,软件架构,公众号,小程序">
+    <meta name="description" content="线程安全与非线程安全">
+        
+    <meta name="author" content="gerry">
+    <meta property="og:url" content="https://gerrywp.github.io/post/2017-12-03-threadsafe/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://gerrywp.github.io">
+                        云亦海
+                    </a>
+                
+                <p class="description">专注于Go语言(golang)、csharp、移动互联网、项目管理、软件架构</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://gerrywp.github.io">首页</a>
+                    
+                    <a  href="https://gerrywp.github.io/archives/" title="归档">归档</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+        
+        
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">线程安全与非线程安全</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2017年12月3日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="https://gerrywp.github.io/categories/csharp">csharp</a></span>
+                            
+                        </div>
+                        
+                        
+                        <div class="post-meta">
+                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
+                        </div>
+                        
+                        
+                        <div class="post-content">
+                            <p>　　c#的多线程编程由于其高级的语法糖(synax)而变化的相对简单，然而又有些神秘莫测。对于线程安全与否与同步(synchronize)经常有人将其混为一谈，其实这是2个不同的概念。</p>
+
+<h3 id="非线程安全">非线程安全</h3>
+
+<p>先来说说线程安全的问题，Show your code(用代码说话)，以MSDN官网的
+<a href="https://msdn.microsoft.com/library/6sh2ey19.aspx?f=255&amp;MSPPError=-2147217396#Anchor_10" title="点我访问">List&lt;T&gt;</a>
+为例：在<code>线程安全</code>这一小节，来自微软官网的描述，
+&gt; 公共静态 (Shared 在 Visual Basic 中) 这种类型的成员是线程安全。 但不保证所有实例成员都是线程安全的。</p>
+
+<pre><code class="language-cs">//创建控制台应用程序,并编写如下代码
+static void Main(string[] args)
+{
+    do
+    {
+        ParallelList();
+    } while (true);
+}
+static void ParallelList()
+{
+    List&lt;Int32&gt; list = new List&lt;int&gt;();//非线程安全的
+    ParallelLoopResult result= Parallel.For(0, 100000, item =&gt;
+    {
+        list.Add(item);
+    });
+    Console.WriteLine($&quot;parallel is completed: {result.IsCompleted}! &quot;);
+}
+</code></pre>
+
+<ol>
+<li>据官方文档可知，List<T>的实例成员就不是线程安全的。</li>
+<li>所以上述代码在死循环下会抛出异常，为什么会抛出异常不在这次的讨论范围内。</li>
+<li>所以对一个非线程安全的对象进行write操作(写操作包括更新、删除)在多次测试下是会抛出异常的，所以对非线程安全的对象进行写操作的代码是错误的代码！</li>
+</ol>
+
+<h3 id="线程安全">线程安全</h3>
+
+<p>同样是上面的代码，经过MSDN的提醒「公共静态成员是线程安全的」，代码作如下调整</p>
+
+<pre><code class="language-cs">static List&lt;Int32&gt; list = new List&lt;int&gt;();//线程安全的
+static void Main(string[] args)
+{
+    do
+    {
+        ParallelList(list);
+    } while (true);
+}
+static void ParallelList(List&lt;Int32&gt; temp)
+{
+    //List&lt;Int32&gt; list = new List&lt;int&gt;();//非线程安全的
+    ParallelLoopResult result= Parallel.For(0, 100000, item =&gt;
+    {
+        temp.Add(item);
+    });
+    Console.WriteLine($&quot;parallel is completed: {result.IsCompleted}! &quot;);
+}
+</code></pre>
+
+<ol>
+<li>仅仅是将list变量提升为了公共Static变量</li>
+<li>上述代码无论怎么样运行都不会抛出异常，程序并不会挂掉！</li>
+<li>但是细心的你一定会发现，结果并不是我们想要的，因为list插入值并不对。</li>
+<li>这也是由此要引出多线程的同步的问题。
+&gt; 说明:线程安全的并不代表，操作就是合理的。按照所需业务来说，如果不是您期望的结果，这里就需要有lock，就需要有线程同步。</li>
+</ol>
+
+<h3 id="非线程安全就一定有问题吗">非线程安全就一定有问题吗？</h3>
+
+<p>上面已经讨论到了线程安全与非线程安全的概念问题，如果我们将非线程安全的代码作如下修改：</p>
+
+<pre><code class="language-cs">static void ParallelList()
+{
+    List&lt;Int32&gt; list = new List&lt;int&gt;();//非线程安全的
+    for(Int32 i=0;i&lt;10000;i++){
+        list.Add(i);
+    }
+    ParallelLoopResult result= Parallel.For(0, 100000, item =&gt;
+    {
+        Int32 currentItem=list[item];
+    });
+    Console.WriteLine($&quot;parallel is completed: {result.IsCompleted}! &quot;);
+}
+</code></pre>
+
+<ol>
+<li>仅仅将多线程的操作由write改为了read，这样多对一个非线程安全的对象实例也是没有任何问题的！</li>
+</ol>
+
+<p><strong>综上所述：</strong></p>
+
+<ol>
+<li>即使线程安全的对象，在进行write写操作的时候,还是必须要使用lock锁同步来保证业务逻辑的一致性和正确性。</li>
+<li>即使是非线程安全的对象，当只进行read操作的时候，线程的安全与否已经不重要了！</li>
+</ol>
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/2017-12-02-nginx/">nginx和apache端口80冲突的问题</a></li>
+        
+        <li><a href="/post/2017-11-26-cmdalias/">cmd实现类似linux下的alias并模拟加载bashrc文件</a></li>
+        
+        <li><a href="/post/2017-11-24-vs2017setup/">vs2017支持.editorconfig配置</a></li>
+        
+        <li><a href="/post/2017-11-24-fullstack/">前端那些事儿</a></li>
+        
+        <li><a href="/post/2017-11-23-consoleprogbar/">console应用程序progressbar（进度条的实现）</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="https://gerrywp.github.io/tags/tag1">tag1</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="/search/" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://gerrywp.github.io">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-10-07-gcmw/" title="git push错误">git push错误</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-07-15-qorcms/" title="QOR踩坑日记">QOR踩坑日记</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-07-13-clusterdistribute/" title="集群和分布式">集群和分布式</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-07-07-gocommand/" title="go命令详解">go命令详解</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-07-06-gogetproxy/" title="go get代理设置">go get代理设置</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-06-20-algorithms/" title="数据结构">数据结构</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2018-11-20-gosyntax/" title="GO语言圣经笔记">GO语言圣经笔记</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2018-10-20-bwbj/" title="大爱无疆">大爱无疆</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2018-08-16-jsjourney6/" title="nodejs之旅(6)热替换与热加载">nodejs之旅(6)热替换与热加载</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2018-08-13-jsjourney5/" title="nodejs之旅(5)-form表单">nodejs之旅(5)-form表单</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://gerrywp.github.io/categories/article/">article (12)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/csharp/">csharp (9)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/golang/">golang (4)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/javascript/">javascript (16)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/linux/">linux (11)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/others/">others (11)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/sql/">sql (2)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/windows/">windows (7)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://gerrywp.github.io/tags/2019/">2019</a>
+    
+    <a href="https://gerrywp.github.io/tags/go/">go</a>
+    
+    <a href="https://gerrywp.github.io/tags/tag1/">tag1</a>
+    
+    <a href="https://gerrywp.github.io/tags/vscode/">vscode</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://gerrywp.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="https://gerrywp.github.io">云亦海 By gerry</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function () {
+            $("pre code").parent().addClass("line-numbers")
+        }());
+
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+<script type="text/javascript">
+(function(){
+	if (typeof self === 'undefined' || !self.Prism || !self.document) {
+		return;
+	}
+
+	if (!Prism.plugins.toolbar) {
+		console.warn('Copy to Clipboard plugin loaded before Toolbar plugin.');
+
+		return;
+	}
+
+	var ClipboardJS = window.ClipboardJS || undefined;
+
+	if (!ClipboardJS && typeof require === 'function') {
+		ClipboardJS = require('clipboard');
+	}
+
+	var callbacks = [];
+
+	if (!ClipboardJS) {
+		var script = document.createElement('script');
+		var head = document.querySelector('head');
+
+		script.onload = function() {
+			ClipboardJS = window.ClipboardJS;
+
+			if (ClipboardJS) {
+				while (callbacks.length) {
+					callbacks.pop()();
+				}
+			}
+		};
+
+		script.src = 'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js';
+		head.appendChild(script);
+	}
+
+	Prism.plugins.toolbar.registerButton('copy-to-clipboard', function (env) {
+		var linkCopy = document.createElement('button');
+		linkCopy.textContent = '复制代码';
+
+		if (!ClipboardJS) {
+			callbacks.push(registerClipboard);
+		} else {
+			registerClipboard();
+		}
+
+		return linkCopy;
+
+		function registerClipboard() {
+			var clip = new ClipboardJS(linkCopy, {
+				'text': function () {
+					return env.code;
+				}
+			});
+
+			clip.on('success', function() {
+				linkCopy.textContent = '复制成功!';
+
+				resetText();
+			});
+			clip.on('error', function () {
+				linkCopy.textContent = '按 Ctrl+C 复制';
+
+				resetText();
+			});
+		}
+
+		function resetText() {
+			setTimeout(function () {
+				linkCopy.textContent = '复制代码';
+			}, 5000);
+		}
+	});
+})();
+
+</script>
+</body>
+</html>

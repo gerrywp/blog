@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.59.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>unicode编码字符集和utf-8、asci编码方式 | 云亦海</title>
+    <meta property="og:title" content="unicode编码字符集和utf-8、asci编码方式 - 云亦海">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2017-03-23T00:00:00&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2017-03-23T00:00:00&#43;08:00">
+        
+    <meta name="Keywords" content="golang,go语言,go语言笔记,项目管理,软件架构,公众号,小程序">
+    <meta name="description" content="unicode编码字符集和utf-8、asci编码方式">
+        
+    <meta name="author" content="gerry">
+    <meta property="og:url" content="https://gerrywp.github.io/post/2017-03-23-encoding/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://gerrywp.github.io">
+                        云亦海
+                    </a>
+                
+                <p class="description">专注于Go语言(golang)、csharp、移动互联网、项目管理、软件架构</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://gerrywp.github.io">首页</a>
+                    
+                    <a  href="https://gerrywp.github.io/archives/" title="归档">归档</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+        
+        
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">unicode编码字符集和utf-8、asci编码方式</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2017年3月23日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="https://gerrywp.github.io/categories/windows">windows</a></span>
+                            
+                        </div>
+                        
+                        
+                        <div class="post-meta">
+                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
+                        </div>
+                        
+                        
+                        <div class="post-content">
+                            <p>Unicode是一个编码字符集，统一维护着世界上所有的&rsquo;字符&rsquo;。Unicode只是一个符号集，它只规定了符号的二进制代码，
+却没有规定这个二进制代码应该如何存储。utf8只是Unicode字符集的一个具体的编码(解码)的实现方式之一，其它的还有utf-16
+,utf-32等。</p>
+
+<h3 id="bom-byte-order-mark-又称-零宽度非换行空格-zero-width-no-break-space">BOM(Byte order mark)又称&rdquo;零宽度非换行空格&rdquo;（ZERO WIDTH NO-BREAK SPACE）</h3>
+
+<p>BOM都很熟悉，Notepad++之中就会有，以utf-8有BOM编码、以utf-8无BOM编码。
+因为unicode编码规范并不知道，文档到底使用的是哪一种编码顺序(大小头)。所以规定前1-4个字节标识编码顺序。
+又因为Utf-8没有大小头之分，所以可以使用BOM来标识是使用的那一种编码！<br />
+我们使用Notepad++来看下，&rdquo;我&rdquo;在使用utf-8无BOM编码的情况下的HEX十六进制表示法：
+1. 先要安装Notepad++插件HEX-Editor</p>
+
+<p><img src="../../pictures/QQ20170323212337.png" alt="HEX-Editor" /></p>
+
+<p>编码为：e6 88 91</p>
+
+<p><img src="../pictures/QQ20170323212712.png" alt="我code" /></p>
+
+<ol>
+<li>utf-8不带BOM编码情况下，16进制编码为:ef bb bf e6 88 91</li>
+</ol>
+
+<p>由此可见Utf-8编码的BOM为:ef bb bf</p>
+
+<h3 id="asci编码">asci编码</h3>
+
+<p>在中文操作系统下，我们在notepad++下，使用asci码输入中文，其实使用的是操作系统默认GBK编码。<br />
+使用notepad++可以看到，&rdquo;我&rdquo;在ansi下的编码16进制为:ce d2,这个编码正是&rdquo;我&rdquo;在GBK编码字符集中的编码。</p>
+
+<h3 id="notepad-ansi编码输入中文程序无响应">notepad++，ansi编码输入中文程序无响应</h3>
+
+<p>在ansi编码下，默认中文字符会被拆成2个字符。且这个使用的设置是:&ldquo;自动完成-&gt;单词自动完成&rdquo;
+且后边是从&rdquo;第1个字符开始&rdquo;的时候会默认从这个<strong>未知字符</strong>开始自动完成，notepad++就卡死了。<br />
+解决方法：改变从&rdquo;第1个字符开始&rdquo;成&rdquo;第2个字符开始&rdquo;回车即可。</p>
+
+<p><img src="../../pictures/QQ20170323220207.png" alt="首选项" /></p>
+
+<blockquote>
+<p>参考文献</p>
+</blockquote>
+
+<ol>
+<li><a href="http://cenalulu.github.io/linux/character-encoding/">十分钟搞清字符集和字符编码</a></li>
+<li><a href="http://www.ietf.org/rfc/rfc3629.txt">如何实现UTF-8编码规范</a></li>
+</ol>
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/2017-03-21-winbatch/">cmd批处理</a></li>
+        
+        <li><a href="/post/2017-03-17-mssql-sp/">拾遗ms-sql stored procedure</a></li>
+        
+        <li><a href="/post/2017-03-15-article/">固定唱名 or 首调唱名</a></li>
+        
+        <li><a href="/post/2017-03-14-iisexpress/">iisexpress-config</a></li>
+        
+        <li><a href="/post/2017-03-01.settimeout/">setTimeout定时器的使用</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="https://gerrywp.github.io/tags/tag1">tag1</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="/search/" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://gerrywp.github.io">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-10-07-gcmw/" title="git push错误">git push错误</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-07-15-qorcms/" title="QOR踩坑日记">QOR踩坑日记</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-07-13-clusterdistribute/" title="集群和分布式">集群和分布式</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-07-07-gocommand/" title="go命令详解">go命令详解</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-07-06-gogetproxy/" title="go get代理设置">go get代理设置</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-06-20-algorithms/" title="数据结构">数据结构</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2018-11-20-gosyntax/" title="GO语言圣经笔记">GO语言圣经笔记</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2018-10-20-bwbj/" title="大爱无疆">大爱无疆</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2018-08-16-jsjourney6/" title="nodejs之旅(6)热替换与热加载">nodejs之旅(6)热替换与热加载</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2018-08-13-jsjourney5/" title="nodejs之旅(5)-form表单">nodejs之旅(5)-form表单</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://gerrywp.github.io/categories/article/">article (12)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/csharp/">csharp (9)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/golang/">golang (4)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/javascript/">javascript (16)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/linux/">linux (11)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/others/">others (11)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/sql/">sql (2)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/windows/">windows (7)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://gerrywp.github.io/tags/2019/">2019</a>
+    
+    <a href="https://gerrywp.github.io/tags/go/">go</a>
+    
+    <a href="https://gerrywp.github.io/tags/tag1/">tag1</a>
+    
+    <a href="https://gerrywp.github.io/tags/vscode/">vscode</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://gerrywp.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="https://gerrywp.github.io">云亦海 By gerry</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function () {
+            $("pre code").parent().addClass("line-numbers")
+        }());
+
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+<script type="text/javascript">
+(function(){
+	if (typeof self === 'undefined' || !self.Prism || !self.document) {
+		return;
+	}
+
+	if (!Prism.plugins.toolbar) {
+		console.warn('Copy to Clipboard plugin loaded before Toolbar plugin.');
+
+		return;
+	}
+
+	var ClipboardJS = window.ClipboardJS || undefined;
+
+	if (!ClipboardJS && typeof require === 'function') {
+		ClipboardJS = require('clipboard');
+	}
+
+	var callbacks = [];
+
+	if (!ClipboardJS) {
+		var script = document.createElement('script');
+		var head = document.querySelector('head');
+
+		script.onload = function() {
+			ClipboardJS = window.ClipboardJS;
+
+			if (ClipboardJS) {
+				while (callbacks.length) {
+					callbacks.pop()();
+				}
+			}
+		};
+
+		script.src = 'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js';
+		head.appendChild(script);
+	}
+
+	Prism.plugins.toolbar.registerButton('copy-to-clipboard', function (env) {
+		var linkCopy = document.createElement('button');
+		linkCopy.textContent = '复制代码';
+
+		if (!ClipboardJS) {
+			callbacks.push(registerClipboard);
+		} else {
+			registerClipboard();
+		}
+
+		return linkCopy;
+
+		function registerClipboard() {
+			var clip = new ClipboardJS(linkCopy, {
+				'text': function () {
+					return env.code;
+				}
+			});
+
+			clip.on('success', function() {
+				linkCopy.textContent = '复制成功!';
+
+				resetText();
+			});
+			clip.on('error', function () {
+				linkCopy.textContent = '按 Ctrl+C 复制';
+
+				resetText();
+			});
+		}
+
+		function resetText() {
+			setTimeout(function () {
+				linkCopy.textContent = '复制代码';
+			}, 5000);
+		}
+	});
+})();
+
+</script>
+</body>
+</html>

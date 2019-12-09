@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tag1 on 云亦海</title>
+    <link>https://gerrywp.github.io/tags/tag1/</link>
+    <description>Recent content in tag1 on 云亦海</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 07 Oct 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://gerrywp.github.io/tags/tag1/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>git push错误</title>
+      <link>https://gerrywp.github.io/post/2019-10-07-gcmw/</link>
+      <pubDate>Mon, 07 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2019-10-07-gcmw/</guid>
+      <description>&lt;p&gt;git push代码的时候，使用了git credential manager for windows工具自动保存密码，但是每次会报告一个错误：HttpRequestException encountered.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>QOR踩坑日记</title>
+      <link>https://gerrywp.github.io/post/2019-07-15-qorcms/</link>
+      <pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2019-07-15-qorcms/</guid>
+      <description>&lt;p&gt;QOR-CMS Open source has lots of bugs.to fix these bugs cost me lots of time.So record them into this
+article!&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>集群和分布式</title>
+      <link>https://gerrywp.github.io/post/2019-07-13-clusterdistribute/</link>
+      <pubDate>Sat, 13 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2019-07-13-clusterdistribute/</guid>
+      <description>&lt;p&gt;看过很多篇幅的文章说集群和分布式，但是有时候这两个东西还是会搞混淆，并且不是那么容易说的清楚，在这里对这两个
+概念做一个归纳和总结。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>数据结构</title>
+      <link>https://gerrywp.github.io/post/2019-06-20-algorithms/</link>
+      <pubDate>Thu, 20 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2019-06-20-algorithms/</guid>
+      <description>&lt;p&gt;　　算法心得，使用golang实现常用的算法。算法导论中阐述了经典常用的数据结构和典型算法。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>GO语言圣经笔记</title>
+      <link>https://gerrywp.github.io/post/2018-11-20-gosyntax/</link>
+      <pubDate>Tue, 20 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2018-11-20-gosyntax/</guid>
+      <description>&lt;p&gt;　　本书翻译的版本看的有些别扭，在此把相似的东西进行归类做好常用知识点的笔记！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>大爱无疆</title>
+      <link>https://gerrywp.github.io/post/2018-10-20-bwbj/</link>
+      <pubDate>Sat, 20 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2018-10-20-bwbj/</guid>
+      <description>&lt;p&gt;　　问渠哪得清如许，唯有源头活水来。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>nodejs之旅(6)热替换与热加载</title>
+      <link>https://gerrywp.github.io/post/2018-08-16-jsjourney6/</link>
+      <pubDate>Thu, 16 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2018-08-16-jsjourney6/</guid>
+      <description>&lt;p&gt;　　在开发阶段，我们希望每次更改了代码就会响应的改变页面，这种方式在webpack里面叫做
+&lt;strong&gt;热替换HMR&lt;/strong&gt;(hot module replacement)!在react开发中，希望每次更改代码的时候不要刷新整个页面，而是让网页中的React组件渲染代码替换成新的代码。这种方式就叫做热加载(hot load)。在此不使用&lt;code&gt;webpack-dev-server&lt;/code&gt;的&lt;strong&gt;hot&lt;/strong&gt;模式，
+而是在自己搭建的expressjs服务器上，实现热更新和react组件的热加载！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>nodejs之旅(5)-form表单</title>
+      <link>https://gerrywp.github.io/post/2018-08-13-jsjourney5/</link>
+      <pubDate>Mon, 13 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2018-08-13-jsjourney5/</guid>
+      <description>&lt;p&gt;　　在web开发中，最重要的数据交互方式首推就该属表单了。html通过表单实现了客户端与服务器端数据的交互。说道表单就不得不说到&lt;code&gt;MIME&lt;/code&gt;类型，此类型
+关系到服务器端和浏览器端处理数据的方式和手段！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>keystonejs(2)dotenv等常用库</title>
+      <link>https://gerrywp.github.io/post/2018-08-10-keystonejs2/</link>
+      <pubDate>Fri, 10 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2018-08-10-keystonejs2/</guid>
+      <description>&lt;p&gt;　　透过keystonejs接触了很多常用的库，查阅npm文档了解它们的基本用法。dotenv从.env文件中加载并设置环境变量。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>cin那些事儿</title>
+      <link>https://gerrywp.github.io/post/2018-07-16-cin/</link>
+      <pubDate>Mon, 16 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2018-07-16-cin/</guid>
+      <description>&lt;p&gt;　　&lt;code&gt;while(cin&amp;gt;&amp;gt;m)&lt;/code&gt;为什么可以做这样的判断，完全是因为c++的操作符重载。&lt;code&gt;cin&amp;gt;&amp;gt;m&lt;/code&gt;操作会返回&lt;code&gt;cin&lt;/code&gt;对象，前面的
+condition条件判断就成为了对&lt;code&gt;cin&lt;/code&gt;对象的判断。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>c&#43;&#43;开发环境</title>
+      <link>https://gerrywp.github.io/post/2018-07-05-cpprelative/</link>
+      <pubDate>Thu, 05 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2018-07-05-cpprelative/</guid>
+      <description>&lt;p&gt;　　在windows下做c++开发，不想使用微软系的IDE开发工具。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>线性存储和hashcode</title>
+      <link>https://gerrywp.github.io/post/2018-07-03-linear7hash/</link>
+      <pubDate>Tue, 03 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2018-07-03-linear7hash/</guid>
+      <description>&lt;p&gt;　　数组就是典型的线性结构。对数组中特定&lt;strong&gt;值&lt;/strong&gt;的查询，线性查询无疑是最慢的查询方式，时间复杂度为O(n):n为数组长度。
+最合适的算法自然就是使用散列表了(HashTable)。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Think in java(Java编程思想)笔记</title>
+      <link>https://gerrywp.github.io/post/2018-06-27-thinkinjava/</link>
+      <pubDate>Wed, 27 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2018-06-27-thinkinjava/</guid>
+      <description>&lt;p&gt;　　阅读java编程思想，用笔记辅助记忆！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>java那些事儿</title>
+      <link>https://gerrywp.github.io/post/2018-06-25-javaer/</link>
+      <pubDate>Mon, 25 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2018-06-25-javaer/</guid>
+      <description>&lt;p&gt;　　最近在系统的学习java这门语言，涉及的东西也比较多。集成开发环境使用的是&lt;code&gt;Intellij(读音：Intel li year) Idea&lt;/code&gt;，循序渐进地学习语法、jsp、servlet、maven、gradle。构建工具到后期需要着重学习，只有这样才能真正了解IDE的project构建过程，实现工程自动化的自定义。阅读的书籍主要是《Java web 高级编程》和《Java 编程思想》，前者注重实战操作后者注重基础知识！学习必然会遇到问题，google下并记录下来。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>nodejs之旅(4)-webpack、babel和antd库的结合</title>
+      <link>https://gerrywp.github.io/post/2018-06-19-jsjourney4/</link>
+      <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2018-06-19-jsjourney4/</guid>
+      <description>&lt;p&gt;　　前端(browser)模块性的开发，目前来说就不得不用到webpack(module bundle)打包工具。因为使用了react的&lt;code&gt;JSX&lt;/code&gt;语法，所以必须要用到babel进行转码,因为browser是不认识&lt;code&gt;JSX&lt;/code&gt;语法的。并且由于目前大部分的浏览器对ES6语法(例如：&lt;code&gt;import&lt;/code&gt;和&lt;code&gt;export&lt;/code&gt;等语法并不支持)，也必须用到babel对这类型新的ES6语法进行转码。鉴于前端技术发展的太快了，在此只做基本使用理念的介绍，不对细节做过多的处理！具体的各工具的使用，以在线参考文档为主！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>调整VS工具栏宽度</title>
+      <link>https://gerrywp.github.io/post/2018-06-18-vssetup/</link>
+      <pubDate>Mon, 18 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2018-06-18-vssetup/</guid>
+      <description>&lt;p&gt;　　Visual Studio的&lt;strong&gt;Solution Configurations&lt;/strong&gt;这个选项在工具栏下的宽度很窄，多几个字符就看不见后面的名称，需要达成的目标就是定制宽度！(好记性不如烂笔头，记忆力衰退太厉害了)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>nodejs之旅(3)-gulp及调试</title>
+      <link>https://gerrywp.github.io/post/2018-06-17-jsjourney3/</link>
+      <pubDate>Sun, 17 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2018-06-17-jsjourney3/</guid>
+      <description>&lt;p&gt;　　gulp通过任务的形式来完成前端的构建，如何调试？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>msbuild(3)-用命令行部署web</title>
+      <link>https://gerrywp.github.io/post/2018-06-11-msbuild3/</link>
+      <pubDate>Mon, 11 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2018-06-11-msbuild3/</guid>
+      <description>&lt;p&gt;　　msbuild除了可以构建.proj文件之外，还可用解决方案.sln文件构建目标！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title> msbuild(2)-In Visual Studio</title>
+      <link>https://gerrywp.github.io/post/2018-06-10-msbuild2/</link>
+      <pubDate>Sun, 10 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2018-06-10-msbuild2/</guid>
+      <description>&lt;p&gt;　　使用&lt;strong&gt;Visual Stuido&lt;/strong&gt;(以下简称VS)发布(publish)web application到文件系统(File System)的时候，我们希望可以定制待发布的前端文件，并且在msbuild deploy的时候对构建流程进行处理！如何做呢？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>msbuild(1)-基本使用</title>
+      <link>https://gerrywp.github.io/post/2018-06-09-msbuild1/</link>
+      <pubDate>Sat, 09 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2018-06-09-msbuild1/</guid>
+      <description>&lt;p&gt;　　使用MS的开发工具&lt;strong&gt;Visual Studio&lt;/strong&gt;(以下简称VS)不得不使用msbuild进行项目的构建。VS能简化很多工作，同时也隐藏了很多内部实现细节。
+其中包括点击&amp;rdquo;部署&amp;rdquo;(publish)的时候VS通过msbuild为我们做了哪些工作？msbuild的使用
+在官方网站&lt;a href=&#34;https://msdn.microsoft.com/zh-cn/library/dd393574.aspx?f=255&amp;amp;MSPPError=-2147217396&#34; title=&#34;点我访问&#34;&gt;msbuild1&lt;/a&gt;有详细的使用说明，做如下归纳！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>无尽拷贝</title>
+      <link>https://gerrywp.github.io/post/2018-04-20-sea1/</link>
+      <pubDate>Fri, 20 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2018-04-20-sea1/</guid>
+      <description>&lt;p&gt;　　云亦海从梦中惊醒，他抬起左手摸索着开了灯，额头豆大的汗珠嗖嗖的往下滴落，顺着脖子流到了胸口。他拿起了手机看了下时间凌晨3点，眯着眼睛起身，
+他走到了镜子面前，对着镜子凝望了一会儿然后用右手狠狠地拍打了几下自己的右脸，顿时感到一阵灼热。&amp;rdquo;刚才应该是做了一个梦，不过为什么都是一个相同的梦？&amp;rdquo;他嘀咕着，不自觉的皱起了眉头。他转身走向了洗手间，一边顺手打开了水龙头往桶里面接水，一边尿尿。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>apache反向代理nodejs-web</title>
+      <link>https://gerrywp.github.io/post/2018-04-02-deploy/</link>
+      <pubDate>Mon, 02 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2018-04-02-deploy/</guid>
+      <description>&lt;p&gt;　　将nodejs-web站点部署到linux服务器上如何反向代理？应用程序运行在3000端口，通过域名访问！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>nodejs如何创建单例实例</title>
+      <link>https://gerrywp.github.io/post/2018-03-29-singletoninnodejs/</link>
+      <pubDate>Thu, 29 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2018-03-29-singletoninnodejs/</guid>
+      <description>&lt;p&gt;　　How to create singleton in Node.js?这个问题实际是错误的！因为nodejs模块缓存的原因，require(&amp;ldquo;)每次出来的都是单例的！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>发布项目dll未被msbuild拷贝到输出目录</title>
+      <link>https://gerrywp.github.io/post/2018-03-29-dllnotcopy/</link>
+      <pubDate>Thu, 29 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2018-03-29-dllnotcopy/</guid>
+      <description>&lt;p&gt;　　添加了reference的dll文件并且&lt;code&gt;Copy Local&lt;/code&gt;值为True为何不拷贝到输出目录？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>nodejs之旅(2)</title>
+      <link>https://gerrywp.github.io/post/2018-03-27-jsjourney2/</link>
+      <pubDate>Tue, 27 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2018-03-27-jsjourney2/</guid>
+      <description>&lt;p&gt;　　express-handlebars服务端模板引擎的局部渲染。非SPA应用程序，在最原始的动态页面并使用了layout布局的情况下，
+我们通常希望能够将index.hbs里面的UI结构和js逻辑部分组合在一起，并且需要将js逻辑统一放置到layout布局页的最底部。
+handlebars的&lt;strong&gt;Block Helper&lt;/strong&gt;能够帮我们解决这个问题！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>nodejs之旅(1)</title>
+      <link>https://gerrywp.github.io/post/2018-03-22-jsjourney1/</link>
+      <pubDate>Thu, 22 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2018-03-22-jsjourney1/</guid>
+      <description>&lt;p&gt;　　这个系列会一步一步开始使用expressjs+nodejs搭建一个游戏背景音乐在线听网站。从零开始记录每一个细节：包括IDE工具使用细节、环境配置细节、expressjs
+配置细节等等。目的只是为了单纯的练习和使用expressjs+nodejs，在摸索中前进！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux守护进程和自启动</title>
+      <link>https://gerrywp.github.io/post/2018-02-23-daemonauto/</link>
+      <pubDate>Fri, 23 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2018-02-23-daemonauto/</guid>
+      <description>&lt;p&gt;　　Linux的服务也是以etc配置的形式完成的，启动一个daemon(守护进程)来提供service(服务)。服务的管理是一个既复杂又细致的工作，Linux提供了两种方式来
+管理服务：一种是透过&lt;code&gt;systemctl&lt;/code&gt;这一个命令管理服务，另一种是透过&lt;code&gt;service&lt;/code&gt;来管理服务的启动、停止、重启等等，透过&lt;code&gt;chkconfig&lt;/code&gt;来管理服务的开机启动与否。
+在此以&lt;code&gt;systemctl&lt;/code&gt;应用出来之前和&lt;code&gt;systemctl&lt;/code&gt;应用出来之后的服务管理方式分别作介绍！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>线程安全与非线程安全</title>
+      <link>https://gerrywp.github.io/post/2017-12-03-threadsafe/</link>
+      <pubDate>Sun, 03 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-12-03-threadsafe/</guid>
+      <description>&lt;p&gt;　　c#的多线程编程由于其高级的语法糖(synax)而变化的相对简单，然而又有些神秘莫测。对于线程安全与否与同步(synchronize)经常有人将其混为一谈，其实这是2个不同的概念。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>nginx和apache端口80冲突的问题</title>
+      <link>https://gerrywp.github.io/post/2017-12-02-nginx/</link>
+      <pubDate>Sat, 02 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-12-02-nginx/</guid>
+      <description>&lt;p&gt;　　今天在将nodejs程序部署到远程linux服务器上遇到了问题，很长时间才得以解决！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>cmd实现类似linux下的alias并模拟加载bashrc文件</title>
+      <link>https://gerrywp.github.io/post/2017-11-26-cmdalias/</link>
+      <pubDate>Sun, 26 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-11-26-cmdalias/</guid>
+      <description>&lt;p&gt;　　cmd可以使用&lt;code&gt;doskey&lt;/code&gt;命令来定义命令的别名，但是windows要实现自动加载配置文件，似乎只能通过修改注册表来达到目的。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>vs2017支持.editorconfig配置</title>
+      <link>https://gerrywp.github.io/post/2017-11-24-vs2017setup/</link>
+      <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-11-24-vs2017setup/</guid>
+      <description>&lt;p&gt;　　visual studio无法全局设置编码，新建的文件有的时候并不是使用utf-8编码的，所有在有的环境下会出现乱码。比如使用babel转嘛js代码的时候。网上找到的解决方案，下载&lt;code&gt;ForeUTF8&lt;/code&gt;插件并不能解决问题，当我们新建文件的时候，还要一个个手动通过高级保存，保存为我们想要的编码。所幸百般查找，发现vs是可以支持&lt;code&gt;.editorconfig&lt;/code&gt;配置文件的。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>前端那些事儿</title>
+      <link>https://gerrywp.github.io/post/2017-11-24-fullstack/</link>
+      <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-11-24-fullstack/</guid>
+      <description>&lt;p&gt;　　微软系软件开发使用的Visual Studio(VS) IDE强大到令人发指！隐藏了许多技术细节，必然很难定制。nodejs出现之前，创建一个asp.net mvc的项目，client(browser)和server(csharp+iis)是组织在一起的。很少有公司在做asp.net mvc项目的时候会定制msbuild去完成浏览器端代码的构建和发布，比如：
+打包压缩js+css文件,拷贝文件到指定的dist目录,修改view或html文件中的js、css引用路径给路径添加上hash码，同时也拷贝到dist目录。但是通常情况下都是使用的IDE自动构建和一键式发布来deploy website应用。这种情况下想实现client端和server端的分而治之，压根是不可能实现的。nodejs的出现彻底改变了这一现状！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>console应用程序progressbar（进度条的实现）</title>
+      <link>https://gerrywp.github.io/post/2017-11-23-consoleprogbar/</link>
+      <pubDate>Thu, 23 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-11-23-consoleprogbar/</guid>
+      <description>&lt;p&gt;　　控制台应用程序，有时候需要做文件上传、压缩等(网络/磁盘)I/O处理。为了得到更友好的界面交互，所以需要用到progress bar 进度条。
+github上有很多现成的可以使用。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>es6语法糖(syntax sugar)</title>
+      <link>https://gerrywp.github.io/post/2017-11-21-es6syntax/</link>
+      <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-11-21-es6syntax/</guid>
+      <description>&lt;p&gt;　　es6引入了大量的语法糖，其中有不少是不好理解的，一边实践一边用文字记录之。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>黄梅解语</title>
+      <link>https://gerrywp.github.io/post/2017-11-13-poem/</link>
+      <pubDate>Mon, 13 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-11-13-poem/</guid>
+      <description>&lt;p&gt;05年至今近十几年写了一些杂乱无章的句子。有各大论坛发帖的、空间的、自传小册子里的、朋友圈的。有琥珀也有糟糠，但基本都是无标题的，
+按时间先后顺序搜集起来凑到一起，拟标题为《黄梅解语》，可谓之一语双关。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>双11</title>
+      <link>https://gerrywp.github.io/post/2017-11-06-double11/</link>
+      <pubDate>Mon, 06 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-11-06-double11/</guid>
+      <description>&lt;p&gt;&amp;emsp;&amp;emsp;在无聊的日子，搞些乐子出来！！！有关于双11今天突然闲扯了一些比较有意思的文字，所以想把它记录下来。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu的使用</title>
+      <link>https://gerrywp.github.io/post/2017-11-02-uselinux/</link>
+      <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-11-02-uselinux/</guid>
+      <description>&lt;p&gt;Ubuntu系统使用过程中的常用设置，其中包括启动项目的管理、启动项对应的文件、&lt;code&gt;systemd&lt;/code&gt;管理系统服务、&lt;code&gt;systemd-sysv-generator&lt;/code&gt;依据旧的SysV脚本生成新的&lt;code&gt;systemd&lt;/code&gt;新脚本等等。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>vim使用的一些技巧</title>
+      <link>https://gerrywp.github.io/post/2017-10-30-vimuse/</link>
+      <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-10-30-vimuse/</guid>
+      <description>&lt;p&gt;&amp;emsp;&amp;emsp;以普通用户身份vim编辑的文件,如何强制保存？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>putty配置并使用</title>
+      <link>https://gerrywp.github.io/post/2017-10-29-putty/</link>
+      <pubDate>Sun, 29 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-10-29-putty/</guid>
+      <description>&lt;p&gt;配置putyy能够自动登陆、开启显示密码、在下达完整个命令之后才发送至服务端！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>keystonejs(1)隐晦配置</title>
+      <link>https://gerrywp.github.io/post/2017-10-27-keystonejs1/</link>
+      <pubDate>Fri, 27 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-10-27-keystonejs1/</guid>
+      <description>&lt;p&gt;keystonejs跨平台内容管理系统开发的又一利器。通过定义数据model层，即可完成一个企业型应用站点的开发，并自动生成后台管理界面。
+我们需要做的只是做前端UI，给定模板套样式即可。下面一步一步学习并搭建一个站点起来，并进行二次开发，以一系列文章记录下来。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>sudoers账户的配置</title>
+      <link>https://gerrywp.github.io/post/2017-10-25-visudo/</link>
+      <pubDate>Wed, 25 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-10-25-visudo/</guid>
+      <description>&lt;p&gt;&amp;emsp;&amp;emsp;管理好你的主机，首要任务是配置好账户的权限，不能把root账户密码泄露出去。但是只有拥有root管理员权限才能安装软件，如何解决。&lt;br /&gt;
+相对于使用&lt;code&gt;su&lt;/code&gt;命令我们需要待切换用户的密码（通常是root密码），而使用&lt;code&gt;sudo&lt;/code&gt;命令仅需要当前用户的密码，甚至可以设置不需要密码！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>生如夏花</title>
+      <link>https://gerrywp.github.io/post/2017-09-29-ap1/</link>
+      <pubDate>Fri, 29 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-09-29-ap1/</guid>
+      <description>&lt;p&gt;梦想是美好的，现实是痛苦的；道路是崎岖的，风景总是怡人的；人生是短暂的，爱却是永恒的。时间像奔腾不息的河流，无论我怎么去遮挽，它还是匆匆的离我远去！曾一直努力的随风向前奔跑，不停的奔跑，一刻都未曾停歇。我漫无目地的奋不顾身地追赶着时间，似乎并不知道什么是疲倦。忽然有一天，我放慢了脚本，我睁大了双眼看着这繁华世界，忽然觉得有许许多多的东西值得我去留恋。因为走的太快，没有来得及低头看看来时的路；因为走的太快，没有来得及感受这风风雨雨。当我回首来时路，却发现自己并没有从中获益什么，反倒是越来越迷惑，它一直不断昼夜轮替地纠缠着我。伴随这凉凉的迷惑，恐惧像杂草一样丛生！这种莫名的恐惧感，一度像梦魇一样伴随着我，挥之不去。我不禁悲凉起来，当我不停的追求的时候，伴随我的是无边的恐惧；当我停下脚步思索的时候，伴随我的依然是无边的恐惧。当真是进亦忧退亦忧，然则何时而乐耶？我并不能达到范仲淹那种“先天下之忧而忧，后天下之乐而乐”思想境界。既然想不明白又何必再去自寻烦恼呢？人生本来就是没有答案的，活在当下，遵从自己内心深处最歇斯底里的声音，未来就在脚下，一切随心就好！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>月夜家话</title>
+      <link>https://gerrywp.github.io/post/2017-09-20-moonlit/</link>
+      <pubDate>Wed, 20 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-09-20-moonlit/</guid>
+      <description>&lt;p&gt;浔阳的秋天很是凉爽，这个季节应该是家乡一年之中最为舒适的季节。不会有淅淅沥沥下个不停的春雨，亦不会有令人夜不能寐的炎炎夏日，更没有如冰刀般凛冽的西北风。
+一阵微风吹过，吹红了枫叶，染黄了稻田，轻抚着江面漾起了碧波。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>那年荆州</title>
+      <link>https://gerrywp.github.io/post/2017-08-31-jinzhou/</link>
+      <pubDate>Thu, 31 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-08-31-jinzhou/</guid>
+      <description>&lt;p&gt;这一年我十八岁了，正值雨季风华正茂。第一次我踏足进入了这片土地，这片多年以后令人追忆的土地，那是青春。
+燕子飞了，有再来的时候；杨柳枯了，有再青的时候；桃花谢了，有再开的时候；青春去了，却没有再返程；像针尖上一滴水滴在大海里，我的日子滴在了时间的河流里，
+没有声音，也没有影子。我察觉她去的有些匆匆了，伸出手遮挽时，她又从遮挽着的手边溜走。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>梦中的寒蝉</title>
+      <link>https://gerrywp.github.io/post/2017-08-14-1st/</link>
+      <pubDate>Mon, 14 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-08-14-1st/</guid>
+      <description>&lt;p&gt;不知不觉已立秋一周，但深圳的天气依旧十分炎热！特别是清晨或者傍晚的雨水，并不如你所期待的那样能给你些许清凉。
+雨后像蒸桑拿一样的感觉，着实令人不爽。不单单如此，那贴着肌肤的湿气，笼罩着让我透不过气！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Jscript for WSH</title>
+      <link>https://gerrywp.github.io/post/2017-07-25-jsforwsh/</link>
+      <pubDate>Tue, 25 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-07-25-jsforwsh/</guid>
+      <description>&lt;p&gt;告别批处理，使用WSH做更强大的脚本。为什么不直接使用VBScript呢？因为不喜欢它的语法，所以选择易懂的Jscript作首选语言！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>安装curl并开启ssl(https)支持</title>
+      <link>https://gerrywp.github.io/post/2017-07-15-curl/</link>
+      <pubDate>Sat, 15 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-07-15-curl/</guid>
+      <description>&lt;p&gt;ubuntu系统下想要使用curl-ssl只能是自己下载源码进行安装，因为开启ssl(&amp;ndash;with-ssl)需要openssl的库文件。默认ubuntu安装的openssl未包含库(lib)文件和头文件(include)。使用curl下载https文件的时候,会报以下错误：&lt;br /&gt;
+* Protocol https not supported or disabled in libcurl
+* Unsupport protocol&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>《摔跤吧!爸爸》观后感</title>
+      <link>https://gerrywp.github.io/post/2017-05-22-dangal/</link>
+      <pubDate>Mon, 22 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-05-22-dangal/</guid>
+      <description>&lt;p&gt;人都是为希望而活，因为有了希望，人才有生活的勇气。&lt;br /&gt;
+— 列夫·托尔斯泰  《安娜·卡列妮娜》&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>而立之年</title>
+      <link>https://gerrywp.github.io/post/2017-05-03-erli/</link>
+      <pubDate>Wed, 03 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-05-03-erli/</guid>
+      <description>&lt;p&gt;书写完标题良久头脑还是一片混乱。万千思绪如潮水般一拥而上，更多的是迷茫和彷徨。而且这种消极的思想，越来越强烈！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>javascript中精准的定时器</title>
+      <link>https://gerrywp.github.io/post/2017-04-21-accuratetimer/</link>
+      <pubDate>Fri, 21 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-04-21-accuratetimer/</guid>
+      <description>&lt;p&gt;今天偶然看到了一篇讲解javascript各定时器的文章。文章使用对话的方式阐述了&lt;code&gt;setInterval&lt;/code&gt;不足，颇有意思。
+但是觉得不太好理解，原文如下：&lt;br /&gt;
+&lt;a href=&#34;http://imweb.io/topic/56ac67fbe39ca21162ae6c78&#34; title=&#34;点我访问&#34;&gt;setTimeout那些事儿&lt;/a&gt;&lt;br /&gt;
+其中的第三点，咱们还是代码见(show you code)。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>razor引擎及view的呈现</title>
+      <link>https://gerrywp.github.io/post/2017-04-14.razor/</link>
+      <pubDate>Fri, 14 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-04-14.razor/</guid>
+      <description>&lt;p&gt;.cshtml(.vbhtml)文件能够被执行，必须被编译进程序集的具体类型。
+微软使用&lt;code&gt;%windir%\Microsoft.NET\Framework\v4.0.30319&lt;/code&gt;下的aspnet_compiler.exe对view文件进行编译。
+&lt;a href=&#34;https://github.com/ASP-NET-MVC/aspnetwebstack/tree/master/src&#34; title=&#34;点我访问&#34;&gt;aspnet mvc4源码&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>linux下的软件管理</title>
+      <link>https://gerrywp.github.io/post/2017-04-11-pkgmanager/</link>
+      <pubDate>Tue, 11 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-04-11-pkgmanager/</guid>
+      <description>&lt;p&gt;linux界的 2 大主流软件管理方式(命令):RPM(RedHat Package Manager)和DPKG(Debian Packager)。&lt;br /&gt;
+它们对应的在线(线上)管理方式(命令):YUM(Yellowdog Updater, Modified)和APT(Advanced Packaging Tool)。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>背景图片全屏造成的滚动(滑动)卡顿</title>
+      <link>https://gerrywp.github.io/post/2017-04-08-bgdelay/</link>
+      <pubDate>Sat, 08 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-04-08-bgdelay/</guid>
+      <description>&lt;p&gt;web app中用到全屏幕的背景的图片需要占据整个视口(view-port)，必然会用到position:fixed的定位。
+但是由此引发了一个问题，在PC端，没有任何问题，但是在手机端下滑的时候出现了页面卡顿的现象，这个是没法忍受的。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>资料和笔记</title>
+      <link>https://gerrywp.github.io/post/2017-04-02-allcollect/</link>
+      <pubDate>Sun, 02 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-04-02-allcollect/</guid>
+      <description>&lt;p&gt;计算机相关知识点过于分散，有时候为了找一篇文章，在以后要用到的时候又要去反复查找很耗时。这里罗列出对自己有指导性意见的一些工具及blog文章,以备后用。(热更新)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>unicode编码字符集和utf-8、asci编码方式</title>
+      <link>https://gerrywp.github.io/post/2017-03-23-encoding/</link>
+      <pubDate>Thu, 23 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-03-23-encoding/</guid>
+      <description>&lt;p&gt;Unicode是一个编码字符集，统一维护着世界上所有的&amp;rsquo;字符&amp;rsquo;。Unicode只是一个符号集，它只规定了符号的二进制代码，
+却没有规定这个二进制代码应该如何存储。utf8只是Unicode字符集的一个具体的编码(解码)的实现方式之一，其它的还有utf-16
+,utf-32等。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>cmd批处理</title>
+      <link>https://gerrywp.github.io/post/2017-03-21-winbatch/</link>
+      <pubDate>Tue, 21 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-03-21-winbatch/</guid>
+      <description>&lt;p&gt;最近被外甥问到一个初中的奥数题目，涉及到高中的排列组合问题。因想求证一下答案，故考虑到使用&amp;rdquo;穷举法&amp;rdquo;编程来解决这个问题。
+一开始使用的是高级语言c#来解决但是觉得不够大众化，并且不便与之交流。思考了下，觉得脚本文件可以解决这个问题，
+由于batch script很少用，使用起来并不方便，而且有很多坑，因此引出了这篇博客。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>拾遗ms-sql stored procedure</title>
+      <link>https://gerrywp.github.io/post/2017-03-17-mssql-sp/</link>
+      <pubDate>Fri, 17 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-03-17-mssql-sp/</guid>
+      <description>&lt;p&gt;一直以来sql都只使用用了最简单的功能，仅限于增删改查。最近因项目需要，要将所有的查询都改成存储过程。也就是说要将所有的业务逻辑放在了数据库端来处理。
+老实说以前业务的东西都是用高级语言代码来做，存储过程写的少，所以还是有很多东西不熟悉并值得考究的，仅以文字记之。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>固定唱名 or 首调唱名</title>
+      <link>https://gerrywp.github.io/post/2017-03-15-article/</link>
+      <pubDate>Wed, 15 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-03-15-article/</guid>
+      <description>&lt;p&gt;从西方传入的五线谱，是用来记录音符在键盘上位置的一种音乐语言。对于弹奏来说可以很直观的反映音符在键盘上所对应的位置，
+就连对应的是黑键还是白键都一眼就能看出来(♯ or ♭)。不必知道这个音的唱名(do re mi &amp;hellip;),只用记住五根线上(间)所对应的音名(C D E F G A B)即可。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>iisexpress-config</title>
+      <link>https://gerrywp.github.io/post/2017-03-14-iisexpress/</link>
+      <pubDate>Tue, 14 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-03-14-iisexpress/</guid>
+      <description>&lt;p&gt;iisexpress轻量，易于安装，安装包不到5M。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>setTimeout定时器的使用</title>
+      <link>https://gerrywp.github.io/post/2017-03-01.settimeout/</link>
+      <pubDate>Wed, 01 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-03-01.settimeout/</guid>
+      <description>&lt;p&gt;增量随机，很好实现。那如果要实现时间间隔随机，应该如何处理？我们可以使用setTimeout递归调用来实现&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux(daemon)和管线命令(pipe)</title>
+      <link>https://gerrywp.github.io/post/2017-01-20-linuxdaemon/</link>
+      <pubDate>Fri, 20 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-01-20-linuxdaemon/</guid>
+      <description>&lt;p&gt;如何将应用程序启动为守护进程(daemon),换言之作为服务(service)启动。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>委托和反射</title>
+      <link>https://gerrywp.github.io/post/2017-01-19-delegate1/</link>
+      <pubDate>Thu, 19 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-01-19-delegate1/</guid>
+      <description>&lt;p&gt;反射的性能问题一直是广为诟病的，但反射所消耗的这一点性能并不算什么。因为通常情况下的业务逻辑都不会很复杂，我们只是使用反射
+来处理一些常规编码难以迄及的特殊场景。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title> jekyll的语法高亮-语言名称对照表</title>
+      <link>https://gerrywp.github.io/post/2017-01-11-jkhilight/</link>
+      <pubDate>Wed, 11 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-01-11-jkhilight/</guid>
+      <description>&lt;p&gt;使用markdown编写日志的时候，通常需要插入代码块。针对不同的语言，jekyll可以提供不同的语法高亮样式。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title> Ms-SqlServer开窗函数(over())</title>
+      <link>https://gerrywp.github.io/post/2017-01-11-overfunc/</link>
+      <pubDate>Wed, 11 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2017-01-11-overfunc/</guid>
+      <description>&lt;p&gt;开窗函数用在ms的group by分组无法迄及的地方。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title> NAT模式下代理</title>
+      <link>https://gerrywp.github.io/post/2016-12-30-vmware/</link>
+      <pubDate>Fri, 30 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2016-12-30-vmware/</guid>
+      <description>&lt;p&gt;兲朝&amp;rdquo;科学上网&amp;rdquo;:[Vmware-Ubuntu]使用Nat模式，也能使用本机的shadowsocks proxy&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title> windows环境下node.exe配置</title>
+      <link>https://gerrywp.github.io/post/2016-12-23-node1/</link>
+      <pubDate>Fri, 23 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2016-12-23-node1/</guid>
+      <description>&lt;p&gt;node.exe-nodejs的可执行环境，其实仅仅只依靠&lt;strong&gt;node.exe&lt;/strong&gt;这个可执行文件就可以了。&lt;strong&gt;npm&lt;/strong&gt;只不过是运行于&lt;strong&gt;node.exe&lt;/strong&gt;环境中的「包管理程序」。
+那么windows下node是如何加载模块的，npm是如何管理包的？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Jquery的jsonp示例</title>
+      <link>https://gerrywp.github.io/post/2012-11-20-jsonp/</link>
+      <pubDate>Tue, 20 Nov 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2012-11-20-jsonp/</guid>
+      <description>&lt;p&gt;jsonp实际上就是服务器端实现对客户端函数的回调(callback)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>汇编指令lea</title>
+      <link>https://gerrywp.github.io/post/2013-12-04-asmsyntax/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/post/2013-12-04-asmsyntax/</guid>
+      <description>&lt;p&gt;个别汇编指令英文全称说明，便于使用和记忆&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

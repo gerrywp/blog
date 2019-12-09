@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.59.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>背景图片全屏造成的滚动(滑动)卡顿 | 云亦海</title>
+    <meta property="og:title" content="背景图片全屏造成的滚动(滑动)卡顿 - 云亦海">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2017-04-08T00:00:00&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2017-04-08T00:00:00&#43;08:00">
+        
+    <meta name="Keywords" content="golang,go语言,go语言笔记,项目管理,软件架构,公众号,小程序">
+    <meta name="description" content="背景图片全屏造成的滚动(滑动)卡顿">
+        
+    <meta name="author" content="gerry">
+    <meta property="og:url" content="https://gerrywp.github.io/post/2017-04-08-bgdelay/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://gerrywp.github.io">
+                        云亦海
+                    </a>
+                
+                <p class="description">专注于Go语言(golang)、csharp、移动互联网、项目管理、软件架构</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://gerrywp.github.io">首页</a>
+                    
+                    <a  href="https://gerrywp.github.io/archives/" title="归档">归档</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+        
+        
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">背景图片全屏造成的滚动(滑动)卡顿</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2017年4月8日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="https://gerrywp.github.io/categories/javascript">javascript</a></span>
+                            
+                        </div>
+                        
+                        
+                        <div class="post-meta">
+                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
+                        </div>
+                        
+                        
+                        <div class="post-content">
+                            <p>web app中用到全屏幕的背景的图片需要占据整个视口(view-port)，必然会用到position:fixed的定位。
+但是由此引发了一个问题，在PC端，没有任何问题，但是在手机端下滑的时候出现了页面卡顿的现象，这个是没法忍受的。</p>
+
+<h3 id="全屏background-image">全屏background-image</h3>
+
+<h5 id="问题的重现">问题的重现</h5>
+
+<p>由于最开始使用的是在body标签底下，建立一个<div>来承载图片。<br />
+html文档结构如下:</p>
+
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;full-bg&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>css样式表如下:</p>
+
+<pre><code class="language-css">.full-bg{
+position:fixed;
+top:0;
+right:0;
+bottom:0;
+left:0;
+background-image:url(xxx.png);/*图片分辨率较大*/
+background-position:50% 50%;
+background-color:#fff;/*图片未加载出来的背景色*/
+background-repeat:no-repeat;
+background-size:cover;
+/*兼容性代码*/
+-webkit-background-size:cover;
+-moz-background-size:cover;
+-o-background-size:cover;
+}
+</code></pre>
+
+<h5 id="解决问题">解决问题</h5>
+
+<ol>
+<li><p>方式1
+出现了上述问题就在猜测，为什么会出现这个问题？个人猜测<div>为fixed的元素，在滚动的时候会发生页面重绘。
+又由于设置了背景图片，所以滚动的时候就比较卡了。其实上面的文档结构不过好<strong>background-attachment</strong>上场。
+有了这个属性，我们完全可以将背景应用于body标签,并将div背景标签移除。<br />
+css代码如下:</p>
+
+<pre><code class="language-css">body{
+position:relative;
+top:0;
+right:0;
+bottom:0;
+left:0;
+background-image:url(xxx.png);/*图片分辨率较大*/
+background-position:50% 50%;
+background-color:#fff;/*图片未加载出来的背景色*/
+background-repeat:no-repeat;
+background-attachment:fixed; 
+background-size:cover;
+/*兼容性代码*/
+-webkit-background-size:cover;
+-moz-background-size:cover;
+-o-background-size:cover;
+}
+</code></pre></li>
+
+<li><p>方式2</p></li>
+</ol>
+
+<p>不要给绝对定位和fixed的元素设置背景图片，应使用如下结构，可解决问题。</p>
+
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;!--仅仅作定位使用--&gt;
+&lt;div class=&quot;full-bg&quot;&gt;
+&lt;!--给内层元素设置背景--&gt;
+    &lt;div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h3 id="html-body的高端和宽度100">html,body的高端和宽度100%</h3>
+
+<p>当设置的html,body的高端和宽度占满屏幕,css如下:</p>
+
+<pre><code class="language-css">html,body{
+width:100%;
+heigth:100%;
+margin:0;
+padding:0;
+overflow:scroll;
+-webkit-overflow:scroll;
+-moz-overflow:scroll;
+-o-overflow:scroll;
+/*卡顿的话增加以下代码*/
+-webkit-overflow-scrolling:touch;
+}
+</code></pre>
+
+<p><strong>建议</strong>：有人说使用了height:100%也会造成卡顿(个人实验并未出现卡顿)，博客上有人推荐使用min-height:100%</p>
+
+<h5 id="min-height-100"><del>min-height:100%</del></h5>
+
+<p>对html,body使用min-height:100%;似乎只有html才管用，对于body并没有效，所以这个也没有多大作用。</p>
+
+<h3 id="line-height和linebox的高度">line-height和linebox的高度</h3>
+
+<p>在css中决定一个box的高度的是line-height属性</p>
+
+<pre><code class="language-css">font-size:0;
+line-height:40px;
+/*上:box有高度,下:box没有高度*/
+font-size:14px;
+line-height:0;
+</code></pre>
+
+<p>参考<br />
+&gt;1. <a href="http://sixrevisions.com/css/responsive-background-image/" title="点我访问">http://sixrevisions.com/css/responsive-background-image/</a>
+&gt;2. <a href="https://segmentfault.com/a/1190000002404673" title="点我访问">https://segmentfault.com/a/1190000002404673</a></p>
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/2017-04-02-allcollect/">资料和笔记</a></li>
+        
+        <li><a href="/post/2017-03-23-encoding/">unicode编码字符集和utf-8、asci编码方式</a></li>
+        
+        <li><a href="/post/2017-03-21-winbatch/">cmd批处理</a></li>
+        
+        <li><a href="/post/2017-03-17-mssql-sp/">拾遗ms-sql stored procedure</a></li>
+        
+        <li><a href="/post/2017-03-15-article/">固定唱名 or 首调唱名</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="https://gerrywp.github.io/tags/tag1">tag1</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="/search/" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://gerrywp.github.io">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-10-07-gcmw/" title="git push错误">git push错误</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-07-15-qorcms/" title="QOR踩坑日记">QOR踩坑日记</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-07-13-clusterdistribute/" title="集群和分布式">集群和分布式</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-07-07-gocommand/" title="go命令详解">go命令详解</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-07-06-gogetproxy/" title="go get代理设置">go get代理设置</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-06-20-algorithms/" title="数据结构">数据结构</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2018-11-20-gosyntax/" title="GO语言圣经笔记">GO语言圣经笔记</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2018-10-20-bwbj/" title="大爱无疆">大爱无疆</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2018-08-16-jsjourney6/" title="nodejs之旅(6)热替换与热加载">nodejs之旅(6)热替换与热加载</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2018-08-13-jsjourney5/" title="nodejs之旅(5)-form表单">nodejs之旅(5)-form表单</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://gerrywp.github.io/categories/article/">article (12)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/csharp/">csharp (9)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/golang/">golang (4)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/javascript/">javascript (16)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/linux/">linux (11)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/others/">others (11)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/sql/">sql (2)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/windows/">windows (7)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://gerrywp.github.io/tags/2019/">2019</a>
+    
+    <a href="https://gerrywp.github.io/tags/go/">go</a>
+    
+    <a href="https://gerrywp.github.io/tags/tag1/">tag1</a>
+    
+    <a href="https://gerrywp.github.io/tags/vscode/">vscode</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://gerrywp.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="https://gerrywp.github.io">云亦海 By gerry</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function () {
+            $("pre code").parent().addClass("line-numbers")
+        }());
+
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+<script type="text/javascript">
+(function(){
+	if (typeof self === 'undefined' || !self.Prism || !self.document) {
+		return;
+	}
+
+	if (!Prism.plugins.toolbar) {
+		console.warn('Copy to Clipboard plugin loaded before Toolbar plugin.');
+
+		return;
+	}
+
+	var ClipboardJS = window.ClipboardJS || undefined;
+
+	if (!ClipboardJS && typeof require === 'function') {
+		ClipboardJS = require('clipboard');
+	}
+
+	var callbacks = [];
+
+	if (!ClipboardJS) {
+		var script = document.createElement('script');
+		var head = document.querySelector('head');
+
+		script.onload = function() {
+			ClipboardJS = window.ClipboardJS;
+
+			if (ClipboardJS) {
+				while (callbacks.length) {
+					callbacks.pop()();
+				}
+			}
+		};
+
+		script.src = 'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js';
+		head.appendChild(script);
+	}
+
+	Prism.plugins.toolbar.registerButton('copy-to-clipboard', function (env) {
+		var linkCopy = document.createElement('button');
+		linkCopy.textContent = '复制代码';
+
+		if (!ClipboardJS) {
+			callbacks.push(registerClipboard);
+		} else {
+			registerClipboard();
+		}
+
+		return linkCopy;
+
+		function registerClipboard() {
+			var clip = new ClipboardJS(linkCopy, {
+				'text': function () {
+					return env.code;
+				}
+			});
+
+			clip.on('success', function() {
+				linkCopy.textContent = '复制成功!';
+
+				resetText();
+			});
+			clip.on('error', function () {
+				linkCopy.textContent = '按 Ctrl+C 复制';
+
+				resetText();
+			});
+		}
+
+		function resetText() {
+			setTimeout(function () {
+				linkCopy.textContent = '复制代码';
+			}, 5000);
+		}
+	});
+})();
+
+</script>
+</body>
+</html>

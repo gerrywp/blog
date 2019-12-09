@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.59.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Linux守护进程和自启动 | 云亦海</title>
+    <meta property="og:title" content="Linux守护进程和自启动 - 云亦海">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2018-02-23T00:00:00&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2018-02-23T00:00:00&#43;08:00">
+        
+    <meta name="Keywords" content="golang,go语言,go语言笔记,项目管理,软件架构,公众号,小程序">
+    <meta name="description" content="Linux守护进程和自启动">
+        
+    <meta name="author" content="gerry">
+    <meta property="og:url" content="https://gerrywp.github.io/post/2018-02-23-daemonauto/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://gerrywp.github.io">
+                        云亦海
+                    </a>
+                
+                <p class="description">专注于Go语言(golang)、csharp、移动互联网、项目管理、软件架构</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://gerrywp.github.io">首页</a>
+                    
+                    <a  href="https://gerrywp.github.io/archives/" title="归档">归档</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+        
+        
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">Linux守护进程和自启动</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2018年2月23日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="https://gerrywp.github.io/categories/linux">linux</a></span>
+                            
+                        </div>
+                        
+                        
+                        <div class="post-meta">
+                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
+                        </div>
+                        
+                        
+                        <div class="post-content">
+                            <p>　　Linux的服务也是以etc配置的形式完成的，启动一个daemon(守护进程)来提供service(服务)。服务的管理是一个既复杂又细致的工作，Linux提供了两种方式来
+管理服务：一种是透过<code>systemctl</code>这一个命令管理服务，另一种是透过<code>service</code>来管理服务的启动、停止、重启等等，透过<code>chkconfig</code>来管理服务的开机启动与否。
+在此以<code>systemctl</code>应用出来之前和<code>systemctl</code>应用出来之后的服务管理方式分别作介绍！</p>
+
+<h3 id="service-chkconfig-管理service-服务"><code>service&amp;&amp;chkconfig</code>管理service(服务)</h3>
+
+<p>　　daemon的命名规则，所有服务的开发者，在提供服务应用程序的时候都会在服务的名称后加上字母d，d代表的就是daemon的意思。提供的服务是要与端口一一对应的，
+这样守护进程才能对外提供服务。Linux中是通过/etc/services配置文件来定义服务的端口号的。</p>
+
+<pre><code class="language-shell"># 查看服务与端口号的对应关系
+cat /etc/services
+</code></pre>
+
+<h4 id="daemon的启动脚本和启动方式">daemon的启动脚本和启动方式</h4>
+
+<p>　　daemon的启动是个复杂的过程，包括侦测环境、配置文件分析加载等等。所以通常服务应用程序在安装完成之后会提供一个script脚本，帮助使用者完成上述一系列操作。
+daemon的shell script(启动脚本)通常存放在以下几个路径(*代表应用程序名称)：
+* /etc/init.d/* : 启动脚本放置目录
+* /etc/* : 服务各自的配置</p>
+
+<h5 id="etc-init-d-与-etc-rc-d-init-d-之间的关系"><code>/etc/init.d</code>与<code>/etc/rc.d/init.d</code>之间的关系</h5>
+
+<p>　　透过如下命令我们可以看到，其实<code>/etc/init.d</code>是<code>/etc/rc.d/init.d</code>的文件夹软链接档：</p>
+
+<pre><code class="language-shell">ls -alF /etc/init.d
+</code></pre>
+
+<p>因此我们自定义的服务启动程序可以放在<code>/etc/init.d</code>和<code>/etc/rc.d/int.d</code>这两个地方。</p>
+
+<p>名词解析
+&gt; rc(run level control)运行等级控制。.d(directory)代表路径是一个目录</p>
+
+<h5 id="stand-alone服务应用-daemon-的启动">stand alone服务应用(daemon)的启动</h5>
+
+<ul>
+<li><p>可以直接运行脚本以启动</p>
+
+<pre><code class="language-shell"># 直接运行可以查看服务应用程序脚本的使用方法
+/etc/init.d/vsftpd 
+</code></pre></li>
+
+<li><p>透过<code>service</code>命令，其实是一个shell script应用程序脚本,它可以分析下达的参数，完成服务的启动等</p>
+
+<pre><code class="language-shell"># 查看帮助说明
+service -h
+# 查看所有守护进程服务的状态
+service --status-all
+</code></pre></li>
+</ul>
+
+<h5 id="观察系统启动的服务">观察系统启动的服务</h5>
+
+<pre><code class="language-shell">netstat -tulp
+netstat -lnp
+</code></pre>
+
+<h5 id="服务的自启动">服务的自启动</h5>
+
+<p>　　服务启动之后，如果服务器(计算机)重启了，那么服务下次还会自动启动吗？这就需要了解到底我们的Linux主机是如何启动的。
+1. 打开计算机电源，开始读取 BIOS 并进行主机的自我测试；
+2. 透过 BIOS 取得第一个可启动装置，读取主要启动区 (MBR) 取得启动管理程序；
+3. 透过启动管理程序的配置，取得 kernel 并加载内存且侦测系统硬件；
+4. 核心主动呼叫 init 程序；
+5. init 程序开始运行系统初始化 (/etc/rc.d/rc.sysinit)
+6. 依据 init 的配置进行 daemon start (/etc/rc.d/rc[0-6].d/*)
+7. 加载本机配置 (/etc/rc.d/rc.local)
+Linux系统启动时，会进入不同的运行等级(run level)。不同的运行等级有不同的功能和服务。使用<code>chkconfig</code>命令可以查询不同等级有哪些服务会启动！</p>
+
+<pre><code class="language-shell">chkconfig --list
+# 透过这个命令我们可以看到一共有7个运行等级，并且会显示每个daemon服务在不同run level的运行状态
+</code></pre>
+
+<p>其实<code>chkconfig</code>这个命令只是为服务的启动脚本在不同的run level下建立了链接档。
+使用如下命令，可以看出来<code>rc0.d</code>到<code>rc6.d</code>分别对应run level的七个运行等级：</p>
+
+<pre><code class="language-shell">ls /etc/rc.d
+# 实际上chkconfig改变httpd的状态，是在rc0.d ...... rc6.d 中建立了对应的链接档案到`/etc/rc.d/init.d/*`下的具体文件
+chkconfig httpd on
+</code></pre>
+
+<h5 id="创建自己的服务脚本">创建自己的服务脚本</h5>
+
+<p>　　当我们创建自己的shell script服务脚本的时候，如何让chkconfig来管理呢？
+我们只需要在<code>/etc/init.d</code>或者<code>/etc/rc.d/init.d</code>下创建好我们的服务启动脚本，具体的脚本写法我们可以打开系统本有的脚本参照来写！然后我们将自定义的脚本
+加入到<code>chkconfig</code>的控制范围中即可。</p>
+
+<pre><code class="language-shell"># 添加脚本到chkconfig控制
+chkconfig --add myscript
+# 删除脚本控制
+chkconfig --del myscript
+</code></pre>
+
+<p>然后就可以透过chkconfig来管理自定义脚本在不同run level的自启动与否了！</p>
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/2017-12-03-threadsafe/">线程安全与非线程安全</a></li>
+        
+        <li><a href="/post/2017-12-02-nginx/">nginx和apache端口80冲突的问题</a></li>
+        
+        <li><a href="/post/2017-11-26-cmdalias/">cmd实现类似linux下的alias并模拟加载bashrc文件</a></li>
+        
+        <li><a href="/post/2017-11-24-vs2017setup/">vs2017支持.editorconfig配置</a></li>
+        
+        <li><a href="/post/2017-11-24-fullstack/">前端那些事儿</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="https://gerrywp.github.io/tags/tag1">tag1</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="/search/" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://gerrywp.github.io">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-10-07-gcmw/" title="git push错误">git push错误</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-07-15-qorcms/" title="QOR踩坑日记">QOR踩坑日记</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-07-13-clusterdistribute/" title="集群和分布式">集群和分布式</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-07-07-gocommand/" title="go命令详解">go命令详解</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-07-06-gogetproxy/" title="go get代理设置">go get代理设置</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-06-20-algorithms/" title="数据结构">数据结构</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2018-11-20-gosyntax/" title="GO语言圣经笔记">GO语言圣经笔记</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2018-10-20-bwbj/" title="大爱无疆">大爱无疆</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2018-08-16-jsjourney6/" title="nodejs之旅(6)热替换与热加载">nodejs之旅(6)热替换与热加载</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2018-08-13-jsjourney5/" title="nodejs之旅(5)-form表单">nodejs之旅(5)-form表单</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://gerrywp.github.io/categories/article/">article (12)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/csharp/">csharp (9)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/golang/">golang (4)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/javascript/">javascript (16)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/linux/">linux (11)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/others/">others (11)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/sql/">sql (2)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/windows/">windows (7)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://gerrywp.github.io/tags/2019/">2019</a>
+    
+    <a href="https://gerrywp.github.io/tags/go/">go</a>
+    
+    <a href="https://gerrywp.github.io/tags/tag1/">tag1</a>
+    
+    <a href="https://gerrywp.github.io/tags/vscode/">vscode</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://gerrywp.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="https://gerrywp.github.io">云亦海 By gerry</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function () {
+            $("pre code").parent().addClass("line-numbers")
+        }());
+
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+<script type="text/javascript">
+(function(){
+	if (typeof self === 'undefined' || !self.Prism || !self.document) {
+		return;
+	}
+
+	if (!Prism.plugins.toolbar) {
+		console.warn('Copy to Clipboard plugin loaded before Toolbar plugin.');
+
+		return;
+	}
+
+	var ClipboardJS = window.ClipboardJS || undefined;
+
+	if (!ClipboardJS && typeof require === 'function') {
+		ClipboardJS = require('clipboard');
+	}
+
+	var callbacks = [];
+
+	if (!ClipboardJS) {
+		var script = document.createElement('script');
+		var head = document.querySelector('head');
+
+		script.onload = function() {
+			ClipboardJS = window.ClipboardJS;
+
+			if (ClipboardJS) {
+				while (callbacks.length) {
+					callbacks.pop()();
+				}
+			}
+		};
+
+		script.src = 'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js';
+		head.appendChild(script);
+	}
+
+	Prism.plugins.toolbar.registerButton('copy-to-clipboard', function (env) {
+		var linkCopy = document.createElement('button');
+		linkCopy.textContent = '复制代码';
+
+		if (!ClipboardJS) {
+			callbacks.push(registerClipboard);
+		} else {
+			registerClipboard();
+		}
+
+		return linkCopy;
+
+		function registerClipboard() {
+			var clip = new ClipboardJS(linkCopy, {
+				'text': function () {
+					return env.code;
+				}
+			});
+
+			clip.on('success', function() {
+				linkCopy.textContent = '复制成功!';
+
+				resetText();
+			});
+			clip.on('error', function () {
+				linkCopy.textContent = '按 Ctrl+C 复制';
+
+				resetText();
+			});
+		}
+
+		function resetText() {
+			setTimeout(function () {
+				linkCopy.textContent = '复制代码';
+			}, 5000);
+		}
+	});
+})();
+
+</script>
+</body>
+</html>

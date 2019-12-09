@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.59.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>keystonejs(2)dotenv等常用库 | 云亦海</title>
+    <meta property="og:title" content="keystonejs(2)dotenv等常用库 - 云亦海">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2018-08-10T00:00:00&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2018-08-10T00:00:00&#43;08:00">
+        
+    <meta name="Keywords" content="golang,go语言,go语言笔记,项目管理,软件架构,公众号,小程序">
+    <meta name="description" content="keystonejs(2)dotenv等常用库">
+        
+    <meta name="author" content="gerry">
+    <meta property="og:url" content="https://gerrywp.github.io/post/2018-08-10-keystonejs2/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://gerrywp.github.io">
+                        云亦海
+                    </a>
+                
+                <p class="description">专注于Go语言(golang)、csharp、移动互联网、项目管理、软件架构</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://gerrywp.github.io">首页</a>
+                    
+                    <a  href="https://gerrywp.github.io/archives/" title="归档">归档</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+        
+        
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">keystonejs(2)dotenv等常用库</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2018年8月10日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="https://gerrywp.github.io/categories/javascript">javascript</a></span>
+                            
+                        </div>
+                        
+                        
+                        <div class="post-meta">
+                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
+                        </div>
+                        
+                        
+                        <div class="post-content">
+                            <p>　　透过keystonejs接触了很多常用的库，查阅npm文档了解它们的基本用法。dotenv从.env文件中加载并设置环境变量。</p>
+
+<h3 id="dotenv">dotenv</h3>
+
+<p>nodejs运行很多时候依靠环境变量在开发环境和生产环境做不同的适配。通过引入<code>dotenv</code>库，并添加.env文件，我们就可以自定义环境变量了！
+例如，常用的cookie密钥就可以设置在.env文件中：</p>
+
+<pre><code class="language-js">// .env
+//cookie密钥
+COOKIE_SECRET={your secret key}
+DEVOLOPMENT=true
+</code></pre>
+
+<p>express中的使用</p>
+
+<pre><code class="language-js">// app.js
+require('dotenv').config()
+if(process.env.COOKIE_SECRET){
+  console.log(process.env.COOKIE_SECRET);
+}
+</code></pre>
+
+<h3 id="debug">debug</h3>
+
+<p>一个调试工具，可以通过环境变量的设置来输出自己模块日志。在当前模块中调用，并命名然后根据环境变量来确定是不是要启用调试日志！</p>
+
+<pre><code class="language-js">// app.js
+var debug = require('debug')('app');
+var name='baung!';
+debug('%o is running!',name);
+</code></pre>
+
+<p>在.env中配置环境变量<code>DEBUG</code>来启动调试日志！</p>
+
+<pre><code>//仅开启名称为app的模块日志
+DEBUG=app
+//开启除了名字为&quot;express:*&quot;的模块日志
+DEBUG=*,-express:*
+</code></pre>
+
+<p>你可以通过&rdquo;-&ldquo;符号，排除指定的debuggers</p>
+
+<h3 id="express-session">express-session</h3>
+
+<p>集成express管理session会话</p>
+
+<h3 id="morgan">morgan</h3>
+
+<p>HTTP request logger中间件，用来记录http请求的详细信息，可以配置各种显示样式！
+有以下几种<code>Predefined Formats</code>格式化选项可选：<br />
+1. combined
+2. common
+3. dev
+4. short
+5. tiny</p>
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/2018-07-16-cin/">cin那些事儿</a></li>
+        
+        <li><a href="/post/2018-07-05-cpprelative/">c&#43;&#43;开发环境</a></li>
+        
+        <li><a href="/post/2018-07-03-linear7hash/">线性存储和hashcode</a></li>
+        
+        <li><a href="/post/2018-06-27-thinkinjava/">Think in java(Java编程思想)笔记</a></li>
+        
+        <li><a href="/post/2018-06-25-javaer/">java那些事儿</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="https://gerrywp.github.io/tags/tag1">tag1</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="/search/" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://gerrywp.github.io">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-10-07-gcmw/" title="git push错误">git push错误</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-07-15-qorcms/" title="QOR踩坑日记">QOR踩坑日记</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-07-13-clusterdistribute/" title="集群和分布式">集群和分布式</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-07-07-gocommand/" title="go命令详解">go命令详解</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-07-06-gogetproxy/" title="go get代理设置">go get代理设置</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2019-06-20-algorithms/" title="数据结构">数据结构</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2018-11-20-gosyntax/" title="GO语言圣经笔记">GO语言圣经笔记</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2018-10-20-bwbj/" title="大爱无疆">大爱无疆</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2018-08-16-jsjourney6/" title="nodejs之旅(6)热替换与热加载">nodejs之旅(6)热替换与热加载</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/post/2018-08-13-jsjourney5/" title="nodejs之旅(5)-form表单">nodejs之旅(5)-form表单</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://gerrywp.github.io/categories/article/">article (12)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/csharp/">csharp (9)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/golang/">golang (4)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/javascript/">javascript (16)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/linux/">linux (11)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/others/">others (11)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/sql/">sql (2)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/categories/windows/">windows (7)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://gerrywp.github.io/tags/2019/">2019</a>
+    
+    <a href="https://gerrywp.github.io/tags/go/">go</a>
+    
+    <a href="https://gerrywp.github.io/tags/tag1/">tag1</a>
+    
+    <a href="https://gerrywp.github.io/tags/vscode/">vscode</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://gerrywp.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="https://gerrywp.github.io">云亦海 By gerry</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function () {
+            $("pre code").parent().addClass("line-numbers")
+        }());
+
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+<script type="text/javascript">
+(function(){
+	if (typeof self === 'undefined' || !self.Prism || !self.document) {
+		return;
+	}
+
+	if (!Prism.plugins.toolbar) {
+		console.warn('Copy to Clipboard plugin loaded before Toolbar plugin.');
+
+		return;
+	}
+
+	var ClipboardJS = window.ClipboardJS || undefined;
+
+	if (!ClipboardJS && typeof require === 'function') {
+		ClipboardJS = require('clipboard');
+	}
+
+	var callbacks = [];
+
+	if (!ClipboardJS) {
+		var script = document.createElement('script');
+		var head = document.querySelector('head');
+
+		script.onload = function() {
+			ClipboardJS = window.ClipboardJS;
+
+			if (ClipboardJS) {
+				while (callbacks.length) {
+					callbacks.pop()();
+				}
+			}
+		};
+
+		script.src = 'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js';
+		head.appendChild(script);
+	}
+
+	Prism.plugins.toolbar.registerButton('copy-to-clipboard', function (env) {
+		var linkCopy = document.createElement('button');
+		linkCopy.textContent = '复制代码';
+
+		if (!ClipboardJS) {
+			callbacks.push(registerClipboard);
+		} else {
+			registerClipboard();
+		}
+
+		return linkCopy;
+
+		function registerClipboard() {
+			var clip = new ClipboardJS(linkCopy, {
+				'text': function () {
+					return env.code;
+				}
+			});
+
+			clip.on('success', function() {
+				linkCopy.textContent = '复制成功!';
+
+				resetText();
+			});
+			clip.on('error', function () {
+				linkCopy.textContent = '按 Ctrl+C 复制';
+
+				resetText();
+			});
+		}
+
+		function resetText() {
+			setTimeout(function () {
+				linkCopy.textContent = '复制代码';
+			}, 5000);
+		}
+	});
+})();
+
+</script>
+</body>
+</html>
