@@ -1,4 +1,4 @@
-baseurl = "https://gerrywp.github.io"
+baseurl = "https://gerrywp.github.io/blog"
 languageCode = "zh-CN"
 title = "云亦海"
 publishDir = "docs"

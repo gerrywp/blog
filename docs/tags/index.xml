@@ -2,48 +2,48 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on 云亦海</title>
-    <link>https://gerrywp.github.io/tags/</link>
+    <link>https://gerrywp.github.io/blog/tags/</link>
     <description>Recent content in Tags on 云亦海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Mon, 07 Oct 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://gerrywp.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://gerrywp.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>tag1</title>
-      <link>https://gerrywp.github.io/tags/tag1/</link>
+      <link>https://gerrywp.github.io/blog/tags/tag1/</link>
       <pubDate>Mon, 07 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/tags/tag1/</guid>
+      <guid>https://gerrywp.github.io/blog/tags/tag1/</guid>
       <description></description>
     </item>
     
     <item>
       <title>2019</title>
-      <link>https://gerrywp.github.io/tags/2019/</link>
+      <link>https://gerrywp.github.io/blog/tags/2019/</link>
       <pubDate>Sun, 07 Jul 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/tags/2019/</guid>
+      <guid>https://gerrywp.github.io/blog/tags/2019/</guid>
       <description></description>
     </item>
     
     <item>
       <title>go</title>
-      <link>https://gerrywp.github.io/tags/go/</link>
+      <link>https://gerrywp.github.io/blog/tags/go/</link>
       <pubDate>Sun, 07 Jul 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/tags/go/</guid>
+      <guid>https://gerrywp.github.io/blog/tags/go/</guid>
       <description></description>
     </item>
     
     <item>
       <title>vscode</title>
-      <link>https://gerrywp.github.io/tags/vscode/</link>
+      <link>https://gerrywp.github.io/blog/tags/vscode/</link>
       <pubDate>Sun, 07 Jul 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/tags/vscode/</guid>
+      <guid>https://gerrywp.github.io/blog/tags/vscode/</guid>
       <description></description>
     </item>
     

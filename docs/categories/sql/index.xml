@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>sql on 云亦海</title>
-    <link>https://gerrywp.github.io/categories/sql/</link>
+    <link>https://gerrywp.github.io/blog/categories/sql/</link>
     <description>Recent content in sql on 云亦海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Fri, 17 Mar 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://gerrywp.github.io/categories/sql/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://gerrywp.github.io/blog/categories/sql/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>拾遗ms-sql stored procedure</title>
-      <link>https://gerrywp.github.io/post/2017-03-17-mssql-sp/</link>
+      <link>https://gerrywp.github.io/blog/post/2017-03-17-mssql-sp/</link>
       <pubDate>Fri, 17 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/post/2017-03-17-mssql-sp/</guid>
+      <guid>https://gerrywp.github.io/blog/post/2017-03-17-mssql-sp/</guid>
       <description>&lt;p&gt;一直以来sql都只使用用了最简单的功能，仅限于增删改查。最近因项目需要，要将所有的查询都改成存储过程。也就是说要将所有的业务逻辑放在了数据库端来处理。
 老实说以前业务的东西都是用高级语言代码来做，存储过程写的少，所以还是有很多东西不熟悉并值得考究的，仅以文字记之。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title> Ms-SqlServer开窗函数(over())</title>
-      <link>https://gerrywp.github.io/post/2017-01-11-overfunc/</link>
+      <link>https://gerrywp.github.io/blog/post/2017-01-11-overfunc/</link>
       <pubDate>Wed, 11 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/post/2017-01-11-overfunc/</guid>
+      <guid>https://gerrywp.github.io/blog/post/2017-01-11-overfunc/</guid>
       <description>&lt;p&gt;开窗函数用在ms的group by分组无法迄及的地方。&lt;/p&gt;</description>
     </item>
     

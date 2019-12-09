@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>csharp on 云亦海</title>
-    <link>https://gerrywp.github.io/categories/csharp/</link>
+    <link>https://gerrywp.github.io/blog/categories/csharp/</link>
     <description>Recent content in csharp on 云亦海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Mon, 11 Jun 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://gerrywp.github.io/categories/csharp/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://gerrywp.github.io/blog/categories/csharp/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>msbuild(3)-用命令行部署web</title>
-      <link>https://gerrywp.github.io/post/2018-06-11-msbuild3/</link>
+      <link>https://gerrywp.github.io/blog/post/2018-06-11-msbuild3/</link>
       <pubDate>Mon, 11 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/post/2018-06-11-msbuild3/</guid>
+      <guid>https://gerrywp.github.io/blog/post/2018-06-11-msbuild3/</guid>
       <description>&lt;p&gt;　　msbuild除了可以构建.proj文件之外，还可用解决方案.sln文件构建目标！&lt;/p&gt;</description>
     </item>
     
     <item>
       <title> msbuild(2)-In Visual Studio</title>
-      <link>https://gerrywp.github.io/post/2018-06-10-msbuild2/</link>
+      <link>https://gerrywp.github.io/blog/post/2018-06-10-msbuild2/</link>
       <pubDate>Sun, 10 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/post/2018-06-10-msbuild2/</guid>
+      <guid>https://gerrywp.github.io/blog/post/2018-06-10-msbuild2/</guid>
       <description>&lt;p&gt;　　使用&lt;strong&gt;Visual Stuido&lt;/strong&gt;(以下简称VS)发布(publish)web application到文件系统(File System)的时候，我们希望可以定制待发布的前端文件，并且在msbuild deploy的时候对构建流程进行处理！如何做呢？&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>msbuild(1)-基本使用</title>
-      <link>https://gerrywp.github.io/post/2018-06-09-msbuild1/</link>
+      <link>https://gerrywp.github.io/blog/post/2018-06-09-msbuild1/</link>
       <pubDate>Sat, 09 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/post/2018-06-09-msbuild1/</guid>
+      <guid>https://gerrywp.github.io/blog/post/2018-06-09-msbuild1/</guid>
       <description>&lt;p&gt;　　使用MS的开发工具&lt;strong&gt;Visual Studio&lt;/strong&gt;(以下简称VS)不得不使用msbuild进行项目的构建。VS能简化很多工作，同时也隐藏了很多内部实现细节。
 其中包括点击&amp;rdquo;部署&amp;rdquo;(publish)的时候VS通过msbuild为我们做了哪些工作？msbuild的使用
 在官方网站&lt;a href=&#34;https://msdn.microsoft.com/zh-cn/library/dd393574.aspx?f=255&amp;amp;MSPPError=-2147217396&#34; title=&#34;点我访问&#34;&gt;msbuild1&lt;/a&gt;有详细的使用说明，做如下归纳！&lt;/p&gt;</description>
@@ -42,47 +42,47 @@
     
     <item>
       <title>发布项目dll未被msbuild拷贝到输出目录</title>
-      <link>https://gerrywp.github.io/post/2018-03-29-dllnotcopy/</link>
+      <link>https://gerrywp.github.io/blog/post/2018-03-29-dllnotcopy/</link>
       <pubDate>Thu, 29 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/post/2018-03-29-dllnotcopy/</guid>
+      <guid>https://gerrywp.github.io/blog/post/2018-03-29-dllnotcopy/</guid>
       <description>&lt;p&gt;　　添加了reference的dll文件并且&lt;code&gt;Copy Local&lt;/code&gt;值为True为何不拷贝到输出目录？&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>线程安全与非线程安全</title>
-      <link>https://gerrywp.github.io/post/2017-12-03-threadsafe/</link>
+      <link>https://gerrywp.github.io/blog/post/2017-12-03-threadsafe/</link>
       <pubDate>Sun, 03 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/post/2017-12-03-threadsafe/</guid>
+      <guid>https://gerrywp.github.io/blog/post/2017-12-03-threadsafe/</guid>
       <description>&lt;p&gt;　　c#的多线程编程由于其高级的语法糖(synax)而变化的相对简单，然而又有些神秘莫测。对于线程安全与否与同步(synchronize)经常有人将其混为一谈，其实这是2个不同的概念。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>vs2017支持.editorconfig配置</title>
-      <link>https://gerrywp.github.io/post/2017-11-24-vs2017setup/</link>
+      <link>https://gerrywp.github.io/blog/post/2017-11-24-vs2017setup/</link>
       <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/post/2017-11-24-vs2017setup/</guid>
+      <guid>https://gerrywp.github.io/blog/post/2017-11-24-vs2017setup/</guid>
       <description>&lt;p&gt;　　visual studio无法全局设置编码，新建的文件有的时候并不是使用utf-8编码的，所有在有的环境下会出现乱码。比如使用babel转嘛js代码的时候。网上找到的解决方案，下载&lt;code&gt;ForeUTF8&lt;/code&gt;插件并不能解决问题，当我们新建文件的时候，还要一个个手动通过高级保存，保存为我们想要的编码。所幸百般查找，发现vs是可以支持&lt;code&gt;.editorconfig&lt;/code&gt;配置文件的。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>console应用程序progressbar（进度条的实现）</title>
-      <link>https://gerrywp.github.io/post/2017-11-23-consoleprogbar/</link>
+      <link>https://gerrywp.github.io/blog/post/2017-11-23-consoleprogbar/</link>
       <pubDate>Thu, 23 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/post/2017-11-23-consoleprogbar/</guid>
+      <guid>https://gerrywp.github.io/blog/post/2017-11-23-consoleprogbar/</guid>
       <description>&lt;p&gt;　　控制台应用程序，有时候需要做文件上传、压缩等(网络/磁盘)I/O处理。为了得到更友好的界面交互，所以需要用到progress bar 进度条。
 github上有很多现成的可以使用。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>razor引擎及view的呈现</title>
-      <link>https://gerrywp.github.io/post/2017-04-14.razor/</link>
+      <link>https://gerrywp.github.io/blog/post/2017-04-14.razor/</link>
       <pubDate>Fri, 14 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/post/2017-04-14.razor/</guid>
+      <guid>https://gerrywp.github.io/blog/post/2017-04-14.razor/</guid>
       <description>&lt;p&gt;.cshtml(.vbhtml)文件能够被执行，必须被编译进程序集的具体类型。
 微软使用&lt;code&gt;%windir%\Microsoft.NET\Framework\v4.0.30319&lt;/code&gt;下的aspnet_compiler.exe对view文件进行编译。
 &lt;a href=&#34;https://github.com/ASP-NET-MVC/aspnetwebstack/tree/master/src&#34; title=&#34;点我访问&#34;&gt;aspnet mvc4源码&lt;/a&gt;&lt;/p&gt;</description>
@@ -90,10 +90,10 @@ github上有很多现成的可以使用。&lt;/p&gt;</description>
     
     <item>
       <title>委托和反射</title>
-      <link>https://gerrywp.github.io/post/2017-01-19-delegate1/</link>
+      <link>https://gerrywp.github.io/blog/post/2017-01-19-delegate1/</link>
       <pubDate>Thu, 19 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/post/2017-01-19-delegate1/</guid>
+      <guid>https://gerrywp.github.io/blog/post/2017-01-19-delegate1/</guid>
       <description>&lt;p&gt;反射的性能问题一直是广为诟病的，但反射所消耗的这一点性能并不算什么。因为通常情况下的业务逻辑都不会很复杂，我们只是使用反射
 来处理一些常规编码难以迄及的特殊场景。&lt;/p&gt;</description>
     </item>
