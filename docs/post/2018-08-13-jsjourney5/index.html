@@ -97,12 +97,36 @@
 
 <h3 id="form的常用四种mime类型">form的常用四种MIME类型</h3>
 
-<p>| MIME | 数据格式 |<br />
-| &ndash; | &ndash; |
-| text/plain | name=&lsquo;pai&rsquo;&amp;id=&lsquo;id&rsquo; |
-| application/json;charset=utf-8 | {&ldquo;name&rdquo;:&ldquo;pai&rdquo;,&ldquo;id&rdquo;:&ldquo;1&rdquo;} |
-| application/x-www-form-urlencoded;charset=utf-8 | name=&lsquo;pai&rsquo;&amp;id=&lsquo;1&rsquo; |<br />
-| multipart/form-data | 带有boundary的附件上传形式 |</p>
+<table>
+<thead>
+<tr>
+<th align="left">MIME</th>
+<th align="left">数据格式</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">text/plain</td>
+<td align="left">name=&lsquo;pai&rsquo;&amp;id=&lsquo;id&rsquo;</td>
+</tr>
+
+<tr>
+<td align="left">application/json;charset=utf-8</td>
+<td align="left">{&ldquo;name&rdquo;:&ldquo;pai&rdquo;,&ldquo;id&rdquo;:&ldquo;1&rdquo;}</td>
+</tr>
+
+<tr>
+<td align="left">application/x-www-form-urlencoded;charset=utf-8</td>
+<td align="left">name=&lsquo;pai&rsquo;&amp;id=&lsquo;1&rsquo;</td>
+</tr>
+
+<tr>
+<td align="left">multipart/form-data</td>
+<td align="left">带有boundary的附件上传形式</td>
+</tr>
+</tbody>
+</table>
 
 <p>在js前端使用<code>fetch</code>往服务器端发送数据的时候，通常指定的<code>Content-Type</code>数据类型就是MIME类型</p>
 
@@ -330,6 +354,8 @@ fetch(url,{
     <a href="https://gerrywp.github.io/blog/tags/js/">js</a>
     
     <a href="https://gerrywp.github.io/blog/tags/keystonejs/">keystonejs</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/markdown/">markdown</a>
     
     <a href="https://gerrywp.github.io/blog/tags/msbuild/">msbuild</a>
     

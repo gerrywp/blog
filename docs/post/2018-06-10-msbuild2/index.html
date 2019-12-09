@@ -127,7 +127,7 @@
 <code>Tools -&gt; Options -&gt; Projects and Solutinos -&gt; Build and Run -&gt; MSBuild</code>
 如果想看msbuild详细的Build Target顺序，可以将此项设置为<code>Diagnostic</code></p>
 
-<p><img src="/pictures/QQ20180610165051.png" alt="msbuild-output配置" title="点我访问" /></p>
+<p><img src="../../pictures/QQ20180610165051.png" alt="msbuild-output配置" title="点我访问" /></p>
 
 <blockquote>
 <p>说明：写脚本调试，强烈推荐设置成<code>Diagnostic</code>,这样可以看到超详细的msbuild构建信息。例如：加载内置的环境变量，加载msbuild保留属性(resolve-properties)。
@@ -137,7 +137,7 @@
 <p>如下图c# web构建使用的是<code>C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\Microsoft\VisualStudio\v15.0\Web\Microsoft.Web.Publishing.targets</code>
 这个targets文件，感兴趣的可以研究下这个文件了解详细的构建过程！</p>
 
-<p><img src="/pictures/QQ20180610170738.png" alt="deploy-targets" title="点我访问" /></p>
+<p><img src="../../pictures/QQ20180610170738.png" alt="deploy-targets" title="点我访问" /></p>
 
 <p>通过查看<strong>Microsoft.Web.Publishing.targets</strong>文件不难看出<code>GatherAllFilesToPublish</code>是一个空目标，它的依赖目标有一个<code>CopyAllFilesToSingleFolderForPackage</code>,通过设置AfterTarget=&ldquo;CopyAllFilesToSingleFolderForPackage&rdquo;可以自定义web publish流程.</p>
 
@@ -301,6 +301,8 @@
     <a href="https://gerrywp.github.io/blog/tags/js/">js</a>
     
     <a href="https://gerrywp.github.io/blog/tags/keystonejs/">keystonejs</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/markdown/">markdown</a>
     
     <a href="https://gerrywp.github.io/blog/tags/msbuild/">msbuild</a>
     

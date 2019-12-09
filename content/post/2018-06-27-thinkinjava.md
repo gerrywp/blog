@@ -10,17 +10,17 @@ categories = [ "others" ]
 ### Primitive类型(基元类型)
 在这里我借鉴了CLR via c#的翻译，将它翻译为**基元类型**以区别于**Wrapper类型**
 
- | 基元类型 | 大小(bit) | 封装器类型 |
- | -- | :--: | :--: |
- | boolean | 1 | Boolean | 
- | char | 16 | Character | 
- | byte | 8 | Byte |
- | short | 16 | Short |
- | int | 32 | Integer |
- | long | 64 | Long |
- | float | 32 | Float |
- | double | 64 | Double |
- | Void | | Void |
+| 基元类型 | 大小(bit) | 封装器类型 |
+| :--- | :---: | :---: |
+| boolean | 1 | Boolean |
+| char | 16 | Character |
+| byte | 8 | Byte |
+| short | 16 | Short |
+| int | 32 | Integer |
+| long | 64 | Long |
+| float | 32 | Float |
+| double | 64 | Double |
+| Void | | Void |
  
  > 说明：基元类型存储在内存~~堆栈~~(`Stack`)上，封装器类型存储在内存~~堆~~(`Heap`)上。
 
@@ -141,7 +141,7 @@ void f() throws TooBig,TooSmall { //...
 2. 应该在代码中进行检查的错误。(比如对于ArrayIndexOutOfBoundsException,就得注意下数组的大小了。)在一个地方发生的异常，常常会在另一个地方导致错误。
 ### GC
 
-![GC回收](../pictures/20180919140600.png '点我访问')
+![GC回收](../../pictures/20180919140600.png '点我访问')
 
 线上产品频繁GC，也就是产生了内存泄露该如何处理？  
 java的jdk(bin目录)里面提供了很多套件
