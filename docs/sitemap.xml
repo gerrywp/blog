@@ -324,7 +324,7 @@
   
   <url>
     <loc>https://gerrywp.github.io/blog/post/2017-11-02-uselinux/</loc>
-    <lastmod>2017-10-30T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -443,12 +443,12 @@
   </url>
   
   <url>
-    <loc>https://gerrywp.github.io/blog/tags/sql/</loc>
+    <loc>https://gerrywp.github.io/blog/categories/sql/</loc>
     <lastmod>2017-03-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://gerrywp.github.io/blog/categories/sql/</loc>
+    <loc>https://gerrywp.github.io/blog/tags/sql/</loc>
     <lastmod>2017-03-17T00:00:00+00:00</lastmod>
   </url>
   
@@ -483,12 +483,17 @@
   </url>
   
   <url>
+    <loc>https://gerrywp.github.io/blog/post/2017-01-11-overfunc/</loc>
+    <lastmod>2017-01-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://gerrywp.github.io/blog/post/2017-01-11-jkhilight/</loc>
     <lastmod>2017-01-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://gerrywp.github.io/blog/post/2017-01-11-overfunc/</loc>
+    <loc>https://gerrywp.github.io/blog/tags/markdown/</loc>
     <lastmod>2017-01-11T00:00:00+00:00</lastmod>
   </url>
   

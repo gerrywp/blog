@@ -98,17 +98,71 @@
 
 <p>在这里我借鉴了CLR via c#的翻译，将它翻译为<strong>基元类型</strong>以区别于<strong>Wrapper类型</strong></p>
 
-<p>| 基元类型 | 大小(bit) | 封装器类型 |
- | &ndash; | :&ndash;: | :&ndash;: |
- | boolean | 1 | Boolean |
- | char | 16 | Character |
- | byte | 8 | Byte |
- | short | 16 | Short |
- | int | 32 | Integer |
- | long | 64 | Long |
- | float | 32 | Float |
- | double | 64 | Double |
- | Void | | Void |</p>
+<table>
+<thead>
+<tr>
+<th align="left">基元类型</th>
+<th align="center">大小(bit)</th>
+<th align="center">封装器类型</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">boolean</td>
+<td align="center">1</td>
+<td align="center">Boolean</td>
+</tr>
+
+<tr>
+<td align="left">char</td>
+<td align="center">16</td>
+<td align="center">Character</td>
+</tr>
+
+<tr>
+<td align="left">byte</td>
+<td align="center">8</td>
+<td align="center">Byte</td>
+</tr>
+
+<tr>
+<td align="left">short</td>
+<td align="center">16</td>
+<td align="center">Short</td>
+</tr>
+
+<tr>
+<td align="left">int</td>
+<td align="center">32</td>
+<td align="center">Integer</td>
+</tr>
+
+<tr>
+<td align="left">long</td>
+<td align="center">64</td>
+<td align="center">Long</td>
+</tr>
+
+<tr>
+<td align="left">float</td>
+<td align="center">32</td>
+<td align="center">Float</td>
+</tr>
+
+<tr>
+<td align="left">double</td>
+<td align="center">64</td>
+<td align="center">Double</td>
+</tr>
+
+<tr>
+<td align="left">Void</td>
+<td align="center"></td>
+<td align="center">Void</td>
+</tr>
+</tbody>
+</table>
 
 <blockquote>
 <p>说明：基元类型存储在内存<del>堆栈</del>(<code>Stack</code>)上，封装器类型存储在内存<del>堆</del>(<code>Heap</code>)上。</p>
@@ -251,7 +305,7 @@ java -cp . com.aiyoe.Main
 
 <h3 id="gc">GC</h3>
 
-<p><img src="../pictures/20180919140600.png" alt="GC回收" title="点我访问" /></p>
+<p><img src="../../pictures/20180919140600.png" alt="GC回收" title="点我访问" /></p>
 
 <p>线上产品频繁GC，也就是产生了内存泄露该如何处理？<br />
 java的jdk(bin目录)里面提供了很多套件
@@ -497,6 +551,8 @@ B线程调用getValue得到是线程本地变量，很有可能不是最新的�
     <a href="https://gerrywp.github.io/blog/tags/js/">js</a>
     
     <a href="https://gerrywp.github.io/blog/tags/keystonejs/">keystonejs</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/markdown/">markdown</a>
     
     <a href="https://gerrywp.github.io/blog/tags/msbuild/">msbuild</a>
     
