@@ -1,6 +1,6 @@
 +++
 title = "汇编指令lea"
-date = "2013-14-04"
+date = "2013-01-04"
 tags = [ "tag1" ]
 categories = [ "windows" ]
 +++
