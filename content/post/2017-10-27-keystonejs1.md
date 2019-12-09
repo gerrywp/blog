@@ -1,7 +1,7 @@
 +++
 title = "keystonejs(1)隐晦配置"
 date = "2017-10-27"
-tags = [ "tag1" ]
+tags = [ "keystonejs" ]
 categories = [ "javascript" ]
 +++
 

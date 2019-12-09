@@ -1,7 +1,7 @@
 +++
 title = "数据结构"
 date = "2019-06-20"
-tags = [ "tag1" ]
+tags = [ "数据结构" ]
 categories = [ "others" ]
 +++
 

@@ -1,7 +1,7 @@
 +++
 title = "发布项目dll未被msbuild拷贝到输出目录"
 date = "2018-03-29"
-tags = [ "tag1" ]
+tags = [ "vs" ]
 categories = [ "csharp" ]
 +++
 

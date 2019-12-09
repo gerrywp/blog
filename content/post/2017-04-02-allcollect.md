@@ -1,7 +1,7 @@
 +++
 title = "资料和笔记"
 date = "2017-04-02"
-tags = [ "tag1" ]
+tags = [ "资料收集" ]
 categories = [ "others" ]
 +++
 

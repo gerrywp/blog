@@ -1,7 +1,7 @@
 +++
 title = "关于未来的预测"
 date = "2017-05-18"
-tag = [ "tag1" ]
+tag = [ "随笔" ]
 categories = [ "article" ]
 +++
 

@@ -1,7 +1,7 @@
 +++
 title = "javascript中精准的定时器"
 date = "2017-04-21"
-tags = [ "tag1" ]
+tags = [ "javascript" ]
 categories = [ "javascript" ]
 +++
 

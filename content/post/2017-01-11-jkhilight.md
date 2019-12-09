@@ -1,7 +1,7 @@
 +++
 title = " jekyll的语法高亮-语言名称对照表"
 date = "2017-01-11"
-tags = [ "tag1" ]
+tags = [ "" ]
 categories = [ "others" ]
 +++
 

@@ -29,5 +29,14 @@
       <description>&lt;p&gt;　　go大部分站点在国内被墙，想要直接使用&lt;code&gt;go get&lt;/code&gt;命令下载包，就必须使用代理，本文使用的是shadowsocks代理访问外部网。&lt;/p&gt;</description>
     </item>
     
+    <item>
+      <title>GO语言圣经笔记</title>
+      <link>https://gerrywp.github.io/blog/post/2018-11-20-gosyntax/</link>
+      <pubDate>Tue, 20 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/2018-11-20-gosyntax/</guid>
+      <description>&lt;p&gt;　　本书翻译的版本看的有些别扭，在此把相似的东西进行归类做好常用知识点的笔记！&lt;/p&gt;</description>
+    </item>
+    
   </channel>
 </rss>

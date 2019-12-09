@@ -1,7 +1,7 @@
 +++
 title = "nodejs如何创建单例实例"
 date = "2018-03-29"
-tags = [ "tag1" ]
+tags = [ "nodejs" ]
 categories = [ "javascript" ]
 +++
 

@@ -1,7 +1,7 @@
 +++
 title = "c++开发环境"
 date = "2018-07-05"
-tags = [ "tag1" ]
+tags = [ "cpp" ]
 categories = [ "others" ]
 +++
 

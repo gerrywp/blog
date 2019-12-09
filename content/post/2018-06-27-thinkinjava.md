@@ -1,7 +1,7 @@
 +++
 title = "Think in java(Java编程思想)笔记"
 date = "2018-06-27"
-tags = [ "tag1" ]
+tags = [ "java" ]
 categories = [ "others" ]
 +++
 

@@ -1,7 +1,7 @@
 +++
 title = "Linux(daemon)和管线命令(pipe)"
 date = "2017-01-20"
-tags = [ "tag1" ]
+tags = [ "" ]
 categories = [ "linux" ]
 +++
 

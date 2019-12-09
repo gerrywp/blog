@@ -1,7 +1,7 @@
 +++
 title = "前端那些事儿"
 date = "2017-11-24"
-tags = [ "tag1" ]
+tags = [ "" ]
 categories = [ "javascript" ]
 +++
 

@@ -1,7 +1,7 @@
 +++
 title = "linux下的软件管理"
 date = "2017-04-11"
-tags = [ "tag1" ]
+tags = [ "" ]
 categories = [ "linux" ]
 +++
 

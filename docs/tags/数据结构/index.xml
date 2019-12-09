@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>数据结构 on 云亦海</title>
+    <link>https://gerrywp.github.io/blog/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
+    <description>Recent content in 数据结构 on 云亦海</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 20 Jun 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://gerrywp.github.io/blog/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>数据结构</title>
+      <link>https://gerrywp.github.io/blog/post/2019-06-20-algorithms/</link>
+      <pubDate>Thu, 20 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/2019-06-20-algorithms/</guid>
+      <description>&lt;p&gt;　　算法心得，使用golang实现常用的算法。算法导论中阐述了经典常用的数据结构和典型算法。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>线性存储和hashcode</title>
+      <link>https://gerrywp.github.io/blog/post/2018-07-03-linear7hash/</link>
+      <pubDate>Tue, 03 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/2018-07-03-linear7hash/</guid>
+      <description>&lt;p&gt;　　数组就是典型的线性结构。对数组中特定&lt;strong&gt;值&lt;/strong&gt;的查询，线性查询无疑是最慢的查询方式，时间复杂度为O(n):n为数组长度。
+最合适的算法自然就是使用散列表了(HashTable)。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

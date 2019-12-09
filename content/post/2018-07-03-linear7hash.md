@@ -1,7 +1,7 @@
 +++
 title = "线性存储和hashcode"
 date = "2018-07-03"
-tags = [ "tag1" ]
+tags = [ "数据结构" ]
 categories = [ "others" ]
 +++
 
