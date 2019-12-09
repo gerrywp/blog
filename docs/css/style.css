@@ -182,7 +182,7 @@ textarea {
     padding:58px 0 0;
     text-align:left;
     background-color: #159957;
-    background-image: linear-gradient(120deg,#159957,#155799,);
+    background-image: linear-gradient(120deg,#159957,#155799);
 }
 #header .col-group {
     border-bottom: 1px solid #ddd;
@@ -197,17 +197,17 @@ textarea {
     **/
     font-size: 37.5px;
     font-weight: bold;
-    color:#555;
+    color:#000;
 }
 #logo span {
     color:#777;
 }
 #logo:hover {
-    color:#777;
+    color:#222;
 }
 .description {
     margin:5px 0 0;
-    color:#999;
+    color:#ff00b3;
 }
 #nav-menu {
     margin:10px 0 -1px;
@@ -220,7 +220,7 @@ textarea {
     padding:0 1em;
     height:32px;
     line-height:32px;
-    color:#444;
+    color:#F0F0F0;
 }
 #nav-menu a:first-child {
     border:none;
