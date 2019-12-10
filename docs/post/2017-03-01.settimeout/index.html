@@ -94,9 +94,9 @@
                         <div class="post-content">
                             <p>增量随机，很好实现。那如果要实现时间间隔随机，应该如何处理？我们可以使用setTimeout递归调用来实现</p>
 
-<p>###setTimeout(fn(param){},ms,argument)</p>
+<h3 id="settimeout-fn-param-ms-argument">setTimeout(fn(param){},ms,argument)</h3>
 
-<p>可以使用外层函数将setTimeout封装，并使用setTimeout调用外层函数</p>
+<p>可以使用外层函数将<code>setTimeout</code>封装，并使用<code>setTimeout</code>调用外层函数</p>
 
 <pre><code class="language-js">function animatedFn(){
   let [vector,timerId]=[Math.random()*5000,null];

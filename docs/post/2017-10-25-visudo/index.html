@@ -103,14 +103,12 @@
 <pre><code class="language-sh">useradd admin
 # useradd 有很多可选参数包括（-u,-g）在此全部使用SELinux的默认设置
 passwd admin
-</code></pre></li>
-</ol>
+</code></pre>
 
 <p>添加一个admin用户并设置密码。<br />
-事实上刚才添加的admin账户并不能使用<code>sudo</code>命令，需要在<code>/etc/sudoers</code>内配置</p>
+事实上刚才添加的admin账户并不能使用<code>sudo</code>命令，需要在<code>/etc/sudoers</code>内配置</p></li>
 
-<ol>
-<li><code>visudo</code>与/etc/sudoers配置文件</li>
+<li><p><code>visudo</code>与/etc/sudoers配置文件</p></li>
 </ol>
 
 <p>直接通过<code>vim /etc/sudoers</code>去修改配置文件容易出错并不好，所以推荐使用<code>visudo</code>命令</p>

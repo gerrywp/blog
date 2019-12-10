@@ -99,13 +99,16 @@
 <h4 id="插入排序-insertionsort-o-n-sup-2-sup">插入排序(InsertionSort)O(n<sup>2</sup>)</h4>
 
 <p>解决问题思路：<br />
-给定任意数组a1,a2,&hellip;,an<br />
-1. 从第一个元素开始，该元素可以认为已经被排序
-2. 取出下一个元素，在已经排序的元素序列中从后向前扫描
-3. 如果该元素（已排序）大于新元素，将该元素移到下一位置
-4. 重复步骤3，直到找到已排序的元素小于或者等于新元素的位置
-5. 将新元素插入到该位置后
-6. 重复步骤2~5</p>
+给定任意数组a1,a2,&hellip;,an</p>
+
+<ol>
+<li>从第一个元素开始，该元素可以认为已经被排序</li>
+<li>取出下一个元素，在已经排序的元素序列中从后向前扫描</li>
+<li>如果该元素（已排序）大于新元素，将该元素移到下一位置</li>
+<li>重复步骤3，直到找到已排序的元素小于或者等于新元素的位置</li>
+<li>将新元素插入到该位置后</li>
+
+<li><p>重复步骤2~5</p>
 
 <pre><code class="language-go">func InsertionSort(arr []int) {
 	for i := 1; i &lt; len(arr); i++ {
@@ -115,16 +118,20 @@
 		fmt.Printf(&quot;%v : %v\n&quot;, i, arr)
 	}
 }
-</code></pre>
+</code></pre></li>
+</ol>
 
 <p>说明：外层循环从数组的第二个元素开始(下标为1),依次与左侧数组部分进行比较。golang语法可以直接交换数组变量值，因此可以少定义一个temp临时变量。<br />
 备注：内存循环j:=i-1从后往前扫描，并且左右数组的当前元素与key关键元素的比较要放在for的condition条件里面。当key值大于左侧数组最后一个元素时候，不需要进入循环体内部！
-for循环执行步骤<br />
-1. 初始化变量
-2. 条件判断
-3. 进入循环体
-4. 执行post重新赋值变量
-5. <strong>倘若循环体里面使用了break的话，会直接退出循环，这样一来post是没有执行操作的，与未使用break的时候，条件变量是不一样的！</strong></p>
+for循环执行步骤</p>
+
+<ol>
+<li>初始化变量</li>
+<li>条件判断</li>
+<li>进入循环体</li>
+<li>执行post重新赋值变量</li>
+
+<li><p><strong>倘若循环体里面使用了break的话，会直接退出循环，这样一来post是没有执行操作的，与未使用break的时候，条件变量是不一样的！</strong></p>
 
 <pre><code class="language-go">func main(){
 	for ; i &lt; 5; i++ {
@@ -139,7 +146,8 @@ for循环执行步骤<br />
 	}
 	fmt.Println(i) //此时i=5
 }
-</code></pre>
+</code></pre></li>
+</ol>
 
 <h4 id="归并排序-mergesort-o-nlog-sup-n-sup">归并排序(MergeSort)O(nlog<sup>n</sup>)</h4>
 

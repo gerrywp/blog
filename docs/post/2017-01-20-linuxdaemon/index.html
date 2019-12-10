@@ -101,13 +101,16 @@
 <h3 id="管线命令">管线命令(|)</h3>
 
 <p>能接受前一个的指令的输出(standard output)作为输入(standard in)的的指令才能称之为管线命令。
-Linux有如下的管线命令：
-1. 截取：cut, grep
-2. 排序：sort, uniq, wc
-3. 双向重导向： tee
-4. 字元转换： tr, col, join, paste, expand
-5. 分割： split
-6. 参数代换： xargs</p>
+Linux有如下的管线命令：</p>
+
+<ol>
+<li>截取：cut, grep</li>
+<li>排序：sort, uniq, wc</li>
+<li>双向重导向： tee</li>
+<li>字元转换： tr, col, join, paste, expand</li>
+<li>分割： split</li>
+<li>参数代换： xargs</li>
+</ol>
 
 <p>其中的参数代换指令xargs说明一下。因为很多命令不是管线命令，所以可以使用xargs命令将前面的命令结果转成参数形式传递给后续的指令：</p>
 
@@ -120,7 +123,7 @@ locate -i s99local | xargs ls -al
 <p>说明:因为ls并不是管线命令，所以通过xargs将输出转成参数传递给ls，来达到目的。</p>
 </blockquote>
 
-<h4 id="指令-和-指令-推荐">$(指令)和`指令` （推荐）</h4>
+<h4 id="指令-和-指令-推荐">$(指令)和`指令<code>`</code>(推荐)</h4>
 
 <p>通过复合指令可以动态的获取指令内容，作为参数传递</p>
 

@@ -92,15 +92,18 @@
                         
                         
                         <div class="post-content">
-                            <p>　　在开发阶段，我们希望每次更改了代码就会响应的改变页面，这种方式在webpack里面叫做
-<strong>热替换HMR</strong>(hot module replacement)!在react开发中，希望每次更改代码的时候不要刷新整个页面，而是让网页中的React组件渲染代码替换成新的代码。这种方式就叫做热加载(hot load)。在此不使用<code>webpack-dev-server</code>的<strong>hot</strong>模式，
+                            <p>　　在开发阶段，我们希望每次更改了代码后页面立即做出相应改变，这种方式在webpack里面叫做
+<strong>热替换HMR</strong>(hot module replacement)!在react开发中，希望每次更改代码的时候不要刷新整个页面，而是让网页中的React组件渲染代码替换成新的代码。这种方式就叫做热加载(hot load)。本文不使用<code>webpack-dev-server</code>的<strong>hot</strong>模式，
 而是在自己搭建的expressjs服务器上，实现热更新和react组件的热加载！</p>
 
 <h3 id="代码的热替换">代码的热替换</h3>
 
-<p>为了使用热自动加载，我们需要两个express的中间件:
-1. <a href="https://www.npmjs.com/package/webpack-dev-middleware" title="点我访问">webpack-dev-middleware</a>,用于动态运行webpack生成打包后的内存文件。
-2. <a href="https://www.npmjs.com/package/webpack-hot-middleware" title="点我访问">webpack-hot-middleware</a>,用于处理来自浏览器的热加载请求。</p>
+<p>为了使用热自动加载，我们需要两个express的中间件:</p>
+
+<ol>
+<li><a href="https://www.npmjs.com/package/webpack-dev-middleware" title="点我访问">webpack-dev-middleware</a>,用于动态运行webpack生成打包后的内存文件。</li>
+<li><a href="https://www.npmjs.com/package/webpack-hot-middleware" title="点我访问">webpack-hot-middleware</a>,用于处理来自浏览器的热加载请求。</li>
+</ol>
 
 <p>具体参照插件文档，插件经常更新，使用方式也不尽相同,在expressjs中使用如下：</p>
 
@@ -144,9 +147,12 @@ plugins:[new webpack.HotModuleReplacementPlugin()]
 
 <p>至此我们的热更新已经配置完成了，此时我们修改reat组件，浏览器并不会自动刷新更新组件内容，通过提示得知
 <a href="https://www.npmjs.com/package/react-hot-loader" title="点我访问">react-hot-loader</a>派上了用场！
-具体的配置按照文档配置来：
-1. 在<code>bable-loader</code>配置节plugins添加对<code>react-hot-loader/babel</code>插件的使用
-2. 需要将自己的根组件通过hot导出！
+具体的配置按照文档配置来：</p>
+
+<ol>
+<li>在<code>bable-loader</code>配置节plugins添加对<code>react-hot-loader/babel</code>插件的使用</li>
+
+<li><p>需要将自己的根组件通过hot导出！
 这里有个需要注意的问题，JSX语法的问题。
 ES6对于只return一个对象的函数体，ES6允许简写省去return,直接用圆括号把返回的对象包起来就行!</p>
 
@@ -157,7 +163,8 @@ import { hot } from 'react-hot-loader'
 const App = () =&gt; &lt;div&gt;Hello World!&lt;/div&gt;;
 
 export default hot(module)(App)
-</code></pre>
+</code></pre></li>
+</ol>
 
 <p>这里我就犯了一个错误，组件一定要定义成一个function类型的对象，而不能直接定义成一个object类型的对象，这样在<code>ract-hot-loader</code>会报错</p>
 
@@ -170,12 +177,15 @@ export {App};
 <h3 id="原理解析">原理解析</h3>
 
 <p>这里先从<code>webpack-dev-middleware</code>(以下简称dev中间件)说起，这个中间件做的工作其实很简单，就是根据webpack.config配置文件将模块进行打包。
-作用类似于直接在命令行(command-line)输入<code>webpack</code>手动打包一样，不同点在于:
-1. dev中间件可以动态配置，在服务器端启动后就进行打包，便于开发调试
-2. dve中间件捕获源文件的改动自动进行打包！
-3. dev中间件根据publicPath设置的路径，将bundle.js文件放在内存里。 并对比文件改动，只打包改动的文件，响应速度更快！
-4. 使用<code>react-hot-loader/bable</code>对代码做支持热加载的预处理！
-&gt;说明： 此插件只实现了自动bundle，我们需要在浏览器手动刷新index.html页面来重新请求内存中的bundle.js文件以应用更新。</p>
+作用类似于直接在命令行(command-line)输入<code>webpack</code>手动打包一样，不同点在于:</p>
+
+<ol>
+<li>dev中间件可以动态配置，在服务器端启动后就进行打包，便于开发调试</li>
+<li>dve中间件捕获源文件的改动自动进行打包！</li>
+<li>dev中间件根据publicPath设置的路径，将bundle.js文件放在内存里。 并对比文件改动，只打包改动的文件，响应速度更快！</li>
+<li>使用<code>react-hot-loader/bable</code>对代码做支持热加载的预处理！
+&gt;说明： 此插件只实现了自动bundle，我们需要在浏览器手动刷新index.html页面来重新请求内存中的bundle.js文件以应用更新。</li>
+</ol>
 
 <p>偷懒是工程师前进的一大步！我们希望dev中间件重新打包之后，浏览器能够自刷新，即能够主动再请求一次内存中的bundle.js文件，为此
 <code>webpack-hot-middleware</code>热替换(以下简称hot中间件)应运而生！<br />
@@ -267,8 +277,11 @@ let mode=process.env.NODE_ENV;
     'process.env.NODE_ENV': JSON.stringify('production')})
 </code></pre>
 
-<p>这样任何位于 /src 的本地代码都可以关联到 process.env.NODE_ENV 环境变量。
-&gt;注意，定义在插件里的自定义常量，使用了JSON.stringify(&lsquo;production&rsquo;)指定全局常量的值！为什么呢？</p>
+<p>这样任何位于 /src 的本地代码都可以关联到 process.env.NODE_ENV 环境变量。</p>
+
+<blockquote>
+<p>注意，定义在插件里的自定义常量，使用了<code>JSON.stringify('production')</code>指定全局常量的值！为什么呢？</p>
+</blockquote>
 
 <p>因为DefinePlugin()内部是使用这个对象来构建一个Object类型的字符串，如果直接给&rsquo;production&rsquo;的话，这个production就不是字符串了而是一个变量。</p>
 

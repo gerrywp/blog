@@ -101,22 +101,22 @@ git-bash下面设置了http_proxy的环境变量。</p>
 
 <p>解决思路：</p>
 
-<ul>
-<li><p>1)打开windows事件查看器，查找错误日志。</p></li>
+<ol>
+<li>打开windows事件查看器，查找错误日志。</li>
 
-<li><p>2)查看环境变量。</p>
+<li><p>查看环境变量。</p>
 
 <pre><code class="language-sh">echo $http_proxy
 env|grep http_proxy
 </code></pre></li>
 
-<li><p>3)在C:\Users\Gerry.bashrc文件里面我手动设置了。</p>
+<li><p>在C:\Users\Gerry.bashrc文件里面我手动设置了。</p>
 
 <pre><code class="language-sh">export http_proxy=http://127.0.0.1:1080
 </code></pre></li>
 
-<li><p>4)因为Shadowsocks的代理服务器出现了故障，导致代理无法使用，并且git使用的是.bashrc里面的环境变量配置，因此删除即可。</p></li>
-</ul>
+<li><p>因为Shadowsocks的代理服务器出现了故障，导致代理无法使用，并且git使用的是.bashrc里面的环境变量配置，因此删除即可。</p></li>
+</ol>
 
 <h3 id="总结">总结</h3>
 

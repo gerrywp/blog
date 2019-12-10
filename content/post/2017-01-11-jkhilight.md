@@ -1,5 +1,5 @@
 +++
-title = "marddown相关"
+title = "markdown相关"
 date = "2017-01-11"
 tags = [ "markdown" ]
 categories = [ "others" ]
@@ -19,7 +19,11 @@ MarkDown的默认代码高亮模块使用的是**Rouge**
 > [https://github.com/jneen/rouge/wiki/List-of-supported-languages-and-lexers](https://github.com/jneen/rouge/wiki/List-of-supported-languages-and-lexers "点我访问")
 
 ### Front Matter
-1. 使用 `---` 表示采用YAML格式化文档
-2. 使用 `+++` 表示采用TOML格式化文档
+1. 使用\-\-\-表示采用YAML格式化文档
+2. 使用\+\+\+表示采用TOML格式化文档
 
 > https://sourcethemes.com/academic/docs/front-matter/
+
+### markdown语法
+
+<https://www.markdownguide.org/basic-syntax/>

@@ -77,4 +77,4 @@ go开启了module模式之后，v1.13版本之前倘若未设置`GO111MODULE=on`
 因此当我们project使用的是module方式开发的话，必然会提示我们在GOPATH和GOROOT下找不到相关的依赖包文件。    
 如果我们强制开启了`GO111MODULE=on`,vscode就使用go.mod来查找相关依赖，但是vscode的`go run`命令又不是运行在当前project目录，所以会提示找不到project
 目录下的自定义子包(因为go会去GOPATH/pkg/mod目录下查找所有的包)并报错，我们必须让`Start without Debugging`时`go run`运行在当前目录，
-如何处理(未知，要看vscode源码)？
+如何处理?(vscode-go插件问题)

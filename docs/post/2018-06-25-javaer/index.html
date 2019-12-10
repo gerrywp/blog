@@ -97,8 +97,9 @@
 <h3 id="ide错误之error-during-artifact-deployment">IDE错误之error during artifact deployment</h3>
 
 <ol>
-<li><p>第一种情况<br />
-新建了一个JavaEE项目，用servlet和jsp搭了一个简单的demo,然后调试的时候死活启动不了，报标题报告的错误，莫名其妙令人费解。经过一番波折才发现，原来是servlet的<code>urlParterns</code>配置错了，而这样的错误不会报告语法错误，也不会报告编译错误，隐晦至深已经无力吐槽了,个人觉得应该算是一个严重的bug。</p>
+<li><p>新建了一个JavaEE项目，用servlet和jsp搭了一个简单的demo,然后调试的时候死活启动不了，报标题报告的错误，莫名其妙令人费解。
+经过一番波折才发现，原来是servlet的<code>urlParterns</code>配置错了，而这样的错误不会报告语法错误，也不会报告编译错误，
+隐晦至深已经无力吐槽了,个人觉得应该算是一个严重的bug。</p>
 
 <pre><code class="language-java">//错误：没有带根路径
 @WebServlet(name=&quot;LoginServlet&quot;,urlParterns=&quot;login&quot;)
@@ -106,17 +107,17 @@
 @WebServlet(name=&quot;LoginServlet&quot;,urlParterns=&quot;/login&quot;)
 //最优方式:以数组赋值
 @WebServlet(name=&quot;LoginServlet&quot;,urlParterns={&quot;login&quot;})
-</code></pre></li>
+</code></pre>
+
+<p>以后像这样的错误，多数都是编码语法错误，认真检查下自己的代码吧，没有任何提示的！</p></li>
+
+<li><p>在[Project Structure]-&gt;[Artifacts]缺少没有添加要发布到out目录的lib<br />
+或library里面缺少了jar包，按照library-modules-artifacts顺序挨个检查一遍！</p></li>
 </ol>
 
-<p>以后像这样的错误，多数都是编码语法错误，认真检查下自己的代码吧，没有任何提示的！</p>
-
-<ol>
-<li>第二种情况<br />
-在[Project Structure]-&gt;[Artifacts]缺少没有添加要发布到out目录的lib<br />
-或library里面缺少了jar包，按照library-modules-artifacts顺序挨个检查一遍！
-&gt;总结：所有的url路径最好还是带上<strong>&rsquo;/&rsquo;</strong>，太坑爹了。</li>
-</ol>
+<blockquote>
+<p>总结：所有的url路径最好还是带上<code>/</code>，太坑爹了。</p>
+</blockquote>
 
 <h3 id="invalid-content-was-found-starting-with-element-init-param">invalid content was found starting with element &lsquo;init-param&rsquo;</h3>
 
@@ -128,9 +129,12 @@
 
 <h3 id="sendredirect-响应-重定向-和forward-请求-转发">sendRedirect(响应-重定向)和forward(请求-转发)</h3>
 
-<p>jsp里面页面跳转有两种方式：
-1. 重定向
-2. 转发</p>
+<p>jsp里面页面跳转有两种方式：</p>
+
+<ol>
+<li>重定向</li>
+<li>转发</li>
+</ol>
 
 <p>如果后端servlet有数据需要回传给jsp页面的话，要么使用请求转发,要么使用回话session传递。<br />
 重定向传递数据的话只能通过url parameters来传递比如：</p>
@@ -183,8 +187,11 @@ xsd文件让编辑xml配置的时候有了intellisence智能感知能力。<br /
 <pre><code class="language-xml">http\://www.springframework.org/schema/mvc=org.springframework.web.servlet.config.MvcNamespaceHandler
 </code></pre>
 
-<p>指定了使用<code>org.springframework.web.servlet.config</code>包下的<code>MvcNamespaceHandler</code>处理程序来处理<bean>下面的配置节。我们可以查阅源码！
-1. schema/tool -&gt; 指向了 org.springframework.beans.factory.xml/sping-tools.xsd文件</p>
+<p>指定了使用<code>org.springframework.web.servlet.config</code>包下的<code>MvcNamespaceHandler</code>处理程序来处理<bean>下面的配置节。我们可以查阅源码！</p>
+
+<ol>
+<li>schema/tool -&gt; 指向了 org.springframework.beans.factory.xml/sping-tools.xsd文件</li>
+</ol>
 
 <h3 id="如何使用消息避免分布式事务">如何使用消息避免分布式事务</h3>
 
