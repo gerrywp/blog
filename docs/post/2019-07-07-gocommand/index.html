@@ -202,7 +202,7 @@ go env #查看go相关的所有环境变量
 因此当我们project使用的是module方式开发的话，必然会提示我们在GOPATH和GOROOT下找不到相关的依赖包文件。<br />
 如果我们强制开启了<code>GO111MODULE=on</code>,vscode就使用go.mod来查找相关依赖，但是vscode的<code>go run</code>命令又不是运行在当前project目录，所以会提示找不到project
 目录下的自定义子包(因为go会去GOPATH/pkg/mod目录下查找所有的包)并报错，我们必须让<code>Start without Debugging</code>时<code>go run</code>运行在当前目录，
-如何处理(未知，要看vscode源码)？</p>
+如何处理?(vscode-go插件问题)</p>
                         </div>
 
                         

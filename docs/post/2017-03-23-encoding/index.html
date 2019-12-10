@@ -101,20 +101,17 @@
 <p>BOM都很熟悉，Notepad++之中就会有，以utf-8有BOM编码、以utf-8无BOM编码。
 因为unicode编码规范并不知道，文档到底使用的是哪一种编码顺序(大小头)。所以规定前1-4个字节标识编码顺序。
 又因为Utf-8没有大小头之分，所以可以使用BOM来标识是使用的那一种编码！<br />
-我们使用Notepad++来看下，&rdquo;我&rdquo;在使用utf-8无BOM编码的情况下的HEX十六进制表示法：
-1. 先要安装Notepad++插件HEX-Editor</p>
-
-<p><img src="../../pictures/QQ20170323212337.png" alt="HEX-Editor" /></p>
-
-<p>编码为：e6 88 91</p>
-
-<p><img src="../../pictures/QQ20170323212712.png" alt="&quot;我&quot;字的code" /></p>
+我们使用Notepad++来看下，&rdquo;我&rdquo;在使用utf-8无BOM编码的情况下的HEX十六进制表示法：</p>
 
 <ol>
-<li>utf-8不带BOM编码情况下，16进制编码为:ef bb bf e6 88 91</li>
+<li>先要安装Notepad++插件HEX-Editor
+<img src="../../pictures/QQ20170323212337.png" alt="HEX-Editor" />
+编码为：<code>e6 88 91</code>
+<img src="../../pictures/QQ20170323212712.png" alt="&quot;我&quot;字的code" /></li>
+<li>utf-8不带BOM编码情况下，16进制编码为: <code>ef bb bf e6 88 91</code></li>
 </ol>
 
-<p>由此可见Utf-8编码的BOM为:ef bb bf</p>
+<p>由此可见Utf-8编码的BOM为:<code>ef bb bf</code></p>
 
 <h3 id="asci编码">asci编码</h3>
 

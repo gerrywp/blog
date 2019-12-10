@@ -30,8 +30,10 @@ categories = [ "others" ]
 
 创建了带包名的.java源文件，编译之后运行报错：找不到或无法加载主类。  
 例如：在src/com/aiyoe下创建文件`Stuent.java`  
+
 * 包名称需同目录名称一致
 * public的类名需同文件名一致
+
 ```java
 //需一致
 package com.aiyoe
@@ -48,15 +50,15 @@ cd src
 #运行时候要使用类的全名，即带上包名称！
 java com.aiyoe.Student
 ```
-#### 深刻理解classpath  
+### 深刻理解classpath  
 项目文件夹结构如下  
 
-- src  
-  - com  
-    - aiyoe  
-      - Main.java  
-    - util  
-      - Console.java  
+- src
+	- com
+		- aiyoe
+			- Main.java
+		- util
+			- Console.java  
 
 ```java
 //Main.java
@@ -99,7 +101,7 @@ cd src
 java -cp . com.aiyoe.Main
 #注意需要使用java虚拟机运行的带main函数的class，需要指定全名(带包路径的的名称)
 ```
-#### 推荐-编译(javac)和运行(java)操作都在src目录底下进行
+### 推荐-编译(javac)和运行(java)操作都在src目录底下进行
 
 将当前目录添加到`classpath`
 ```com

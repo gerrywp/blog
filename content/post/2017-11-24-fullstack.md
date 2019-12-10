@@ -42,9 +42,10 @@ nodejs: `gulp` `grunt`
 #### 什么是模块打包工具(module bundle tool)
 
 打包(package)就是字面意思,将各类型的文件组合到一起，便于分发！browser(浏览器)的模块打包和java等的打包概念还不太一样，这里单独说明。
-为什么要打包？原始的我们browser端html文件通过<script>标签一个个引用js文件，通过<link>标签一个个引用css文件，打比方我们的项目足够大，
-js文件有1000个，css文件有1000个。这样如果直接发布到服务器上，这样的文件请求压力是十分巨大的。所以在发布到服务器端的时候，需要将所有js和css文件合并到一起，打包的概念应运而生！  
+为什么要打包？起初browser端html文件通过`<script>`标签一个个的引用js文件，通过`<link>`标签一个个的引用css文件，如果我们的项目足够大，
+js文件有1000个，css文件有1000个。如果直接发布到服务器上，这样文件的请求压力十分巨大。所以在发布到服务器端的时候，需要将所有js和css文件合并到一起，打包的概念应运而生！  
 常用的两个模块打包工具`webpack`和`browserify`  
+
 `webpack`的核心是模块化的组织、模块化的依赖、模块化的打包,必须满足以下两点要求：
  
  1. 需要把各种资源（js/ts/css/html/ejs/img/fonts等等）都看成 module
@@ -52,15 +53,20 @@ js文件有1000个，css文件有1000个。这样如果直接发布到服务器�
  
  这样webpack打包的时候就会把所有用的文件统统打包进一个文件(也可分片打包)
  
- >补充说明： webpack这种打包方式对browser端的意义重大，简化了资源请求次数！将它应用在server端压根没有必要，混淆代码为了安全性？在这个开源代码的时代，谁会看你写的那些垃圾代码？
+> webpack这种打包方式对browser端的意义重大，简化了资源请求次数！
+将它应用在server端压根没有必要，混淆代码为了安全性？在这个开源代码的时代，谁会看你写的那些垃圾代码？
 
 ### react+express全栈糅合
 
 react是一个browser浏览器端开发框架，通常创建一个全栈工程需要两个project：
+
 1. 基于*react*开发的browser浏览器端html project 
 2. 基于*express*开发的server服务器端webapi project
 
-创建react项目最简单粗暴的方式就是使用`create-react-app`工具，此工具通过`webpack-dev-server`来启动react项目，express通过`node`来启动webapi的服务端。如何将2个项目有机的结合在一起，让2个webserver同时工作呢？
+创建react项目最简单粗暴的方式就是使用`create-react-app`工具，此工具通过`webpack-dev-server`来启动react项目，express通过`node`来启动webapi的服务端。  
+
+如何将2个项目有机的结合在一起，让2个webserver同时工作呢？
+
 [fullstackreact](https://www.fullstackreact.com/articles/using-create-react-app-with-a-server/#the-rub- "点我访问")
 
 ### npx的正确使用

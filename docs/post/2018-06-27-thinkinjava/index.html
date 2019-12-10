@@ -173,15 +173,19 @@
 <h3 id="有包名的情况下编译-javac-及运行-java">有包名的情况下编译(javac)及运行(java)</h3>
 
 <p>创建了带包名的.java源文件，编译之后运行报错：找不到或无法加载主类。<br />
-例如：在src/com/aiyoe下创建文件<code>Stuent.java</code><br />
-* 包名称需同目录名称一致
-* public的类名需同文件名一致</p>
+例如：在src/com/aiyoe下创建文件<code>Stuent.java</code></p>
+
+<ul>
+<li>包名称需同目录名称一致</li>
+
+<li><p>public的类名需同文件名一致</p>
 
 <pre><code class="language-java">//需一致
 package com.aiyoe
 public class Student{
 }
-</code></pre>
+</code></pre></li>
+</ul>
 
 <p>编译运行步骤如下：</p>
 
@@ -193,7 +197,7 @@ cd src
 java com.aiyoe.Student
 </code></pre>
 
-<h4 id="深刻理解classpath">深刻理解classpath</h4>
+<h3 id="深刻理解classpath">深刻理解classpath</h3>
 
 <p>项目文件夹结构如下</p>
 
@@ -201,11 +205,13 @@ java com.aiyoe.Student
 <li><p>src</p>
 
 <ul>
-<li>com<br /></li>
-<li>aiyoe<br />
+<li><p>com</p>
 
 <ul>
-<li>Main.java<br /></li>
+<li>aiyoe
+
+<ul>
+<li>Main.java</li>
 </ul></li>
 
 <li><p>util</p>
@@ -227,6 +233,7 @@ public Console{
 	}
 }
 </code></pre></li>
+</ul></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -257,7 +264,7 @@ java -cp . com.aiyoe.Main
 #注意需要使用java虚拟机运行的带main函数的class，需要指定全名(带包路径的的名称)
 </code></pre>
 
-<h4 id="推荐-编译-javac-和运行-java-操作都在src目录底下进行">推荐-编译(javac)和运行(java)操作都在src目录底下进行</h4>
+<h3 id="推荐-编译-javac-和运行-java-操作都在src目录底下进行">推荐-编译(javac)和运行(java)操作都在src目录底下进行</h3>
 
 <p>将当前目录添加到<code>classpath</code></p>
 

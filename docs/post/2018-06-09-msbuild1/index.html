@@ -186,7 +186,11 @@
 但是我们通过cmd命令行运行的时候是可以看到输出消息的！
 <img src="../../pictures/20180609230302.png" alt="output" title="点我显示" />
 可以看出msbuild自动调用了&rdquo;BeforeBuild&rdquo;和&rdquo;AfterBuild&rdquo;的Target
-如果想在IDE的Output看到输出信息(调试使用)。&gt; 参考<strong>MSBuild(2)</strong></p>
+如果想在IDE的Output看到输出信息(调试使用)。</p>
+
+<blockquote>
+<p>请移步<strong>MSBuild(2)</strong></p>
+</blockquote>
 
 <pre><code class="language-xml">  &lt;Target Name=&quot;BeforeBuild&quot;&gt;
 	&lt;Warning Text=&quot;BeforeBuild my website!&quot;&gt;&lt;/Warning&gt;
@@ -221,13 +225,22 @@
 <h4 id="pubxml中的文件路径">pubxml中的文件路径</h4>
 
 <p>由于pubxml文件最终会整合到*.csproj文件中去，所以.pubxml中的文件相对路径是根据.csproj文件来的。
-比如目录结构如下：
-- website<br />
-  - site.csproj<br />
-  - Properties<br />
-    - PublishProfiles<br />
-      - site.pubxml<br />
-  - obj</p>
+比如目录结构如下：</p>
+
+<ul>
+<li>website<br />
+
+<ul>
+<li>site.csproj<br /></li>
+<li>Properties<br /></li>
+<li>PublishProfiles<br />
+
+<ul>
+<li>site.pubxml<br /></li>
+</ul></li>
+<li>obj<br /></li>
+</ul></li>
+</ul>
 
 <p>要在<em>.pubxml中引用obj文件夹底下的文件，在pubxml中使用相对于site.csproj的文件路径即可：&rdquo;obj*.</em>&ldquo;</p>
                         </div>

@@ -52,7 +52,8 @@ DEBUG=*,-express:*
 ### morgan
 
 HTTP request logger中间件，用来记录http请求的详细信息，可以配置各种显示样式！
-有以下几种`Predefined Formats`格式化选项可选：  
+有以下几种`Predefined Formats`格式化选项可选： 
+ 
 1. combined
 2. common
 3. dev

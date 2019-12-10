@@ -158,37 +158,30 @@ git push origin:
 <h3 id="windows下vs2017">windows下vs2017</h3>
 
 <ol>
-<li>visual studio 2017默认集成了git工具，在选择安装包的时候我们需要安装git for windows。
-在「单个组件」···「代码工具」里面选中「适用于windows的git」。</li>
-</ol>
+<li>visual studio 2017默认集成了git工具，在选择安装包的时候我们需要安装git for windows。<br />
+在「单个组件」···「代码工具」里面选中「适用于windows的git」。
+<img src="/blog/pictures/QQ20170627205054.png" alt="git in vs" title="请开启" /></li>
 
-<p><img src="/blog/pictures/QQ20170627205054.png" alt="git in vs" title="请开启" /></p>
-
-<ol>
 <li><p>打开安装好的git-bash,使用ssh-keygen命令生成ssh公钥和私钥</p>
 
 <pre><code class="language-sh">ssh-keygen -t rsa -C&quot;your comment&quot;
 #-t参数 加密类型
 #-C参数 注释
-</code></pre></li>
-</ol>
+</code></pre>
 
-<p>win10系统下必须要指定公钥生成的路径c:\users\username.ssh\id_rsa</p>
+<p>win10系统下必须要指定公钥生成的路径<code>c:\users\username\.ssh\id_rsa</code></p></li>
 
-<ol>
 <li><p>将生成的公钥id_rsa.pub里面的内容复制，并添加到远程服务器上的「密钥管理」里面。</p></li>
 
 <li><p>生成known_hosts文件</p>
 
 <pre><code class="language-sh">ssh -t git@site.com #连接远程服务器
 git pull
-</code></pre></li>
-</ol>
+</code></pre>
 
-<p>上述两个命令都会在.ssh\目录下生成一个known_hosts的文件</p>
+<p>上述两个命令都会在.ssh\目录下生成一个known_hosts的文件</p></li>
 
-<ol>
-<li>现在可以直接使用vs2017自带的git工具了。</li>
+<li><p>现在可以直接使用vs2017自带的git工具了。</p></li>
 </ol>
 
 <h3 id="git无法clone私有库">git无法clone私有库</h3>

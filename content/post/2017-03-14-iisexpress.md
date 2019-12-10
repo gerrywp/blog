@@ -21,6 +21,7 @@ iisexpress轻量，易于安装，安装包不到5M。
 
 visual studio web项目自身的IIS Express配置文件,放置在项目文件夹下的隐藏文件夹下，路径如下:"project\.vs\config\applicationhost.config"
 针对项目自身的站点的配置都在这里面。
-1. <sites>下面的每一个<site>就是一个站点。
-2. <bindings>设置了这个站点的绑定信息。
-3. <application> 这个节设置了站点使用的的应用程序池。
+
+1. \<sites\>下面的每一个\<site\>就是一个站点。
+2. \<bindings\>设置了这个站点的绑定信息。
+3. \<application\> 这个节设置了站点使用的的应用程序池。

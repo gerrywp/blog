@@ -91,8 +91,8 @@ article!&lt;/p&gt;</description>
       <pubDate>Thu, 16 Aug 2018 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/2018-08-16-jsjourney6/</guid>
-      <description>&lt;p&gt;　　在开发阶段，我们希望每次更改了代码就会响应的改变页面，这种方式在webpack里面叫做
-&lt;strong&gt;热替换HMR&lt;/strong&gt;(hot module replacement)!在react开发中，希望每次更改代码的时候不要刷新整个页面，而是让网页中的React组件渲染代码替换成新的代码。这种方式就叫做热加载(hot load)。在此不使用&lt;code&gt;webpack-dev-server&lt;/code&gt;的&lt;strong&gt;hot&lt;/strong&gt;模式，
+      <description>&lt;p&gt;　　在开发阶段，我们希望每次更改了代码后页面立即做出相应改变，这种方式在webpack里面叫做
+&lt;strong&gt;热替换HMR&lt;/strong&gt;(hot module replacement)!在react开发中，希望每次更改代码的时候不要刷新整个页面，而是让网页中的React组件渲染代码替换成新的代码。这种方式就叫做热加载(hot load)。本文不使用&lt;code&gt;webpack-dev-server&lt;/code&gt;的&lt;strong&gt;hot&lt;/strong&gt;模式，
 而是在自己搭建的expressjs服务器上，实现热更新和react组件的热加载！&lt;/p&gt;</description>
     </item>
     
@@ -102,7 +102,7 @@ article!&lt;/p&gt;</description>
       <pubDate>Mon, 13 Aug 2018 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/2018-08-13-jsjourney5/</guid>
-      <description>&lt;p&gt;　　在web开发中，最重要的数据交互方式首推就该属表单了。html通过表单实现了客户端与服务器端数据的交互。说道表单就不得不说到&lt;code&gt;MIME&lt;/code&gt;类型，此类型
+      <description>&lt;p&gt;　　在web开发中，最重要的数据交互方式首推就该属表单了。html通过表单实现了客户端与服务器端数据的交互。谈及表单就不得不说&lt;code&gt;MIME&lt;/code&gt;类型，此类型
 关系到服务器端和浏览器端处理数据的方式和手段！&lt;/p&gt;</description>
     </item>
     
@@ -433,8 +433,7 @@ github上有很多现成的可以使用。&lt;/p&gt;</description>
       <pubDate>Wed, 20 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/2017-09-20-moonlit/</guid>
-      <description>&lt;p&gt;浔阳的秋天很是凉爽，这个季节应该是家乡一年之中最为舒适的季节。不会有淅淅沥沥下个不停的春雨，亦不会有令人夜不能寐的炎炎夏日，更没有如冰刀般凛冽的西北风。
-一阵微风吹过，吹红了枫叶，染黄了稻田，轻抚着江面漾起了碧波。&lt;/p&gt;</description>
+      <description>&lt;p&gt;浔阳的秋天很是凉爽，这个季节应该是家乡一年之中最为舒适的季节。不会有淅淅沥沥下个不停的春雨，亦不会有令人夜不能寐的炎炎夏日，更没有如冰刀般凛冽的西北风。一阵微风吹过，吹红了枫叶，染黄了稻田，轻抚着江面漾起了碧波。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -647,7 +646,7 @@ github上有很多现成的可以使用。&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>marddown相关</title>
+      <title>markdown相关</title>
       <link>https://gerrywp.github.io/blog/post/2017-01-11-jkhilight/</link>
       <pubDate>Wed, 11 Jan 2017 00:00:00 +0000</pubDate>
       

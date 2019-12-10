@@ -10,7 +10,8 @@ categories = [ "csharp" ]
 ### 非线程安全
 先来说说线程安全的问题，Show your code(用代码说话)，以MSDN官网的
 [List&lt;T&gt;](https://msdn.microsoft.com/library/6sh2ey19.aspx?f=255&MSPPError=-2147217396#Anchor_10 "点我访问")
-为例：在`线程安全`这一小节，来自微软官网的描述，
+为例：在`线程安全`这一小节，来自微软官网的描述:
+
 > 公共静态 (Shared 在 Visual Basic 中) 这种类型的成员是线程安全。 但不保证所有实例成员都是线程安全的。
 
 ```cs
@@ -84,7 +85,7 @@ static void ParallelList()
 }
 ``` 
 
-1. 仅仅将多线程的操作由write改为了read，这样多对一个非线程安全的对象实例也是没有任何问题的！
+___仅仅将多线程的操作由write改为了read，这样多对一个非线程安全的对象实例也是没有任何问题的！___
 
 **综上所述：**
 

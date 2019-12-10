@@ -15,6 +15,7 @@ categories = [ "linux" ]
 
 能接受前一个的指令的输出(standard output)作为输入(standard in)的的指令才能称之为管线命令。
 Linux有如下的管线命令：
+
 1. 截取：cut, grep
 2. 排序：sort, uniq, wc
 3. 双向重导向： tee
@@ -31,7 +32,7 @@ locate -i s99local | xargs ls -al
 ```
 >说明:因为ls并不是管线命令，所以通过xargs将输出转成参数传递给ls，来达到目的。  
 
-#### $(指令)和\`指令\` （推荐）
+#### $(指令)和\`指令`` ` ``(推荐)
 
 通过复合指令可以动态的获取指令内容，作为参数传递
 ```sh

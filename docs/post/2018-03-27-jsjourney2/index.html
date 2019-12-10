@@ -134,7 +134,7 @@ handlebars的<strong>Block Helper</strong>能够帮我们解决这个问题！</
 </code></pre>
 
 <p>很明显index.hbs页面需要在layout.hbs页面的jquery.js加载之后再加载。也就是在物理顺序上index.hbs页面的js逻辑代码，
-要放置在laout.hbs中<script>最后面引入！<br />
+要放置在laout.hbs中<code>&lt;script&gt;标签</code>最后面引入！<br />
 handlebar的页面渲染流程：</p>
 
 <pre><code class="language-js">  app.get('/', function (req, res, next) {
@@ -149,7 +149,8 @@ handlebar的页面渲染流程：</p>
 <li>输出最终页面</li>
 </ol>
 
-<p>解决问题的关键在于，步骤(1)使用handlebar引擎编译index.hbs的时候，使用<strong>Block Helper</strong>让引擎生成的js脚本不输出到局部的html模板中，
+<p>解决问题的关键在于:<br />
+使用handlebar引擎编译index.hbs的时候，<strong>Block Helper</strong>让引擎生成的js脚本不输出到局部的html模板中，
 而是保存在[引擎全局对象]<strong>memory script</strong>上。等到步骤(3)的时候，用<strong>memory script</strong>替换掉步骤(2)中的script占位符即可！<br />
 具体实现如下：<br />
 在app.js中注册自定义<strong>Block Helper</strong></p>

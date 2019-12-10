@@ -98,8 +98,11 @@
 
 <p>先来说说线程安全的问题，Show your code(用代码说话)，以MSDN官网的
 <a href="https://msdn.microsoft.com/library/6sh2ey19.aspx?f=255&amp;MSPPError=-2147217396#Anchor_10" title="点我访问">List&lt;T&gt;</a>
-为例：在<code>线程安全</code>这一小节，来自微软官网的描述，
-&gt; 公共静态 (Shared 在 Visual Basic 中) 这种类型的成员是线程安全。 但不保证所有实例成员都是线程安全的。</p>
+为例：在<code>线程安全</code>这一小节，来自微软官网的描述:</p>
+
+<blockquote>
+<p>公共静态 (Shared 在 Visual Basic 中) 这种类型的成员是线程安全。 但不保证所有实例成员都是线程安全的。</p>
+</blockquote>
 
 <pre><code class="language-cs">//创建控制台应用程序,并编写如下代码
 static void Main(string[] args)
@@ -175,9 +178,7 @@ static void ParallelList(List&lt;Int32&gt; temp)
 }
 </code></pre>
 
-<ol>
-<li>仅仅将多线程的操作由write改为了read，这样多对一个非线程安全的对象实例也是没有任何问题的！</li>
-</ol>
+<p><strong><em>仅仅将多线程的操作由write改为了read，这样多对一个非线程安全的对象实例也是没有任何问题的！</em></strong></p>
 
 <p><strong>综上所述：</strong></p>
 
