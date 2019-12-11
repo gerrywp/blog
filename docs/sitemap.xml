@@ -4,7 +4,37 @@
   
   <url>
     <loc>https://gerrywp.github.io/blog/categories/</loc>
-    <lastmod>2019-10-07T00:00:00+00:00</lastmod>
+    <lastmod>2019-12-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gerrywp.github.io/blog/categories/linux/</loc>
+    <lastmod>2019-12-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gerrywp.github.io/blog/post/</loc>
+    <lastmod>2019-12-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gerrywp.github.io/blog/tags/shell/</loc>
+    <lastmod>2019-12-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gerrywp.github.io/blog/tags/</loc>
+    <lastmod>2019-12-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gerrywp.github.io/blog/</loc>
+    <lastmod>2019-12-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gerrywp.github.io/blog/post/191211shell/</loc>
+    <lastmod>2019-12-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -13,27 +43,7 @@
   </url>
   
   <url>
-    <loc>https://gerrywp.github.io/blog/categories/linux/</loc>
-    <lastmod>2019-10-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gerrywp.github.io/blog/post/</loc>
-    <lastmod>2019-10-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://gerrywp.github.io/blog/tags/qor/</loc>
-    <lastmod>2019-10-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gerrywp.github.io/blog/tags/</loc>
-    <lastmod>2019-10-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gerrywp.github.io/blog/</loc>
     <lastmod>2019-10-07T00:00:00+00:00</lastmod>
   </url>
   
@@ -443,12 +453,12 @@
   </url>
   
   <url>
-    <loc>https://gerrywp.github.io/blog/tags/sql/</loc>
+    <loc>https://gerrywp.github.io/blog/categories/sql/</loc>
     <lastmod>2017-03-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://gerrywp.github.io/blog/categories/sql/</loc>
+    <loc>https://gerrywp.github.io/blog/tags/sql/</loc>
     <lastmod>2017-03-17T00:00:00+00:00</lastmod>
   </url>
   

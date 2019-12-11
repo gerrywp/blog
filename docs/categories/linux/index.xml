@@ -6,10 +6,19 @@
     <description>Recent content in linux on 云亦海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 07 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 11 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://gerrywp.github.io/blog/categories/linux/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>批量更名</title>
+      <link>https://gerrywp.github.io/blog/post/191211shell/</link>
+      <pubDate>Wed, 11 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/191211shell/</guid>
+      <description>&lt;p&gt;想使用&lt;code&gt;git mv&lt;/code&gt;批量更改目录下的1000多个markdown文件名。很久没有写过linux的&lt;code&gt;shell scripts&lt;/code&gt;了，已经忘记的差不多了，记录一下关键点，以备不时之需。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>git push错误</title>
