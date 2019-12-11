@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.59.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>集群和分布式 | 云亦海</title>
+    <meta property="og:title" content="集群和分布式 - 云亦海">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2019-07-13T00:00:00&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2019-07-13T00:00:00&#43;08:00">
+        
+    <meta name="Keywords" content="golang,go语言,go语言笔记,项目管理,软件架构,公众号,小程序">
+    <meta name="description" content="集群和分布式">
+        
+    <meta name="author" content="gerry">
+    <meta property="og:url" content="https://gerrywp.github.io/blog/post/190713clusterdistribute/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/blog/css/normalize.css">
+    
+        <link rel="stylesheet" href="/blog/css/prism.css">
+    
+    <link rel="stylesheet" href="/blog/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://gerrywp.github.io/blog">
+                        云亦海
+                    </a>
+                
+                <p class="description">专注于Go语言(golang)、csharp、移动互联网、项目管理、软件架构</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://gerrywp.github.io/blog">首页</a>
+                    
+                    <a  href="https://gerrywp.github.io/blog/archives/" title="归档">归档</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+        
+        
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">集群和分布式</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2019年7月13日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href='https://gerrywp.github.io/blog/categories/linux'>linux</a></span>
+                            
+                        </div>
+                        
+                        
+                        <div class="post-meta">
+                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
+                        </div>
+                        
+                        
+                        <div class="post-content">
+                            <p>看过很多篇幅的文章说集群和分布式，但是有时候这两个东西还是会搞混淆，并且不是那么容易说的清楚，在这里对这两个
+概念做一个归纳和总结。</p>
+
+<h3 id="集群-以服务为例">集群(以服务为例)</h3>
+
+<blockquote>
+<p>说明：就是所有的节点都提供相同的功能，这就是集群。目的及优势：</p>
+</blockquote>
+
+<ol>
+<li>高可用性(一个节点宕机了，其它的节点还能继续使用)</li>
+<li>分流(缓解了单个服务器的压力)</li>
+</ol>
+
+<p>图示:
+<img src="../../pictures/cluster.png" alt="集群" title="点我访问" /></p>
+
+<h3 id="分布式">分布式</h3>
+
+<blockquote>
+<p>说明：每个节点提供的功能都不一样，多个小的功能模块组成一个大的功能服务。
+每一个服务可以部署在同一台PC上，也可以部署在不同的PC上。目的及优势：
+1. 独立部署
+2. 因为功能独立并且小便于扩展
+3. 提高系统容错，一个节点宕机了，并不会引起整体系统的瘫痪</p>
+</blockquote>
+
+<p>图示：
+<img src="../../pictures/distributed.png" alt="分布式" title="点我访问" /></p>
+
+<h4 id="负载均衡-反向代理">负载均衡(反向代理)</h4>
+
+<p>在集群的图中我们看到了<strong>负载均衡层</strong>，负载均衡有几种调度算法，像nginx可以通过配置来处理：</p>
+
+<ol>
+<li>轮询，每个请求按时间顺序逐一分配到不同的后端服务上去。</li>
+<li>轮询权值，按权重分配</li>
+<li>IP_hash，按访问IP的hash结果分配</li>
+<li>url_hash</li>
+<li>按后端服务器响应时间长短分配</li>
+<li>least_conn最少链接数优先分配</li>
+</ol>
+
+<blockquote>
+<p>备注：常用的还是一致性hash</p>
+</blockquote>
+
+<h4 id="高并发">高并发</h4>
+
+<p>高并发按业务区分，分成两种情况：</p>
+
+<ol>
+<li>读高并发</li>
+<li>写高并发</li>
+</ol>
+
+<p>读高并发的情况，常见的解决方案有：</p>
+
+<ol>
+<li>分库：建立主从备份，所有读取的操作都自从数据库中读取，缓解单个数据库的压力(同时可以应用数据库集群)</li>
+<li>数据分成冷热两种数据，热数据使用缓存集群，缓解了高并发下数据库读的压力</li>
+</ol>
+
+<p>写高并发的情况，引入消息中间件。</p>
+
+<p>优势：</p>
+
+<ol>
+<li>解耦业务逻辑</li>
+<li>异步处理，提高系统响应速度，提升用户体验</li>
+<li>削峰填谷</li>
+</ol>
+
+<p>劣势：</p>
+
+<ol>
+<li>降低了系统的可用性(消息中间件挂了，系统就瘫痪了)</li>
+<li>增加了系统开发的难度</li>
+<li>数据一致性的问题(通过下游确认机制可以完成，避免使用分布式事务)</li>
+</ol>
+
+<p>承载高并发的架构演进经验及总结：</p>
+
+<ol>
+<li>负载均衡层，将大量的请求均匀的打到系统上</li>
+<li>分库分表，读写分离</li>
+<li>不要盲目的进行数据库服务器的扩容。针对写少读多的请求，引入缓存集群，用缓存抗住高并发的请求。
+针对写入多的情况，引入消息中间件集群，写请求异步处理，实现削峰填谷。</li>
+</ol>
+
+<h4 id="消息中间件引发的数据不一致的问题">消息中间件引发的数据不一致的问题</h4>
+
+<p>通过确认机制来解决</p>
+
+<h4 id="保证消息中间件的高可用性">保证消息中间件的高可用性</h4>
+
+<ol>
+<li>镜像集群</li>
+</ol>
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/blog/post/190707gocommand/">go命令详解</a></li>
+        
+        <li><a href="/blog/post/190706gogetproxy/">go get代理设置</a></li>
+        
+        <li><a href="/blog/post/190620algorithms/">数据结构</a></li>
+        
+        <li><a href="/blog/post/181120gosyntax/">GO语言圣经笔记</a></li>
+        
+        <li><a href="/blog/post/181020bwbj/">大爱无疆</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href='https://gerrywp.github.io/blog/tags/%E5%88%86%E5%B8%83%E5%BC%8F'>分布式</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="https://gerrywp.github.io/blog/search/" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://gerrywp.github.io/blog">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/191007gcmw/" title="git push错误">git push错误</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/190715qorcms/" title="QOR踩坑日记">QOR踩坑日记</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/190713clusterdistribute/" title="集群和分布式">集群和分布式</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/190707gocommand/" title="go命令详解">go命令详解</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/190706gogetproxy/" title="go get代理设置">go get代理设置</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/190620algorithms/" title="数据结构">数据结构</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/181120gosyntax/" title="GO语言圣经笔记">GO语言圣经笔记</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/181020bwbj/" title="大爱无疆">大爱无疆</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/180816jsjourney6/" title="nodejs之旅(6)热替换与热加载">nodejs之旅(6)热替换与热加载</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/180813jsjourney5/" title="nodejs之旅(5)-form表单">nodejs之旅(5)-form表单</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/article/">article (12)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/csharp/">csharp (9)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/golang/">golang (4)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/javascript/">javascript (16)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (11)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/windows/">windows (7)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://gerrywp.github.io/blog/tags/">Tags</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/2019/">2019</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/cmd/">cmd</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/cpp/">cpp</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/cros/">cros</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/go/">go</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/java/">java</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/javascript/">javascript</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/js/">js</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/keystonejs/">keystonejs</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/markdown/">markdown</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/msbuild/">msbuild</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/nodejs/">nodejs</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/qor/">QOR</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/sql/">sql</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vs/">vs</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vscode/">vscode</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/%E8%B5%84%E6%96%99%E6%94%B6%E9%9B%86/">资料收集</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/%E9%9A%8F%E7%AC%94/">随笔</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://gerrywp.github.io/blog/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="https://gerrywp.github.io/blog">云亦海 By gerry</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function () {
+            $("pre code").parent().addClass("line-numbers")
+        }());
+
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script type="text/javascript" src="/blog/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/blog/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+<script type="text/javascript">
+(function(){
+	if (typeof self === 'undefined' || !self.Prism || !self.document) {
+		return;
+	}
+
+	if (!Prism.plugins.toolbar) {
+		console.warn('Copy to Clipboard plugin loaded before Toolbar plugin.');
+
+		return;
+	}
+
+	var ClipboardJS = window.ClipboardJS || undefined;
+
+	if (!ClipboardJS && typeof require === 'function') {
+		ClipboardJS = require('clipboard');
+	}
+
+	var callbacks = [];
+
+	if (!ClipboardJS) {
+		var script = document.createElement('script');
+		var head = document.querySelector('head');
+
+		script.onload = function() {
+			ClipboardJS = window.ClipboardJS;
+
+			if (ClipboardJS) {
+				while (callbacks.length) {
+					callbacks.pop()();
+				}
+			}
+		};
+
+		script.src = 'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js';
+		head.appendChild(script);
+	}
+
+	Prism.plugins.toolbar.registerButton('copy-to-clipboard', function (env) {
+		var linkCopy = document.createElement('button');
+		linkCopy.textContent = '复制代码';
+
+		if (!ClipboardJS) {
+			callbacks.push(registerClipboard);
+		} else {
+			registerClipboard();
+		}
+
+		return linkCopy;
+
+		function registerClipboard() {
+			var clip = new ClipboardJS(linkCopy, {
+				'text': function () {
+					return env.code;
+				}
+			});
+
+			clip.on('success', function() {
+				linkCopy.textContent = '复制成功!';
+
+				resetText();
+			});
+			clip.on('error', function () {
+				linkCopy.textContent = '按 Ctrl+C 复制';
+
+				resetText();
+			});
+		}
+
+		function resetText() {
+			setTimeout(function () {
+				linkCopy.textContent = '复制代码';
+			}, 5000);
+		}
+	});
+})();
+
+</script>
+</body>
+</html>

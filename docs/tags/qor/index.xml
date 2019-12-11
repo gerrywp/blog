@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>QOR on 云亦海</title>
+    <link>https://gerrywp.github.io/blog/tags/qor/</link>
+    <description>Recent content in QOR on 云亦海</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 07 Oct 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://gerrywp.github.io/blog/tags/qor/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>git push错误</title>
+      <link>https://gerrywp.github.io/blog/post/191007gcmw/</link>
+      <pubDate>Mon, 07 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/191007gcmw/</guid>
+      <description>&lt;p&gt;git push代码的时候，使用了git credential manager for windows工具自动保存密码，但是每次会报告一个错误：HttpRequestException encountered.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>QOR踩坑日记</title>
+      <link>https://gerrywp.github.io/blog/post/190715qorcms/</link>
+      <pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/190715qorcms/</guid>
+      <description>&lt;p&gt;QOR-CMS Open source has lots of bugs.to fix these bugs cost me lots of time.So record them into this
+article!&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

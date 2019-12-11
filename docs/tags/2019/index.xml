@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2019 on 云亦海</title>
+    <link>https://gerrywp.github.io/blog/tags/2019/</link>
+    <description>Recent content in 2019 on 云亦海</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 07 Jul 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://gerrywp.github.io/blog/tags/2019/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>go命令详解</title>
+      <link>https://gerrywp.github.io/blog/post/190707gocommand/</link>
+      <pubDate>Sun, 07 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/190707gocommand/</guid>
+      <description>&lt;p&gt;　　go命令使用笔记，对命令的使用做一个总结和归纳&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>go get代理设置</title>
+      <link>https://gerrywp.github.io/blog/post/190706gogetproxy/</link>
+      <pubDate>Sat, 06 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/190706gogetproxy/</guid>
+      <description>&lt;p&gt;　　go大部分站点在国内被墙，想要直接使用&lt;code&gt;go get&lt;/code&gt;命令下载包，就必须使用代理，本文使用的是shadowsocks代理访问外部网。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cmd on 云亦海</title>
+    <link>https://gerrywp.github.io/blog/tags/cmd/</link>
+    <description>Recent content in cmd on 云亦海</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 21 Mar 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://gerrywp.github.io/blog/tags/cmd/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>cmd批处理</title>
+      <link>https://gerrywp.github.io/blog/post/170321winbatch/</link>
+      <pubDate>Tue, 21 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/170321winbatch/</guid>
+      <description>&lt;p&gt;最近被外甥问到一个初中的奥数题目，涉及到高中的排列组合问题。因想求证一下答案，故考虑到使用&amp;rdquo;穷举法&amp;rdquo;编程来解决这个问题。
+一开始使用的是高级语言c#来解决但是觉得不够大众化，并且不便与之交流。思考了下，觉得脚本文件可以解决这个问题，
+由于batch script很少用，使用起来并不方便，而且有很多坑，因此引出了这篇博客。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cros on 云亦海</title>
+    <link>https://gerrywp.github.io/blog/tags/cros/</link>
+    <description>Recent content in cros on 云亦海</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 20 Nov 2012 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://gerrywp.github.io/blog/tags/cros/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Jquery的jsonp示例</title>
+      <link>https://gerrywp.github.io/blog/post/121120jsonp/</link>
+      <pubDate>Tue, 20 Nov 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/121120jsonp/</guid>
+      <description>&lt;p&gt;jsonp实际上就是服务器端实现对客户端函数的回调(callback)&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

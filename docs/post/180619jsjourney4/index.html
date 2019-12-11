@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.59.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>nodejs之旅(4)-webpack、babel和antd库的结合 | 云亦海</title>
+    <meta property="og:title" content="nodejs之旅(4)-webpack、babel和antd库的结合 - 云亦海">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2018-06-19T00:00:00&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2018-06-19T00:00:00&#43;08:00">
+        
+    <meta name="Keywords" content="golang,go语言,go语言笔记,项目管理,软件架构,公众号,小程序">
+    <meta name="description" content="nodejs之旅(4)-webpack、babel和antd库的结合">
+        
+    <meta name="author" content="gerry">
+    <meta property="og:url" content="https://gerrywp.github.io/blog/post/180619jsjourney4/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/blog/css/normalize.css">
+    
+        <link rel="stylesheet" href="/blog/css/prism.css">
+    
+    <link rel="stylesheet" href="/blog/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://gerrywp.github.io/blog">
+                        云亦海
+                    </a>
+                
+                <p class="description">专注于Go语言(golang)、csharp、移动互联网、项目管理、软件架构</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://gerrywp.github.io/blog">首页</a>
+                    
+                    <a  href="https://gerrywp.github.io/blog/archives/" title="归档">归档</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+        
+        
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">nodejs之旅(4)-webpack、babel和antd库的结合</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2018年6月19日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href='https://gerrywp.github.io/blog/categories/javascript'>javascript</a></span>
+                            
+                        </div>
+                        
+                        
+                        <div class="post-meta">
+                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
+                        </div>
+                        
+                        
+                        <div class="post-content">
+                            <p>　　前端(browser)模块性的开发，目前来说就不得不用到webpack(module bundle)打包工具。因为使用了react的<code>JSX</code>语法，所以必须要用到babel进行转码,因为browser是不认识<code>JSX</code>语法的。并且由于目前大部分的浏览器对ES6语法(例如：<code>import</code>和<code>export</code>等语法并不支持)，也必须用到babel对这类型新的ES6语法进行转码。鉴于前端技术发展的太快了，在此只做基本使用理念的介绍，不对细节做过多的处理！具体的各工具的使用，以在线参考文档为主！</p>
+
+<h3 id="babel和webpack的有机结合">babel和webpack的有机结合</h3>
+
+<p><strong>环境</strong>:</p>
+
+<ul>
+<li>nodejs版本:v8.9.1</li>
+<li>babel版本:v7.1.4</li>
+<li>webpack版本:v4.12.0</li>
+</ul>
+
+<ol>
+<li><p><strong>安装babel</strong>
+参照<a href="https://www.babeljs.cn/docs/setup/#installation" title="点我访问">官网</a>，本例使用的构建系统是<code>webpack</code>所以选webpack,如图：<br />
+<img src="../../pictures/QQ20180619223937.png" alt="安装babel for wepack" title="点我访问" /></p>
+
+<pre><code class="language-console">npm install --save-dev babel-loader babel-core
+</code></pre></li>
+
+<li><p><strong>配置文件</strong> webpack的配置文件<code>webpack.config.js</code>，添加对应的loader</p>
+
+<pre><code class="language-js">#由于目前暂未安装webpack,先将配置贴出来
+module: {
+rules: [
+{ test: /\.js$/, exclude: /node_modules/, loader: &quot;babel-loader&quot; }
+]
+}
+</code></pre></li>
+
+<li><p><strong>创建.babelrc文件</strong>  (本例不需要这一步)<br />
+文档说:&ldquo;虽然已经配置好了 Babel ，但并没有让它真正生效。在项目的根目录中创建一个 .babelrc 文件并启用一些插件。&rdquo;这一步其实也是可以放到webpack的配置文件里面的！(后续说明)</p></li>
+</ol>
+
+<h3 id="安装webpack-依据-官网-https-www-webpackjs-com-guides-installation-点我访问">安装webpack(依据<a href="https://www.webpackjs.com/guides/installation/" title="点我访问">官网</a>)</h3>
+
+<pre><code class="language-console">npm i webpack -D //-D 安装development依赖
+</code></pre>
+
+<p>配置<code>webpack.config.js</code>，具体参考文档，本例只对特殊地方做必要说明<br />
+在此开发的是音乐站点的管理员管理应用，目录形式没有按照react开发常规处理。目录结构如下</p>
+
+<ul>
+<li><p>Admin</p>
+
+<ul>
+<li>routes<br /></li>
+
+<li><p>views<br />
+index.html<br />
+selina.js</p>
+
+<pre><code class="language-js">const path = require('path');
+
+module.exports = {
+entry: './Admin/selina.js',
+output: {
+filename: 'bundle.js',
+path: path.resolve(__dirname, 'dist/Admin')
+},
+devtool:'source-map',
+module: {
+rules: [
+{
+test: /\.js$/,
+include: path.join(__dirname, 'Admin'),
+use: [{
+  loader: 'babel-loader'
+}]
+},
+{
+test: /\.css$/,
+use: ['style-loader', 'css-loader']
+}
+]
+},
+mode: 'development'
+};
+</code></pre></li>
+</ul></li>
+</ul>
+
+<p>入口文件为<code>selina.js</code>,并且对Admin目录下的所有js文件使用<code>babel-loader</code>进行转码，正如babel文档步骤4所说，要想让babel生效，必须添加一些插件！</p>
+
+<blockquote>
+<p>备注：<code>devtool</code>选项开启代码调试功能，生成相应的.map文件便于代码的调试！</p>
+</blockquote>
+
+<h3 id="安装-es6-和-jsx-转码器">安装<code>ES6</code>和<code>JSX</code>转码器</h3>
+
+<blockquote>
+<p><a href="https://babeljs.io/docs/en/babel-preset-react" title="点我访问">安装jsx转码器</a></p>
+</blockquote>
+
+<pre><code class="language-console">npm install --save-dev babel-preset-env babel-preset-react
+</code></pre>
+
+<p>preset意思:预设<br />
+env(enviroment):环境<br />
+文档解释的很清楚，<code>babel-preset-env</code>预设babel转码环境为(ES2015+ES2016+ES2017)。<code>babel-preset-react</code>对react的JSX语法进行转码。</p>
+
+<p>安装完毕之后，需要配置<code>babel</code>的preset让转码器生效！本来这个配置是在<code>.babelrc</code>文件中，因为使用了webpack，直接配置webpack就可以了两者是等价的！</p>
+
+<pre><code class="language-js">//webpack.config.js 
+// 修改module配置节为以下
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        include: path.join(__dirname, 'Admin'),
+        use: [{
+          loader: 'babel-loader',
+          options: {
+            presets: ['env', 'react','stage-0'],//添加'stage-0'为了让bable支持...扩展运算符的转码！
+            plugins:
+              [
+                [
+                  'import',
+                  {
+                    'libraryName': 'antd',
+                    'libraryDirectory': 'es',
+                    'style': 'css'
+                  }
+                ]
+              ]
+          }
+        }]
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      }
+    ]
+  }
+</code></pre>
+
+<p>其实等价与</p>
+
+<pre><code class="language-js">// .babelrc 
+{
+	presets:['env','react'，'stage-0'],
+	plugins:[
+                [
+                  'import',
+                  {
+                    'libraryName': 'antd',
+                    'libraryDirectory': 'es',
+                    'style': 'css'
+                  }
+                ]
+            ]
+}
+</code></pre>
+
+<p>上例中<code>plugins</code>插件部分的配置，下面做详细介绍！</p>
+
+<h3 id="antd库的使用">antd库的使用</h3>
+
+<p>在做管理员应用的时候使用了第三方蚂蚁金服的<a href="https://ant.design/docs/react/getting-started-cn" title="点我访问">antd库</a></p>
+
+<ol>
+<li><p>安装</p>
+
+<pre><code class="language-console">npm i antd  babel-plugin-import  -D
+</code></pre></li>
+</ol>
+
+<p>当使用组件的时候，为了简化开发编写，可以使用<code>babel-plugin-import</code>来按需加载,如图：</p>
+
+<p><img src="../../pictures/QQ20180619231904.png" alt="babel-plugin-import" title="点我显示" /></p>
+
+<p>文档描述，仅使用这个插件还需手动在代码中添加css样式的引用，配合<code>style</code>属性可以做到模块样式的按需自动加载。进入<code>style</code>说明了解详细配置如下：</p>
+
+<pre><code class="language-js">// .babelrc
+&quot;plugins&quot;: [
+  [&quot;import&quot;, { &quot;libraryName&quot;: &quot;antd&quot;, &quot;libraryDirectory&quot;: &quot;lib&quot;}, &quot;ant&quot;],
+  [&quot;import&quot;, { &quot;libraryName&quot;: &quot;ant-mobile&quot;, &quot;libraryDirectory&quot;: &quot;lib&quot;}, &quot;ant-mobile&quot;]
+]
+</code></pre>
+
+<p>在此直接把配置糅合进<code>webpack.config.js</code>即可，webpack的配置节<br />
+<code>rules.use.options</code>提供了
+1. presets
+2. plugins
+属性和<code>.babelrc</code>里面的同名配置属性一一对应！</p>
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/blog/post/180617jsjourney3/">nodejs之旅(3)-gulp及调试</a></li>
+        
+        <li><a href="/blog/post/180329singletoninnodejs/">nodejs如何创建单例实例</a></li>
+        
+        <li><a href="/blog/post/180327jsjourney2/">nodejs之旅(2)</a></li>
+        
+        <li><a href="/blog/post/180322jsjourney1/">nodejs之旅(1)</a></li>
+        
+        <li><a href="/blog/post/180618vssetup/">调整VS工具栏宽度</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href='https://gerrywp.github.io/blog/tags/nodejs'>nodejs</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="https://gerrywp.github.io/blog/search/" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://gerrywp.github.io/blog">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/191007gcmw/" title="git push错误">git push错误</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/190715qorcms/" title="QOR踩坑日记">QOR踩坑日记</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/190713clusterdistribute/" title="集群和分布式">集群和分布式</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/190707gocommand/" title="go命令详解">go命令详解</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/190706gogetproxy/" title="go get代理设置">go get代理设置</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/190620algorithms/" title="数据结构">数据结构</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/181120gosyntax/" title="GO语言圣经笔记">GO语言圣经笔记</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/181020bwbj/" title="大爱无疆">大爱无疆</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/180816jsjourney6/" title="nodejs之旅(6)热替换与热加载">nodejs之旅(6)热替换与热加载</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/180813jsjourney5/" title="nodejs之旅(5)-form表单">nodejs之旅(5)-form表单</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/article/">article (12)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/csharp/">csharp (9)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/golang/">golang (4)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/javascript/">javascript (16)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (11)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/windows/">windows (7)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://gerrywp.github.io/blog/tags/">Tags</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/2019/">2019</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/cmd/">cmd</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/cpp/">cpp</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/cros/">cros</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/go/">go</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/java/">java</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/javascript/">javascript</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/js/">js</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/keystonejs/">keystonejs</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/markdown/">markdown</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/msbuild/">msbuild</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/nodejs/">nodejs</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/qor/">QOR</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/sql/">sql</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vs/">vs</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vscode/">vscode</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/%E8%B5%84%E6%96%99%E6%94%B6%E9%9B%86/">资料收集</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/%E9%9A%8F%E7%AC%94/">随笔</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://gerrywp.github.io/blog/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="https://gerrywp.github.io/blog">云亦海 By gerry</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function () {
+            $("pre code").parent().addClass("line-numbers")
+        }());
+
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script type="text/javascript" src="/blog/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/blog/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+<script type="text/javascript">
+(function(){
+	if (typeof self === 'undefined' || !self.Prism || !self.document) {
+		return;
+	}
+
+	if (!Prism.plugins.toolbar) {
+		console.warn('Copy to Clipboard plugin loaded before Toolbar plugin.');
+
+		return;
+	}
+
+	var ClipboardJS = window.ClipboardJS || undefined;
+
+	if (!ClipboardJS && typeof require === 'function') {
+		ClipboardJS = require('clipboard');
+	}
+
+	var callbacks = [];
+
+	if (!ClipboardJS) {
+		var script = document.createElement('script');
+		var head = document.querySelector('head');
+
+		script.onload = function() {
+			ClipboardJS = window.ClipboardJS;
+
+			if (ClipboardJS) {
+				while (callbacks.length) {
+					callbacks.pop()();
+				}
+			}
+		};
+
+		script.src = 'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js';
+		head.appendChild(script);
+	}
+
+	Prism.plugins.toolbar.registerButton('copy-to-clipboard', function (env) {
+		var linkCopy = document.createElement('button');
+		linkCopy.textContent = '复制代码';
+
+		if (!ClipboardJS) {
+			callbacks.push(registerClipboard);
+		} else {
+			registerClipboard();
+		}
+
+		return linkCopy;
+
+		function registerClipboard() {
+			var clip = new ClipboardJS(linkCopy, {
+				'text': function () {
+					return env.code;
+				}
+			});
+
+			clip.on('success', function() {
+				linkCopy.textContent = '复制成功!';
+
+				resetText();
+			});
+			clip.on('error', function () {
+				linkCopy.textContent = '按 Ctrl+C 复制';
+
+				resetText();
+			});
+		}
+
+		function resetText() {
+			setTimeout(function () {
+				linkCopy.textContent = '复制代码';
+			}, 5000);
+		}
+	});
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>java on 云亦海</title>
+    <link>https://gerrywp.github.io/blog/tags/java/</link>
+    <description>Recent content in java on 云亦海</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 27 Jun 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://gerrywp.github.io/blog/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Think in java(Java编程思想)笔记</title>
+      <link>https://gerrywp.github.io/blog/post/180627thinkinjava/</link>
+      <pubDate>Wed, 27 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/180627thinkinjava/</guid>
+      <description>&lt;p&gt;　　阅读java编程思想，用笔记辅助记忆！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>java那些事儿</title>
+      <link>https://gerrywp.github.io/blog/post/180625javaer/</link>
+      <pubDate>Mon, 25 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/180625javaer/</guid>
+      <description>&lt;p&gt;　　最近在系统的学习java这门语言，涉及的东西也比较多。集成开发环境使用的是&lt;code&gt;Intellij(读音：Intel li year) Idea&lt;/code&gt;，循序渐进地学习语法、jsp、servlet、maven、gradle。构建工具到后期需要着重学习，只有这样才能真正了解IDE的project构建过程，实现工程自动化的自定义。阅读的书籍主要是《Java web 高级编程》和《Java 编程思想》，前者注重实战操作后者注重基础知识！学习必然会遇到问题，google下并记录下来。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

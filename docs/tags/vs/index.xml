@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vs on 云亦海</title>
+    <link>https://gerrywp.github.io/blog/tags/vs/</link>
+    <description>Recent content in vs on 云亦海</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 18 Jun 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://gerrywp.github.io/blog/tags/vs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>调整VS工具栏宽度</title>
+      <link>https://gerrywp.github.io/blog/post/180618vssetup/</link>
+      <pubDate>Mon, 18 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/180618vssetup/</guid>
+      <description>&lt;p&gt;　　Visual Studio的&lt;strong&gt;Solution Configurations&lt;/strong&gt;这个选项在工具栏下的宽度很窄，多几个字符就看不见后面的名称，需要达成的目标就是定制宽度！(好记性不如烂笔头，记忆力衰退太厉害了)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>发布项目dll未被msbuild拷贝到输出目录</title>
+      <link>https://gerrywp.github.io/blog/post/180329dllnotcopy/</link>
+      <pubDate>Thu, 29 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/180329dllnotcopy/</guid>
+      <description>&lt;p&gt;　　添加了reference的dll文件并且&lt;code&gt;Copy Local&lt;/code&gt;值为True为何不拷贝到输出目录？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>vs2017支持.editorconfig配置</title>
+      <link>https://gerrywp.github.io/blog/post/171124vs2017setup/</link>
+      <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/171124vs2017setup/</guid>
+      <description>&lt;p&gt;　　visual studio无法全局设置编码，新建的文件有的时候并不是使用utf-8编码的，所有在有的环境下会出现乱码。比如使用babel转嘛js代码的时候。网上找到的解决方案，下载&lt;code&gt;ForeUTF8&lt;/code&gt;插件并不能解决问题，当我们新建文件的时候，还要一个个手动通过高级保存，保存为我们想要的编码。所幸百般查找，发现vs是可以支持&lt;code&gt;.editorconfig&lt;/code&gt;配置文件的。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

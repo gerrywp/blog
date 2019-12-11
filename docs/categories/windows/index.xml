@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>windows on 云亦海</title>
+    <link>https://gerrywp.github.io/blog/categories/windows/</link>
+    <description>Recent content in windows on 云亦海</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 18 Jun 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://gerrywp.github.io/blog/categories/windows/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>调整VS工具栏宽度</title>
+      <link>https://gerrywp.github.io/blog/post/180618vssetup/</link>
+      <pubDate>Mon, 18 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/180618vssetup/</guid>
+      <description>&lt;p&gt;　　Visual Studio的&lt;strong&gt;Solution Configurations&lt;/strong&gt;这个选项在工具栏下的宽度很窄，多几个字符就看不见后面的名称，需要达成的目标就是定制宽度！(好记性不如烂笔头，记忆力衰退太厉害了)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>cmd实现类似linux下的alias并模拟加载bashrc文件</title>
+      <link>https://gerrywp.github.io/blog/post/171126cmdalias/</link>
+      <pubDate>Sun, 26 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/171126cmdalias/</guid>
+      <description>&lt;p&gt;　　cmd可以使用&lt;code&gt;doskey&lt;/code&gt;命令来定义命令的别名，但是windows要实现自动加载配置文件，似乎只能通过修改注册表来达到目的。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>putty配置并使用</title>
+      <link>https://gerrywp.github.io/blog/post/171029putty/</link>
+      <pubDate>Sun, 29 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/171029putty/</guid>
+      <description>&lt;p&gt;配置putyy能够自动登陆、开启显示密码、在下达完整个命令之后才发送至服务端！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Jscript for WSH</title>
+      <link>https://gerrywp.github.io/blog/post/170725jsforwsh/</link>
+      <pubDate>Tue, 25 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/170725jsforwsh/</guid>
+      <description>&lt;p&gt;告别批处理，使用WSH做更强大的脚本。为什么不直接使用VBScript呢？因为不喜欢它的语法，所以选择易懂的Jscript作首选语言！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>unicode编码字符集和utf-8、asci编码方式</title>
+      <link>https://gerrywp.github.io/blog/post/170323encoding/</link>
+      <pubDate>Thu, 23 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/170323encoding/</guid>
+      <description>&lt;p&gt;Unicode是一个编码字符集，统一维护着世界上所有的&amp;rsquo;字符&amp;rsquo;。Unicode只是一个符号集，它只规定了符号的二进制代码，
+却没有规定这个二进制代码应该如何存储。utf8只是Unicode字符集的一个具体的编码(解码)的实现方式之一，其它的还有utf-16
+,utf-32等。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>cmd批处理</title>
+      <link>https://gerrywp.github.io/blog/post/170321winbatch/</link>
+      <pubDate>Tue, 21 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/170321winbatch/</guid>
+      <description>&lt;p&gt;最近被外甥问到一个初中的奥数题目，涉及到高中的排列组合问题。因想求证一下答案，故考虑到使用&amp;rdquo;穷举法&amp;rdquo;编程来解决这个问题。
+一开始使用的是高级语言c#来解决但是觉得不够大众化，并且不便与之交流。思考了下，觉得脚本文件可以解决这个问题，
+由于batch script很少用，使用起来并不方便，而且有很多坑，因此引出了这篇博客。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>汇编指令lea</title>
+      <link>https://gerrywp.github.io/blog/post/131204asmsyntax/</link>
+      <pubDate>Fri, 04 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/131204asmsyntax/</guid>
+      <description>&lt;p&gt;个别汇编指令英文全称说明，便于使用和记忆&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
