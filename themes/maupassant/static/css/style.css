@@ -275,6 +275,9 @@ textarea {
     display:block;
     padding-top:40px;
 }
+#secondary a{
+	text-decoration:underline;
+}
 #main {
     padding-top:20px;
     float:left;
@@ -911,6 +914,9 @@ img.alignright {
     font-size: 15px;
     line-height: 2;
     padding-bottom: .8em; 
+}
+.post-archive a{
+	text-decoration:underline;
 }
 .post-archive h2 {
       margin: 0;
