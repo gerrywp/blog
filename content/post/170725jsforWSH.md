@@ -1,7 +1,7 @@
 +++
 title = "Jscript for WSH"
 date = "2017-07-25"
-tags = [ "" ]
+tags = [ "shell" ]
 categories = [ "windows" ]
 +++
 

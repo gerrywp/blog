@@ -18,7 +18,7 @@ categories = [ "javascript" ]
 1. **安装babel**
 参照[官网](https://www.babeljs.cn/docs/setup/#installation '点我访问')，本例使用的构建系统是`webpack`所以选webpack,如图：  
 ![安装babel for wepack](../../pictures/QQ20180619223937.png '点我访问')  
-```console
+```bash
 npm install --save-dev babel-loader babel-core
 ```
 2. **配置文件** webpack的配置文件`webpack.config.js`，添加对应的loader
@@ -35,7 +35,7 @@ module: {
 
 ### 安装webpack(依据[官网](https://www.webpackjs.com/guides/installation/ '点我访问'))
 
-```console
+```bash
 npm i webpack -D //-D 安装development依赖
 ```
 
@@ -84,7 +84,7 @@ module.exports = {
 
 > [安装jsx转码器](https://babeljs.io/docs/en/babel-preset-react '点我访问')
 
-```console
+```bash
 npm install --save-dev babel-preset-env babel-preset-react
 ```
 preset意思:预设  
@@ -154,7 +154,7 @@ env(enviroment):环境
 
 1. 安装
 
-```console
+```bash
 npm i antd  babel-plugin-import  -D
 ```
 

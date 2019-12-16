@@ -1,7 +1,7 @@
 +++
 title = "cmd实现类似linux下的alias并模拟加载bashrc文件"
 date = "2017-11-26"
-tags = [ "" ]
+tags = [ "shell" ]
 categories = [ "windows" ]
 +++
 
@@ -9,7 +9,7 @@ categories = [ "windows" ]
 <!--more-->
 ### 实现dir的别名`ls`
 
-```sh
+```bash
 # 创建批处理文件bashrc.cmd,内容如下
 @echo off
 doskey ls=dir /b $*
@@ -24,7 +24,7 @@ doskey ls=dir /b $*
 批处理文件下载地址：[实现别名并开机启动](../assets/bashrc.cmd "点我下载")
 一定要使用ASIN编码
 
-```sh
+```bash
 :: Purpose-add [autorun alias commands] batch file
 :: Author-Gerry
 :: Date-2017年11月26日

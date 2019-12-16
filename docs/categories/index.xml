@@ -6,10 +6,19 @@
     <description>Recent content in Categories on 云亦海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 11 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 12 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://gerrywp.github.io/blog/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>article</title>
+      <link>https://gerrywp.github.io/blog/categories/article/</link>
+      <pubDate>Thu, 12 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/categories/article/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>linux</title>
@@ -35,15 +44,6 @@
       <pubDate>Thu, 20 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/categories/others/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>article</title>
-      <link>https://gerrywp.github.io/blog/categories/article/</link>
-      <pubDate>Sat, 20 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://gerrywp.github.io/blog/categories/article/</guid>
       <description></description>
     </item>
     

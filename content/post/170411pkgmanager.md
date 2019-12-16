@@ -1,7 +1,7 @@
 +++
 title = "linux下的软件管理"
 date = "2017-04-11"
-tags = [ "" ]
+tags = [ "shell" ]
 categories = [ "linux" ]
 +++
 
@@ -32,7 +32,7 @@ linux的dpkg资料库路径为:`/var/lib/apt/`
 
 通常情况下默认的yum资料库(repo)并不包含有些类型的软件，需要手动添加epel源
 
-```sh
+```bash
 # yum info 命令查看系统是否安装了epel包
 yum info epel-release
 # 安装nodejs
@@ -48,7 +48,7 @@ sudo su -
 
 使用`curl`命令下载官方二进制压缩包
 
-```sh
+```bash
 # 参数大写的-O/--remote-name表示，把输出写到该文件中，使用远程文件名
 curl -O https://nodejs.org/dist/v6.11.5/node-v6.11.5-linux-x64.tar.xz
 # 区别与-o参数
@@ -81,7 +81,7 @@ apt使用的服务器或镜像站点，通过以下配置文件进行配置： �
 deb http://host/debian distribution section1 section2 section3
 deb-src http://host/debian distribution section1 section2 section3
 
-```sh
+```bash
 # See sources.list(5) for more information, especially
 # Remember that you can only use http, ftp or file URIs
 # CDROMs are managed through the apt-cdrom tool.
@@ -107,7 +107,7 @@ PPA:A Personal Package Archive (PPA) is a software repository for uploading sour
 ![图片2](../../pictures/QQ20170411212140.png "点我访问")
 ![图片2](../../pictures/QQ20170411212145.png "点我访问")
 
-```sh
+```bash
 # systec:所有者(作者、组织),curl-7.35-trusty:库名称
 sudo add-apt-repository ppa:systec/curl-7.35-trusty
 sudo apt-get update
@@ -116,7 +116,7 @@ sudo apt-get update
 删除已添加的PPAs  
 1. 仅删除"sources.list.d/\*.list"文件内容
 
-```sh
+```bash
 sudo add-apt-repository --remove ppa:systec/curl-7.35-trusty
 # 下面的命令等价
 sudo apt-add-repository --remove ppa:system/curl-7.35-trusty
@@ -124,7 +124,7 @@ sudo apt-add-repository --remove ppa:system/curl-7.35-trusty
 
 2. (**推荐**)在`/etc/apt/sources.list.d` directory下面找到需删除PPA配置，并删除。
 
-```sh
+```bash
 sudo rm /etc/apt/sources.list.d/xxxx.list*
 ```
 
@@ -134,7 +134,7 @@ sudo rm /etc/apt/sources.list.d/xxxx.list*
 
 [Ubuntu发行版列表](https://zh.wikipedia.org/wiki/Ubuntu%E5%8F%91%E8%A1%8C%E7%89%88%E5%88%97%E8%A1%A8 "点我访问")
 
-```sh
+```bash
 # $(lsb_release -cs)获取系统版本(开发代号)
 # 添加apt server repository
 sudo add-apt-repository \
@@ -156,7 +156,7 @@ sudo apt-add-repository --remove \
 
 #### apt search packagename(搜索apt服务器上指定名称的包)
 
-```sh
+```bash
 apt search curl #列出当前apt server或镜像站点里面的包信息
 apt list        #列出apt server上所有的包
 apt list curl 
@@ -164,7 +164,7 @@ apt list curl
 
 #### apt -y install packagename(从apt server上下载并安装指定包)
 
-```sh
+```bash
 apt -y install curl
 ```
 
@@ -179,7 +179,7 @@ Ubuntu使用MetaPackages提供了跟RedHat的`yum grouplist`相似的功能，�
 
 #### dpkg -l packagename 列出本机是否已经安装了指定的包
 
-```sh
+```bash
 dpkg -l curl
 
 # 删除所有状态为rc的软件及配置文件

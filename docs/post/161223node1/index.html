@@ -198,7 +198,7 @@ process.execPath===&lsquo;/usr/local/node&rsquo;。Nodejs的官方文档的<stro
 <ul>
 <li><p><strong>全局安装</strong></p>
 
-<pre><code class="language-sh">npm install PACKAGE_NAME -g
+<pre><code class="language-bash">npm install PACKAGE_NAME -g
 </code></pre></li>
 </ul>
 
@@ -219,7 +219,7 @@ npm全局的默认安装路径,如下图所示(prefix=%appdata%\npm):</p>
 <ul>
 <li><p><strong>局部安装</strong></p>
 
-<pre><code class="language-sh">npm install PACKAGE_NAME
+<pre><code class="language-bash">npm install PACKAGE_NAME
 </code></pre></li>
 </ul>
 
@@ -237,7 +237,7 @@ npm安装过程分析大致如下：
 2. npm向registry查询模块压缩包的地址
 3. 下载压缩包存放在~/.npm目录(windows目录为:%appdata%/npm-cache)</p>
 
-<pre><code class="language-sh">npm config get cache //查看缓存压缩包存放的位置
+<pre><code class="language-bash">npm config get cache //查看缓存压缩包存放的位置
 </code></pre>
 
 <ol>
@@ -250,7 +250,7 @@ npm安装过程分析大致如下：
 
 <p><strong>npm config</strong> 命令在%HOMEPATH%目录下生成.npmrc的隐藏文件，存放npm的配置</p>
 
-<pre><code class="language-sh">npm root -g  //方式1:查看npm安装全局模块的默认路径
+<pre><code class="language-bash">npm root -g  //方式1:查看npm安装全局模块的默认路径
 npm config get prefix //方式2
 # 默认情况下的路径为c:\node\node_modules
 
@@ -259,7 +259,7 @@ npm get userconfig //获取用户自定义配置文件路径
 npm get globalconfig //获取系统配置文件路径
 </code></pre>
 
-<pre><code class="language-sh">npm config set prefix c:\\global  //设置npm全局模块安装路径
+<pre><code class="language-bash">npm config set prefix c:\\global  //设置npm全局模块安装路径
 npm config ls
 # ;cli configs
 # user-agent = &quot;npm/1.4.9 node/v4.4.7 win32 ia32&quot;
@@ -271,7 +271,7 @@ npm config ls
 
 <p><strong>npm ls</strong></p>
 
-<pre><code class="language-sh">npm ls     //列出项目已安装模块
+<pre><code class="language-bash">npm ls     //列出项目已安装模块
 npm ls -g  //列出已安装的全局模块
 </code></pre>
 
@@ -280,7 +280,7 @@ npm ls -g  //列出已安装的全局模块
 <p>企业用户访问外网通常使用的是代理模式，因此npm也需要配置成使用代理模式访问外网！  
 通常企业用户的用户名由「域名\用户名」组成，如：「domain\username」</p>
 
-<pre><code class="language-sh"># 手动转义\为%5C
+<pre><code class="language-bash"># 手动转义\为%5C
 npm config set proxy &quot;http://domain%5Cusername:password@servername:port/&quot;
 npm config set https-proxy &quot;http://domain%5Cusername:password@servername:port/&quot;
 # 其中servername的获取方式为，下载.pac文件以文本的方式打开，找到代理服务器地址(包含端口号)
@@ -304,7 +304,7 @@ npm config set https-proxy &quot;http://domain%5Cusername:password@servername:po
 
 <p>为了使自己的模块或者包能够使用npm依赖的所有包，在windows下可以通过在%HOMEPATH%创建一个文件夹映射到npm下的node_modules目录</p>
 
-<pre><code class="language-sh">cd &quot;C:\Program Files\Microsoft Visual Studio 14.0\
+<pre><code class="language-bash">cd &quot;C:\Program Files\Microsoft Visual Studio 14.0\
 Common7\IDE\Extensions\Microsoft\Web Tools\External\npm&quot;
 mklink /J c:\node_modules .\node_modules
 </code></pre>
@@ -328,9 +328,9 @@ mklink /J c:\node_modules .\node_modules
     <h2>See Also</h2>
     <ul class="listing">
         
-        <li><a href="/blog/post/131204asmsyntax/">汇编指令lea</a></li>
-        
         <li><a href="/blog/post/150101git/">git常用命令</a></li>
+        
+        <li><a href="/blog/post/131204asmsyntax/">汇编指令lea</a></li>
         
         <li><a href="/blog/post/121120jsonp/">Jquery的jsonp示例</a></li>
         
@@ -346,7 +346,7 @@ mklink /J c:\node_modules .\node_modules
                             
                             <ul class="clearfix">
                                 
-                                <li><a href='https://gerrywp.github.io/blog/tags/'></a></li>
+                                <li><a href='https://gerrywp.github.io/blog/tags/nodejs'>nodejs</a></li>
                                 
                             </ul>
                             
@@ -372,6 +372,10 @@ mklink /J c:\node_modules .\node_modules
     <section class="widget">
         <h3 class="widget-title">最近文章</h3>
 <ul class="widget-list">
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/170920moonlit/" title="月夜家话">月夜家话</a>
+    </li>
     
     <li>
         <a href="https://gerrywp.github.io/blog/post/191211shell/" title="批量更名">批量更名</a>
@@ -409,10 +413,6 @@ mklink /J c:\node_modules .\node_modules
         <a href="https://gerrywp.github.io/blog/post/181020bwbj/" title="大爱无疆">大爱无疆</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/180816jsjourney6/" title="nodejs之旅(6)热替换与热加载">nodejs之旅(6)热替换与热加载</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -445,25 +445,21 @@ mklink /J c:\node_modules .\node_modules
         <h3 class="widget-title">标签</h3>
 <div class="tagcloud">
     
-    <a href="https://gerrywp.github.io/blog/tags/">Tags</a>
-    
     <a href="https://gerrywp.github.io/blog/tags/2019/">2019</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/cmd/">cmd</a>
+    <a href="https://gerrywp.github.io/blog/tags/asm/">asm</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/cms/">cms</a>
     
     <a href="https://gerrywp.github.io/blog/tags/cpp/">cpp</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/cros/">cros</a>
+    <a href="https://gerrywp.github.io/blog/tags/git/">git</a>
     
     <a href="https://gerrywp.github.io/blog/tags/go/">go</a>
     
     <a href="https://gerrywp.github.io/blog/tags/java/">java</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/javascript/">javascript</a>
-    
     <a href="https://gerrywp.github.io/blog/tags/js/">js</a>
-    
-    <a href="https://gerrywp.github.io/blog/tags/keystonejs/">keystonejs</a>
     
     <a href="https://gerrywp.github.io/blog/tags/markdown/">markdown</a>
     
@@ -471,15 +467,17 @@ mklink /J c:\node_modules .\node_modules
     
     <a href="https://gerrywp.github.io/blog/tags/nodejs/">nodejs</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/qor/">QOR</a>
-    
     <a href="https://gerrywp.github.io/blog/tags/shell/">shell</a>
     
     <a href="https://gerrywp.github.io/blog/tags/sql/">sql</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/vs/">vs</a>
+    <a href="https://gerrywp.github.io/blog/tags/ssh/">ssh</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/vscode/">vscode</a>
+    <a href="https://gerrywp.github.io/blog/tags/utf8/">utf8</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vim/">vim</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vs/">vs</a>
     
     <a href="https://gerrywp.github.io/blog/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
     

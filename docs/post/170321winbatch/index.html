@@ -102,7 +102,7 @@
 
 <p>什么是复合语句？通过组合命令、重定向、管道命令串联起来的,或者以()括号包含起来的就是复合语句。如下：</p>
 
-<pre><code class="language-ps">@echo off
+<pre><code class="language-bash">@echo off
 set a=4
 set a=5 &amp; echo %a%
 pause
@@ -124,7 +124,7 @@ set /A b=16
 即延迟了对变量的预处理，相当于让复合语句，能够一条一条的预处理-&gt;执行，这样就可以解决问题。<br />
 读取延迟变量的语法为: <code>!variable!</code></p>
 
-<pre><code class="language-ps">@echo off
+<pre><code class="language-bash">@echo off
 ::开启变量扩展和变量延迟
 setlocal ENABLEEXTENSIONS ENABLEDELAYEDEXPANSION
 
@@ -144,7 +144,7 @@ endlocal
 
 <p>解释：因为do后面的 ()是一个复合语句，每次for循环进入，批处理预处理会先解析后面代码成为如下代码</p>
 
-<pre><code class="language-ps">do (
+<pre><code class="language-bash">do (
 :: a的值根据循环次数来
 set a=[1,2,3,4,5]
 :: 这里永远是10
@@ -156,7 +156,7 @@ echo 10
 
 <p>cmd下的管道命令|，以这种方式传输,请看以下代码：</p>
 
-<pre><code class="language-ps">set input=empty
+<pre><code class="language-bash">set input=empty
 echo test | set /p input=
 echo %input%
 </code></pre>
@@ -165,7 +165,7 @@ echo %input%
 <p>结果：empty.看似上面的第二个语句没有赋值成功。</p>
 </blockquote>
 
-<pre><code class="language-ps">set input=empty
+<pre><code class="language-bash">set input=empty
 echo test | (set /p input= &amp; set input)
 echo %input%
 </code></pre>
@@ -175,7 +175,8 @@ echo %input%
 结论：因为管道命令会为后面的命令创建一个新的子进程，子进程里面的变量和父进程的变量不是同一个，故有以上的问题！<br />
 译文：当command以管道的方式传送输出给&rsquo;| batch_command&rsquo;的时候，将创建一个新的cmd.exe实例，效果等同于：</p>
 
-<p><code>C:\Windows\system32\cmd.exe /C /S /D &quot;batch_command&quot;</code></p>
+<pre><code class="language-bash">C:\Windows\system32\cmd.exe /C /S /D &quot;batch_command&quot;
+</code></pre>
 
 <p>这会产生一系列的副作用</p>
 
@@ -186,7 +187,7 @@ echo %input%
 xargs作用：&rdquo;将标准输入作为命令的参数&rdquo;<br />
 因此dir命令不能跟在管道的后面，因为dir不需要标准输入</p>
 
-<pre><code class="language-ps">::linux下这样
+<pre><code class="language-bash">::linux下这样
 find . -name &quot;*.java&quot; | xargs accurev keep -c &quot;comment&quot;
 ::cmd下通过for循环来实现
 FOR /F %k in ('dir /s /b *.java') DO accurev keep -c &quot;comment&quot; %k
@@ -198,7 +199,7 @@ FOR /F %k in ('dir /s /b *.java') DO accurev keep -c &quot;comment&quot; %k
 
 <p>有时候我们希望不显示信息到输出界面，可以将输出流定向到垃圾桶</p>
 
-<pre><code class="language-ps">del /s  bin\*.exe &gt;nul 2&gt;&amp;1
+<pre><code class="language-bash">del /s  bin\*.exe &gt;nul 2&gt;&amp;1
 #从右往左读，将2错误输出重定向到1标准输出(&amp;取地址操作，取标准输出设备的地址)，然后是&gt;nul将标准输出重定向到垃圾桶
 </code></pre>
 
@@ -248,6 +249,8 @@ FOR /F %k in ('dir /s /b *.java') DO accurev keep -c &quot;comment&quot; %k
     <h2>See Also</h2>
     <ul class="listing">
         
+        <li><a href="/blog/post/170120linuxdaemon/">Linux(daemon)和管线命令(pipe)</a></li>
+        
         <li><a href="/blog/post/170317mssqlsp/">拾遗ms-sql stored procedure</a></li>
         
         <li><a href="/blog/post/170315article/">固定唱名 or 首调唱名</a></li>
@@ -255,8 +258,6 @@ FOR /F %k in ('dir /s /b *.java') DO accurev keep -c &quot;comment&quot; %k
         <li><a href="/blog/post/170314iisexpress/">iisexpress-config</a></li>
         
         <li><a href="/blog/post/170301settimeout/">setTimeout定时器的使用</a></li>
-        
-        <li><a href="/blog/post/170120linuxdaemon/">Linux(daemon)和管线命令(pipe)</a></li>
         
     </ul>
 </div>
@@ -266,7 +267,7 @@ FOR /F %k in ('dir /s /b *.java') DO accurev keep -c &quot;comment&quot; %k
                             
                             <ul class="clearfix">
                                 
-                                <li><a href='https://gerrywp.github.io/blog/tags/cmd'>cmd</a></li>
+                                <li><a href='https://gerrywp.github.io/blog/tags/shell'>shell</a></li>
                                 
                             </ul>
                             
@@ -292,6 +293,10 @@ FOR /F %k in ('dir /s /b *.java') DO accurev keep -c &quot;comment&quot; %k
     <section class="widget">
         <h3 class="widget-title">最近文章</h3>
 <ul class="widget-list">
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/170920moonlit/" title="月夜家话">月夜家话</a>
+    </li>
     
     <li>
         <a href="https://gerrywp.github.io/blog/post/191211shell/" title="批量更名">批量更名</a>
@@ -329,10 +334,6 @@ FOR /F %k in ('dir /s /b *.java') DO accurev keep -c &quot;comment&quot; %k
         <a href="https://gerrywp.github.io/blog/post/181020bwbj/" title="大爱无疆">大爱无疆</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/180816jsjourney6/" title="nodejs之旅(6)热替换与热加载">nodejs之旅(6)热替换与热加载</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -365,25 +366,21 @@ FOR /F %k in ('dir /s /b *.java') DO accurev keep -c &quot;comment&quot; %k
         <h3 class="widget-title">标签</h3>
 <div class="tagcloud">
     
-    <a href="https://gerrywp.github.io/blog/tags/">Tags</a>
-    
     <a href="https://gerrywp.github.io/blog/tags/2019/">2019</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/cmd/">cmd</a>
+    <a href="https://gerrywp.github.io/blog/tags/asm/">asm</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/cms/">cms</a>
     
     <a href="https://gerrywp.github.io/blog/tags/cpp/">cpp</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/cros/">cros</a>
+    <a href="https://gerrywp.github.io/blog/tags/git/">git</a>
     
     <a href="https://gerrywp.github.io/blog/tags/go/">go</a>
     
     <a href="https://gerrywp.github.io/blog/tags/java/">java</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/javascript/">javascript</a>
-    
     <a href="https://gerrywp.github.io/blog/tags/js/">js</a>
-    
-    <a href="https://gerrywp.github.io/blog/tags/keystonejs/">keystonejs</a>
     
     <a href="https://gerrywp.github.io/blog/tags/markdown/">markdown</a>
     
@@ -391,15 +388,17 @@ FOR /F %k in ('dir /s /b *.java') DO accurev keep -c &quot;comment&quot; %k
     
     <a href="https://gerrywp.github.io/blog/tags/nodejs/">nodejs</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/qor/">QOR</a>
-    
     <a href="https://gerrywp.github.io/blog/tags/shell/">shell</a>
     
     <a href="https://gerrywp.github.io/blog/tags/sql/">sql</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/vs/">vs</a>
+    <a href="https://gerrywp.github.io/blog/tags/ssh/">ssh</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/vscode/">vscode</a>
+    <a href="https://gerrywp.github.io/blog/tags/utf8/">utf8</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vim/">vim</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vs/">vs</a>
     
     <a href="https://gerrywp.github.io/blog/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
     

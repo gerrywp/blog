@@ -51,6 +51,15 @@
     </item>
     
     <item>
+      <title>apache反向代理nodejs-web</title>
+      <link>https://gerrywp.github.io/blog/post/180402deploy/</link>
+      <pubDate>Mon, 02 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/180402deploy/</guid>
+      <description>&lt;p&gt;　　将nodejs-web站点部署到linux服务器上如何反向代理？应用程序运行在3000端口，通过域名访问！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>nodejs如何创建单例实例</title>
       <link>https://gerrywp.github.io/blog/post/180329singletoninnodejs/</link>
       <pubDate>Thu, 29 Mar 2018 00:00:00 +0000</pubDate>
@@ -78,6 +87,26 @@ handlebars的&lt;strong&gt;Block Helper&lt;/strong&gt;能够帮我们解决这�
       <guid>https://gerrywp.github.io/blog/post/180322jsjourney1/</guid>
       <description>&lt;p&gt;　　这个系列会一步一步开始使用expressjs+nodejs搭建一个游戏背景音乐在线听网站。从零开始记录每一个细节：包括IDE工具使用细节、环境配置细节、expressjs
 配置细节等等。目的只是为了单纯的练习和使用expressjs+nodejs，在摸索中前进！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>前端那些事儿</title>
+      <link>https://gerrywp.github.io/blog/post/171124fullstack/</link>
+      <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/171124fullstack/</guid>
+      <description>&lt;p&gt;　　微软系软件开发使用的Visual Studio(VS) IDE强大到令人发指！隐藏了许多技术细节，必然很难定制。nodejs出现之前，创建一个asp.net mvc的项目，client(browser)和server(csharp+iis)是组织在一起的。很少有公司在做asp.net mvc项目的时候会定制msbuild去完成浏览器端代码的构建和发布，比如：
+打包压缩js+css文件,拷贝文件到指定的dist目录,修改view或html文件中的js、css引用路径给路径添加上hash码，同时也拷贝到dist目录。但是通常情况下都是使用的IDE自动构建和一键式发布来deploy website应用。这种情况下想实现client端和server端的分而治之，压根是不可能实现的。nodejs的出现彻底改变了这一现状！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title> windows环境下node.exe配置</title>
+      <link>https://gerrywp.github.io/blog/post/161223node1/</link>
+      <pubDate>Fri, 23 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/161223node1/</guid>
+      <description>&lt;p&gt;node.exe-nodejs的可执行环境，其实仅仅只依靠&lt;strong&gt;node.exe&lt;/strong&gt;这个可执行文件就可以了。&lt;strong&gt;npm&lt;/strong&gt;只不过是运行于&lt;strong&gt;node.exe&lt;/strong&gt;环境中的「包管理程序」。
+那么windows下node是如何加载模块的，npm是如何管理包的？&lt;/p&gt;</description>
     </item>
     
   </channel>

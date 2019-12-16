@@ -15,14 +15,14 @@ categories = [ "golang" ]
 
 因为`go get`命令首先要从后面的url路径上取得meta tags如下：
 
-```sh
+```bash
 Fetching https://google.golang.org/grpc?go-get=1
 Parsing meta tags from https://google.golang.org/grpc?go-get=1 (status code 200)
 ```
 
 go命令本身走代理是依靠环境变量来设置的，因此：
 
-```sh
+```bash
 # cmd 下设置临时环境变量
 set http_proxy=http://127.0.0.1:1080
 
@@ -45,7 +45,7 @@ export http_proxy=http://127.0.0.1:1080
 #### 配置git代理
 因为go最终使用的是源码管理工具下载包文件，本文使用的源码管理工具是git
 
-```sh
+```bash
 #配置git proxy
 git config --global http.proxy=http://127.0.0.1:1080
 ```
@@ -53,7 +53,7 @@ git config --global http.proxy=http://127.0.0.1:1080
 git在安装的时候会默认勾选换行符转换的checkbox，然后每次提交文件的时候，就会自动将`CRLF`替换成`LF`
 如下禁用此设置不需要重新安装：
 
-```sh
+```bash
 git config --system core.autocrlf=false
 #显示所有配置文件的路径
 git config --list --show-origin
@@ -63,7 +63,7 @@ git config --list --show-origin
 
 然后`go get`命令可以直接下载墙外的包了
 
-```sh
+```bash
 #下载gRPC包
 go get -v -u google.golang.org/grpc
 ```
@@ -74,7 +74,7 @@ go get -v -u google.golang.org/grpc
 [goproxy.io](https://goproxy.io "点我访问")  
 我们必须在windows下设置环境变量：
 
-```sh
+```bash
 GO111MODULE="on"
 GOPROXY="https://goproxy.io"
 ```
@@ -82,6 +82,6 @@ GOPROXY="https://goproxy.io"
 这样vscode里面才能使用go module模式通过代理来下载go包：
 在help/Toggle Developer Tools里面我们可以看到环境变量有值了。
 
-```sh
+```bash
 process.env.GOPROXY
 ```

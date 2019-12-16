@@ -96,21 +96,21 @@
 
 <h3 id="lea-load-effective-address-加载有效地址">lea (<strong>Load Effective Address</strong> 加载有效地址 )</h3>
 
-<pre><code class="language-smalltalk">lea eax,[ecx+0x48]
+<pre><code class="language-clike">lea eax,[ecx+0x48]
 </code></pre>
 
 <p>说明: 将ecx+048这个结果作为一个地址传给eax(那么现在eax里面存的就是一个地址了)</p>
 
 <h3 id="赋值操作">赋值操作</h3>
 
-<pre><code class="language-smalltalk">lea eax,pVariable
+<pre><code class="language-clike">lea eax,pVariable
 /*结果：将指针变量自身的地址赋值给了eax*/
 </code></pre>
 
 <p>说明:pVariable是一个指针变量。在高级语言的概念里,传递*指针*就是传递<em>地址</em>,上例的地址是指针自身的地址
 处理方法：将lea指令换成mov指令</p>
 
-<pre><code class="language-smalltalk">mov eax,pVariable
+<pre><code class="language-clike">mov eax,pVariable
 //将pVariable指针指向的内容(一个内存地址)传递给eax
 </code></pre>
                         </div>
@@ -138,7 +138,7 @@
                             
                             <ul class="clearfix">
                                 
-                                <li><a href='https://gerrywp.github.io/blog/tags/'></a></li>
+                                <li><a href='https://gerrywp.github.io/blog/tags/asm'>asm</a></li>
                                 
                             </ul>
                             
@@ -164,6 +164,10 @@
     <section class="widget">
         <h3 class="widget-title">最近文章</h3>
 <ul class="widget-list">
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/170920moonlit/" title="月夜家话">月夜家话</a>
+    </li>
     
     <li>
         <a href="https://gerrywp.github.io/blog/post/191211shell/" title="批量更名">批量更名</a>
@@ -201,10 +205,6 @@
         <a href="https://gerrywp.github.io/blog/post/181020bwbj/" title="大爱无疆">大爱无疆</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/180816jsjourney6/" title="nodejs之旅(6)热替换与热加载">nodejs之旅(6)热替换与热加载</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -237,25 +237,21 @@
         <h3 class="widget-title">标签</h3>
 <div class="tagcloud">
     
-    <a href="https://gerrywp.github.io/blog/tags/">Tags</a>
-    
     <a href="https://gerrywp.github.io/blog/tags/2019/">2019</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/cmd/">cmd</a>
+    <a href="https://gerrywp.github.io/blog/tags/asm/">asm</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/cms/">cms</a>
     
     <a href="https://gerrywp.github.io/blog/tags/cpp/">cpp</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/cros/">cros</a>
+    <a href="https://gerrywp.github.io/blog/tags/git/">git</a>
     
     <a href="https://gerrywp.github.io/blog/tags/go/">go</a>
     
     <a href="https://gerrywp.github.io/blog/tags/java/">java</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/javascript/">javascript</a>
-    
     <a href="https://gerrywp.github.io/blog/tags/js/">js</a>
-    
-    <a href="https://gerrywp.github.io/blog/tags/keystonejs/">keystonejs</a>
     
     <a href="https://gerrywp.github.io/blog/tags/markdown/">markdown</a>
     
@@ -263,15 +259,17 @@
     
     <a href="https://gerrywp.github.io/blog/tags/nodejs/">nodejs</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/qor/">QOR</a>
-    
     <a href="https://gerrywp.github.io/blog/tags/shell/">shell</a>
     
     <a href="https://gerrywp.github.io/blog/tags/sql/">sql</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/vs/">vs</a>
+    <a href="https://gerrywp.github.io/blog/tags/ssh/">ssh</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/vscode/">vscode</a>
+    <a href="https://gerrywp.github.io/blog/tags/utf8/">utf8</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vim/">vim</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vs/">vs</a>
     
     <a href="https://gerrywp.github.io/blog/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
     

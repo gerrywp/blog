@@ -1,7 +1,7 @@
 +++
 title = "Linux守护进程和自启动"
 date = "2018-02-23"
-tags = [ "" ]
+tags = [ "shell" ]
 categories = [ "linux" ]
 +++
 

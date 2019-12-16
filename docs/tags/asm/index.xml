@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>asm on 云亦海</title>
+    <link>https://gerrywp.github.io/blog/tags/asm/</link>
+    <description>Recent content in asm on 云亦海</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 04 Jan 2013 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://gerrywp.github.io/blog/tags/asm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>汇编指令lea</title>
+      <link>https://gerrywp.github.io/blog/post/131204asmsyntax/</link>
+      <pubDate>Fri, 04 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/131204asmsyntax/</guid>
+      <description>&lt;p&gt;个别汇编指令英文全称说明，便于使用和记忆&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

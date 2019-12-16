@@ -20,5 +20,112 @@
       <description>&lt;p&gt;想使用&lt;code&gt;git mv&lt;/code&gt;批量更改目录下的1000多个markdown文件名。很久没有写过linux的&lt;code&gt;shell scripts&lt;/code&gt;了，已经忘记的差不多了，记录一下关键点，以备不时之需。&lt;/p&gt;</description>
     </item>
     
+    <item>
+      <title>Linux守护进程和自启动</title>
+      <link>https://gerrywp.github.io/blog/post/180223daemonauto/</link>
+      <pubDate>Fri, 23 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/180223daemonauto/</guid>
+      <description>&lt;p&gt;　　Linux的服务也是以etc配置的形式完成的，启动一个daemon(守护进程)来提供service(服务)。服务的管理是一个既复杂又细致的工作，Linux提供了两种方式来
+管理服务：一种是透过&lt;code&gt;systemctl&lt;/code&gt;这一个命令管理服务，另一种是透过&lt;code&gt;service&lt;/code&gt;来管理服务的启动、停止、重启等等，透过&lt;code&gt;chkconfig&lt;/code&gt;来管理服务的开机启动与否。
+在此以&lt;code&gt;systemctl&lt;/code&gt;应用出来之前和&lt;code&gt;systemctl&lt;/code&gt;应用出来之后的服务管理方式分别作介绍！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>nginx和apache端口80冲突的问题</title>
+      <link>https://gerrywp.github.io/blog/post/171202nginx/</link>
+      <pubDate>Sat, 02 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/171202nginx/</guid>
+      <description>&lt;p&gt;　　今天在将nodejs程序部署到远程linux服务器上遇到了问题，很长时间才得以解决！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>cmd实现类似linux下的alias并模拟加载bashrc文件</title>
+      <link>https://gerrywp.github.io/blog/post/171126cmdalias/</link>
+      <pubDate>Sun, 26 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/171126cmdalias/</guid>
+      <description>&lt;p&gt;　　cmd可以使用&lt;code&gt;doskey&lt;/code&gt;命令来定义命令的别名，但是windows要实现自动加载配置文件，似乎只能通过修改注册表来达到目的。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu的使用</title>
+      <link>https://gerrywp.github.io/blog/post/171102uselinux/</link>
+      <pubDate>Thu, 02 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/171102uselinux/</guid>
+      <description>&lt;p&gt;Ubuntu系统使用过程中的常用设置，其中包括启动项目的管理、启动项对应的文件、&lt;code&gt;systemd&lt;/code&gt;管理系统服务、&lt;code&gt;systemd-sysv-generator&lt;/code&gt;依据旧的SysV脚本生成新的&lt;code&gt;systemd&lt;/code&gt;新脚本等等。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>putty配置并使用</title>
+      <link>https://gerrywp.github.io/blog/post/171029putty/</link>
+      <pubDate>Sun, 29 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/171029putty/</guid>
+      <description>&lt;p&gt;配置putyy能够自动登陆、开启显示密码、在下达完整个命令之后才发送至服务端！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>sudoers账户的配置</title>
+      <link>https://gerrywp.github.io/blog/post/171025visudo/</link>
+      <pubDate>Wed, 25 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/171025visudo/</guid>
+      <description>&lt;p&gt;&amp;emsp;&amp;emsp;管理好你的主机，首要任务是配置好账户的权限，不能把root账户密码泄露出去。但是只有拥有root管理员权限才能安装软件，如何解决。&lt;br /&gt;
+相对于使用&lt;code&gt;su&lt;/code&gt;命令我们需要待切换用户的密码（通常是root密码），而使用&lt;code&gt;sudo&lt;/code&gt;命令仅需要当前用户的密码，甚至可以设置不需要密码！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Jscript for WSH</title>
+      <link>https://gerrywp.github.io/blog/post/170725jsforwsh/</link>
+      <pubDate>Tue, 25 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/170725jsforwsh/</guid>
+      <description>&lt;p&gt;告别批处理，使用WSH做更强大的脚本。为什么不直接使用VBScript呢？因为不喜欢它的语法，所以选择易懂的Jscript作首选语言！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>安装curl并开启ssl(https)支持</title>
+      <link>https://gerrywp.github.io/blog/post/170715curl/</link>
+      <pubDate>Sat, 15 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/170715curl/</guid>
+      <description>&lt;p&gt;ubuntu系统下想要使用curl-ssl只能是自己下载源码进行安装，因为开启ssl(&amp;ndash;with-ssl)需要openssl的库文件。默认ubuntu安装的openssl未包含库(lib)文件和头文件(include)。使用curl下载https文件的时候,会报以下错误：&lt;br /&gt;
+* Protocol https not supported or disabled in libcurl
+* Unsupport protocol&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>linux下的软件管理</title>
+      <link>https://gerrywp.github.io/blog/post/170411pkgmanager/</link>
+      <pubDate>Tue, 11 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/170411pkgmanager/</guid>
+      <description>&lt;p&gt;linux界的 2 大主流软件管理方式(命令):RPM(RedHat Package Manager)和DPKG(Debian Packager)。&lt;br /&gt;
+它们对应的在线(线上)管理方式(命令):YUM(Yellowdog Updater, Modified)和APT(Advanced Packaging Tool)。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>cmd批处理</title>
+      <link>https://gerrywp.github.io/blog/post/170321winbatch/</link>
+      <pubDate>Tue, 21 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/170321winbatch/</guid>
+      <description>&lt;p&gt;最近被外甥问到一个初中的奥数题目，涉及到高中的排列组合问题。因想求证一下答案，故考虑到使用&amp;rdquo;穷举法&amp;rdquo;编程来解决这个问题。
+一开始使用的是高级语言c#来解决但是觉得不够大众化，并且不便与之交流。思考了下，觉得脚本文件可以解决这个问题，
+由于batch script很少用，使用起来并不方便，而且有很多坑，因此引出了这篇博客。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux(daemon)和管线命令(pipe)</title>
+      <link>https://gerrywp.github.io/blog/post/170120linuxdaemon/</link>
+      <pubDate>Fri, 20 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/170120linuxdaemon/</guid>
+      <description>&lt;p&gt;如何将应用程序启动为守护进程(daemon),换言之作为服务(service)启动。&lt;/p&gt;</description>
+    </item>
+    
   </channel>
 </rss>

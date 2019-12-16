@@ -189,7 +189,7 @@ public class Student{
 
 <p>编译运行步骤如下：</p>
 
-<pre><code class="language-cmd">cd src/com/aiyoe
+<pre><code class="language-bash">cd src/com/aiyoe
 javac Student.java
 #注意运行的时候要返回到包的最外层目录，此处为src
 cd src
@@ -251,14 +251,14 @@ javac Console.java
 当前路径为src/com/aiyoe,引入的包路径为<code>import util.Console</code>,所以会在以下路径<code>/src/com/aiyoe/util/Console.class</code>查找文件，当然是找不到的，
 所以编译文件的时候最好指定<code>classpath</code></p>
 
-<pre><code class="language-cmd">#当前目录为src/com/aiyoe
+<pre><code class="language-bash">#当前目录为src/com/aiyoe
 javac -cp ../../ com.aiyoe.Main.java
 </code></pre>
 
 <p>这样就会去<code>src</code>目录底下寻找<code>util/Console.class</code>文件以及<code>com/aiyoe/Main.java</code>文件进行编译<br />
 同理运行的时候也一样，最好指定<code>classpath</code></p>
 
-<pre><code class="language-com">#先进入src目录
+<pre><code class="language-bash">#先进入src目录
 cd src
 java -cp . com.aiyoe.Main
 #注意需要使用java虚拟机运行的带main函数的class，需要指定全名(带包路径的的名称)
@@ -268,7 +268,7 @@ java -cp . com.aiyoe.Main
 
 <p>将当前目录添加到<code>classpath</code></p>
 
-<pre><code class="language-com">cd src
+<pre><code class="language-bash">cd src
 #编译Console.java
 javac util/Console.java
 #编译Main.java
@@ -468,6 +468,10 @@ B线程调用getValue得到是线程本地变量，很有可能不是最新的�
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/170920moonlit/" title="月夜家话">月夜家话</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/191211shell/" title="批量更名">批量更名</a>
     </li>
     
@@ -503,10 +507,6 @@ B线程调用getValue得到是线程本地变量，很有可能不是最新的�
         <a href="https://gerrywp.github.io/blog/post/181020bwbj/" title="大爱无疆">大爱无疆</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/180816jsjourney6/" title="nodejs之旅(6)热替换与热加载">nodejs之旅(6)热替换与热加载</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -539,25 +539,21 @@ B线程调用getValue得到是线程本地变量，很有可能不是最新的�
         <h3 class="widget-title">标签</h3>
 <div class="tagcloud">
     
-    <a href="https://gerrywp.github.io/blog/tags/">Tags</a>
-    
     <a href="https://gerrywp.github.io/blog/tags/2019/">2019</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/cmd/">cmd</a>
+    <a href="https://gerrywp.github.io/blog/tags/asm/">asm</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/cms/">cms</a>
     
     <a href="https://gerrywp.github.io/blog/tags/cpp/">cpp</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/cros/">cros</a>
+    <a href="https://gerrywp.github.io/blog/tags/git/">git</a>
     
     <a href="https://gerrywp.github.io/blog/tags/go/">go</a>
     
     <a href="https://gerrywp.github.io/blog/tags/java/">java</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/javascript/">javascript</a>
-    
     <a href="https://gerrywp.github.io/blog/tags/js/">js</a>
-    
-    <a href="https://gerrywp.github.io/blog/tags/keystonejs/">keystonejs</a>
     
     <a href="https://gerrywp.github.io/blog/tags/markdown/">markdown</a>
     
@@ -565,15 +561,17 @@ B线程调用getValue得到是线程本地变量，很有可能不是最新的�
     
     <a href="https://gerrywp.github.io/blog/tags/nodejs/">nodejs</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/qor/">QOR</a>
-    
     <a href="https://gerrywp.github.io/blog/tags/shell/">shell</a>
     
     <a href="https://gerrywp.github.io/blog/tags/sql/">sql</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/vs/">vs</a>
+    <a href="https://gerrywp.github.io/blog/tags/ssh/">ssh</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/vscode/">vscode</a>
+    <a href="https://gerrywp.github.io/blog/tags/utf8/">utf8</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vim/">vim</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vs/">vs</a>
     
     <a href="https://gerrywp.github.io/blog/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
     

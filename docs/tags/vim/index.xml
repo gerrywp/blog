@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vim on 云亦海</title>
+    <link>https://gerrywp.github.io/blog/tags/vim/</link>
+    <description>Recent content in vim on 云亦海</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 30 Oct 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://gerrywp.github.io/blog/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>vim使用的一些技巧</title>
+      <link>https://gerrywp.github.io/blog/post/171030vimuse/</link>
+      <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/171030vimuse/</guid>
+      <description>&lt;p&gt;&amp;emsp;&amp;emsp;以普通用户身份vim编辑的文件,如何强制保存？&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

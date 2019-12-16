@@ -98,7 +98,7 @@
 
 <p>使用ftp工具将开发包上传到了linux服务器用户目录，然后进入目录执行<code>node</code>命令：</p>
 
-<pre><code class="language-sh">cd ~/www/website/
+<pre><code class="language-bash">cd ~/www/website/
 node app.js &amp; # 后台运行
 # app.js 端口地址3000
 </code></pre>
@@ -106,7 +106,7 @@ node app.js &amp; # 后台运行
 <p><code>app.js</code>里面使用的是&rsquo;0.0.0.0&rsquo;监听地址，所以理论上可以接受来自任何IP主机的请求。<br />
 假设远程Linux服务器ip为：<code>10.120.110.119</code>,事实上，当我们通过本机访问&rdquo;<a href="http://10.120.110.119:3000&quot;">http://10.120.110.119:3000&quot;</a> 的时候并不能访问，提示拒绝访问！原因是linux服务器开启了防火墙，需要将3000端口加到防火墙的信任之中，操作如下：</p>
 
-<pre><code class="language-sh">sudo /sbin/iptables -I INPUT -p tcp --dport 3000 -j ACCEPT
+<pre><code class="language-bash">sudo /sbin/iptables -I INPUT -p tcp --dport 3000 -j ACCEPT
 # 使用 iptables -vnL 
 iptables -vnL # 查看当前系统的防火墙规则，已经添加了同意3000端口
 # 待考证(网上说要保存，没试过)
@@ -117,7 +117,7 @@ iptables -vnL # 查看当前系统的防火墙规则，已经添加了同意3000
 
 <h3 id="安装nginx反向代理">安装nginx反向代理</h3>
 
-<pre><code class="language-sh"># 下载包
+<pre><code class="language-bash"># 下载包
 cd /usr/local/src
 curl -O http://nginx.org/download/nginx-1.13.7.tar.gz
 # 解压缩
@@ -133,13 +133,13 @@ cd /usr/local/nginx/sbin
 
 <p>上述执行完毕，当运行<code>./nginx -c /usr/local/nginx/conf/nginx.conf</code>启动的时候报80端口被占用。因为服务器上装了apache，80端口被httpd服务占用。</p>
 
-<pre><code class="language-sh"># 查看80端口占用情况
+<pre><code class="language-bash"># 查看80端口占用情况
 sudo netstat -antp | grep 80
 </code></pre>
 
 <p>apache的默认安装路径在<code>/www/wdlinux/apache</code>下</p>
 
-<pre><code class="language-sh"># 进入apache配置文件目录
+<pre><code class="language-bash"># 进入apache配置文件目录
 cd /www/wdlinux/apache/conf
 # 这里可以设置apache-httpd的端口
 vim httpd.conf
@@ -149,7 +149,7 @@ service httpd status
 
 <h3 id="查看服务器的外网ip地址">查看服务器的外网ip地址</h3>
 
-<pre><code class="language-sh"># 以下命令可以查看服务器的外网IP地址
+<pre><code class="language-bash"># 以下命令可以查看服务器的外网IP地址
 curl ifconfig.me
 </code></pre>
                         </div>
@@ -165,13 +165,13 @@ curl ifconfig.me
         
         <li><a href="/blog/post/171126cmdalias/">cmd实现类似linux下的alias并模拟加载bashrc文件</a></li>
         
-        <li><a href="/blog/post/171124fullstack/">前端那些事儿</a></li>
-        
-        <li><a href="/blog/post/171123consoleprogbar/">console应用程序progressbar（进度条的实现）</a></li>
-        
         <li><a href="/blog/post/171102uselinux/">Ubuntu的使用</a></li>
         
-        <li><a href="/blog/post/171030vimuse/">vim使用的一些技巧</a></li>
+        <li><a href="/blog/post/171029putty/">putty配置并使用</a></li>
+        
+        <li><a href="/blog/post/171025visudo/">sudoers账户的配置</a></li>
+        
+        <li><a href="/blog/post/170725jsforwsh/">Jscript for WSH</a></li>
         
     </ul>
 </div>
@@ -181,7 +181,7 @@ curl ifconfig.me
                             
                             <ul class="clearfix">
                                 
-                                <li><a href='https://gerrywp.github.io/blog/tags/'></a></li>
+                                <li><a href='https://gerrywp.github.io/blog/tags/shell'>shell</a></li>
                                 
                             </ul>
                             
@@ -207,6 +207,10 @@ curl ifconfig.me
     <section class="widget">
         <h3 class="widget-title">最近文章</h3>
 <ul class="widget-list">
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/170920moonlit/" title="月夜家话">月夜家话</a>
+    </li>
     
     <li>
         <a href="https://gerrywp.github.io/blog/post/191211shell/" title="批量更名">批量更名</a>
@@ -244,10 +248,6 @@ curl ifconfig.me
         <a href="https://gerrywp.github.io/blog/post/181020bwbj/" title="大爱无疆">大爱无疆</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/180816jsjourney6/" title="nodejs之旅(6)热替换与热加载">nodejs之旅(6)热替换与热加载</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -280,25 +280,21 @@ curl ifconfig.me
         <h3 class="widget-title">标签</h3>
 <div class="tagcloud">
     
-    <a href="https://gerrywp.github.io/blog/tags/">Tags</a>
-    
     <a href="https://gerrywp.github.io/blog/tags/2019/">2019</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/cmd/">cmd</a>
+    <a href="https://gerrywp.github.io/blog/tags/asm/">asm</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/cms/">cms</a>
     
     <a href="https://gerrywp.github.io/blog/tags/cpp/">cpp</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/cros/">cros</a>
+    <a href="https://gerrywp.github.io/blog/tags/git/">git</a>
     
     <a href="https://gerrywp.github.io/blog/tags/go/">go</a>
     
     <a href="https://gerrywp.github.io/blog/tags/java/">java</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/javascript/">javascript</a>
-    
     <a href="https://gerrywp.github.io/blog/tags/js/">js</a>
-    
-    <a href="https://gerrywp.github.io/blog/tags/keystonejs/">keystonejs</a>
     
     <a href="https://gerrywp.github.io/blog/tags/markdown/">markdown</a>
     
@@ -306,15 +302,17 @@ curl ifconfig.me
     
     <a href="https://gerrywp.github.io/blog/tags/nodejs/">nodejs</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/qor/">QOR</a>
-    
     <a href="https://gerrywp.github.io/blog/tags/shell/">shell</a>
     
     <a href="https://gerrywp.github.io/blog/tags/sql/">sql</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/vs/">vs</a>
+    <a href="https://gerrywp.github.io/blog/tags/ssh/">ssh</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/vscode/">vscode</a>
+    <a href="https://gerrywp.github.io/blog/tags/utf8/">utf8</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vim/">vim</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vs/">vs</a>
     
     <a href="https://gerrywp.github.io/blog/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
     

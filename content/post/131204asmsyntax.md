@@ -1,7 +1,7 @@
 +++
 title = "汇编指令lea"
 date = "2013-01-04"
-tags = [ "" ]
+tags = [ "asm" ]
 categories = [ "windows" ]
 +++
 
@@ -9,7 +9,7 @@ categories = [ "windows" ]
 <!--more-->
 ### lea (**Load Effective Address** 加载有效地址 )
 
-```smalltalk
+```clike
 lea eax,[ecx+0x48]
 ```
 
@@ -17,7 +17,7 @@ lea eax,[ecx+0x48]
 
 ### 赋值操作
 
-```smalltalk
+```clike
 lea eax,pVariable
 /*结果：将指针变量自身的地址赋值给了eax*/
 ```
@@ -25,7 +25,7 @@ lea eax,pVariable
 说明:pVariable是一个指针变量。在高级语言的概念里,传递*指针*就是传递*地址*,上例的地址是指针自身的地址
 处理方法：将lea指令换成mov指令
 
-```smalltalk
+```clike
 mov eax,pVariable
 //将pVariable指针指向的内容(一个内存地址)传递给eax
 ```

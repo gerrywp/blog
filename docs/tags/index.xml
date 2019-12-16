@@ -6,10 +6,19 @@
     <description>Recent content in Tags on 云亦海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 11 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 12 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://gerrywp.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>随笔</title>
+      <link>https://gerrywp.github.io/blog/tags/%E9%9A%8F%E7%AC%94/</link>
+      <pubDate>Thu, 12 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/tags/%E9%9A%8F%E7%AC%94/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>shell</title>
@@ -21,11 +30,20 @@
     </item>
     
     <item>
-      <title>QOR</title>
-      <link>https://gerrywp.github.io/blog/tags/qor/</link>
+      <title>git</title>
+      <link>https://gerrywp.github.io/blog/tags/git/</link>
       <pubDate>Mon, 07 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/blog/tags/qor/</guid>
+      <guid>https://gerrywp.github.io/blog/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cms</title>
+      <link>https://gerrywp.github.io/blog/tags/cms/</link>
+      <pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/tags/cms/</guid>
       <description></description>
     </item>
     
@@ -57,11 +75,11 @@
     </item>
     
     <item>
-      <title>vscode</title>
-      <link>https://gerrywp.github.io/blog/tags/vscode/</link>
+      <title>vs</title>
+      <link>https://gerrywp.github.io/blog/tags/vs/</link>
       <pubDate>Sun, 07 Jul 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/blog/tags/vscode/</guid>
+      <guid>https://gerrywp.github.io/blog/tags/vs/</guid>
       <description></description>
     </item>
     
@@ -75,29 +93,11 @@
     </item>
     
     <item>
-      <title>随笔</title>
-      <link>https://gerrywp.github.io/blog/tags/%E9%9A%8F%E7%AC%94/</link>
-      <pubDate>Sat, 20 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://gerrywp.github.io/blog/tags/%E9%9A%8F%E7%AC%94/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>nodejs</title>
       <link>https://gerrywp.github.io/blog/tags/nodejs/</link>
       <pubDate>Thu, 16 Aug 2018 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/tags/nodejs/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>keystonejs</title>
-      <link>https://gerrywp.github.io/blog/tags/keystonejs/</link>
-      <pubDate>Fri, 10 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://gerrywp.github.io/blog/tags/keystonejs/</guid>
       <description></description>
     </item>
     
@@ -116,15 +116,6 @@
       <pubDate>Wed, 27 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/tags/java/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>vs</title>
-      <link>https://gerrywp.github.io/blog/tags/vs/</link>
-      <pubDate>Mon, 18 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://gerrywp.github.io/blog/tags/vs/</guid>
       <description></description>
     </item>
     
@@ -156,11 +147,11 @@
     </item>
     
     <item>
-      <title>javascript</title>
-      <link>https://gerrywp.github.io/blog/tags/javascript/</link>
-      <pubDate>Fri, 21 Apr 2017 00:00:00 +0000</pubDate>
+      <title>vim</title>
+      <link>https://gerrywp.github.io/blog/tags/vim/</link>
+      <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/blog/tags/javascript/</guid>
+      <guid>https://gerrywp.github.io/blog/tags/vim/</guid>
       <description></description>
     </item>
     
@@ -174,11 +165,11 @@
     </item>
     
     <item>
-      <title>cmd</title>
-      <link>https://gerrywp.github.io/blog/tags/cmd/</link>
-      <pubDate>Tue, 21 Mar 2017 00:00:00 +0000</pubDate>
+      <title>utf8</title>
+      <link>https://gerrywp.github.io/blog/tags/utf8/</link>
+      <pubDate>Thu, 23 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/blog/tags/cmd/</guid>
+      <guid>https://gerrywp.github.io/blog/tags/utf8/</guid>
       <description></description>
     </item>
     
@@ -201,11 +192,20 @@
     </item>
     
     <item>
-      <title>cros</title>
-      <link>https://gerrywp.github.io/blog/tags/cros/</link>
-      <pubDate>Tue, 20 Nov 2012 00:00:00 +0000</pubDate>
+      <title>ssh</title>
+      <link>https://gerrywp.github.io/blog/tags/ssh/</link>
+      <pubDate>Fri, 30 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/blog/tags/cros/</guid>
+      <guid>https://gerrywp.github.io/blog/tags/ssh/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>asm</title>
+      <link>https://gerrywp.github.io/blog/tags/asm/</link>
+      <pubDate>Fri, 04 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/tags/asm/</guid>
       <description></description>
     </item>
     

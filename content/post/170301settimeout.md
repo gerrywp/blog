@@ -1,7 +1,7 @@
 +++
 title = "setTimeout定时器的使用"
 date = "2017-03-01"
-tags = [ "" ]
+tags = [ "js" ]
 categories = [ "javascript" ]
 +++
 

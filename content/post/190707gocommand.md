@@ -1,7 +1,7 @@
 +++
 title = "go命令详解"
 date = "2019-07-07"
-tags = [ "2019","go","vscode" ]
+tags = [ "2019","go","vs" ]
 categories = [ "golang" ]
 +++
 
@@ -24,7 +24,7 @@ categories = [ "golang" ]
 
 >编译标签一般会作为源码文件开始处的注释的一部分，例如：
 
-```ps
+```bash
 #template_bindatafs.go
 // +build bindatafs
 
@@ -34,7 +34,7 @@ categories = [ "golang" ]
 
 当使用`-tags`编译选项编译源码文件或包时候，针对上面的两个文件：
 
-```ps
+```bash
 //template_bindatafs.go文件(满足tag条件)会被编译
 go build -tags "bindatafs" main.go
 //template.go文件(满足tag条件:非"bindatafs"标签)会被编译
@@ -43,7 +43,7 @@ go build main.go
 
 演示编译main.go文件
 
-```ps
+```bash
 go build -n -work main.go
 #输出如下
 mkdir -p $WORK\b001\
@@ -60,7 +60,7 @@ packagefile command-line-arguments=C:\Users\Gerry\AppData\Local\go-build
 `$WORK`变量:  
 会在windows临时目录创建go-build+随机名称的目录C:\Users\Gerry\AppData\Local\Temp\go-build495563082
 
-```ps
+```bash
 %temp% or %tmp% #查看生成的go-build495563082目录
 go env #查看go相关的所有环境变量
 ```

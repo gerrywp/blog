@@ -42,7 +42,7 @@ public class Student{
 ```
 编译运行步骤如下：
 
-```cmd
+```bash
 cd src/com/aiyoe
 javac Student.java
 #注意运行的时候要返回到包的最外层目录，此处为src
@@ -88,14 +88,14 @@ javac Console.java
 会将包名中的`.`替换成`/`并在当前目录下查找，举例：  
 当前路径为src/com/aiyoe,引入的包路径为`import util.Console`,所以会在以下路径`/src/com/aiyoe/util/Console.class`查找文件，当然是找不到的，
 所以编译文件的时候最好指定`classpath`   
-```cmd
+```bash
 #当前目录为src/com/aiyoe
 javac -cp ../../ com.aiyoe.Main.java
 ```
 
 这样就会去`src`目录底下寻找`util/Console.class`文件以及`com/aiyoe/Main.java`文件进行编译  
 同理运行的时候也一样，最好指定`classpath`  
-```com
+```bash
 #先进入src目录
 cd src
 java -cp . com.aiyoe.Main
@@ -104,7 +104,7 @@ java -cp . com.aiyoe.Main
 ### 推荐-编译(javac)和运行(java)操作都在src目录底下进行
 
 将当前目录添加到`classpath`
-```com
+```bash
 cd src
 #编译Console.java
 javac util/Console.java

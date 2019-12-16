@@ -98,7 +98,7 @@
 
 <h3 id="查看当前的curl支持哪些协议">查看当前的curl支持哪些协议</h3>
 
-<pre><code class="language-sh">curl -V
+<pre><code class="language-bash">curl -V
 # curl 7.54.1 (x86_64-pc-linux-gnu) libcurl/7.54.1 OpenSSL/1.0.2g
 # Release-Date: 2017-06-14
 # Protocols: dict file ftp ftps gopher http https imap imaps pop3 pop3s rtsp smb smbs smtp smtps telnet tftp 
@@ -112,7 +112,7 @@
 
 <p>到openssl的官网<a href="https://www.openssl.org/source/" title="点我访问">https://www.openssl.org/source/</a>下载源码压缩包,这里以<code>openssl-1.0.2l.tar.gz</code>为例子</p>
 
-<pre><code class="language-sh">sudo tar zvxf openssl-1.0.2l.tar.gz 
+<pre><code class="language-bash">sudo tar zvxf openssl-1.0.2l.tar.gz 
 # 解压缩包
 cd openssl-1.0.2l
 ./config enable-shared --prefix=/usr/local/ssl
@@ -127,7 +127,7 @@ sudo make install
 
 <p>如要使用ssl必须要安装证书，方可使用。</p>
 
-<pre><code class="language-sh">sudo apt install ca-certificates
+<pre><code class="language-bash">sudo apt install ca-certificates
 </code></pre>
 
 <p>证书安装路径为<code>/usr/lib/ssl</code></p>
@@ -136,7 +136,7 @@ sudo make install
 
 <p>curl官网下载unbuntu包<a href="https://curl.haxx.se/download.html" title="点我访问">https://curl.haxx.se/download.html</a>,如下图所示</p>
 
-<pre><code class="language-sh">sudo tar zxvf curl-7.54.1.tar.gz
+<pre><code class="language-bash">sudo tar zxvf curl-7.54.1.tar.gz
 cd curl-7.54.1
 ./configure --with-ssl=/usr/local/ssl --prefix=/usr/local/curl-7.54.1
 # 其中--with-ssl的路径是上一步安装的openssl的路径
@@ -145,7 +145,7 @@ cd curl-7.54.1
 <p>然后屏幕会输出如下图信息：
 <img src="../../pictures/20160302195834722.jpeg" alt="curl安装" title="请开启" /></p>
 
-<pre><code class="language-sh"># 安装
+<pre><code class="language-bash"># 安装
 sudo make install
 # 查看curl是否已经支持了https?
 curl -V
@@ -161,15 +161,15 @@ curl -V
     <h2>See Also</h2>
     <ul class="listing">
         
-        <li><a href="/blog/post/170414razor/">razor引擎及view的呈现</a></li>
-        
         <li><a href="/blog/post/170411pkgmanager/">linux下的软件管理</a></li>
         
-        <li><a href="/blog/post/170408bgdelay/">背景图片全屏造成的滚动(滑动)卡顿</a></li>
+        <li><a href="/blog/post/170321winbatch/">cmd批处理</a></li>
         
-        <li><a href="/blog/post/170323encoding/">unicode编码字符集和utf-8、asci编码方式</a></li>
+        <li><a href="/blog/post/170120linuxdaemon/">Linux(daemon)和管线命令(pipe)</a></li>
         
-        <li><a href="/blog/post/170314iisexpress/">iisexpress-config</a></li>
+        <li><a href="/blog/post/170522dangal/">《摔跤吧!爸爸》观后感</a></li>
+        
+        <li><a href="/blog/post/170518prediction/">关于未来的预测</a></li>
         
     </ul>
 </div>
@@ -179,7 +179,7 @@ curl -V
                             
                             <ul class="clearfix">
                                 
-                                <li><a href='https://gerrywp.github.io/blog/tags/'></a></li>
+                                <li><a href='https://gerrywp.github.io/blog/tags/shell'>shell</a></li>
                                 
                             </ul>
                             
@@ -205,6 +205,10 @@ curl -V
     <section class="widget">
         <h3 class="widget-title">最近文章</h3>
 <ul class="widget-list">
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/170920moonlit/" title="月夜家话">月夜家话</a>
+    </li>
     
     <li>
         <a href="https://gerrywp.github.io/blog/post/191211shell/" title="批量更名">批量更名</a>
@@ -242,10 +246,6 @@ curl -V
         <a href="https://gerrywp.github.io/blog/post/181020bwbj/" title="大爱无疆">大爱无疆</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/180816jsjourney6/" title="nodejs之旅(6)热替换与热加载">nodejs之旅(6)热替换与热加载</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -278,25 +278,21 @@ curl -V
         <h3 class="widget-title">标签</h3>
 <div class="tagcloud">
     
-    <a href="https://gerrywp.github.io/blog/tags/">Tags</a>
-    
     <a href="https://gerrywp.github.io/blog/tags/2019/">2019</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/cmd/">cmd</a>
+    <a href="https://gerrywp.github.io/blog/tags/asm/">asm</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/cms/">cms</a>
     
     <a href="https://gerrywp.github.io/blog/tags/cpp/">cpp</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/cros/">cros</a>
+    <a href="https://gerrywp.github.io/blog/tags/git/">git</a>
     
     <a href="https://gerrywp.github.io/blog/tags/go/">go</a>
     
     <a href="https://gerrywp.github.io/blog/tags/java/">java</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/javascript/">javascript</a>
-    
     <a href="https://gerrywp.github.io/blog/tags/js/">js</a>
-    
-    <a href="https://gerrywp.github.io/blog/tags/keystonejs/">keystonejs</a>
     
     <a href="https://gerrywp.github.io/blog/tags/markdown/">markdown</a>
     
@@ -304,15 +300,17 @@ curl -V
     
     <a href="https://gerrywp.github.io/blog/tags/nodejs/">nodejs</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/qor/">QOR</a>
-    
     <a href="https://gerrywp.github.io/blog/tags/shell/">shell</a>
     
     <a href="https://gerrywp.github.io/blog/tags/sql/">sql</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/vs/">vs</a>
+    <a href="https://gerrywp.github.io/blog/tags/ssh/">ssh</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/vscode/">vscode</a>
+    <a href="https://gerrywp.github.io/blog/tags/utf8/">utf8</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vim/">vim</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vs/">vs</a>
     
     <a href="https://gerrywp.github.io/blog/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
     

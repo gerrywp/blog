@@ -6,10 +6,19 @@
     <description>Recent content in vs on 云亦海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 18 Jun 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 07 Jul 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://gerrywp.github.io/blog/tags/vs/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>go命令详解</title>
+      <link>https://gerrywp.github.io/blog/post/190707gocommand/</link>
+      <pubDate>Sun, 07 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/190707gocommand/</guid>
+      <description>&lt;p&gt;　　go命令使用笔记，对命令的使用做一个总结和归纳&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>调整VS工具栏宽度</title>
@@ -36,6 +45,46 @@
       
       <guid>https://gerrywp.github.io/blog/post/171124vs2017setup/</guid>
       <description>&lt;p&gt;　　visual studio无法全局设置编码，新建的文件有的时候并不是使用utf-8编码的，所有在有的环境下会出现乱码。比如使用babel转嘛js代码的时候。网上找到的解决方案，下载&lt;code&gt;ForeUTF8&lt;/code&gt;插件并不能解决问题，当我们新建文件的时候，还要一个个手动通过高级保存，保存为我们想要的编码。所幸百般查找，发现vs是可以支持&lt;code&gt;.editorconfig&lt;/code&gt;配置文件的。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>console应用程序progressbar（进度条的实现）</title>
+      <link>https://gerrywp.github.io/blog/post/171123consoleprogbar/</link>
+      <pubDate>Thu, 23 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/171123consoleprogbar/</guid>
+      <description>&lt;p&gt;　　控制台应用程序，有时候需要做文件上传、压缩等(网络/磁盘)I/O处理。为了得到更友好的界面交互，所以需要用到progress bar 进度条。
+github上有很多现成的可以使用。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>razor引擎及view的呈现</title>
+      <link>https://gerrywp.github.io/blog/post/170414razor/</link>
+      <pubDate>Fri, 14 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/170414razor/</guid>
+      <description>&lt;p&gt;.cshtml(.vbhtml)文件能够被执行，必须被编译进程序集的具体类型。
+微软使用&lt;code&gt;%windir%\Microsoft.NET\Framework\v4.0.30319&lt;/code&gt;下的aspnet_compiler.exe对view文件进行编译。
+&lt;a href=&#34;https://github.com/ASP-NET-MVC/aspnetwebstack/tree/master/src&#34; title=&#34;点我访问&#34;&gt;aspnet mvc4源码&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>iisexpress-config</title>
+      <link>https://gerrywp.github.io/blog/post/170314iisexpress/</link>
+      <pubDate>Tue, 14 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/170314iisexpress/</guid>
+      <description>&lt;p&gt;iisexpress轻量，易于安装，安装包不到5M。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>委托和反射</title>
+      <link>https://gerrywp.github.io/blog/post/170119delegate1/</link>
+      <pubDate>Thu, 19 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/170119delegate1/</guid>
+      <description>&lt;p&gt;反射的性能问题一直是广为诟病的，但反射所消耗的这一点性能并不算什么。因为通常情况下的业务逻辑都不会很复杂，我们只是使用反射
+来处理一些常规编码难以迄及的特殊场景。&lt;/p&gt;</description>
     </item>
     
   </channel>

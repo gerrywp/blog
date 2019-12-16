@@ -141,7 +141,7 @@ linux的dpkg资料库路径为:<code>/var/lib/apt/</code></p>
 
 <p>通常情况下默认的yum资料库(repo)并不包含有些类型的软件，需要手动添加epel源</p>
 
-<pre><code class="language-sh"># yum info 命令查看系统是否安装了epel包
+<pre><code class="language-bash"># yum info 命令查看系统是否安装了epel包
 yum info epel-release
 # 安装nodejs
 curl -sL https://rpm.nodesource.com/setup_6.x | bash -
@@ -156,7 +156,7 @@ sudo su -
 
 <p>使用<code>curl</code>命令下载官方二进制压缩包</p>
 
-<pre><code class="language-sh"># 参数大写的-O/--remote-name表示，把输出写到该文件中，使用远程文件名
+<pre><code class="language-bash"># 参数大写的-O/--remote-name表示，把输出写到该文件中，使用远程文件名
 curl -O https://nodejs.org/dist/v6.11.5/node-v6.11.5-linux-x64.tar.xz
 # 区别与-o参数
 curl -o [文件名] https://nodejs.org/dist/v6.11.5/node-v6.11.5-linux-x64.tar.xz
@@ -189,7 +189,7 @@ MANPATH_MAP /usr/local/node-v6.11.5-linux-x64/bin /usr/local/node-v6.11.5-linux-
 <p>deb <a href="http://host/debian">http://host/debian</a> distribution section1 section2 section3
 deb-src <a href="http://host/debian">http://host/debian</a> distribution section1 section2 section3</p>
 
-<pre><code class="language-sh"># See sources.list(5) for more information, especially
+<pre><code class="language-bash"># See sources.list(5) for more information, especially
 # Remember that you can only use http, ftp or file URIs
 # CDROMs are managed through the apt-cdrom tool.
 deb http://http.us.debian.org/debian stable main contrib non-free
@@ -216,7 +216,7 @@ PPA:A Personal Package Archive (PPA) is a software repository for uploading sour
 <img src="../../pictures/QQ20170411212140.png" alt="图片2" title="点我访问" />
 <img src="../../pictures/QQ20170411212145.png" alt="图片2" title="点我访问" /></p>
 
-<pre><code class="language-sh"># systec:所有者(作者、组织),curl-7.35-trusty:库名称
+<pre><code class="language-bash"># systec:所有者(作者、组织),curl-7.35-trusty:库名称
 sudo add-apt-repository ppa:systec/curl-7.35-trusty
 sudo apt-get update
 </code></pre>
@@ -224,7 +224,7 @@ sudo apt-get update
 <p>删除已添加的PPAs<br />
 1. 仅删除&rdquo;sources.list.d/*.list&rdquo;文件内容</p>
 
-<pre><code class="language-sh">sudo add-apt-repository --remove ppa:systec/curl-7.35-trusty
+<pre><code class="language-bash">sudo add-apt-repository --remove ppa:systec/curl-7.35-trusty
 # 下面的命令等价
 sudo apt-add-repository --remove ppa:system/curl-7.35-trusty
 </code></pre>
@@ -232,7 +232,7 @@ sudo apt-add-repository --remove ppa:system/curl-7.35-trusty
 <ol>
 <li><p>(<strong>推荐</strong>)在<code>/etc/apt/sources.list.d</code> directory下面找到需删除PPA配置，并删除。</p>
 
-<pre><code class="language-sh">sudo rm /etc/apt/sources.list.d/xxxx.list*
+<pre><code class="language-bash">sudo rm /etc/apt/sources.list.d/xxxx.list*
 </code></pre></li>
 
 <li><p>通过Software Sources(软件中心)-&gt;软件与更新，删除已添加的软件包</p></li>
@@ -242,7 +242,7 @@ sudo apt-add-repository --remove ppa:system/curl-7.35-trusty
 
 <p><a href="https://zh.wikipedia.org/wiki/Ubuntu%E5%8F%91%E8%A1%8C%E7%89%88%E5%88%97%E8%A1%A8" title="点我访问">Ubuntu发行版列表</a></p>
 
-<pre><code class="language-sh"># $(lsb_release -cs)获取系统版本(开发代号)
+<pre><code class="language-bash"># $(lsb_release -cs)获取系统版本(开发代号)
 # 添加apt server repository
 sudo add-apt-repository \
        &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \
@@ -264,14 +264,14 @@ sudo apt-add-repository --remove \
 
 <h4 id="apt-search-packagename-搜索apt服务器上指定名称的包">apt search packagename(搜索apt服务器上指定名称的包)</h4>
 
-<pre><code class="language-sh">apt search curl #列出当前apt server或镜像站点里面的包信息
+<pre><code class="language-bash">apt search curl #列出当前apt server或镜像站点里面的包信息
 apt list        #列出apt server上所有的包
 apt list curl 
 </code></pre>
 
 <h4 id="apt-y-install-packagename-从apt-server上下载并安装指定包">apt -y install packagename(从apt server上下载并安装指定包)</h4>
 
-<pre><code class="language-sh">apt -y install curl
+<pre><code class="language-bash">apt -y install curl
 </code></pre>
 
 <h4 id="apt的软件群组功能metapackages">apt的软件群组功能MetaPackages</h4>
@@ -285,7 +285,7 @@ apt list curl
 
 <h4 id="dpkg-l-packagename-列出本机是否已经安装了指定的包">dpkg -l packagename 列出本机是否已经安装了指定的包</h4>
 
-<pre><code class="language-sh">dpkg -l curl
+<pre><code class="language-bash">dpkg -l curl
 
 # 删除所有状态为rc的软件及配置文件
 # r: the package is marked for removal.    
@@ -313,15 +313,15 @@ dpkg -l | grep ^rc | awk 'print $2' | xargs sudo dpkg --purge
     <h2>See Also</h2>
     <ul class="listing">
         
-        <li><a href="/blog/post/170408bgdelay/">背景图片全屏造成的滚动(滑动)卡顿</a></li>
-        
-        <li><a href="/blog/post/170323encoding/">unicode编码字符集和utf-8、asci编码方式</a></li>
-        
-        <li><a href="/blog/post/170314iisexpress/">iisexpress-config</a></li>
-        
-        <li><a href="/blog/post/170301settimeout/">setTimeout定时器的使用</a></li>
+        <li><a href="/blog/post/170321winbatch/">cmd批处理</a></li>
         
         <li><a href="/blog/post/170120linuxdaemon/">Linux(daemon)和管线命令(pipe)</a></li>
+        
+        <li><a href="/blog/post/170408bgdelay/">背景图片全屏造成的滚动(滑动)卡顿</a></li>
+        
+        <li><a href="/blog/post/170402allcollect/">资料和笔记</a></li>
+        
+        <li><a href="/blog/post/170323encoding/">unicode编码字符集和utf-8、asci编码方式</a></li>
         
     </ul>
 </div>
@@ -331,7 +331,7 @@ dpkg -l | grep ^rc | awk 'print $2' | xargs sudo dpkg --purge
                             
                             <ul class="clearfix">
                                 
-                                <li><a href='https://gerrywp.github.io/blog/tags/'></a></li>
+                                <li><a href='https://gerrywp.github.io/blog/tags/shell'>shell</a></li>
                                 
                             </ul>
                             
@@ -357,6 +357,10 @@ dpkg -l | grep ^rc | awk 'print $2' | xargs sudo dpkg --purge
     <section class="widget">
         <h3 class="widget-title">最近文章</h3>
 <ul class="widget-list">
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/170920moonlit/" title="月夜家话">月夜家话</a>
+    </li>
     
     <li>
         <a href="https://gerrywp.github.io/blog/post/191211shell/" title="批量更名">批量更名</a>
@@ -394,10 +398,6 @@ dpkg -l | grep ^rc | awk 'print $2' | xargs sudo dpkg --purge
         <a href="https://gerrywp.github.io/blog/post/181020bwbj/" title="大爱无疆">大爱无疆</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/180816jsjourney6/" title="nodejs之旅(6)热替换与热加载">nodejs之旅(6)热替换与热加载</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -430,25 +430,21 @@ dpkg -l | grep ^rc | awk 'print $2' | xargs sudo dpkg --purge
         <h3 class="widget-title">标签</h3>
 <div class="tagcloud">
     
-    <a href="https://gerrywp.github.io/blog/tags/">Tags</a>
-    
     <a href="https://gerrywp.github.io/blog/tags/2019/">2019</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/cmd/">cmd</a>
+    <a href="https://gerrywp.github.io/blog/tags/asm/">asm</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/cms/">cms</a>
     
     <a href="https://gerrywp.github.io/blog/tags/cpp/">cpp</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/cros/">cros</a>
+    <a href="https://gerrywp.github.io/blog/tags/git/">git</a>
     
     <a href="https://gerrywp.github.io/blog/tags/go/">go</a>
     
     <a href="https://gerrywp.github.io/blog/tags/java/">java</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/javascript/">javascript</a>
-    
     <a href="https://gerrywp.github.io/blog/tags/js/">js</a>
-    
-    <a href="https://gerrywp.github.io/blog/tags/keystonejs/">keystonejs</a>
     
     <a href="https://gerrywp.github.io/blog/tags/markdown/">markdown</a>
     
@@ -456,15 +452,17 @@ dpkg -l | grep ^rc | awk 'print $2' | xargs sudo dpkg --purge
     
     <a href="https://gerrywp.github.io/blog/tags/nodejs/">nodejs</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/qor/">QOR</a>
-    
     <a href="https://gerrywp.github.io/blog/tags/shell/">shell</a>
     
     <a href="https://gerrywp.github.io/blog/tags/sql/">sql</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/vs/">vs</a>
+    <a href="https://gerrywp.github.io/blog/tags/ssh/">ssh</a>
     
-    <a href="https://gerrywp.github.io/blog/tags/vscode/">vscode</a>
+    <a href="https://gerrywp.github.io/blog/tags/utf8/">utf8</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vim/">vim</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vs/">vs</a>
     
     <a href="https://gerrywp.github.io/blog/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
     

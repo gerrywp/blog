@@ -20,7 +20,7 @@ gulp
 
 其实这个命令最终运行的是当前项目下的`node_modules\gulp\bin\gulp.js`文件，因此我们可以直接使用nodejs的调试命令，启动调试
 
-```console
+```bash
 >node --inspect-brk node\modules\gulp\bin\gulp.js
 ```
 

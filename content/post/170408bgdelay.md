@@ -1,7 +1,7 @@
 +++
 title = "背景图片全屏造成的滚动(滑动)卡顿"
 date = "2017-04-08"
-tags = [ "" ]
+tags = [ "js" ]
 categories = [ "javascript" ]
 +++
 

@@ -1,7 +1,7 @@
 +++
 title = "keystonejs(1)隐晦配置"
 date = "2017-10-27"
-tags = [ "keystonejs" ]
+tags = [ "cms" ]
 categories = [ "javascript" ]
 +++
 
@@ -17,7 +17,7 @@ keystonejs跨平台内容管理系统开发的又一利器。通过定义数据m
 #### 安装nodejs
 建议使用nvm来安装nodejs这样可以在不同的版本之间进行切换
 
-```sh
+```bash
 # 直接使用apt安装
 apt install nvm
 nvm install node
@@ -29,7 +29,7 @@ nvm use node
 
 * 在[mongodb官网下载中心](https://www.mongodb.com/download-center#community "点我访问"),获取所需版本的下载链接
 
-```sh
+```bash
 cd ~
 curl -o- https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1604-3.4.10.tgz | bash
 # 解压缩
@@ -57,13 +57,13 @@ mongod
 
 #### 安装yeoman脚手架
 
-```sh
+```bash
 npm install -g yo
 ```
 
 #### 安装keystonejs yeoman生成器&创建项目
 
-```sh
+```bash
 npm install -g generator-keystone
 # 项目创建
 cd ~/documents
@@ -80,7 +80,7 @@ yo keystone
 
 #### 生成的后台管理界面url路径的更改
 
-```sh
+```bash
 keystone.init({
   'name': 'My Project',
   'admin path': 'dyt'，
@@ -118,7 +118,7 @@ keystone.init({
 
 * 手动启动
 
-```sh
+```bash
 cd ~/documents/myproject
 node keystone.js
 ```
