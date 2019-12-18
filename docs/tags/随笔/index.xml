@@ -114,7 +114,7 @@
       
       <guid>https://gerrywp.github.io/blog/post/170315article/</guid>
       <description>&lt;p&gt;从西方传入的五线谱，是用来记录音符在键盘上位置的一种音乐语言。对于弹奏来说可以很直观的反映音符在键盘上所对应的位置，
-就连对应的是黑键还是白键都一眼就能看出来(♯ or ♭)。不必知道这个音的唱名(do re mi &amp;hellip;),只用记住五根线上(间)所对应的音名(C D E F G A B)即可。&lt;/p&gt;</description>
+就连对应的是黑键还是白键都一眼就能看出来(&lt;code&gt;♯&lt;/code&gt; or &lt;code&gt;♭&lt;/code&gt;)。不必知道这个音的唱名(&lt;strong&gt;do re mi &amp;hellip;&lt;/strong&gt;),只用记住五根线上(间)所对应的音名(&lt;strong&gt;C D E F G A B&lt;/strong&gt;)即可。&lt;/p&gt;</description>
     </item>
     
   </channel>
