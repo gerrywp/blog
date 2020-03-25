@@ -6,10 +6,19 @@
     <description>Recent content in Posts on 云亦海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 08 Jan 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 25 Mar 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://gerrywp.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ssr端口被封</title>
+      <link>https://gerrywp.github.io/blog/post/200325vpn/</link>
+      <pubDate>Wed, 25 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/200325vpn/</guid>
+      <description>&lt;p&gt;使用谷歌GCP平台搭建的SSR-VPN过一段时间就没法访问了，几经波折原来是因为TCP端口被封了的缘故。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>市场笔记</title>
@@ -17,7 +26,7 @@
       <pubDate>Wed, 08 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/200108gp/</guid>
-      <description>&lt;p&gt;参与股票市场交易的同时，将最近的心得和体会记录下来，加深自己对后市技术层面的映像。便于在未来有投资行情的时候能够很好的剖析。&lt;/p&gt;</description>
+      <description>&lt;p&gt;参与股票市场交易的同时，将最近的心得和体会记录下来，加深自己对后市技术层面的印象。便于在未来有投资行情的时候能够很好的剖析。&lt;/p&gt;</description>
     </item>
     
     <item>
