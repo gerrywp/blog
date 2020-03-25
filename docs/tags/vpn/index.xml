@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vpn on 云亦海</title>
+    <link>https://gerrywp.github.io/blog/tags/vpn/</link>
+    <description>Recent content in vpn on 云亦海</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 25 Mar 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://gerrywp.github.io/blog/tags/vpn/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ssr端口被封</title>
+      <link>https://gerrywp.github.io/blog/post/200325vpn/</link>
+      <pubDate>Wed, 25 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/200325vpn/</guid>
+      <description>&lt;p&gt;使用谷歌GCP平台搭建的SSR-VPN过一段时间就没法访问了，几经波折原来是因为TCP端口被封了的缘故。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
