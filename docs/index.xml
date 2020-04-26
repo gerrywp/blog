@@ -414,7 +414,7 @@ github上有很多现成的可以使用。&lt;/p&gt;</description>
       <pubDate>Thu, 02 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/171102uselinux/</guid>
-      <description>&lt;p&gt;Ubuntu系统使用过程中的常用设置，其中包括启动项目的管理、启动项对应的文件、&lt;code&gt;systemd&lt;/code&gt;管理系统服务、&lt;code&gt;systemd-sysv-generator&lt;/code&gt;依据旧的SysV脚本生成新的&lt;code&gt;systemd&lt;/code&gt;新脚本等等。&lt;/p&gt;</description>
+      <description>&lt;p&gt;Ubuntu系统使用过程中的常用设置。其中包括启动项目的管理、启动项对应的文件、&lt;code&gt;systemd&lt;/code&gt;(d结尾的就是守护进程daemon)系统服务进程、&lt;code&gt;systemd-sysv-generator&lt;/code&gt;命令依据旧的SysV脚本生成新的&lt;code&gt;systemd&lt;/code&gt;新脚本等等。&lt;/p&gt;</description>
     </item>
     
     <item>

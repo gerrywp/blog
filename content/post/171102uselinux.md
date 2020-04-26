@@ -5,7 +5,7 @@ tags = [ "shell" ]
 categories = [ "linux" ]
 +++
 
-Ubuntu系统使用过程中的常用设置，其中包括启动项目的管理、启动项对应的文件、`systemd`管理系统服务、`systemd-sysv-generator`依据旧的SysV脚本生成新的`systemd`新脚本等等。
+Ubuntu系统使用过程中的常用设置。其中包括启动项目的管理、启动项对应的文件、`systemd`(d结尾的就是守护进程daemon)系统服务进程、`systemd-sysv-generator`命令依据旧的SysV脚本生成新的`systemd`新脚本等等。
 <!--more-->
 
 ### 启动项管理
@@ -40,19 +40,20 @@ cd /usr/share/applications/yourapp.desktop ~/Desktop/
 ### systemd、systemd-sysv-generator
 
 现在新的linux操作系统都开始使用`systemd`来管理系统服务，摒弃了以前的sysv模式下的`service` `chkconfig` `init`命令。
-为了兼容以前旧的系统服务模式，`systemd`提供了wrapper包装器，将旧的.sh文件包装成可供`systemd`使用的`.service`文件。
+为了兼容以前旧的系统服务模式，`systemd`提供了`systemd-sysv-generator `wrapper包装器，将旧的.sh文件包装成可供`systemd`使用的`.service`文件。
 
+#### 使用systemd-sysv-generator生成.service文件
 ```bash
 # 使用如下命令会在/tmp目录下生成对应的servicename.service文件
 /lib/systemd/system-generators/systemd-sysv-generator 
 ```
 
 仅需要拷贝新生成的.service文件到`/lib/systemd/system/`底下即可。
-
+#### systemctl命令管理服务
 ```bash
 # 现在可以通过systemctl管理旧的.sh服务了
-systemd status servicename.service
-systemd enable servicename.service
+systemctl status servicename.service
+systemctl enable servicename.service
 ```
 
 ### locale设置语言

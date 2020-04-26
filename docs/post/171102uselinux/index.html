@@ -92,7 +92,7 @@
                         
                         
                         <div class="post-content">
-                            <p>Ubuntu系统使用过程中的常用设置，其中包括启动项目的管理、启动项对应的文件、<code>systemd</code>管理系统服务、<code>systemd-sysv-generator</code>依据旧的SysV脚本生成新的<code>systemd</code>新脚本等等。</p>
+                            <p>Ubuntu系统使用过程中的常用设置。其中包括启动项目的管理、启动项对应的文件、<code>systemd</code>(d结尾的就是守护进程daemon)系统服务进程、<code>systemd-sysv-generator</code>命令依据旧的SysV脚本生成新的<code>systemd</code>新脚本等等。</p>
 
 <h3 id="启动项管理">启动项管理</h3>
 
@@ -125,7 +125,9 @@ cd /usr/share/applications/yourapp.desktop ~/Desktop/
 <h3 id="systemd-systemd-sysv-generator">systemd、systemd-sysv-generator</h3>
 
 <p>现在新的linux操作系统都开始使用<code>systemd</code>来管理系统服务，摒弃了以前的sysv模式下的<code>service</code> <code>chkconfig</code> <code>init</code>命令。
-为了兼容以前旧的系统服务模式，<code>systemd</code>提供了wrapper包装器，将旧的.sh文件包装成可供<code>systemd</code>使用的<code>.service</code>文件。</p>
+为了兼容以前旧的系统服务模式，<code>systemd</code>提供了<code>systemd-sysv-generator</code>wrapper包装器，将旧的.sh文件包装成可供<code>systemd</code>使用的<code>.service</code>文件。</p>
+
+<h4 id="使用systemd-sysv-generator生成-service文件">使用systemd-sysv-generator生成.service文件</h4>
 
 <pre><code class="language-bash"># 使用如下命令会在/tmp目录下生成对应的servicename.service文件
 /lib/systemd/system-generators/systemd-sysv-generator 
@@ -133,9 +135,11 @@ cd /usr/share/applications/yourapp.desktop ~/Desktop/
 
 <p>仅需要拷贝新生成的.service文件到<code>/lib/systemd/system/</code>底下即可。</p>
 
+<h4 id="systemctl命令管理服务">systemctl命令管理服务</h4>
+
 <pre><code class="language-bash"># 现在可以通过systemctl管理旧的.sh服务了
-systemd status servicename.service
-systemd enable servicename.service
+systemctl status servicename.service
+systemctl enable servicename.service
 </code></pre>
 
 <h3 id="locale设置语言">locale设置语言</h3>
