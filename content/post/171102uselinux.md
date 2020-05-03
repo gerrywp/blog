@@ -5,10 +5,11 @@ tags = [ "shell" ]
 categories = [ "linux" ]
 +++
 
-Ubuntu系统使用过程中的常用设置。其中包括启动项目的管理、启动项对应的文件、`systemd`(d结尾的就是守护进程daemon)系统服务进程、`systemd-sysv-generator`命令依据旧的SysV脚本生成新的`systemd`新脚本等等。
+Ubuntu系统使用过程中的常用设置。其中包括启动项目的管理、启动项对应的文件、`systemd`(d结尾的就是守护进程daemon)service、`systemd-sysv-generator`命令依据旧的SysV脚本生成新的`systemd`脚本等等。
 <!--more-->
 
 ### 启动项管理
+
 Ubuntu下的启动项在X Window环境下可以通过->Dash搜索->启动应用程序,如下图所示：
 ![pic1](../../pictures/20171104111954.png "点我查看")
 ![pic2](../../pictures/20171104112136.png "点我查看")

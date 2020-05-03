@@ -6,10 +6,19 @@
     <description>Recent content in Posts on 云亦海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 25 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 03 May 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://gerrywp.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>v2ray跨越GFW</title>
+      <link>https://gerrywp.github.io/blog/post/200503v2ray/</link>
+      <pubDate>Sun, 03 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/200503v2ray/</guid>
+      <description>&lt;p&gt;一片祥和全赖墙，吾辈凤歌影疏狂。今朝方公倾其智，吓哭当年秦始皇！&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>ssr端口被封</title>
@@ -414,7 +423,7 @@ github上有很多现成的可以使用。&lt;/p&gt;</description>
       <pubDate>Thu, 02 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/171102uselinux/</guid>
-      <description>&lt;p&gt;Ubuntu系统使用过程中的常用设置。其中包括启动项目的管理、启动项对应的文件、&lt;code&gt;systemd&lt;/code&gt;(d结尾的就是守护进程daemon)系统服务进程、&lt;code&gt;systemd-sysv-generator&lt;/code&gt;命令依据旧的SysV脚本生成新的&lt;code&gt;systemd&lt;/code&gt;新脚本等等。&lt;/p&gt;</description>
+      <description>&lt;p&gt;Ubuntu系统使用过程中的常用设置。其中包括启动项目的管理、启动项对应的文件、&lt;code&gt;systemd&lt;/code&gt;(d结尾的就是守护进程daemon)service、&lt;code&gt;systemd-sysv-generator&lt;/code&gt;命令依据旧的SysV脚本生成新的&lt;code&gt;systemd&lt;/code&gt;脚本等等。&lt;/p&gt;</description>
     </item>
     
     <item>

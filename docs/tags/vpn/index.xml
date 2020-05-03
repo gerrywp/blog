@@ -6,10 +6,19 @@
     <description>Recent content in vpn on 云亦海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 25 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 03 May 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://gerrywp.github.io/blog/tags/vpn/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>v2ray跨越GFW</title>
+      <link>https://gerrywp.github.io/blog/post/200503v2ray/</link>
+      <pubDate>Sun, 03 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/200503v2ray/</guid>
+      <description>&lt;p&gt;一片祥和全赖墙，吾辈凤歌影疏狂。今朝方公倾其智，吓哭当年秦始皇！&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>ssr端口被封</title>
