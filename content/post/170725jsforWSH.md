@@ -9,13 +9,15 @@ categories = [ "windows" ]
 <!--more-->
 ### Jscript技巧
 
-运行Jscript使用的Host默认为WScript.exe。很不喜欢这样的窗口方式，提示信息会不停的弹窗。如果想要做一些复杂的界面，要
-借助于IE浏览器的ActiveX来做，并且要引入一个.html文件，这样的话就不能在一个脚本里面完成所有的事情！因此采用Console
-显示脚本运行情况更加合适。
+运行Jscript使用的Host默认为WScript.exe。很不喜欢这样的窗口方式，提示信息会不停的弹窗。如果想要做一些复杂的界面，要借助于IE浏览器的ActiveX来做，并且要引入一个.html文件，这样的话就不能在一个脚本里面完成所有的事情！因此采用Console显示脚本运行情况更加合适。
+
+> **Tips**:文件名后缀必须是.js
 
 #### 使用console的Input&Output
 
-由于脚本并不知道使用者的Host环境，可能是CScript.exe也可能是WScript.exe,所以脚本本身要强制使用CScript.exe:
+由于脚本并不知道使用者的Host环境，可能是CScript.exe也可能是WScript.exe,所以脚本本身要强制使用CScript.exe。
+
+新建文件`yourscript.js`:
 
 ```js
 function IsCSript(){
@@ -38,6 +40,7 @@ WScript.StdIn.Read(1);//Equivalent to "pause" in .cmd file
 
 #### 编写console交互式应用
 
+***console.js***
 ```js
 WScript.StdOut.WriteLine('Please enter your name:');
 var userName=WScript.StdIn.ReadLine();
@@ -51,6 +54,7 @@ WScript.StdIn.Read(1);
 
 1. 使用递归来遍历文件和文件夹
 
+***recursive.js***
 ```js
 WScript.Echo('Scan Disk:')
 var fso=WScript.CreateObject('Scripting.FileSystemObject');
@@ -93,6 +97,7 @@ function GetFile(path){
 GetObject和WScript.GetObject的不同.前者是Jscript的native code而后者是WScript对象的method.
 连接访问WMI对象要使用GetObeject(jscript-native code)否则会报错！
 
+***scandisk.js***
 ```js
 WScript.Echo('Scan Disk: beginning search ... ')
 var fso=WScript.CreateObject('Scripting.FileSystemObject');
@@ -126,5 +131,5 @@ function GetFile(driveCode,fileName,extName){
 ```
 
 > 参考文献  
-
-[Windows Script Host](http://soliton.ae.gatech.edu/classes/ae6382/documents/MS_scripting/WindowsScriptHost.pdf "点我访问")
+<a href="../../cmd/WSH2.0DevGuide.pdf" title="点我访问" target="_blank">Windows Script Host</a>  
+[Jscript参考手册](http://www.eduyo.com/doc/jscript/)
