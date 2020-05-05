@@ -11,6 +11,40 @@ categories = [ "windows" ]
 
 运行Jscript使用的Host默认为WScript.exe。很不喜欢这样的窗口方式，提示信息会不停的弹窗。如果想要做一些复杂的界面，要借助于IE浏览器的ActiveX来做，并且要引入一个.html文件，这样的话就不能在一个脚本里面完成所有的事情！因此采用Console显示脚本运行情况更加合适。
 
+创建如下几个文件，如果图标可以正常显示，说明当前操作系统支持WSH2:  
+
+![图标](../../pictures/20200505184051.png)
+
+#### .WSF 文件格式
+
+微软定义的新的.WSF文件格式处理脚本,内联代码如下:  
+***hello.wsf***
+```shell
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<job id="T1">
+<script language="VBScript">
+<![CDATA[
+text = "world"
+WScript.Echo "Hello, " & text
+]]>
+</script>
+</job>
+```
+
+也可以引用外部文件  
+***hello.wsf***
+```shell
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<job id="T1">
+<script language="JScript" src="Hello.js"/>
+<script language="VBScript">
+<![CDATA[
+WScript.Echo "Hello, world number 2"
+]]>
+</script>
+</job>
+```
+
 > **Tips**:文件名后缀必须是.js
 
 #### 使用console的Input&Output

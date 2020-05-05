@@ -98,6 +98,40 @@
 
 <p>运行Jscript使用的Host默认为WScript.exe。很不喜欢这样的窗口方式，提示信息会不停的弹窗。如果想要做一些复杂的界面，要借助于IE浏览器的ActiveX来做，并且要引入一个.html文件，这样的话就不能在一个脚本里面完成所有的事情！因此采用Console显示脚本运行情况更加合适。</p>
 
+<p>创建如下几个文件，如果图标可以正常显示，说明当前操作系统支持WSH2:</p>
+
+<p><img src="../../pictures/20200505184051.png" alt="图标" /></p>
+
+<h4 id="wsf-文件格式">.WSF 文件格式</h4>
+
+<p>微软定义的新的.WSF文件格式处理脚本,内联代码如下:<br />
+<strong><em>hello.wsf</em></strong></p>
+
+<pre><code class="language-shell">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
+&lt;job id=&quot;T1&quot;&gt;
+&lt;script language=&quot;VBScript&quot;&gt;
+&lt;![CDATA[
+text = &quot;world&quot;
+WScript.Echo &quot;Hello, &quot; &amp; text
+]]&gt;
+&lt;/script&gt;
+&lt;/job&gt;
+</code></pre>
+
+<p>也可以引用外部文件<br />
+<strong><em>hello.wsf</em></strong></p>
+
+<pre><code class="language-shell">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
+&lt;job id=&quot;T1&quot;&gt;
+&lt;script language=&quot;JScript&quot; src=&quot;Hello.js&quot;/&gt;
+&lt;script language=&quot;VBScript&quot;&gt;
+&lt;![CDATA[
+WScript.Echo &quot;Hello, world number 2&quot;
+]]&gt;
+&lt;/script&gt;
+&lt;/job&gt;
+</code></pre>
+
 <blockquote>
 <p><strong>Tips</strong>:文件名后缀必须是.js</p>
 </blockquote>
