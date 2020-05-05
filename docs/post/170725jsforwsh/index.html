@@ -96,13 +96,17 @@
 
 <h3 id="jscript技巧">Jscript技巧</h3>
 
-<p>运行Jscript使用的Host默认为WScript.exe。很不喜欢这样的窗口方式，提示信息会不停的弹窗。如果想要做一些复杂的界面，要
-借助于IE浏览器的ActiveX来做，并且要引入一个.html文件，这样的话就不能在一个脚本里面完成所有的事情！因此采用Console
-显示脚本运行情况更加合适。</p>
+<p>运行Jscript使用的Host默认为WScript.exe。很不喜欢这样的窗口方式，提示信息会不停的弹窗。如果想要做一些复杂的界面，要借助于IE浏览器的ActiveX来做，并且要引入一个.html文件，这样的话就不能在一个脚本里面完成所有的事情！因此采用Console显示脚本运行情况更加合适。</p>
+
+<blockquote>
+<p><strong>Tips</strong>:文件名后缀必须是.js</p>
+</blockquote>
 
 <h4 id="使用console的input-output">使用console的Input&amp;Output</h4>
 
-<p>由于脚本并不知道使用者的Host环境，可能是CScript.exe也可能是WScript.exe,所以脚本本身要强制使用CScript.exe:</p>
+<p>由于脚本并不知道使用者的Host环境，可能是CScript.exe也可能是WScript.exe,所以脚本本身要强制使用CScript.exe。</p>
+
+<p>新建文件<code>yourscript.js</code>:</p>
 
 <pre><code class="language-js">function IsCSript(){
 	var isCScript=false;
@@ -124,6 +128,8 @@ WScript.StdIn.Read(1);//Equivalent to &quot;pause&quot; in .cmd file
 
 <h4 id="编写console交互式应用">编写console交互式应用</h4>
 
+<p><strong><em>console.js</em></strong></p>
+
 <pre><code class="language-js">WScript.StdOut.WriteLine('Please enter your name:');
 var userName=WScript.StdIn.ReadLine();
 WScript.StdOut.WriteLine('Your name is : '+userName);
@@ -135,7 +141,10 @@ WScript.StdIn.Read(1);
 <h4 id="扫描磁盘">扫描磁盘</h4>
 
 <ol>
-<li><p>使用递归来遍历文件和文件夹</p>
+<li>使用递归来遍历文件和文件夹</li>
+</ol>
+
+<p><strong><em>recursive.js</em></strong></p>
 
 <pre><code class="language-js">WScript.Echo('Scan Disk:')
 var fso=WScript.CreateObject('Scripting.FileSystemObject');
@@ -169,15 +178,18 @@ function GetFile(path){
 	}
 	return false;
 }
-</code></pre></li>
+</code></pre>
 
-<li><p>使用WMI(Windows Management Instrumentation)对象查找文件</p></li>
+<ol>
+<li>使用WMI(Windows Management Instrumentation)对象查找文件</li>
 </ol>
 
 <h4 id="getobject-vs-wscript-getobject">GetObject vs WScript.GetObject</h4>
 
 <p>GetObject和WScript.GetObject的不同.前者是Jscript的native code而后者是WScript对象的method.
 连接访问WMI对象要使用GetObeject(jscript-native code)否则会报错！</p>
+
+<p><strong><em>scandisk.js</em></strong></p>
 
 <pre><code class="language-js">WScript.Echo('Scan Disk: beginning search ... ')
 var fso=WScript.CreateObject('Scripting.FileSystemObject');
@@ -211,10 +223,10 @@ function GetFile(driveCode,fileName,extName){
 </code></pre>
 
 <blockquote>
-<p>参考文献</p>
+<p>参考文献<br />
+<a href="../../cmd/WSH2.0DevGuide.pdf" title="点我访问" target="_blank">Windows Script Host</a><br />
+<a href="http://www.eduyo.com/doc/jscript/">Jscript参考手册</a></p>
 </blockquote>
-
-<p><a href="http://soliton.ae.gatech.edu/classes/ae6382/documents/MS_scripting/WindowsScriptHost.pdf" title="点我访问">Windows Script Host</a></p>
                         </div>
 
                         
