@@ -5,12 +5,11 @@ tags = [ "2019","go","vs" ]
 categories = [ "golang" ]
 +++
 
-　　go命令使用笔记，对命令的使用做一个总结和归纳
+go命令使用笔记，对命令的使用做一个总结和归纳
 <!--more-->
 ### `go build`
 
-	编译指定源码文件或包,相关命令`go run`&`go install`。
-`go build`命令的常用标记说明
+编译指定源码文件或包,相关命令`go run`&`go install`,命令行参数:
 
 |名称|描述|
 |:-----:|:-----|
@@ -64,6 +63,17 @@ packagefile command-line-arguments=C:\Users\Gerry\AppData\Local\go-build
 %temp% or %tmp% #查看生成的go-build495563082目录
 go env #查看go相关的所有环境变量
 ```
+### `go get`
+
+下载并安装指定包,命令行参数:
+
+|名称|描述|
+|:-----:|:-----|
+| -v    |启用详细进度和debug输出。|
+
+```shell
+go get -v github.com/briandowns/spinner
+```
 
 ### Start Without Debugging
 
@@ -74,6 +84,7 @@ go开启了module模式之后，v1.13版本之前倘若未设置`GO111MODULE=on`
 
 很显然，当我们使用vscode-Start Without Debugging的时候，vscode使用的`go run`命令不是运行在当前project的目录下(猜测应该是运行在vscode安装目录下),
 此时vscode按照GOPATH方式查找包依赖。  
+
 因此当我们project使用的是module方式开发的话，必然会提示我们在GOPATH和GOROOT下找不到相关的依赖包文件。    
 如果我们强制开启了`GO111MODULE=on`,vscode就使用go.mod来查找相关依赖，但是vscode的`go run`命令又不是运行在当前project目录，所以会提示找不到project
 目录下的自定义子包(因为go会去GOPATH/pkg/mod目录下查找所有的包)并报错，我们必须让`Start without Debugging`时`go run`运行在当前目录，

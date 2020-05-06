@@ -92,14 +92,11 @@
                         
                         
                         <div class="post-content">
-                            <p>　　go命令使用笔记，对命令的使用做一个总结和归纳</p>
+                            <p>go命令使用笔记，对命令的使用做一个总结和归纳</p>
 
 <h3 id="go-build"><code>go build</code></h3>
 
-<pre><code>编译指定源码文件或包,相关命令`go run`&amp;`go install`。
-</code></pre>
-
-<p><code>go build</code>命令的常用标记说明</p>
+<p>编译指定源码文件或包,相关命令<code>go run</code>&amp;<code>go install</code>,命令行参数:</p>
 
 <table>
 <thead>
@@ -188,6 +185,29 @@ packagefile command-line-arguments=C:\Users\Gerry\AppData\Local\go-build
 go env #查看go相关的所有环境变量
 </code></pre>
 
+<h3 id="go-get"><code>go get</code></h3>
+
+<p>下载并安装指定包,命令行参数:</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">-v</td>
+<td align="left">启用详细进度和debug输出。</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-shell">go get -v github.com/briandowns/spinner
+</code></pre>
+
 <h3 id="start-without-debugging">Start Without Debugging</h3>
 
 <p>go开启了module模式之后，v1.13版本之前倘若未设置<code>GO111MODULE=on</code>的环境变量的话，<code>go build</code>寻找包依赖规则如下：</p>
@@ -198,8 +218,9 @@ go env #查看go相关的所有环境变量
 </ol>
 
 <p>很显然，当我们使用vscode-Start Without Debugging的时候，vscode使用的<code>go run</code>命令不是运行在当前project的目录下(猜测应该是运行在vscode安装目录下),
-此时vscode按照GOPATH方式查找包依赖。<br />
-因此当我们project使用的是module方式开发的话，必然会提示我们在GOPATH和GOROOT下找不到相关的依赖包文件。<br />
+此时vscode按照GOPATH方式查找包依赖。</p>
+
+<p>因此当我们project使用的是module方式开发的话，必然会提示我们在GOPATH和GOROOT下找不到相关的依赖包文件。<br />
 如果我们强制开启了<code>GO111MODULE=on</code>,vscode就使用go.mod来查找相关依赖，但是vscode的<code>go run</code>命令又不是运行在当前project目录，所以会提示找不到project
 目录下的自定义子包(因为go会去GOPATH/pkg/mod目录下查找所有的包)并报错，我们必须让<code>Start without Debugging</code>时<code>go run</code>运行在当前目录，
 如何处理?(vscode-go插件问题)</p>

@@ -7,11 +7,13 @@ categories = [ "golang" ]
 
 　　go大部分站点在国内被墙，想要直接使用`go get`命令下载包，就必须使用代理，本文使用的是shadowsocks代理访问外部网。
 <!--more-->
-### 1.使用shadowsocks
+
+### 设置步骤
+#### 1.使用shadowsocks
 
 在windows下配置好shadowsocks并运行
 
-### 2.配置环境变量http_proxy
+#### 2.配置环境变量http_proxy
 
 因为`go get`命令首先要从后面的url路径上取得meta tags如下：
 
@@ -34,22 +36,23 @@ export http_proxy=http://127.0.0.1:1080
 还可以设置`go`命令的别名，这样每次打开cmd都不需要设置临时的环境变量
 >参考：[cmd命令别名](https://gerrywp.github.io/iblog/windows/cmdalias.html '点我访问')
 
-### 3.设置代理
+#### 3.设置代理
 
-#### 配置vscode代理
+(1) **配置vscode代理**
 
 找到setting->user->application->proxy 如图：
 
 ![配置](../../pictures/QQ20190706132230.png '点我访问')
 
-#### 配置git代理
+(2) **配置git代理**
+
 因为go最终使用的是源码管理工具下载包文件，本文使用的源码管理工具是git
 
 ```bash
 #配置git proxy
 git config --global http.proxy=http://127.0.0.1:1080
 ```
-#### 换行符自动转换的坑
+### 换行符自动转换的坑
 git在安装的时候会默认勾选换行符转换的checkbox，然后每次提交文件的时候，就会自动将`CRLF`替换成`LF`
 如下禁用此设置不需要重新安装：
 
@@ -68,11 +71,11 @@ git config --list --show-origin
 go get -v -u google.golang.org/grpc
 ```
 
-### 免费的代理
+### go1.11之后的代理
 
-找到一个网站可以给`go get`下载提供镜像代理的，链接如下:
+go开始使用module包管理工具(版本>go1.11)后;`go get`下载可以使用镜像代理，链接如下:
 [goproxy.io](https://goproxy.io "点我访问")  
-我们必须在windows下设置环境变量：
+我们必须在windows下设置环境变量`GOPROXY`：
 
 ```bash
 GO111MODULE="on"

@@ -239,7 +239,7 @@ nginx的配置文件如下：</p>
 
 <p>安装证书到v2ray目录</p>
 
-<h4 id="ecc证书">ECC证书</h4>
+<h4 id="安装ecc证书">安装ECC证书</h4>
 
 <pre><code class="language-shell">sudo ~/.acme.sh/acme.sh --installcert -d yoursite.xyz
  --fullchainpath /etc/v2ray/v2ray.crt
@@ -247,22 +247,20 @@ nginx的配置文件如下：</p>
 </code></pre>
 
 <blockquote>
-<p>配置文件参考
-<a href="https://github.com/mikewubox/V2Ray3">https://github.com/mikewubox/V2Ray3</a></p>
+<p><a href="https://github.com/mikewubox/V2Ray3">nginx和v2ray配置</a></p>
 </blockquote>
 
-<h3 id="安装v2ray">安装v2ray</h3>
+<h3 id="3-安装v2ray">3.安装v2ray</h3>
 
 <pre><code class="language-shell">curl https://install.direct/go.sh
 ./go.sh
 </code></pre>
 
 <blockquote>
-<p>参考
-<a href="https://toutyrater.github.io/prep/install.html">https://toutyrater.github.io/prep/install.html</a></p>
+<p><a href="https://toutyrater.github.io/prep/install.html">v2ray配置指南</a></p>
 </blockquote>
 
-<p>修改v2ray的配置文件(/etc/v2ray/config.json)</p>
+<p>修改v2ray的配置文件<code>/etc/v2ray/config.json</code></p>
 
 <pre><code class="language-shell">  7   &quot;inbounds&quot;: [{
   8     &quot;port&quot;:10000,

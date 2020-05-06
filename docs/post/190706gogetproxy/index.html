@@ -94,11 +94,13 @@
                         <div class="post-content">
                             <p>　　go大部分站点在国内被墙，想要直接使用<code>go get</code>命令下载包，就必须使用代理，本文使用的是shadowsocks代理访问外部网。</p>
 
-<h3 id="1-使用shadowsocks">1.使用shadowsocks</h3>
+<h3 id="设置步骤">设置步骤</h3>
+
+<h4 id="1-使用shadowsocks">1.使用shadowsocks</h4>
 
 <p>在windows下配置好shadowsocks并运行</p>
 
-<h3 id="2-配置环境变量http-proxy">2.配置环境变量http_proxy</h3>
+<h4 id="2-配置环境变量http-proxy">2.配置环境变量http_proxy</h4>
 
 <p>因为<code>go get</code>命令首先要从后面的url路径上取得meta tags如下：</p>
 
@@ -122,15 +124,15 @@ export http_proxy=http://127.0.0.1:1080
 <p>还可以设置<code>go</code>命令的别名，这样每次打开cmd都不需要设置临时的环境变量
 &gt;参考：<a href="https://gerrywp.github.io/iblog/windows/cmdalias.html" title="点我访问">cmd命令别名</a></p>
 
-<h3 id="3-设置代理">3.设置代理</h3>
+<h4 id="3-设置代理">3.设置代理</h4>
 
-<h4 id="配置vscode代理">配置vscode代理</h4>
+<p>(1) <strong>配置vscode代理</strong></p>
 
 <p>找到setting-&gt;user-&gt;application-&gt;proxy 如图：</p>
 
 <p><img src="../../pictures/QQ20190706132230.png" alt="配置" title="点我访问" /></p>
 
-<h4 id="配置git代理">配置git代理</h4>
+<p>(2) <strong>配置git代理</strong></p>
 
 <p>因为go最终使用的是源码管理工具下载包文件，本文使用的源码管理工具是git</p>
 
@@ -138,7 +140,7 @@ export http_proxy=http://127.0.0.1:1080
 git config --global http.proxy=http://127.0.0.1:1080
 </code></pre>
 
-<h4 id="换行符自动转换的坑">换行符自动转换的坑</h4>
+<h3 id="换行符自动转换的坑">换行符自动转换的坑</h3>
 
 <p>git在安装的时候会默认勾选换行符转换的checkbox，然后每次提交文件的时候，就会自动将<code>CRLF</code>替换成<code>LF</code>
 如下禁用此设置不需要重新安装：</p>
@@ -157,11 +159,11 @@ git config --list --show-origin
 go get -v -u google.golang.org/grpc
 </code></pre>
 
-<h3 id="免费的代理">免费的代理</h3>
+<h3 id="go1-11之后的代理">go1.11之后的代理</h3>
 
-<p>找到一个网站可以给<code>go get</code>下载提供镜像代理的，链接如下:
+<p>go开始使用module包管理工具(版本&gt;go1.11)后;<code>go get</code>下载可以使用镜像代理，链接如下:
 <a href="https://goproxy.io" title="点我访问">goproxy.io</a><br />
-我们必须在windows下设置环境变量：</p>
+我们必须在windows下设置环境变量<code>GOPROXY</code>：</p>
 
 <pre><code class="language-bash">GO111MODULE=&quot;on&quot;
 GOPROXY=&quot;https://goproxy.io&quot;
