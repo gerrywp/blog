@@ -716,9 +716,7 @@ github上有很多现成的可以使用。&lt;/p&gt;</description>
       <pubDate>Thu, 01 Jan 2015 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/150101git/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;命令别名&lt;/strong&gt;:&lt;br /&gt;
-~$ &lt;code&gt;git config --global alias.glog log --shortstat --abbrev-commit --pretty=format:%h-%cn,%cr:%s%d --graph&lt;/code&gt;
-图形化显示提交日志&lt;/p&gt;</description>
+      <description>&lt;p&gt;依据linux、windows系统的不同，对git常用命令进行归类。&lt;/p&gt;</description>
     </item>
     
     <item>

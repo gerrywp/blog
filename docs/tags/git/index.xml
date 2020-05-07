@@ -20,5 +20,14 @@
       <description>&lt;p&gt;git push代码的时候，使用了git credential manager for windows工具自动保存密码，但是每次会报告一个错误：HttpRequestException encountered.&lt;/p&gt;</description>
     </item>
     
+    <item>
+      <title>git常用命令</title>
+      <link>https://gerrywp.github.io/blog/post/150101git/</link>
+      <pubDate>Thu, 01 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/150101git/</guid>
+      <description>&lt;p&gt;依据linux、windows系统的不同，对git常用命令进行归类。&lt;/p&gt;</description>
+    </item>
+    
   </channel>
 </rss>

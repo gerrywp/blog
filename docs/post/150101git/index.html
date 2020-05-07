@@ -92,19 +92,29 @@
                         
                         
                         <div class="post-content">
-                            <p><strong>命令别名</strong>:<br />
-~$ <code>git config --global alias.glog log --shortstat --abbrev-commit --pretty=format:%h-%cn,%cr:%s%d --graph</code>
-图形化显示提交日志</p>
+                            <p>依据linux、windows系统的不同，对git常用命令进行归类。</p>
 
-<h3 id="git-config参数">git config参数</h3>
+<h3 id="git-config">git config</h3>
+
+<p><strong><em>参数</em></strong>
+1. <strong>--global</strong>: 当前用户配置<br />
+windows下路径: <code>%HOMEPATH%\.gitconfig</code>。<br />
+linux下路径: <code>cd ~</code>下的.gitconfig文件。</p>
 
 <ol>
-<li>--global参数。配置的是当前用户的配置文件，在windows下路径为：<code>%HOMEPATH%\.gitconfig</code>。
-linux下为:<code>cd ~</code>下的.gitconfig文件。</li>
-<li>--local。配置的是项目底下的.gitconfig文件</li>
-<li>--system。配置的是系统文件,在windows下路径为:git安装路径下的<code>\mingw32\etc\gitconfig</code>文件。
-linux下为:<code>/etc/gitconfig</code>文件。</li>
+<li><p><strong>--local</strong>: 项目配置(.gitconfig文件)</p></li>
+
+<li><p><strong>--system</strong>: 系统配置<br />
+windows下路径: git安装路径下的<code>\mingw32\etc\gitconfig</code>文件(或<code>C:\ProgramData\Git\</code>下的config文件)。
+linux下路径: <code>/etc/gitconfig</code>文件。</p></li>
 </ol>
+
+<p><strong><em>命令别名</em></strong></p>
+
+<pre><code class="language-shell"># 图形化显示提交日志
+# windows下值需要用双引号括起来(linux下双引号单引号都可以)
+git config --global alias.glog &quot;log --shortstat --abbrev-commit --pretty=format:%h-%cn,%cr:%s%d --graph&quot;
+</code></pre>
 
 <h3 id="选择修订版本-git手册7-1节-https-git-scm-com-book-zh-v2-git-e5-b7-a5-e5-85-b7-e9-80-89-e6-8b-a9-e4-bf-ae-e8-ae-a2-e7-89-88-e6-9c-ac">选择修订版本(<a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%80%89%E6%8B%A9%E4%BF%AE%E8%AE%A2%E7%89%88%E6%9C%AC">git手册7.1节</a>)</h3>
 
@@ -259,7 +269,11 @@ git pull
 
                         <div class="post-meta meta-tags">
                             
-                            没有标签
+                            <ul class="clearfix">
+                                
+                                <li><a href='https://gerrywp.github.io/blog/tags/git'>git</a></li>
+                                
+                            </ul>
                             
                         </div>
                     </article>
