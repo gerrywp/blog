@@ -30,7 +30,7 @@ categories = [ "others" ]
 [正则表达式](http://deerchao.net/tutorials/regex/regex.htm '点我访问')
 
 7. QT入门之基础篇    
-[QT安装使用入门](https://www.cnblogs.com/lxmwb/p/6352220.html '点我访问')
+[QT入门基础](<https://www.cnblogs.com/lxmwb/p/6352220.html> '点我访问')
 
 ### nodejs
 [用webpack构建nodejs后端代码，使其支持js新特性并实现热重载](https://zhuanlan.zhihu.com/p/20782320 "点我访问")

@@ -6,10 +6,19 @@
     <description>Recent content in Posts on 云亦海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 03 May 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 27 May 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://gerrywp.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>go语言开发windows服务程序</title>
+      <link>https://gerrywp.github.io/blog/post/200527gowinserv/</link>
+      <pubDate>Wed, 27 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/200527gowinserv/</guid>
+      <description>&lt;p&gt;使用go语言原生的包，开发一个webapi应用的windows service服务。给客户软件提供版本升级，下载的功能。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>v2ray跨越GFW</title>

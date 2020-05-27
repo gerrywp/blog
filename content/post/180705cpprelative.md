@@ -41,6 +41,7 @@ categories = [ "others" ]
 ### QT实战教程
 
 [QT实战123](https://blog.csdn.net/liang19890820/article/details/50277095 '点我访问')
+[QT入门基础](<https://www.cnblogs.com/lxmwb/p/6352220.html> '点我访问')
 
 ### makefile实战
 
