@@ -133,7 +133,7 @@ go mod init aiyoe.com/updater
 
 <p><strong>models/svrconfig.go</strong></p>
 
-<pre><code class="language-shell">package models
+<pre><code class="language-go">package models
 
 //SvrConfig model for manifets.yml
 type SvrConfig struct {
@@ -166,7 +166,7 @@ type FileInfo struct {
 
 <p>在<code>run()</code>方法里面添加webapi处理函数</p>
 
-<pre><code class="language-shell">func (p *program) run() {
+<pre><code class="language-go">func (p *program) run() {
 	// Do work here
 	http.Handle(&quot;/file/&quot;, http.StripPrefix(&quot;/file&quot;, http.FileServer(http.Dir(&quot;./package&quot;))))
 	http.HandleFunc(&quot;/version&quot;, handler) // each request calls handler
@@ -209,7 +209,7 @@ func getCurrentDirectory() string {
 
 <p>在项目根目录下创建<code>package</code>文件夹，将需要更新的dll拷贝进去即可</p>
 
-<pre><code class="language-shell">http.Handle(&quot;/file/&quot;, http.StripPrefix(&quot;/file&quot;, http.FileServer(http.Dir(&quot;./package&quot;))))
+<pre><code class="language-go">http.Handle(&quot;/file/&quot;, http.StripPrefix(&quot;/file&quot;, http.FileServer(http.Dir(&quot;./package&quot;))))
 </code></pre>
 
 <p>使用以上代码注册了静态文件的路由，然后client可以直接通过<code>/file/文件名</code>的形式请求下载需更新的文件。</p>
@@ -218,7 +218,7 @@ func getCurrentDirectory() string {
 
 <p>在<strong>main</strong>函数中添加如下代码</p>
 
-<pre><code class="language-shell">func main(){
+<pre><code class="language-go">func main(){
 	svcFlag := flag.String(&quot;s&quot;, &quot;&quot;, fmt.Sprintf(&quot;%s\r\n%s&quot;, &quot;Control the system service.&quot;, service.ControlAction))
 	flag.Parse()
 	// ... other code

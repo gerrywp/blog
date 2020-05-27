@@ -47,7 +47,7 @@ go mod init aiyoe.com/updater
 
 **models/svrconfig.go**
 
-```shell
+```go
 package models
 
 //SvrConfig model for manifets.yml
@@ -80,7 +80,7 @@ type FileInfo struct {
 ### 服务器版本处理函数
 
 在`run()`方法里面添加webapi处理函数
-```shell
+```go
 func (p *program) run() {
 	// Do work here
 	http.Handle("/file/", http.StripPrefix("/file", http.FileServer(http.Dir("./package"))))
@@ -123,7 +123,7 @@ webapi服务监听80端口,针对`/version`的请求直接返回`Json`对象给�
 
 在项目根目录下创建`package`文件夹，将需要更新的dll拷贝进去即可
 
-```shell
+```go
 http.Handle("/file/", http.StripPrefix("/file", http.FileServer(http.Dir("./package"))))
 ```
 使用以上代码注册了静态文件的路由，然后client可以直接通过`/file/文件名`的形式请求下载需更新的文件。
@@ -132,7 +132,7 @@ http.Handle("/file/", http.StripPrefix("/file", http.FileServer(http.Dir("./pack
 
 在**main**函数中添加如下代码
 
-```shell
+```go
 func main(){
 	svcFlag := flag.String("s", "", fmt.Sprintf("%s\r\n%s", "Control the system service.", service.ControlAction))
 	flag.Parse()
