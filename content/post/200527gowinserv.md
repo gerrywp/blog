@@ -83,7 +83,8 @@ type FileInfo struct {
 ```go
 func (p *program) run() {
 	// Do work here
-	http.Handle("/file/", http.StripPrefix("/file", http.FileServer(http.Dir("./package"))))
+	pkgDir := path.Join(getCurrentDirectory(), "package")
+	http.Handle("/file/", http.StripPrefix("/file", http.FileServer(http.Dir(pkgDir))))
 	http.HandleFunc("/version", handler) // each request calls handler
 	log.Fatal(http.ListenAndServe("localhost:80", nil))
 }
@@ -124,7 +125,8 @@ webapi服务监听80端口,针对`/version`的请求直接返回`Json`对象给�
 在项目根目录下创建`package`文件夹，将需要更新的dll拷贝进去即可
 
 ```go
-http.Handle("/file/", http.StripPrefix("/file", http.FileServer(http.Dir("./package"))))
+    pkgDir := path.Join(getCurrentDirectory(), "package")
+    http.Handle("/file/", http.StripPrefix("/file", http.FileServer(http.Dir(pkgDir))))
 ```
 使用以上代码注册了静态文件的路由，然后client可以直接通过`/file/文件名`的形式请求下载需更新的文件。
 

@@ -168,7 +168,8 @@ type FileInfo struct {
 
 <pre><code class="language-go">func (p *program) run() {
 	// Do work here
-	http.Handle(&quot;/file/&quot;, http.StripPrefix(&quot;/file&quot;, http.FileServer(http.Dir(&quot;./package&quot;))))
+	pkgDir := path.Join(getCurrentDirectory(), &quot;package&quot;)
+	http.Handle(&quot;/file/&quot;, http.StripPrefix(&quot;/file&quot;, http.FileServer(http.Dir(pkgDir))))
 	http.HandleFunc(&quot;/version&quot;, handler) // each request calls handler
 	log.Fatal(http.ListenAndServe(&quot;localhost:80&quot;, nil))
 }
@@ -209,7 +210,8 @@ func getCurrentDirectory() string {
 
 <p>在项目根目录下创建<code>package</code>文件夹，将需要更新的dll拷贝进去即可</p>
 
-<pre><code class="language-go">http.Handle(&quot;/file/&quot;, http.StripPrefix(&quot;/file&quot;, http.FileServer(http.Dir(&quot;./package&quot;))))
+<pre><code class="language-go">    pkgDir := path.Join(getCurrentDirectory(), &quot;package&quot;)
+    http.Handle(&quot;/file/&quot;, http.StripPrefix(&quot;/file&quot;, http.FileServer(http.Dir(pkgDir))))
 </code></pre>
 
 <p>使用以上代码注册了静态文件的路由，然后client可以直接通过<code>/file/文件名</code>的形式请求下载需更新的文件。</p>
