@@ -35,7 +35,7 @@
       <pubDate>Thu, 29 Mar 2018 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/180329dllnotcopy/</guid>
-      <description>&lt;p&gt;　　添加了reference的dll文件并且&lt;code&gt;Copy Local&lt;/code&gt;值为True为何不拷贝到输出目录？&lt;/p&gt;</description>
+      <description>&lt;p&gt;　　添加了reference的*dll*文件并且&lt;code&gt;Copy Local&lt;/code&gt;值为True为何不拷贝到输出目录？&lt;/p&gt;</description>
     </item>
     
     <item>

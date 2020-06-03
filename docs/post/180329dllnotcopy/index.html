@@ -92,24 +92,24 @@
                         
                         
                         <div class="post-content">
-                            <p>　　添加了reference的dll文件并且<code>Copy Local</code>值为True为何不拷贝到输出目录？</p>
+                            <p>　　添加了reference的*dll*文件并且<code>Copy Local</code>值为True为何不拷贝到输出目录？</p>
 
 <h3 id="间接引用自定义工程程序集">间接引用自定义工程程序集</h3>
 
 <p>造成这个原因的情况是这样的，假定项目结构如下：</p>
 
 <ol>
-<li>Main.Project</li>
-<li>Service.Project</li>
-<li>Common.Project</li>
+<li><strong>Main.Project</strong></li>
+<li><strong>Service.Project</strong></li>
+<li><strong>Common.Project</strong></li>
 </ol>
 
-<p>Main.Project添加了对Service.Project的引用，现假定有一个dll文件MyDll.dll被Service.Project引用，但是实际在编码的时候
-Service.Project里面并未用到MyDll.dll文件里面的任何代码。
-单独编译Service.Project，MyDll.dll文件会被拷贝到/debug/bin/目录下。但是编译MainProject的时候由于缺少对MyDll.dll的代码的使用，
-所以Service.dll文件会被拷贝到Main.Project的/debug/bin/目录下，但是MyDll.dll并不会被copy过去。<br />
-　　因此，当我们需要MyDll.dll文件能够被自动copy到Main.Project的输出目录的话，只需要在
-Main.Project里面直接引用MyDll.dll程序集文件即可！</p>
+<p><strong>Main.Project</strong>添加了对<strong>Service.Project</strong>的引用，现假定有一个*dll*文件*MyDll.dll*被<strong>Service.Project</strong>引用，但是实际在编码的时候
+<strong>Service.Project</strong>里面并未用到*MyDll.dll*文件里面的任何代码。
+单独编译<strong>Service.Project</strong>，*MyDll.dll*文件会被拷贝到<code>/debug/bin/</code>目录下。但是编译<strong>MainProject</strong>的时候由于缺少对*MyDll.dll*的代码的使用，
+所以*Service.dll*文件会被拷贝到<strong>Main.Project</strong>的<code>/debug/bin/</code>目录下，但是*MyDll.dll*并不会被copy过去。<br />
+　　因此，当我们需要*MyDll.dll*文件能够被自动copy到<strong>Main.Project</strong>的输出目录的话，只需要在
+<strong>Main.Project</strong>里面直接引用*MyDll.dll*程序集文件即可！</p>
                         </div>
 
                         
@@ -177,6 +177,10 @@ Main.Project里面直接引用MyDll.dll程序集文件即可！</p>
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200603msbuild3/" title="msbuid(3)-winform版本更新">msbuid(3)-winform版本更新</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200527gowinserv/" title="go语言开发windows服务程序">go语言开发windows服务程序</a>
     </li>
     
@@ -212,10 +216,6 @@ Main.Project里面直接引用MyDll.dll程序集文件即可！</p>
         <a href="https://gerrywp.github.io/blog/post/190713clusterdistribute/" title="集群和分布式">集群和分布式</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/190707gocommand/" title="go命令详解">go命令详解</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -227,7 +227,7 @@ Main.Project里面直接引用MyDll.dll程序集文件即可！</p>
     
     <li><a href="https://gerrywp.github.io/blog/categories/article/">article (13)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/csharp/">csharp (9)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/csharp/">csharp (10)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/golang/">golang (5)</a></li>
     

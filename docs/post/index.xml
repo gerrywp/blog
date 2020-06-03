@@ -6,10 +6,19 @@
     <description>Recent content in Posts on 云亦海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 27 May 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 03 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://gerrywp.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>msbuid(3)-winform版本更新</title>
+      <link>https://gerrywp.github.io/blog/post/200603msbuild3/</link>
+      <pubDate>Wed, 03 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/200603msbuild3/</guid>
+      <description>&lt;p&gt;让windows应用生成时自动构建版本号。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>go语言开发windows服务程序</title>
@@ -268,9 +277,8 @@ condition条件判断就成为了对&lt;code&gt;cin&lt;/code&gt;对象的判断�
       <pubDate>Sat, 09 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/180609msbuild1/</guid>
-      <description>&lt;p&gt;　　使用MS的开发工具&lt;strong&gt;Visual Studio&lt;/strong&gt;(以下简称VS)不得不使用msbuild进行项目的构建。VS能简化很多工作，同时也隐藏了很多内部实现细节。
-其中包括点击&amp;rdquo;部署&amp;rdquo;(publish)的时候VS通过msbuild为我们做了哪些工作？msbuild的使用
-在官方网站&lt;a href=&#34;https://msdn.microsoft.com/zh-cn/library/dd393574.aspx?f=255&amp;amp;MSPPError=-2147217396&#34; title=&#34;点我访问&#34;&gt;msbuild1&lt;/a&gt;有详细的使用说明，做如下归纳！&lt;/p&gt;</description>
+      <description>&lt;p&gt;　　使用MS的开发工具&lt;strong&gt;Visual Studio&lt;/strong&gt;(以下简称VS)不得不使用msbuild进行项目的构建。VS能简化很多工作，同时也隐藏了很多内部实现细节。其中包括点击&amp;rdquo;部署&amp;rdquo;(publish)的时候VS通过msbuild为我们做了哪些工作？&lt;br /&gt;
+参阅&lt;a href=&#34;https://msdn.microsoft.com/zh-cn/library/dd393574.aspx?f=255&amp;amp;MSPPError=-2147217396&#34; title=&#34;点我访问&#34;&gt;msbuild官网&lt;/a&gt;文档，归纳如下！&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -307,7 +315,7 @@ condition条件判断就成为了对&lt;code&gt;cin&lt;/code&gt;对象的判断�
       <pubDate>Thu, 29 Mar 2018 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/180329dllnotcopy/</guid>
-      <description>&lt;p&gt;　　添加了reference的dll文件并且&lt;code&gt;Copy Local&lt;/code&gt;值为True为何不拷贝到输出目录？&lt;/p&gt;</description>
+      <description>&lt;p&gt;　　添加了reference的*dll*文件并且&lt;code&gt;Copy Local&lt;/code&gt;值为True为何不拷贝到输出目录？&lt;/p&gt;</description>
     </item>
     
     <item>
