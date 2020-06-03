@@ -157,6 +157,31 @@
 <h3 id="assemblyinfo-cs">AssemblyInfo.cs</h3>
 
 <p>要删除<strong>Properties\AssemblyInfo.cs</strong>下的AssemblyFileVersion，不然会提示重复定义</p>
+
+<h3 id="增量更新">增量更新</h3>
+
+<p>因为我们不希望每次生成的时候都生成新的版本号，需要采取增量更新，即有文件修改的时候我们才生成新的版本号。</p>
+
+<pre><code class="language-xml">  &lt;Target Name=&quot;BeforeBuild&quot; Inputs=&quot;@(Compile)&quot; Outputs=&quot;BuildVersion.cs&quot;&gt;
+    &lt;WriteCodeFragment AssemblyAttributes=&quot;@(AssemblyAttributes)&quot;
+                       Language=&quot;C#&quot;
+                       &lt;!-- OutputDirectory=&quot;$(IntermediateOutputPath)&quot; --&gt; //删除此行
+                       OutputFile=&quot;BuildVersion.cs&quot;&gt;
+      &lt;Output TaskParameter=&quot;OutputFile&quot; ItemName=&quot;Compile&quot; /&gt;
+      &lt;Output TaskParameter=&quot;OutputFile&quot; ItemName=&quot;FileWrites&quot; /&gt;
+    &lt;/WriteCodeFragment&gt;
+  &lt;/Target&gt;
+</code></pre>
+
+<p>Target属性</p>
+
+<ol>
+<li>Inputs输入的文件，这里是所有待编译的cs文件</li>
+<li>Outputs输出的文件(移除OutputDirectory，不要将生成的文件放入<code>obj\debug</code>等临时目录)。<br />
+假如放入临时目录，每次重新生成的时候都会提前删除了Version.cs文件，造成每次都会重新编译，使用增量更新失效。</li>
+<li>将Inputs和Outputs的时间戳进行比对，如果Inputs文件较新就重新生成Version.cs文件。</li>
+<li>在<code>.gitignore</code>文件中添加对<code>BuildVersion.cs</code>文件的忽略。</li>
+</ol>
                         </div>
 
                         
