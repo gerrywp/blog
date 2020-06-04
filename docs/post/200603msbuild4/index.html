@@ -182,6 +182,54 @@
 <li>将Inputs和Outputs的时间戳进行比对，如果Inputs文件较新就重新生成Version.cs文件。</li>
 <li>在<code>.gitignore</code>文件中添加对<code>BuildVersion.cs</code>文件的忽略。</li>
 </ol>
+
+<h3 id="propertygroup缓存问题">PropertyGroup缓存问题</h3>
+
+<p>上文的设置由于PropertyGroup缓存，是存在问题的，每次更新了代码后，BuildVersion.cs里面的版本时间并未得到有效的更新。</p>
+
+<h4 id="方案1">方案1:</h4>
+
+<p>将Property所有变量全部移到Target里面，让每次运行都获取一下当前时间。</p>
+
+<p><strong>version.targets</strong>(重命名<code>vsersion.props</code>为<code>version.targets</code>)</p>
+
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;Project ToolsVersion=&quot;12.0&quot; DefaultTargets=&quot;Build&quot; xmlns=&quot;http://schemas.microsoft.com/developer/msbuild/2003&quot;&gt;
+  &lt;Target Name=&quot;GenerateVersion&quot; Inputs=&quot;@(Compile)&quot; Outputs=&quot;BuildVersion.cs&quot;&gt;
+    &lt;PropertyGroup&gt;
+      &lt;Year&gt;$([System.DateTime]::Now.ToString(&quot;yy&quot;))&lt;/Year&gt;
+      &lt;Month&gt;$([System.DateTime]::Now.ToString(&quot;MM&quot;))&lt;/Month&gt;
+      &lt;Date&gt;$([System.DateTime]::Now.ToString(&quot;dd&quot;))&lt;/Date&gt;
+      &lt;Time&gt;$([System.DateTime]::Now.ToString(&quot;HHmmss&quot;))&lt;/Time&gt;
+    &lt;/PropertyGroup&gt;
+    &lt;ItemGroup&gt;
+      &lt;AssemblyAttributes Include=&quot;AssemblyFileVersion&quot;&gt;
+        &lt;_Parameter1&gt;$(Year).$(Month).$(Date).$(Time)&lt;/_Parameter1&gt;
+      &lt;/AssemblyAttributes&gt;
+    &lt;/ItemGroup&gt;
+    &lt;WriteCodeFragment AssemblyAttributes=&quot;@(AssemblyAttributes)&quot; Language=&quot;C#&quot; 
+    OutputFile=&quot;BuildVersion.cs&quot;&gt;
+      &lt;Output TaskParameter=&quot;OutputFile&quot; ItemName=&quot;Compile&quot; /&gt;
+      &lt;Output TaskParameter=&quot;OutputFile&quot; ItemName=&quot;FileWrites&quot; /&gt;
+    &lt;/WriteCodeFragment&gt;
+  &lt;/Target&gt;
+&lt;/Project&gt;
+</code></pre>
+
+<p>修改项目工程文件，引入<code>version.target</code></p>
+
+<p><strong>projname.csproj</strong></p>
+
+<pre><code class="language-xml">//引入自定义工程文件
+  &lt;Import Project=&quot;..\version.props&quot; /&gt;
+//添加target目标依赖
+  &lt;Target Name=&quot;BeforeBuild&quot; DependsOnTargets=&quot;GenerateVersion&quot;&gt;&lt;/Target&gt;
+</code></pre>
+
+<blockquote>
+<p>说明: 直接在<code>version.target</code>里面定义Name=&ldquo;BeforeBuild&rdquo;的Target，在Import引入的时候并会不被msbuild自动执行，
+因此必须以依赖的方式成为BeforeBuild前置任务。</p>
+</blockquote>
                         </div>
 
                         
