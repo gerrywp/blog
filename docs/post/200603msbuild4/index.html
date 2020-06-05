@@ -173,7 +173,7 @@
   &lt;/Target&gt;
 </code></pre>
 
-<p>Target属性</p>
+<p><code>Target</code>的<em>Attribute</em></p>
 
 <ol>
 <li>Inputs输入的文件，这里是所有待编译的cs文件</li>
@@ -181,6 +181,32 @@
 假如放入临时目录，每次重新生成的时候都会提前删除了Version.cs文件，造成每次都会重新编译，使用增量更新失效。</li>
 <li>将Inputs和Outputs的时间戳进行比对，如果Inputs文件较新就重新生成Version.cs文件。</li>
 <li>在<code>.gitignore</code>文件中添加对<code>BuildVersion.cs</code>文件的忽略。</li>
+</ol>
+
+<h4 id="在task中动态修改properties和items">在Task中动态修改Properties和Items</h4>
+
+<p>所有的Propertied和Items值在build之前都已经被替换成了字符串常量(我们称之为静态值)，之后一直会保持不会的。
+我们可以通过<code>Task</code>的子元素<code>Output</code>(也可称为Property)动态修改指定的Item或Property。</p>
+
+<pre><code class="language-xml">&lt;PropertyGroup&gt;
+	&lt;FileName&gt;temp.cs&lt;/FileName&gt;
+&lt;/PropertyGroup&gt;
+&lt;Target&gt;
+  &lt;WriteCodeFragment AssemblyAttributes=&quot;@(AssemblyAttributes)&quot;
+                       Language=&quot;C#&quot;
+                       &lt;!-- OutputDirectory=&quot;$(IntermediateOutputPath)&quot; --&gt; //删除此行
+                       OutputFile=&quot;BuildVersion.cs&quot;&gt;
+      &lt;Output TaskParameter=&quot;OutputFile&quot; ItemName=&quot;Compile&quot; /&gt;
+      &lt;Output TaskParameter=&quot;OutputFile&quot; PropertyName=&quot;FileName&quot; /&gt;
+  &lt;/WriteCodeFragment&gt;
+&lt;/Target&gt;
+</code></pre>
+
+<p>上例：</p>
+
+<ol>
+<li>将<strong>WriteCodeFragment</strong>的输出文件名称添加到名为Compile的Item列表项里面去。</li>
+<li>将名为FileName的Property值更改为了<strong><em>BuildVersion.cs</em></strong></li>
 </ol>
 
 <h3 id="propertygroup缓存问题">PropertyGroup缓存问题</h3>
@@ -200,7 +226,7 @@
       &lt;Year&gt;$([System.DateTime]::Now.ToString(&quot;yy&quot;))&lt;/Year&gt;
       &lt;Month&gt;$([System.DateTime]::Now.ToString(&quot;MM&quot;))&lt;/Month&gt;
       &lt;Date&gt;$([System.DateTime]::Now.ToString(&quot;dd&quot;))&lt;/Date&gt;
-      &lt;Time&gt;$([System.DateTime]::Now.ToString(&quot;HHmmss&quot;))&lt;/Time&gt;
+      &lt;Time&gt;$([System.DateTime]::Now.ToString(&quot;HHmm&quot;))&lt;/Time&gt;
     &lt;/PropertyGroup&gt;
     &lt;ItemGroup&gt;
       &lt;AssemblyAttributes Include=&quot;AssemblyFileVersion&quot;&gt;
