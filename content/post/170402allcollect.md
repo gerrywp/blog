@@ -76,6 +76,7 @@ const int* const cpci=&i;
 ### 在线好看的书籍
 
 <https://www.xirenxuan.com/>
+<https://suxin.taoshumi.com/>
 
 ### 申请免费300$谷歌云平台(GCP)
 
