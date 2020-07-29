@@ -236,18 +236,59 @@ nginx的配置文件如下：</p>
 <pre><code class="language-shell">sudo ~/.acme.sh/acme.sh --issue -d yoursite.xyz --nginx -k ec-256
 </code></pre>
 
-<p>安装证书到v2ray目录</p>
-
 <h4 id="安装ecc证书">安装ECC证书</h4>
 
-<pre><code class="language-shell">sudo ~/.acme.sh/acme.sh --installcert -d yoursite.xyz
- --fullchainpath /etc/v2ray/v2ray.crt
- --keypath /etc/v2ray/v2ray.key --ecc
+<p>安装证书到v2ray目录</p>
+
+<pre><code class="language-shell">sudo ~/.acme.sh/acme.sh --installcert -d yoursite.xyz --fullchainpath /etc/v2ray/v2ray.crt --keypath /etc/v2ray/v2ray.key --ecc
 </code></pre>
 
 <blockquote>
 <p><a href="https://github.com/mikewubox/V2Ray3">nginx和v2ray配置</a></p>
 </blockquote>
+
+<h4 id="证书过期">证书过期</h4>
+
+<p>客户端连接错误<code>io read/write on closed pipe</code>,日志显示x509(ssl)错误</p>
+
+<p>查看linux服务器端证书过期日期</p>
+
+<pre><code class="language-shell">openssl x509 -in /etc/v2ray/v2ray.crt -noout -dates
+### 显示如下信息
+notBefore=Jul 29 01:47:53 2020 GMT
+notAfter=Oct 27 01:47:53 2020 GMT
+</code></pre>
+
+<p>重新生成证书</p>
+
+<pre><code class="language-shell">### 安装socat
+sudo apt-get install socat
+sudo systemctl stop nginx
+sudo ~/.acme.sh/acme.sh --issue -d yoursite.xyz --standalone -k ec-256
+sudo systemctl start nginx
+sudo systemctl status nginx
+</code></pre>
+
+<p>通过nginx生成证书一直报错误：</p>
+
+<p><code>Verify error:Invalid response from https://github.com/404.html [140.82.113.4]</code></p>
+
+<p>尝试如下解决方案(不一定有效):</p>
+
+<ol>
+<li><p>在nginx配置文件server节点下添加如下配置</p>
+
+<pre><code class="language-shell">location ~ /.well-known {
+allow all;
+}
+</code></pre></li>
+
+<li><p>在站点根目录下创建对应的文件夹</p>
+
+<pre><code class="language-shell">cd /home/wwwroot/sCalc
+sudo mkdir .well-known/acme-challenge
+</code></pre></li>
+</ol>
 
 <h3 id="3-安装v2ray">3.安装v2ray</h3>
 
