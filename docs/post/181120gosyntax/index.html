@@ -239,6 +239,11 @@ fmt.Printf(&quot;%d %[1]x %#[1]x %#[1]X\n&quot;, x)
 <p>总结：因此不成文的规定是new必须用在值类型上，make必须用在引用类型上</p>
 </blockquote>
 
+<h4 id="make-chan-type-和make-chan-type-0-等价类型">make(chan Type)和make(chan Type,0)等价类型</h4>
+
+<p>使用make创建channel时候，不指定len长度的和指定长度为0创建的都是不带buffer(缓冲区)的channel。
+不带缓冲区的channel被称为同步channel。</p>
+
 <h3 id="参数-按引用传递">参数-按引用传递</h3>
 
 <p>考虑以下代码：</p>
@@ -331,6 +336,30 @@ fmt.Println(reflect.ValueOf(ip2).String()) // &lt;*main.Student Value&gt;
 <code>Value</code>类型也满足<code>fmt.Stringer()</code>接口，<code>String()</code>方法只返回其类型。默认fmt包的%v标志参数，会对<code>reflect.Values</code>特殊处理。</p>
 
 <p><code>interface()</code>方法，返回一个任意(interface{}类型)类型。</p>
+
+<h3 id="空结构体">空结构体</h3>
+
+<pre><code class="language-go">func main() {
+	var i int
+	fmt.Printf(&quot;int value:%v\n&quot;, i)
+	fmt.Printf(&quot;int mem size:%v\n&quot;, unsafe.Sizeof(i))
+	var st struct{}
+	fmt.Printf(&quot;struct value:%v\n&quot;, st)
+	fmt.Printf(&quot;nil struct mem size:%v\n&quot;, unsafe.Sizeof(st))
+	var b bool
+	fmt.Printf(&quot;bool value:%v\n&quot;, b)
+	fmt.Printf(&quot;bool mem size:%v\n&quot;, unsafe.Sizeof(b))
+}
+//结果
+int value:0
+int mem size:8
+struct value:{}
+nil struct mem size:0
+bool value:false
+bool mem size:1
+</code></pre>
+
+<p>结论：空结构体是不占用内存空间的</p>
                         </div>
 
                         
@@ -398,6 +427,10 @@ fmt.Println(reflect.ValueOf(ip2).String()) // &lt;*main.Student Value&gt;
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200824msbuild/" title="msbuid(5)-不同环境配置管理">msbuid(5)-不同环境配置管理</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200808ftp/" title="FTP模式">FTP模式</a>
     </li>
     
@@ -433,10 +466,6 @@ fmt.Println(reflect.ValueOf(ip2).String()) // &lt;*main.Student Value&gt;
         <a href="https://gerrywp.github.io/blog/post/170920moonlit/" title="月夜家话">月夜家话</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/191211shell/" title="批量更名">批量更名</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -448,7 +477,7 @@ fmt.Println(reflect.ValueOf(ip2).String()) // &lt;*main.Student Value&gt;
     
     <li><a href="https://gerrywp.github.io/blog/categories/article/">article (15)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/csharp/">csharp (10)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/csharp/">csharp (11)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/golang/">golang (5)</a></li>
     

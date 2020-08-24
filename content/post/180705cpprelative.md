@@ -45,7 +45,7 @@ categories = [ "others" ]
 
 ### makefile实战
 
-```makefile
+```mk
 #获取所有cpp文件
 files=$(wildcard *.cpp)
 objs=$(patsubst %.cpp,%.o,$(files))

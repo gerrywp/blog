@@ -6,10 +6,19 @@
     <description>Recent content in csharp on 云亦海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 03 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 24 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://gerrywp.github.io/blog/categories/csharp/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>msbuid(5)-不同环境配置管理</title>
+      <link>https://gerrywp.github.io/blog/post/200824msbuild/</link>
+      <pubDate>Mon, 24 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/200824msbuild/</guid>
+      <description>&lt;p&gt;vs解决方案下，不同的环境，使用不同的配置文件。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>msbuid(4)-winform版本更新</title>

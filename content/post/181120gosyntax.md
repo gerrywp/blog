@@ -74,6 +74,11 @@ Fprintf的前缀**F**表示文件(File)也表明格式化输出结果应该被�
 
 >总结：因此不成文的规定是new必须用在值类型上，make必须用在引用类型上
 
+#### make(chan Type)和make(chan Type,0)等价类型
+
+使用make创建channel时候，不指定len长度的和指定长度为0创建的都是不带buffer(缓冲区)的channel。
+不带缓冲区的channel被称为同步channel。
+
 ### 参数-按引用传递
 考虑以下代码：
 
@@ -167,3 +172,28 @@ fmt.Println(reflect.ValueOf(ip2).String()) // <*main.Student Value>
 `Value`类型也满足`fmt.Stringer()`接口，`String()`方法只返回其类型。默认fmt包的%v标志参数，会对`reflect.Values`特殊处理。
 
 `interface()`方法，返回一个任意(interface{}类型)类型。
+
+### 空结构体
+
+```go
+func main() {
+	var i int
+	fmt.Printf("int value:%v\n", i)
+	fmt.Printf("int mem size:%v\n", unsafe.Sizeof(i))
+	var st struct{}
+	fmt.Printf("struct value:%v\n", st)
+	fmt.Printf("nil struct mem size:%v\n", unsafe.Sizeof(st))
+	var b bool
+	fmt.Printf("bool value:%v\n", b)
+	fmt.Printf("bool mem size:%v\n", unsafe.Sizeof(b))
+}
+//结果
+int value:0
+int mem size:8
+struct value:{}
+nil struct mem size:0
+bool value:false
+bool mem size:1
+```
+
+结论：空结构体是不占用内存空间的
