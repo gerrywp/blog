@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>OD使用</title>
+      <link>https://gerrywp.github.io/blog/post/200912od/</link>
+      <pubDate>Sat, 12 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/200912od/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Ollydbg&lt;/strong&gt;使用技巧&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>SetWindowsHookEx</title>
       <link>https://gerrywp.github.io/blog/post/200912winhook/</link>
       <pubDate>Sat, 12 Sep 2020 00:00:00 +0000</pubDate>

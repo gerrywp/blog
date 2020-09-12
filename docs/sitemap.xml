@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://gerrywp.github.io/blog/tags/asm/</loc>
+    <lastmod>2020-09-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://gerrywp.github.io/blog/categories/</loc>
     <lastmod>2020-09-12T00:00:00+00:00</lastmod>
   </url>
@@ -14,6 +19,11 @@
   
   <url>
     <loc>https://gerrywp.github.io/blog/categories/csharp/</loc>
+    <lastmod>2020-09-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gerrywp.github.io/blog/post/200912od/</loc>
     <lastmod>2020-09-12T00:00:00+00:00</lastmod>
   </url>
   
@@ -595,11 +605,6 @@
   <url>
     <loc>https://gerrywp.github.io/blog/post/150101git/</loc>
     <lastmod>2015-01-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gerrywp.github.io/blog/tags/asm/</loc>
-    <lastmod>2013-01-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>

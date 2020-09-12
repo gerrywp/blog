@@ -6,10 +6,19 @@
     <description>Recent content in asm on 云亦海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 04 Jan 2013 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 12 Sep 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://gerrywp.github.io/blog/tags/asm/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>OD使用</title>
+      <link>https://gerrywp.github.io/blog/post/200912od/</link>
+      <pubDate>Sat, 12 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/200912od/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Ollydbg&lt;/strong&gt;使用技巧&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>汇编指令lea</title>
