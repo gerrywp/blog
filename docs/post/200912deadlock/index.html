@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.59.1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>死锁 | 云亦海</title>
+    <meta property="og:title" content="死锁 - 云亦海">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2020-09-12T00:00:00&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2020-09-12T00:00:00&#43;08:00">
+        
+    <meta name="Keywords" content="golang,go语言,go语言笔记,项目管理,软件架构,公众号,小程序">
+    <meta name="description" content="死锁">
+        
+    <meta name="author" content="gerry">
+    <meta property="og:url" content="https://gerrywp.github.io/blog/post/200912deadlock/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/blog/css/normalize.css">
+    
+        <link rel="stylesheet" href="/blog/css/prism.css">
+    
+    <link rel="stylesheet" href="/blog/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://gerrywp.github.io/blog">
+                        云亦海
+                    </a>
+                
+                <p class="description">专注于Go语言(golang)、csharp、移动互联网、项目管理、软件架构</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://gerrywp.github.io/blog">首页</a>
+                    
+                    <a  href="https://gerrywp.github.io/blog/archives/" title="归档">归档</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+        
+        
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">死锁</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2020年9月12日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href='https://gerrywp.github.io/blog/categories/windows'>windows</a></span>
+                            
+                        </div>
+                        
+                        
+                        <div class="post-meta">
+                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
+                        </div>
+                        
+                        
+                        <div class="post-content">
+                            <p>多线程死锁</p>
+
+<h3 id="死锁的四个必要条件">死锁的四个必要条件</h3>
+
+<p><img src="../../pictures/20200912153100.png" alt="死锁" title="点我打开" /></p>
+
+<blockquote>
+<p>T1和T2表示2个任务（线程）;R1和R2表示2个资源；有任务指向资源的方向，从使用资源的角度讲，使用资源必须有先后顺序。</p>
+</blockquote>
+
+<ol>
+<li>互斥<br />
+资源R1和R2不能共享，同一时间只能被一个任务使用</li>
+<li>请求与保持<br />
+T1持有R1的同时，请求R2；T2持有R2的时候，请求R1</li>
+<li>非剥夺<br />
+T1无法从T2上剥夺R2，相反同理</li>
+<li>循环等待
+图上的箭头构成环路，形成循环等待</li>
+</ol>
+
+<h3 id="数据库死锁">数据库死锁</h3>
+
+<p>事务1更新数据行，执行顺序-&gt;update Row1-&gt;update Row2;<br />
+事务2更新数据行，执行顺序-&gt;update Row2-&gt;update Row1;</p>
+
+<p>而且两个事务同时执行，都已经分别执行了第一步：<br />
+事务1占用了Row1,事务2占用了Row2，此时数据库发生了死锁。</p>
+
+<h3 id="同步和异步">同步和异步</h3>
+
+<ul>
+<li><strong>同步：</strong>一个进程在执行某个请求的时候，若该请求需要一段时间才能返回信息，那么这个进程将会一直等待下去，直到收到返回信息才继续执行下去。</li>
+<li><strong>异步：</strong>指进程不需要一直等下去，而是继续执行下面的操作，不管其他进程的状态。当有消息返回时系统会通知进程进行处理，这样可以提高执行的效率。</li>
+</ul>
+
+<h3 id="线程同步-数据共享问题">线程同步(数据共享问题)</h3>
+
+<p><strong>目的：</strong>为了在多线程的操作中，同步数据。<br />
+<strong>背景：</strong>当多个线程需要访问同一个资源的时候(本地资源：文件…；对象资源：算法用到的数组…),它们需要以某种顺序，来确保该资源在某一个特定时刻，只能被一个线程所访问。如果使用异步，程序的运行结果将不可预料。因此，在这种情况下，就必须对数据进行同步，即限制只能有一个线程访问资源，其他线程必须等待。</p>
+
+<p><strong>解决方案：</strong></p>
+
+<ul>
+<li>临界区</li>
+<li>互斥量<br />
+Mutex(类，互斥器);Monitor,Lock方法</li>
+<li>信号量</li>
+<li>事件
+ManualResetEvent类，AutoResetEvent类(这两个都是由EventWaitHandle类派生出来的)</li>
+</ul>
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/blog/post/200912task/">浅谈Task</a></li>
+        
+        <li><a href="/blog/post/171203threadsafe/">线程安全与非线程安全</a></li>
+        
+        <li><a href="/blog/post/200912winhook/">SetWindowsHookEx</a></li>
+        
+        <li><a href="/blog/post/200912string/">string</a></li>
+        
+        <li><a href="/blog/post/200824msbuild/">msbuid(5)-不同环境配置管理</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href='https://gerrywp.github.io/blog/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B'>多线程</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "gerrywp/blog"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="https://gerrywp.github.io/blog/search/" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://gerrywp.github.io/blog">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200912winhook/" title="SetWindowsHookEx">SetWindowsHookEx</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200912string/" title="string">string</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200912deadlock/" title="死锁">死锁</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200912task/" title="浅谈Task">浅谈Task</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200824msbuild/" title="msbuid(5)-不同环境配置管理">msbuid(5)-不同环境配置管理</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200808ftp/" title="FTP模式">FTP模式</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200708wide/" title="宽与窄">宽与窄</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200527gowinserv/" title="go语言开发windows服务程序">go语言开发windows服务程序</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/article/">article (15)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/csharp/">csharp (12)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/golang/">golang (5)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/javascript/">javascript (16)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/windows/">windows (11)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://gerrywp.github.io/blog/tags/2019/">2019</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/asm/">asm</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/cms/">cms</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/cpp/">cpp</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/git/">git</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/go/">go</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/iis/">IIS</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/java/">java</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/js/">js</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/markdown/">markdown</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/msbuild/">msbuild</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/nodejs/">nodejs</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/shell/">shell</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/sql/">sql</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/ssh/">ssh</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/utf8/">utf8</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vim/">vim</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vpn/">vpn</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vs/">vs</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/%E8%B5%84%E6%96%99%E6%94%B6%E9%9B%86/">资料收集</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/%E9%9A%8F%E7%AC%94/">随笔</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://gerrywp.github.io/blog/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="https://gerrywp.github.io/blog">云亦海 By gerry</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function () {
+            $("pre code").parent().addClass("line-numbers")
+        }());
+
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script type="text/javascript" src="/blog/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/blog/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+<script type="text/javascript">
+(function(){
+	if (typeof self === 'undefined' || !self.Prism || !self.document) {
+		return;
+	}
+
+	if (!Prism.plugins.toolbar) {
+		console.warn('Copy to Clipboard plugin loaded before Toolbar plugin.');
+
+		return;
+	}
+
+	var ClipboardJS = window.ClipboardJS || undefined;
+
+	if (!ClipboardJS && typeof require === 'function') {
+		ClipboardJS = require('clipboard');
+	}
+
+	var callbacks = [];
+
+	if (!ClipboardJS) {
+		var script = document.createElement('script');
+		var head = document.querySelector('head');
+
+		script.onload = function() {
+			ClipboardJS = window.ClipboardJS;
+
+			if (ClipboardJS) {
+				while (callbacks.length) {
+					callbacks.pop()();
+				}
+			}
+		};
+
+		script.src = 'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js';
+		head.appendChild(script);
+	}
+
+	Prism.plugins.toolbar.registerButton('copy-to-clipboard', function (env) {
+		var linkCopy = document.createElement('button');
+		linkCopy.textContent = '复制代码';
+
+		if (!ClipboardJS) {
+			callbacks.push(registerClipboard);
+		} else {
+			registerClipboard();
+		}
+
+		return linkCopy;
+
+		function registerClipboard() {
+			var clip = new ClipboardJS(linkCopy, {
+				'text': function () {
+					return env.code;
+				}
+			});
+
+			clip.on('success', function() {
+				linkCopy.textContent = '复制成功!';
+
+				resetText();
+			});
+			clip.on('error', function () {
+				linkCopy.textContent = '按 Ctrl+C 复制';
+
+				resetText();
+			});
+		}
+
+		function resetText() {
+			setTimeout(function () {
+				linkCopy.textContent = '复制代码';
+			}, 5000);
+		}
+	});
+})();
+
+</script>
+</body>
+</html>

@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>死锁</title>
+      <link>https://gerrywp.github.io/blog/post/200912deadlock/</link>
+      <pubDate>Sat, 12 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/200912deadlock/</guid>
+      <description>&lt;p&gt;多线程死锁&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>浅谈Task</title>
       <link>https://gerrywp.github.io/blog/post/200912task/</link>
       <pubDate>Sat, 12 Sep 2020 00:00:00 +0000</pubDate>
