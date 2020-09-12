@@ -6,10 +6,19 @@
     <description>Recent content in 多线程 on 云亦海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 03 Dec 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 12 Sep 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://gerrywp.github.io/blog/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>浅谈Task</title>
+      <link>https://gerrywp.github.io/blog/post/200912task/</link>
+      <pubDate>Sat, 12 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/200912task/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;TAP(Task-based async pattern)&lt;/strong&gt;基于任务的异步编程模型&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>线程安全与非线程安全</title>
