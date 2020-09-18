@@ -92,7 +92,13 @@
                         
                         
                         <div class="post-content">
-                            <p><strong>一致性哈希</strong> 是一种特殊的<code>hash</code>算法。在hash表槽位扩容或缩容的时候，只需对平均<code>K/n</code>个关键字进行映射，其中<strong>K</strong>是关键字的数量，<em>n</em>是槽位数量。</p>
+                            <p><strong>一致性哈希</strong> 是一种特殊的<code>hash</code>算法(散列)。在<code>HashTable</code>(<code>HashMap</code>)等槽位扩容或缩容的时候，只需对平均<code>K/n</code>个关键字进行映射，其中<strong>K</strong>是关键字的数量，<em>n</em>是槽位数量。</p>
+<h3 id="hash实现非对称加密">hash实现(非对称加密)</h3>
+<p><code>hash</code>算法的主要实现有<code>MD5</code>,<code>SHA</code>:</p>
+<ol>
+<li>MD5(128位，是一种checksum校验和的算法)</li>
+<li>SHA-224、SHA-256、SHA-384、SHA-512</li>
+</ol>
 <h3 id="自定义hash函数">自定义hash函数</h3>
 <p>在c#对象中重写<code>GetHashCode</code>函数</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#">

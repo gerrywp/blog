@@ -13,7 +13,7 @@
       <pubDate>Fri, 18 Sep 2020 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/200918hash/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;一致性哈希&lt;/strong&gt; 是一种特殊的&lt;code&gt;hash&lt;/code&gt;算法。在hash表槽位扩容或缩容的时候，只需对平均&lt;code&gt;K/n&lt;/code&gt;个关键字进行映射，其中&lt;strong&gt;K&lt;/strong&gt;是关键字的数量，&lt;em&gt;n&lt;/em&gt;是槽位数量。&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;strong&gt;一致性哈希&lt;/strong&gt; 是一种特殊的&lt;code&gt;hash&lt;/code&gt;算法(散列)。在&lt;code&gt;HashTable&lt;/code&gt;(&lt;code&gt;HashMap&lt;/code&gt;)等槽位扩容或缩容的时候，只需对平均&lt;code&gt;K/n&lt;/code&gt;个关键字进行映射，其中&lt;strong&gt;K&lt;/strong&gt;是关键字的数量，&lt;em&gt;n&lt;/em&gt;是槽位数量。&lt;/p&gt;</description>
     </item>
     
     <item>
