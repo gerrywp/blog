@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -93,123 +93,87 @@
                         
                         <div class="post-content">
                             <p>想使用<code>git mv</code>批量更改目录下的1000多个markdown文件名。很久没有写过linux的<code>shell scripts</code>了，已经忘记的差不多了，记录一下关键点，以备不时之需。</p>
-
-<p><strong>目标：</strong><br />
-更名前: 2017-10-10customname.md<br />
+<p><strong>目标：</strong><br>
+更名前: 2017-10-10customname.md<br>
 更名后: 171010customname.md</p>
-
-<h3 id="新建-sh文件">新建.sh文件</h3>
-
-<pre><code class="language-bash">#!/bin/bash
-# Program:
-#       This program rename all markdown file by date rule
-# History:
-# 2019/12/11	Gerry	First	release
-</code></pre>
-
-<h3 id="for循环获取文件名">for循环获取文件名</h3>
-
+<h3 id="新建sh文件">新建.sh文件</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#00f">#!/bin/bash
+</span><span style="color:#00f"></span><span style="color:#008000"># Program:</span>
+<span style="color:#008000">#       This program rename all markdown file by date rule</span>
+<span style="color:#008000"># History:</span>
+<span style="color:#008000"># 2019/12/11	Gerry	First	release</span>
+</code></pre></div><h3 id="for循环获取文件名">for循环获取文件名</h3>
 <p>重命名需要先获取当前目录所有文件名，通过for循环来实现</p>
-
-<pre><code class="language-bash">for filename in `ls`
-do 
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#00f">for</span> filename in <span style="color:#a31515">`</span>ls<span style="color:#a31515">`</span>
+<span style="color:#00f">do</span> 
 	逻辑代码段
-done
-# 或者
-for filename in $(ls)
-do
+<span style="color:#00f">done</span>
+<span style="color:#008000"># 或者</span>
+<span style="color:#00f">for</span> filename in <span style="color:#00f">$(</span>ls<span style="color:#00f">)</span>
+<span style="color:#00f">do</span>
 	//some code
-done
-</code></pre>
-
-<p>所使用的内容，是借助额外的指令获取的时候，使用反引号指令<code>`指令`</code> 或者 <code>${指令}</code> 。</p>
-
+<span style="color:#00f">done</span>
+</code></pre></div><p>所使用的内容，是借助额外的指令获取的时候，使用反引号指令<code>`指令`</code> 或者 <code>${指令}</code> 。</p>
 <h3 id="字符串删除并截取">字符串删除并截取</h3>
-
 <ol>
-<li><p><code>tr</code>命令，首先删除文件名中的<strong>-</strong></p>
-
-<pre><code class="language-bash"># 以下代码在循环体内部
-echo ${filename}|tr -d '-'
-</code></pre></li>
-
-<li><p><code>cut</code>命令,截取文件名前面的8位数日期字符串</p>
-
-<pre><code class="language-bash">echo ${filename}|tr -d '-'|cut -c1-8
-</code></pre></li>
+<li><code>tr</code>命令，首先删除文件名中的**-**</li>
 </ol>
-
-<h3 id="grep校验">grep校验</h3>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># 以下代码在循环体内部</span>
+echo <span style="color:#a31515">${</span>filename<span style="color:#a31515">}</span>|tr -d <span style="color:#a31515">&#39;-&#39;</span>
+</code></pre></div><ol start="2">
+<li><code>cut</code>命令,截取文件名前面的8位数日期字符串</li>
+</ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">echo <span style="color:#a31515">${</span>filename<span style="color:#a31515">}</span>|tr -d <span style="color:#a31515">&#39;-&#39;</span>|cut -c1-8
+</code></pre></div><h3 id="grep校验">grep校验</h3>
 <p>看看日期格式是否是8个数字</p>
-
-<pre><code class="language-bash"># 循环体内部
-strdate=$(echo ${filename}|tr -d '-'|cut -c1-8|grep '^[0-9]\{8\}$')
-if [ &quot;${strdate}&quot; != &quot;&quot; ];then
-echo ${strdate}
-fi
-</code></pre>
-
-<p>正则表达式:</p>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># 循环体内部</span>
+strdate=<span style="color:#00f">$(</span>echo <span style="color:#a31515">${</span>filename<span style="color:#a31515">}</span>|tr -d <span style="color:#a31515">&#39;-&#39;</span>|cut -c1-8|grep <span style="color:#a31515">&#39;^[0-9]\{8\}$&#39;</span><span style="color:#00f">)</span>
+<span style="color:#00f">if</span> [ <span style="color:#a31515">&#34;</span><span style="color:#a31515">${</span>strdate<span style="color:#a31515">}</span><span style="color:#a31515">&#34;</span> != <span style="color:#a31515">&#34;&#34;</span> ];<span style="color:#00f">then</span>
+echo <span style="color:#a31515">${</span>strdate<span style="color:#a31515">}</span>
+<span style="color:#00f">fi</span>
+</code></pre></div><p>正则表达式:</p>
 <ol>
 <li>^$代表字符串的开始和结尾</li>
-<li>{8}前面的数字重复8次，因为{是特殊字符，在字符串中需要进行转义<br /></li>
+<li>{8}前面的数字重复8次，因为{是特殊字符，在字符串中需要进行转义\</li>
 </ol>
-
 <p>条件判断:</p>
-
 <ol>
 <li>双引号<code>&quot;</code>和单引号<code>'</code>区别</li>
 <li>如果grep条件未匹配上，会返回一个空的字符串</li>
 </ol>
-
 <p>变量的删除与替换:</p>
-
-<pre><code class="language-bash"># 关键字%,从后往前删除
-echo ${strdate%.md}
-# 20171010customname
-</code></pre>
-
-<h3 id="移除年份的前两位">移除年份的前两位</h3>
-
-<pre><code class="language-bash">newname=`echo ${filename}|tr -d '-'`
-newname=${newname:2}
-</code></pre>
-
-<ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># 关键字%,从后往前删除</span>
+echo <span style="color:#a31515">${</span>strdate%.md<span style="color:#a31515">}</span>
+<span style="color:#008000"># 20171010customname</span>
+</code></pre></div><h3 id="移除年份的前两位">移除年份的前两位</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">newname=<span style="color:#a31515">`</span>echo <span style="color:#a31515">${</span>filename<span style="color:#a31515">}</span>|tr -d <span style="color:#a31515">&#39;-&#39;</span><span style="color:#a31515">`</span>
+newname=<span style="color:#a31515">${</span>newname:2<span style="color:#a31515">}</span>
+</code></pre></div><ol>
 <li><code>${newname:2}</code>,从第2个位置开始提取字符串一直到末尾</li>
 <li><code>${newname:2:6}</code>,从第二个位置开始提取6个字符</li>
 </ol>
-
 <h3 id="正则表达式匹配">正则表达式匹配.</h3>
-
 <p>倘若文件名包含.符号，如:2017.16cust.md</p>
-
-<pre><code class="language-bash">ls | grep '[^.]*\.[^.]*\.md'
-</code></pre>
-
-<p>需要通过\对.符号进行转义</p>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ls | grep <span style="color:#a31515">&#39;[^.]*\.[^.]*\.md&#39;</span>
+</code></pre></div><p>需要通过\对.符号进行转义</p>
 <h3 id="完整代码">完整代码</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#00f">#!/bin/bash
+</span><span style="color:#00f"></span><span style="color:#008000"># Program:</span>
+<span style="color:#008000">#       This program rename all markdown file by date rule</span>
+<span style="color:#008000"># History:</span>
+<span style="color:#008000"># 2019/12/11	Gerry	First	release</span>
 
-<pre><code class="language-bash">#!/bin/bash
-# Program:
-#       This program rename all markdown file by date rule
-# History:
-# 2019/12/11	Gerry	First	release
-
-for filename in `ls`
-do
-datestr=`echo ${filename}|tr -d '-'|cut -c1-8|grep '^[0-9]\{8\}$'`
-if [ &quot;${datestr}&quot; != &quot;&quot; ]; then # match regular expression
-newname=`echo ${filename}|tr -d '-'`
-newname=${newname:2}
-git mv &quot;${filename}&quot; &quot;${newname}&quot;
-fi
-done
+<span style="color:#00f">for</span> filename in <span style="color:#a31515">`</span>ls<span style="color:#a31515">`</span>
+<span style="color:#00f">do</span>
+datestr=<span style="color:#a31515">`</span>echo <span style="color:#a31515">${</span>filename<span style="color:#a31515">}</span>|tr -d <span style="color:#a31515">&#39;-&#39;</span>|cut -c1-8|grep <span style="color:#a31515">&#39;^[0-9]\{8\}$&#39;</span><span style="color:#a31515">`</span>
+<span style="color:#00f">if</span> [ <span style="color:#a31515">&#34;</span><span style="color:#a31515">${</span>datestr<span style="color:#a31515">}</span><span style="color:#a31515">&#34;</span> != <span style="color:#a31515">&#34;&#34;</span> ]; <span style="color:#00f">then</span> <span style="color:#008000"># match regular expression</span>
+newname=<span style="color:#a31515">`</span>echo <span style="color:#a31515">${</span>filename<span style="color:#a31515">}</span>|tr -d <span style="color:#a31515">&#39;-&#39;</span><span style="color:#a31515">`</span>
+newname=<span style="color:#a31515">${</span>newname:2<span style="color:#a31515">}</span>
+git mv <span style="color:#a31515">&#34;</span><span style="color:#a31515">${</span>filename<span style="color:#a31515">}</span><span style="color:#a31515">&#34;</span> <span style="color:#a31515">&#34;</span><span style="color:#a31515">${</span>newname<span style="color:#a31515">}</span><span style="color:#a31515">&#34;</span>
+<span style="color:#00f">fi</span>
+<span style="color:#00f">done</span>
 exit 0
-</code></pre>
+</code></pre></div>
                         </div>
 
                         
@@ -277,6 +241,10 @@ exit 0
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -312,10 +280,6 @@ exit 0
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -335,7 +299,7 @@ exit 0
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

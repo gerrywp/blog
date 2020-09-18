@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -92,55 +92,36 @@
                         
                         
                         <div class="post-content">
-                            <p>&emsp;&emsp;管理好你的主机，首要任务是配置好账户的权限，不能把root账户密码泄露出去。但是只有拥有root管理员权限才能安装软件，如何解决。<br />
+                            <p>  管理好你的主机，首要任务是配置好账户的权限，不能把root账户密码泄露出去。但是只有拥有root管理员权限才能安装软件，如何解决。<br>
 相对于使用<code>su</code>命令我们需要待切换用户的密码（通常是root密码），而使用<code>sudo</code>命令仅需要当前用户的密码，甚至可以设置不需要密码！</p>
-
 <h3 id="额外添加一个管理员账户">额外添加一个管理员账户</h3>
-
 <ol>
-<li><p><code>useradd</code></p>
-
-<pre><code class="language-bash">useradd admin
-# useradd 有很多可选参数包括（-u,-g）在此全部使用SELinux的默认设置
-passwd admin
-</code></pre>
-
-<p>添加一个admin用户并设置密码。<br />
-事实上刚才添加的admin账户并不能使用<code>sudo</code>命令，需要在<code>/etc/sudoers</code>内配置</p></li>
-
-<li><p><code>visudo</code>与/etc/sudoers配置文件</p></li>
+<li><code>useradd</code></li>
 </ol>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">useradd admin
+<span style="color:#008000"># useradd 有很多可选参数包括（-u,-g）在此全部使用SELinux的默认设置</span>
+passwd admin
+</code></pre></div><p>添加一个admin用户并设置密码。<br>
+事实上刚才添加的admin账户并不能使用<code>sudo</code>命令，需要在<code>/etc/sudoers</code>内配置<br>
+2. <code>visudo</code>与/etc/sudoers配置文件</p>
 <p>直接通过<code>vim /etc/sudoers</code>去修改配置文件容易出错并不好，所以推荐使用<code>visudo</code>命令</p>
-
-<pre><code class="language-bash"># 切换到root用户，因为只有root才有权限更改此配置
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># 切换到root用户，因为只有root才有权限更改此配置</span>
 su -
 visudo
-# 找到下面这一行(大約在 98 行左右)
+<span style="color:#008000"># 找到下面这一行(大約在 98 行左右)</span>
 ......省略......
 root    ALL=(ALL)       ALL
 ......省略......
-# 使用键盘快捷方式yy(复制)然后p(粘贴)到root下一行
+<span style="color:#008000"># 使用键盘快捷方式yy(复制)然后p(粘贴)到root下一行</span>
 admin  ALL=(ALL)       ALL  
-</code></pre>
-
-<p>上面的配置可以让admin切换成任何身份，这个权限太大了，将它改成只能切换root</p>
-
-<pre><code class="language-bash">admin ALL=(root)       ALL
-</code></pre>
-
-<p>每次<code>sudo</code>都需要输入密码，能不能【免密码使用sudo】呢？使用如下配置</p>
-
-<pre><code class="language-bash">admin ALL=(root)       NOPASSWD:ALL
-</code></pre>
-
-<p><strong>但是上面的配置很恐怖哦，admin用户可以随意更改root的密码！</strong><br />
+</code></pre></div><p>上面的配置可以让admin切换成任何身份，这个权限太大了，将它改成只能切换root</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">admin ALL=(root)       ALL
+</code></pre></div><p>每次<code>sudo</code>都需要输入密码，能不能【免密码使用sudo】呢？使用如下配置</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">admin ALL=(root)       NOPASSWD:ALL
+</code></pre></div><p><strong>但是上面的配置很恐怖哦，admin用户可以随意更改root的密码！</strong><br>
 需要限制admin用户哪些指令不能使用，因此改进配置如下</p>
-
-<pre><code class="language-bash">admin ALL=(root)       NOPASSWD:ALL,!/usr/bin/passwd,/usr/bin/passwd [A-Za-z]*,!/usr/bin/passwd root,!/usr/sbin/visudo,!/bin/su,!/bin/su (root|-)
-</code></pre>
-
-<p>上述配置：使用sudo命令执行不需要密码。但是不能修改root密码、不能使用visudo、不能切换到root用户</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">admin ALL=(root)       NOPASSWD:ALL,!/usr/bin/passwd,/usr/bin/passwd [A-Za-z]*,!/usr/bin/passwd root,!/usr/sbin/visudo,!/bin/su,!/bin/su (root|-)
+</code></pre></div><p>上述配置：使用sudo命令执行不需要密码。但是不能修改root密码、不能使用visudo、不能切换到root用户</p>
                         </div>
 
                         
@@ -208,6 +189,10 @@ admin  ALL=(ALL)       ALL
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -243,10 +228,6 @@ admin  ALL=(ALL)       ALL
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -266,7 +247,7 @@ admin  ALL=(ALL)       ALL
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

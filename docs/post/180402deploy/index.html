@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -93,81 +93,52 @@
                         
                         <div class="post-content">
                             <p>　　将nodejs-web站点部署到linux服务器上如何反向代理？应用程序运行在3000端口，通过域名访问！</p>
-
 <h3 id="ftp发布文件到服务器">Ftp发布文件到服务器</h3>
-
 <p>通过Ftp将文件传输到Linux服务器上指定的文件夹内！</p>
-
 <h3 id="运行nodejs程序">运行nodejs程序</h3>
-
-<pre><code class="language-js">cd /home/username/myapp
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">cd /home/username/myapp
 nohup node app.js&amp;
-</code></pre>
-
-<p>本示例将项目放在了用户目录myapp文件夹下，通过nohup运行程序，让程序在后台运行并且不关联当前会话！就是让程序以服务的形式运行在后台。
+</code></pre></div><p>本示例将项目放在了用户目录myapp文件夹下，通过nohup运行程序，让程序在后台运行并且不关联当前会话！就是让程序以服务的形式运行在后台。
 程序使用的端口号为3000</p>
-
 <p>倘若之后修改了nodejs-web的程序文件，需要停止并且重新启动nodejs,可以如下操作：</p>
-
-<pre><code class="language-js">ps -aux
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">ps -aux
 kill -9 PID
 cd /home/username/myapp
 nohup node app.js&amp;
-</code></pre>
-
-<ol>
+</code></pre></div><ol>
 <li>通过ps查看正在运行的站点process id</li>
 <li>kill强制关闭应用程序</li>
 <li>重新启动</li>
 </ol>
-
 <h3 id="配置apache反向代理">配置apache反向代理</h3>
-
 <p>apache是linux服务器的标配，基本上所有的服务器都配有httpd这个服务器软件!通常情况下httpd的配置文件在<code>/etc/httpd/conf</code>这个文件目录下：</p>
-
-<pre><code class="language-js">cd /etc/httpd/conf
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">cd /etc/httpd/conf
 sudo vim httpd.conf
-</code></pre>
-
-<p>通过vim打开httpd.conf文件，GG去到文件最后一行，删除<VirtualHost>配置节的注释,修改如下:</p>
-
-<pre><code class="language-js">&lt;VirtualHost *:80&gt;
+</code></pre></div><p>通过vim打开httpd.conf文件，GG去到文件最后一行，删除<!-- raw HTML omitted -->配置节的注释,修改如下:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">&lt;VirtualHost *:80&gt;
   ServerName aiyoe.com
   ServerAlias www.aiyoe.com
-  ProxyPass / http://127.0.0.1:3000/
-  ProxyPassReverse / http://127.0.0.1:3000/
-&lt;/VirtualHost&gt;
-</code></pre>
-
-<p>备注：其中特别要注意的是<code>ProxyPass</code>后的路径文件，千万不能写成<code>http://127.0.0.1:3000</code>，它后面的那条斜杠不能少了，少了的话代理访问nodejs静态目录里面的
+  ProxyPass / http:<span style="color:#008000">//127.0.0.1:3000/
+</span><span style="color:#008000"></span>  ProxyPassReverse / http:<span style="color:#008000">//127.0.0.1:3000/
+</span><span style="color:#008000"></span>&lt;<span style="">/VirtualHost&gt;</span>
+</code></pre></div><p>备注：其中特别要注意的是<code>ProxyPass</code>后的路径文件，千万不能写成<code>http://127.0.0.1:3000</code>，它后面的那条斜杠不能少了，少了的话代理访问nodejs静态目录里面的
 css和js、image文件会报错误<strong>Proxy Error</strong></p>
-
 <p>修改完成之后需要重新启动一下httpd才能让刚才修改的虚拟主机配置生效！</p>
-
-<pre><code class="language-js">service restart httpd
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">service restart httpd
 service httpd status
-</code></pre>
-
-<h3 id="sequelize-orm框架部署到服务器上">sequelize ORM框架部署到服务器上</h3>
-
+</code></pre></div><h3 id="sequelize-orm框架部署到服务器上">sequelize ORM框架部署到服务器上</h3>
 <p>sequelize使用sqlite数据库，部署到linux服务器上的时候，需要重新安装直接拷贝node_modules过去是不行的。</p>
-
-<pre><code class="language-js"># 需要使用root用户安装
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="">#</span> 需要使用root用户安装
 npm install --save sqlite3
-</code></pre>
-
-<p>并且要正确的配置sqlite数据库文件路径</p>
-
-<pre><code class="language-js">const sqliteDb = new Sequelize('sqlite://./App_Data/AiyoMusic.db3', {
+</code></pre></div><p>并且要正确的配置sqlite数据库文件路径</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">const</span> sqliteDb = <span style="color:#00f">new</span> Sequelize(<span style="color:#a31515">&#39;sqlite://./App_Data/AiyoMusic.db3&#39;</span>, {
   define: {
-    timestamps: false,
-    underscored: false,
-    freezeTableName: true
+    timestamps: <span style="color:#00f">false</span>,
+    underscored: <span style="color:#00f">false</span>,
+    freezeTableName: <span style="color:#00f">true</span>
   }
 });
-</code></pre>
-
-<p>配置<code>sqlite://</code>后面的那一个<code>.</code>是必须的，这样可以同时兼容windows服务器和linux服务器！</p>
+</code></pre></div><p>配置<code>sqlite://</code>后面的那一个<code>.</code>是必须的，这样可以同时兼容windows服务器和linux服务器！</p>
                         </div>
 
                         
@@ -235,6 +206,10 @@ npm install --save sqlite3
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -270,10 +245,6 @@ npm install --save sqlite3
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -293,7 +264,7 @@ npm install --save sqlite3
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

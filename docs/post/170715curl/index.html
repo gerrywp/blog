@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -92,64 +92,47 @@
                         
                         
                         <div class="post-content">
-                            <p>ubuntu系统下想要使用curl-ssl只能是自己下载源码进行安装，因为开启ssl(&ndash;with-ssl)需要openssl的库文件。默认ubuntu安装的openssl未包含库(lib)文件和头文件(include)。使用curl下载https文件的时候,会报以下错误：<br />
-* Protocol https not supported or disabled in libcurl
-* Unsupport protocol</p>
-
+                            <p>ubuntu系统下想要使用curl-ssl只能是自己下载源码进行安装，因为开启ssl(&ndash;with-ssl)需要openssl的库文件。默认ubuntu安装的openssl未包含库(lib)文件和头文件(include)。使用curl下载https文件的时候,会报以下错误：</p>
+<ul>
+<li>Protocol https not supported or disabled in libcurl</li>
+<li>Unsupport protocol</li>
+</ul>
 <h3 id="查看当前的curl支持哪些协议">查看当前的curl支持哪些协议</h3>
-
-<pre><code class="language-bash">curl -V
-# curl 7.54.1 (x86_64-pc-linux-gnu) libcurl/7.54.1 OpenSSL/1.0.2g
-# Release-Date: 2017-06-14
-# Protocols: dict file ftp ftps gopher http https imap imaps pop3 pop3s rtsp smb smbs smtp smtps telnet tftp 
-# Features: IPv6 Largefile NTLM NTLM_WB SSL TLS-SRP UnixSockets HTTPS-proxy 
-</code></pre>
-
-<p>Protocols那一行会显示，是否支持https,ftps等等<br />
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl -V
+<span style="color:#008000"># curl 7.54.1 (x86_64-pc-linux-gnu) libcurl/7.54.1 OpenSSL/1.0.2g</span>
+<span style="color:#008000"># Release-Date: 2017-06-14</span>
+<span style="color:#008000"># Protocols: dict file ftp ftps gopher http https imap imaps pop3 pop3s rtsp smb smbs smtp smtps telnet tftp </span>
+<span style="color:#008000"># Features: IPv6 Largefile NTLM NTLM_WB SSL TLS-SRP UnixSockets HTTPS-proxy </span>
+</code></pre></div><p>Protocols那一行会显示，是否支持https,ftps等等<br>
 如果想要curl支持https首先要安装包含库文件和头文件的openssl！</p>
-
 <h3 id="安装openssl">安装openssl</h3>
-
 <p>到openssl的官网<a href="https://www.openssl.org/source/" title="点我访问">https://www.openssl.org/source/</a>下载源码压缩包,这里以<code>openssl-1.0.2l.tar.gz</code>为例子</p>
-
-<pre><code class="language-bash">sudo tar zvxf openssl-1.0.2l.tar.gz 
-# 解压缩包
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo tar zvxf openssl-1.0.2l.tar.gz 
+<span style="color:#008000"># 解压缩包</span>
 cd openssl-1.0.2l
 ./config enable-shared --prefix=/usr/local/ssl
-# 开启enable-shared生成库文件，--prefix指定ssl安装路径
-# 在cli输出界面，会看到输出如下一行“SSL support:enabled (OpenSSL)”
+<span style="color:#008000"># 开启enable-shared生成库文件，--prefix指定ssl安装路径</span>
+<span style="color:#008000"># 在cli输出界面，会看到输出如下一行“SSL support:enabled (OpenSSL)”</span>
 sudo make
 sudo make test
 sudo make install
-</code></pre>
-
-<h4 id="安装证书">安装证书</h4>
-
+</code></pre></div><h4 id="安装证书">安装证书</h4>
 <p>如要使用ssl必须要安装证书，方可使用。</p>
-
-<pre><code class="language-bash">sudo apt install ca-certificates
-</code></pre>
-
-<p>证书安装路径为<code>/usr/lib/ssl</code></p>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt install ca-certificates
+</code></pre></div><p>证书安装路径为<code>/usr/lib/ssl</code></p>
 <h3 id="重新配置并安装curl">重新配置并安装curl</h3>
-
 <p>curl官网下载unbuntu包<a href="https://curl.haxx.se/download.html" title="点我访问">https://curl.haxx.se/download.html</a>,如下图所示</p>
-
-<pre><code class="language-bash">sudo tar zxvf curl-7.54.1.tar.gz
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo tar zxvf curl-7.54.1.tar.gz
 cd curl-7.54.1
 ./configure --with-ssl=/usr/local/ssl --prefix=/usr/local/curl-7.54.1
-# 其中--with-ssl的路径是上一步安装的openssl的路径
-</code></pre>
-
-<p>然后屏幕会输出如下图信息：
-<img src="../../pictures/20160302195834722.jpeg" alt="curl安装" title="请开启" /></p>
-
-<pre><code class="language-bash"># 安装
+<span style="color:#008000"># 其中--with-ssl的路径是上一步安装的openssl的路径</span>
+</code></pre></div><p>然后屏幕会输出如下图信息：
+<img src="../../pictures/20160302195834722.jpeg" alt="curl安装" title="请开启"></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># 安装</span>
 sudo make install
-# 查看curl是否已经支持了https?
+<span style="color:#008000"># 查看curl是否已经支持了https?</span>
 curl -V
-</code></pre>
+</code></pre></div>
                         </div>
 
                         
@@ -217,6 +200,10 @@ curl -V
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -252,10 +239,6 @@ curl -V
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -275,7 +258,7 @@ curl -V
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

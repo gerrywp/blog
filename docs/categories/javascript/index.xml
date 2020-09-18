@@ -6,11 +6,7 @@
     <description>Recent content in javascript on 云亦海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 16 Aug 2018 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://gerrywp.github.io/blog/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 16 Aug 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://gerrywp.github.io/blog/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>nodejs之旅(6)热替换与热加载</title>
       <link>https://gerrywp.github.io/blog/post/180816jsjourney6/</link>
@@ -65,7 +61,7 @@
       <pubDate>Thu, 29 Mar 2018 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/180329singletoninnodejs/</guid>
-      <description>&lt;p&gt;　　How to create singleton in Node.js?这个问题实际是错误的！因为nodejs模块缓存的原因，require(&amp;ldquo;)每次出来的都是单例的！&lt;/p&gt;</description>
+      <description>&lt;p&gt;　　How to create singleton in Node.js?这个问题实际是错误的！因为nodejs模块缓存的原因，require(&#39;&#39;)每次出来的都是单例的！&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -125,8 +121,8 @@ handlebars的&lt;strong&gt;Block Helper&lt;/strong&gt;能够帮我们解决这�
       
       <guid>https://gerrywp.github.io/blog/post/170421accuratetimer/</guid>
       <description>&lt;p&gt;今天偶然看到了一篇讲解javascript各定时器的文章。文章使用对话的方式阐述了&lt;code&gt;setInterval&lt;/code&gt;不足，颇有意思。
-但是觉得不太好理解，原文如下：&lt;br /&gt;
-&lt;a href=&#34;http://imweb.io/topic/56ac67fbe39ca21162ae6c78&#34; title=&#34;点我访问&#34;&gt;setTimeout那些事儿&lt;/a&gt;&lt;br /&gt;
+但是觉得不太好理解，原文如下：&lt;br&gt;
+&lt;a href=&#34;http://imweb.io/topic/56ac67fbe39ca21162ae6c78&#34; title=&#34;点我访问&#34;&gt;setTimeout那些事儿&lt;/a&gt;&lt;br&gt;
 其中的第三点，咱们还是代码见(show you code)。&lt;/p&gt;</description>
     </item>
     

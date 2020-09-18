@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -92,24 +92,20 @@
                         
                         
                         <div class="post-content">
-                            <p>　　添加了reference的*dll*文件并且<code>Copy Local</code>值为True为何不拷贝到输出目录？</p>
-
+                            <p>　　添加了reference的<em>dll</em>文件并且<code>Copy Local</code>值为True为何不拷贝到输出目录？</p>
 <h3 id="间接引用自定义工程程序集">间接引用自定义工程程序集</h3>
-
 <p>造成这个原因的情况是这样的，假定项目结构如下：</p>
-
 <ol>
 <li><strong>Main.Project</strong></li>
 <li><strong>Service.Project</strong></li>
 <li><strong>Common.Project</strong></li>
 </ol>
-
-<p><strong>Main.Project</strong>添加了对<strong>Service.Project</strong>的引用，现假定有一个*dll*文件*MyDll.dll*被<strong>Service.Project</strong>引用，但是实际在编码的时候
-<strong>Service.Project</strong>里面并未用到*MyDll.dll*文件里面的任何代码。
-单独编译<strong>Service.Project</strong>，*MyDll.dll*文件会被拷贝到<code>/debug/bin/</code>目录下。但是编译<strong>MainProject</strong>的时候由于缺少对*MyDll.dll*的代码的使用，
-所以*Service.dll*文件会被拷贝到<strong>Main.Project</strong>的<code>/debug/bin/</code>目录下，但是*MyDll.dll*并不会被copy过去。<br />
-　　因此，当我们需要*MyDll.dll*文件能够被自动copy到<strong>Main.Project</strong>的输出目录的话，只需要在
-<strong>Main.Project</strong>里面直接引用*MyDll.dll*程序集文件即可！</p>
+<p><strong>Main.Project</strong>添加了对<strong>Service.Project</strong>的引用，现假定有一个<em>dll</em>文件<em>MyDll.dll</em>被<strong>Service.Project</strong>引用，但是实际在编码的时候
+<strong>Service.Project</strong>里面并未用到<em>MyDll.dll</em>文件里面的任何代码。
+单独编译<strong>Service.Project</strong>，<em>MyDll.dll</em>文件会被拷贝到<code>/debug/bin/</code>目录下。但是编译<strong>MainProject</strong>的时候由于缺少对<em>MyDll.dll</em>的代码的使用，
+所以<em>Service.dll</em>文件会被拷贝到<strong>Main.Project</strong>的<code>/debug/bin/</code>目录下，但是<em>MyDll.dll</em>并不会被copy过去。<br>
+　　因此，当我们需要<em>MyDll.dll</em>文件能够被自动copy到<strong>Main.Project</strong>的输出目录的话，只需要在
+<strong>Main.Project</strong>里面直接引用<em>MyDll.dll</em>程序集文件即可！</p>
                         </div>
 
                         
@@ -177,6 +173,10 @@
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -212,10 +212,6 @@
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -235,7 +231,7 @@
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

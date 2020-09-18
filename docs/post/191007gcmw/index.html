@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -93,33 +93,24 @@
                         
                         <div class="post-content">
                             <p>git push代码的时候，使用了git credential manager for windows工具自动保存密码，但是每次会报告一个错误：HttpRequestException encountered.</p>
-
-<h3 id="git-bash-linux-环境变量引起的错误">git-bash(linux 环境变量引起的错误)</h3>
-
+<h3 id="git-bashlinux-环境变量引起的错误">git-bash(linux 环境变量引起的错误)</h3>
 <p>一开始的时候，以为是git安装出现了问题，所以频繁的卸载并安装git，但是并没有解决问题，折腾了很久，后来才想起来查看windows事件日志，发现我的电脑居然在
 git-bash下面设置了http_proxy的环境变量。</p>
-
 <p>解决思路：</p>
-
 <ol>
 <li>打开windows事件查看器，查找错误日志。</li>
-
-<li><p>查看环境变量。</p>
-
-<pre><code class="language-bash">echo $http_proxy
-env|grep http_proxy
-</code></pre></li>
-
-<li><p>在C:\Users\Gerry.bashrc文件里面我手动设置了。</p>
-
-<pre><code class="language-bash">export http_proxy=http://127.0.0.1:1080
-</code></pre></li>
-
-<li><p>因为Shadowsocks的代理服务器出现了故障，导致代理无法使用，并且git使用的是.bashrc里面的环境变量配置，因此删除即可。</p></li>
+<li>查看环境变量。</li>
 </ol>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">echo $http_proxy
+env|grep http_proxy
+</code></pre></div><ol start="3">
+<li>在C:\Users\Gerry.bashrc文件里面我手动设置了。</li>
+</ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export http_proxy=http://127.0.0.1:1080
+</code></pre></div><ol start="4">
+<li>因为Shadowsocks的代理服务器出现了故障，导致代理无法使用，并且git使用的是.bashrc里面的环境变量配置，因此删除即可。</li>
+</ol>
 <h3 id="总结">总结</h3>
-
 <p>自己在电脑里面设置了很多环境变量，包括添加了bashrc.cmd的批处理都已经记不住了，并且记不住是什么时候这样设置的，为什么这样设计。</p>
                         </div>
 
@@ -188,6 +179,10 @@ env|grep http_proxy
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -223,10 +218,6 @@ env|grep http_proxy
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -246,7 +237,7 @@ env|grep http_proxy
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

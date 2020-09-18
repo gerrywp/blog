@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -92,44 +92,33 @@
                         
                         
                         <div class="post-content">
-                            <p>Unicode是一个编码字符集，统一维护着世界上所有的&rsquo;字符&rsquo;。Unicode只是一个符号集，它只规定了符号的二进制代码，
+                            <p>Unicode是一个编码字符集，统一维护着世界上所有的&rsquo;字符'。Unicode只是一个符号集，它只规定了符号的二进制代码，
 却没有规定这个二进制代码应该如何存储。utf8只是Unicode字符集的一个具体的编码(解码)的实现方式之一，其它的还有utf-16
 ,utf-32等。</p>
-
-<h3 id="bom-byte-order-mark-又称-零宽度非换行空格-zero-width-no-break-space">BOM(Byte order mark)又称&rdquo;零宽度非换行空格&rdquo;（ZERO WIDTH NO-BREAK SPACE）</h3>
-
+<h3 id="bombyte-order-mark又称零宽度非换行空格zero-width-no-break-space">BOM(Byte order mark)又称&quot;零宽度非换行空格&quot;（ZERO WIDTH NO-BREAK SPACE）</h3>
 <p>BOM都很熟悉，Notepad++之中就会有，以utf-8有BOM编码、以utf-8无BOM编码。
 因为unicode编码规范并不知道，文档到底使用的是哪一种编码顺序(大小头)。所以规定前1-4个字节标识编码顺序。
-又因为Utf-8没有大小头之分，所以可以使用BOM来标识是使用的那一种编码！<br />
-我们使用Notepad++来看下，&rdquo;我&rdquo;在使用utf-8无BOM编码的情况下的HEX十六进制表示法：</p>
-
+又因为Utf-8没有大小头之分，所以可以使用BOM来标识是使用的那一种编码！<br>
+我们使用Notepad++来看下，&ldquo;我&quot;在使用utf-8无BOM编码的情况下的HEX十六进制表示法：</p>
 <ol>
 <li>先要安装Notepad++插件HEX-Editor
-<img src="../../pictures/QQ20170323212337.png" alt="HEX-Editor" />
+<img src="../../pictures/QQ20170323212337.png" alt="HEX-Editor">
 编码为：<code>e6 88 91</code>
-<img src="../../pictures/QQ20170323212712.png" alt="&quot;我&quot;字的code" /></li>
+<img src="../../pictures/QQ20170323212712.png" alt="&ldquo;我"字的code"></li>
 <li>utf-8不带BOM编码情况下，16进制编码为: <code>ef bb bf e6 88 91</code></li>
 </ol>
-
 <p>由此可见Utf-8编码的BOM为:<code>ef bb bf</code></p>
-
 <h3 id="asci编码">asci编码</h3>
-
-<p>在中文操作系统下，我们在notepad++下，使用asci码输入中文，其实使用的是操作系统默认GBK编码。<br />
-使用notepad++可以看到，&rdquo;我&rdquo;在ansi下的编码16进制为:ce d2,这个编码正是&rdquo;我&rdquo;在GBK编码字符集中的编码。</p>
-
-<h3 id="notepad-ansi编码输入中文程序无响应">notepad++，ansi编码输入中文程序无响应</h3>
-
+<p>在中文操作系统下，我们在notepad++下，使用asci码输入中文，其实使用的是操作系统默认GBK编码。<br>
+使用notepad++可以看到，&ldquo;我&quot;在ansi下的编码16进制为:ce d2,这个编码正是&quot;我&quot;在GBK编码字符集中的编码。</p>
+<h3 id="notepadansi编码输入中文程序无响应">notepad++，ansi编码输入中文程序无响应</h3>
 <p>在ansi编码下，默认中文字符会被拆成2个字符。且这个使用的设置是:&ldquo;自动完成-&gt;单词自动完成&rdquo;
-且后边是从&rdquo;第1个字符开始&rdquo;的时候会默认从这个<strong>未知字符</strong>开始自动完成，notepad++就卡死了。<br />
-解决方法：改变从&rdquo;第1个字符开始&rdquo;成&rdquo;第2个字符开始&rdquo;回车即可。</p>
-
-<p><img src="../../pictures/QQ20170323220207.png" alt="首选项" /></p>
-
+且后边是从&quot;第1个字符开始&quot;的时候会默认从这个<strong>未知字符</strong>开始自动完成，notepad++就卡死了。<br>
+解决方法：改变从&quot;第1个字符开始&quot;成&quot;第2个字符开始&quot;回车即可。</p>
+<p><img src="../../pictures/QQ20170323220207.png" alt="首选项"></p>
 <blockquote>
 <p>参考文献</p>
 </blockquote>
-
 <ol>
 <li><a href="http://cenalulu.github.io/linux/character-encoding/">十分钟搞清字符集和字符编码</a></li>
 <li><a href="http://www.ietf.org/rfc/rfc3629.txt">如何实现UTF-8编码规范</a></li>
@@ -201,6 +190,10 @@
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -236,10 +229,6 @@
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -259,7 +248,7 @@
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

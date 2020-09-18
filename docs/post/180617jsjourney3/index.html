@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -93,61 +93,42 @@
                         
                         <div class="post-content">
                             <p>　　gulp通过任务的形式来完成前端的构建，如何调试？</p>
-
-<h3 id="gulpfile-js中任务的调试">gulpfile.js中任务的调试</h3>
-
-<p>环境:<br />
-nodejs:v8.9.1<br />
-nodejs版本不一样处理方式也不一样！(找对应版本的命令)<br />
+<h3 id="gulpfilejs中任务的调试">gulpfile.js中任务的调试</h3>
+<p>环境:<br>
+nodejs:v8.9.1<br>
+nodejs版本不一样处理方式也不一样！(找对应版本的命令)<br>
 nodejs提供了调试选项<code>--inspect</code>,按照gulp的官方文档，我们调用gulp直接使用<code>gulp</code>命令即可！</p>
-
-<pre><code class="language-js">gulp
-</code></pre>
-
-<p>其实这个命令最终运行的是当前项目下的<code>node_modules\gulp\bin\gulp.js</code>文件，因此我们可以直接使用nodejs的调试命令，启动调试</p>
-
-<pre><code class="language-bash">&gt;node --inspect-brk node\modules\gulp\bin\gulp.js
-</code></pre>
-
-<p>如图：</p>
-
-<p><img src="../../pictures/QQ20180617004437.png" alt="调试gulp" title="点我访问" /></p>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">gulp
+</code></pre></div><p>其实这个命令最终运行的是当前项目下的<code>node_modules\gulp\bin\gulp.js</code>文件，因此我们可以直接使用nodejs的调试命令，启动调试</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&gt;node --inspect-brk node<span style="color:#a31515">\m</span>odules<span style="color:#a31515">\g</span>ulp<span style="color:#a31515">\b</span>in<span style="color:#a31515">\g</span>ulp.js
+</code></pre></div><p>如图：</p>
+<p><img src="../../pictures/QQ20180617004437.png" alt="调试gulp" title="点我访问"></p>
 <p>然后打开chrome浏览器输入<code>chrome://inspect</code>或<code>about://inspect</code>打开调试窗口即可！</p>
-
-<p><img src="../../pictures/QQ20180617004647.png" alt="chrome调试页面" title="点我访问" /></p>
-
+<p><img src="../../pictures/QQ20180617004647.png" alt="chrome调试页面" title="点我访问"></p>
 <h3 id="gulp任务及回调">gulp任务及回调</h3>
-
 <p>通过定义任务的方式来完成想要的功能，一般会写出如下代码！</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#008000">//方式1
+</span><span style="color:#008000"></span><span style="color:#00f">var</span> gulp = require(<span style="color:#a31515">&#39;gulp&#39;</span>);
+<span style="color:#00f">var</span> del = require(<span style="color:#a31515">&#39;del&#39;</span>);
 
-<pre><code class="language-js">//方式1
-var gulp = require('gulp');
-var del = require('del');
-
-gulp.task('clean', function (cb) {
-  del(['dist/*', '!{dist/node_modules/**,dist/node_modules}', '!{dist/upload/**,dist/upload}']).then((paths, err) =&gt; {
+gulp.task(<span style="color:#a31515">&#39;clean&#39;</span>, <span style="color:#00f">function</span> (cb) {
+  del([<span style="color:#a31515">&#39;dist/*&#39;</span>, <span style="color:#a31515">&#39;!{dist/node_modules/**,dist/node_modules}&#39;</span>, <span style="color:#a31515">&#39;!{dist/upload/**,dist/upload}&#39;</span>]).then((paths, err) =&gt; {
     console.log(paths)
-    if (err) return cb(err);
-    debugger;
-    cb();//run task finish! 或者 return promise
-  });
+    <span style="color:#00f">if</span> (err) <span style="color:#00f">return</span> cb(err);
+    <span style="color:#00f">debugger</span>;
+    cb();<span style="color:#008000">//run task finish! 或者 return promise
+</span><span style="color:#008000"></span>  });
 })
-</code></pre>
-
-<p>task任务必须返回Promise对象或者一个Stream对象，这样gulp才能通过回调函数的形式，知道当前任务的执行情况。<br />
+</code></pre></div><p>task任务必须返回Promise对象或者一个Stream对象，这样gulp才能通过回调函数的形式，知道当前任务的执行情况。<br>
 或者调用一下回调函数上例中的cb，cb会调用gulp-&gt;runTask-&gt;finish函数来标识任务已经完成！</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#008000">//方式2
+</span><span style="color:#008000"></span><span style="color:#00f">var</span> gulp = require(<span style="color:#a31515">&#39;gulp&#39;</span>);
+<span style="color:#00f">var</span> del = require(<span style="color:#a31515">&#39;del&#39;</span>);
 
-<pre><code class="language-js">//方式2
-var gulp = require('gulp');
-var del = require('del');
-
-gulp.task('clean', function () {
-  return del(['dist/*', '!{dist/node_modules/**,dist/node_modules}', '!{dist/upload/**,dist/upload}'])
+gulp.task(<span style="color:#a31515">&#39;clean&#39;</span>, <span style="color:#00f">function</span> () {
+  <span style="color:#00f">return</span> del([<span style="color:#a31515">&#39;dist/*&#39;</span>, <span style="color:#a31515">&#39;!{dist/node_modules/**,dist/node_modules}&#39;</span>, <span style="color:#a31515">&#39;!{dist/upload/**,dist/upload}&#39;</span>])
 })
-</code></pre>
-
-<blockquote>
+</code></pre></div><blockquote>
 <p>说明：方式1或方式2任选一种即可，不可又return promise又cb()，这样会调用两次finish函数并且报错！</p>
 </blockquote>
                         </div>
@@ -217,6 +198,10 @@ gulp.task('clean', function () {
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -252,10 +237,6 @@ gulp.task('clean', function () {
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -275,7 +256,7 @@ gulp.task('clean', function () {
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -93,131 +93,106 @@
                         
                         <div class="post-content">
                             <p>开窗函数用在ms的group by分组无法迄及的地方。</p>
-
 <h3 id="应用场景">应用场景</h3>
-
 <p><em>数据库表数据</em>(表名tb_student)：</p>
-
 <table>
 <thead>
 <tr>
-<th align="center">id</th>
-<th align="center">name</th>
-<th align="center">datetime</th>
+<th style="text-align:center">id</th>
+<th style="text-align:center">name</th>
+<th style="text-align:center">datetime</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="center">1</td>
-<td align="center">张三</td>
-<td align="center">2016-01-22 08:00:27.000</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">张三</td>
+<td style="text-align:center">2016-01-22 08:00:27.000</td>
 </tr>
-
 <tr>
-<td align="center">2</td>
-<td align="center">张三</td>
-<td align="center">2016-01-22 08:23:27.000</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">张三</td>
+<td style="text-align:center">2016-01-22 08:23:27.000</td>
 </tr>
-
 <tr>
-<td align="center">3</td>
-<td align="center">张三</td>
-<td align="center">2016-01-22 09:23:27.000</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">张三</td>
+<td style="text-align:center">2016-01-22 09:23:27.000</td>
 </tr>
-
 <tr>
-<td align="center">4</td>
-<td align="center">张三</td>
-<td align="center">2016-01-22 09:23:27.000</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">张三</td>
+<td style="text-align:center">2016-01-22 09:23:27.000</td>
 </tr>
-
 <tr>
-<td align="center">5</td>
-<td align="center">李四</td>
-<td align="center">2016-01-22 10:15:35.000</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">李四</td>
+<td style="text-align:center">2016-01-22 10:15:35.000</td>
 </tr>
-
 <tr>
-<td align="center">6</td>
-<td align="center">李四</td>
-<td align="center">2016-01-22 10:17:35.000</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">李四</td>
+<td style="text-align:center">2016-01-22 10:17:35.000</td>
 </tr>
-
 <tr>
-<td align="center">7</td>
-<td align="center">王五</td>
-<td align="center">2016-01-22 15:15:41.000</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">王五</td>
+<td style="text-align:center">2016-01-22 15:15:41.000</td>
 </tr>
-
 <tr>
-<td align="center">8</td>
-<td align="center">王五</td>
-<td align="center">2016-01-22 15:26:41.000</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">王五</td>
+<td style="text-align:center">2016-01-22 15:26:41.000</td>
 </tr>
-
 <tr>
-<td align="center">9</td>
-<td align="center">王五</td>
-<td align="center">2016-01-22 15:27:41.000</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">王五</td>
+<td style="text-align:center">2016-01-22 15:27:41.000</td>
 </tr>
 </tbody>
 </table>
-
 <p><em>期望结果</em>:要求根据name进行分组，取出datetime最大的<strong>一整行记录</strong>(请注意是一整行)</p>
-
 <table>
 <thead>
 <tr>
-<th align="center">id</th>
-<th align="center">name</th>
-<th align="center">datetime</th>
+<th style="text-align:center">id</th>
+<th style="text-align:center">name</th>
+<th style="text-align:center">datetime</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="center">3</td>
-<td align="center">张三</td>
-<td align="center">2016-01-22 09:23:27.000</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">张三</td>
+<td style="text-align:center">2016-01-22 09:23:27.000</td>
 </tr>
-
 <tr>
-<td align="center">6</td>
-<td align="center">李四</td>
-<td align="center">2016-01-22 10:17:35.000</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">李四</td>
+<td style="text-align:center">2016-01-22 10:17:35.000</td>
 </tr>
-
 <tr>
-<td align="center">9</td>
-<td align="center">王五</td>
-<td align="center">2016-01-22 15:27:41.000</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">王五</td>
+<td style="text-align:center">2016-01-22 15:27:41.000</td>
 </tr>
 </tbody>
 </table>
-
 <blockquote>
 <p>说明：在ms-sqlserver里面通过group by 是不能实现这样的要求的请思考</p>
 </blockquote>
-
 <h3 id="实现方式">实现方式</h3>
-
 <p>只用通过开窗函数over()来实现(oracle通过group by就可以，ms真是蠢),sql语句如下：</p>
-
-<pre><code class="language-sql">select t2.id,t2.name,t2.datetime from (
-select row_number() over(partition by t1.name order by t1.datetime desc) rnum,
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">select</span> t2.id,t2.name,t2.datetime <span style="color:#00f">from</span> (
+<span style="color:#00f">select</span> row_number() over(partition <span style="color:#00f">by</span> t1.name <span style="color:#00f">order</span> <span style="color:#00f">by</span> t1.datetime <span style="color:#00f">desc</span>) rnum,
 t1.id id,
 t1.name name,
 t1.datetime datetime
-from tb_student t1
-) t2 where t2.rnum=1;
-</code></pre>
-
-<h3 id="总结">总结</h3>
-
+<span style="color:#00f">from</span> tb_student t1
+) t2 <span style="color:#00f">where</span> t2.rnum=1;
+</code></pre></div><h3 id="总结">总结</h3>
 <p>以上只是提供了一种思路解决，只给出了最简单的over()方法，我们还能根据ROWS 和 RANGE 来过滤 over 的partition,
 具体可以参考msdn。</p>
-
 <blockquote>
 <p><a href="https://technet.microsoft.com/en-us//library/ms189461.aspx" title="点我访问">https://technet.microsoft.com/en-us//library/ms189461.aspx</a></p>
 </blockquote>
@@ -288,6 +263,10 @@ from tb_student t1
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -323,10 +302,6 @@ from tb_student t1
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -346,7 +321,7 @@ from tb_student t1
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

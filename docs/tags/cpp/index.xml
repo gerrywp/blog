@@ -6,18 +6,14 @@
     <description>Recent content in cpp on 云亦海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 12 Sep 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://gerrywp.github.io/blog/tags/cpp/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 12 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://gerrywp.github.io/blog/tags/cpp/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>SetWindowsHookEx</title>
       <link>https://gerrywp.github.io/blog/post/200912winhook/</link>
       <pubDate>Sat, 12 Sep 2020 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/200912winhook/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;&lt;em&gt;SetWindowsHookEx&lt;/em&gt;&lt;/strong&gt;安装钩子程序，通过对操作系统消息的拦截,实现跨进程的操作。&lt;/p&gt;</description>
+      <description>&lt;p&gt;___SetWindowsHookEx___安装钩子程序，通过对操作系统消息的拦截,实现跨进程的操作。&lt;/p&gt;</description>
     </item>
     
     <item>

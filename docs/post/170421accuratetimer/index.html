@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -93,49 +93,40 @@
                         
                         <div class="post-content">
                             <p>今天偶然看到了一篇讲解javascript各定时器的文章。文章使用对话的方式阐述了<code>setInterval</code>不足，颇有意思。
-但是觉得不太好理解，原文如下：<br />
-<a href="http://imweb.io/topic/56ac67fbe39ca21162ae6c78" title="点我访问">setTimeout那些事儿</a><br />
+但是觉得不太好理解，原文如下：<br>
+<a href="http://imweb.io/topic/56ac67fbe39ca21162ae6c78" title="点我访问">setTimeout那些事儿</a><br>
 其中的第三点，咱们还是代码见(show you code)。</p>
-
 <h3 id="setinterval能够固定间隔触发吗">setInterval能够固定间隔触发吗？</h3>
-
 <p>习惯了使用setInterval()做定时任务的触发，但是此方法并不能保证2次调用之间的间隔时间是恒定的。以下场景:</p>
-
-<pre><code class="language-js">setInterval(function(){
-  console.log('started!');
-  var now=new Date();
-  var future=now.setSeconds(now.getSeconds()+3);//3秒后
-  while(true){
-    now=new Date();
-    if(now&gt;future){
-      break;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">setInterval(<span style="color:#00f">function</span>(){
+  console.log(<span style="color:#a31515">&#39;started!&#39;</span>);
+  <span style="color:#00f">var</span> now=<span style="color:#00f">new</span> Date();
+  <span style="color:#00f">var</span> future=now.setSeconds(now.getSeconds()+3);<span style="color:#008000">//3秒后
+</span><span style="color:#008000"></span>  <span style="color:#00f">while</span>(<span style="color:#00f">true</span>){
+    now=<span style="color:#00f">new</span> Date();
+    <span style="color:#00f">if</span>(now&gt;future){
+      <span style="color:#00f">break</span>;
     }
   };
-  console.log('ended!');
+  console.log(<span style="color:#a31515">&#39;ended!&#39;</span>);
 },3000);
-</code></pre>
-
-<p>以上代码使用while循环模拟了一个耗时操作，事实上<code>setInterval</code>并不知道main线程执行的代码需要多久执行完成。
+</code></pre></div><p>以上代码使用while循环模拟了一个耗时操作，事实上<code>setInterval</code>并不知道main线程执行的代码需要多久执行完成。
 所以以上代码会在输出&rsquo;ended!&lsquo;的同时，执行下一个函数并输出了<code>started!</code>。</p>
-
 <p>倘若需要函数的2次调用之间间隔3秒，可以通过<code>setTimeout</code>的链式调用来实现。</p>
-
-<pre><code class="language-js">setTimeout(function(){
-  console.log('started!');
-  var now=new Date();
-  var future=now.setSeconds(now.getSeconds()+3);//3秒后
-  while(true){
-    now=new Date();
-    if(now&gt;future){
-      break;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">setTimeout(<span style="color:#00f">function</span>(){
+  console.log(<span style="color:#a31515">&#39;started!&#39;</span>);
+  <span style="color:#00f">var</span> now=<span style="color:#00f">new</span> Date();
+  <span style="color:#00f">var</span> future=now.setSeconds(now.getSeconds()+3);<span style="color:#008000">//3秒后
+</span><span style="color:#008000"></span>  <span style="color:#00f">while</span>(<span style="color:#00f">true</span>){
+    now=<span style="color:#00f">new</span> Date();
+    <span style="color:#00f">if</span>(now&gt;future){
+      <span style="color:#00f">break</span>;
     }
   };
-  console.log('ended!');
-  setTimeout(arguments.callee,3000);//arguments.callee代表当前正在执行的函数，也就是函数本身
-},3000);
-</code></pre>
-
-<blockquote>
+  console.log(<span style="color:#a31515">&#39;ended!&#39;</span>);
+  setTimeout(arguments.callee,3000);<span style="color:#008000">//arguments.callee代表当前正在执行的函数，也就是函数本身
+</span><span style="color:#008000"></span>},3000);
+</code></pre></div><blockquote>
 <p>结论:动手比较下以上代码的区别，不难看出问题所在！</p>
 </blockquote>
                         </div>
@@ -205,6 +196,10 @@
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -240,10 +235,6 @@
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -263,7 +254,7 @@
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

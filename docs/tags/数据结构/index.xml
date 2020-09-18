@@ -6,10 +6,15 @@
     <description>Recent content in 数据结构 on 云亦海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 20 Jun 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://gerrywp.github.io/blog/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Fri, 18 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://gerrywp.github.io/blog/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>一致性哈希</title>
+      <link>https://gerrywp.github.io/blog/post/200918hash/</link>
+      <pubDate>Fri, 18 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/200918hash/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;一致性哈希&lt;/strong&gt; 是一种特殊的&lt;code&gt;hash&lt;/code&gt;算法。在hash表槽位扩容或缩容的时候，只需对平均&lt;code&gt;K/n&lt;/code&gt;个关键字进行映射，其中&lt;strong&gt;K&lt;/strong&gt;是关键字的数量，&lt;em&gt;n&lt;/em&gt;是槽位数量。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>数据结构</title>
@@ -21,7 +26,7 @@
     </item>
     
     <item>
-      <title>线性存储和hashcode</title>
+      <title>线性存储</title>
       <link>https://gerrywp.github.io/blog/post/180703linear7hash/</link>
       <pubDate>Tue, 03 Jul 2018 00:00:00 +0000</pubDate>
       

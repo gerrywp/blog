@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -93,24 +93,17 @@
                         
                         <div class="post-content">
                             <p>　　cmd可以使用<code>doskey</code>命令来定义命令的别名，但是windows要实现自动加载配置文件，似乎只能通过修改注册表来达到目的。</p>
-
-<h3 id="实现dir的别名-ls">实现dir的别名<code>ls</code></h3>
-
-<pre><code class="language-bash"># 创建批处理文件bashrc.cmd,内容如下
+<h3 id="实现dir的别名ls">实现dir的别名<code>ls</code></h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># 创建批处理文件bashrc.cmd,内容如下</span>
 @echo off
 doskey ls=dir /b $*
-# $* 代表ls命令后面还可以带其他的参数。如:ls /d
-</code></pre>
-
-<h3 id="让bashrc-cmd命令开机自动启动">让bashrc.cmd命令开机自动启动</h3>
-
-<p>实现这个功能需要修改注册表,在[HKEY_LOCAL_MACHINE][Software\Microsoft][Command Processor]或者「HKEY_CURRENT_USER」下，添加项&rdquo;AutoRun&rdquo;,值为bashrc.cmd的绝对路径。<br />
+<span style="color:#008000"># $* 代表ls命令后面还可以带其他的参数。如:ls /d</span>
+</code></pre></div><h3 id="让bashrccmd命令开机自动启动">让bashrc.cmd命令开机自动启动</h3>
+<p>实现这个功能需要修改注册表,在[HKEY_LOCAL_MACHINE][Software\Microsoft][Command Processor]或者「HKEY_CURRENT_USER」下，添加项&quot;AutoRun&quot;,值为bashrc.cmd的绝对路径。<br>
 提供一个批处理文件来实现这个功能：</p>
-
 <p>批处理文件下载地址：<a href="../assets/bashrc.cmd" title="点我下载">实现别名并开机启动</a>
 一定要使用ASIN编码</p>
-
-<pre><code class="language-bash">:: Purpose-add [autorun alias commands] batch file
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">:: Purpose-add [autorun alias commands] batch file
 :: Author-Gerry
 :: Date-2017年11月26日
 
@@ -133,7 +126,7 @@ echo.
 
 echo 开始写入别名到文件...
 set filename=bashrc.cmd
-set filepath=%userprofile%\%filename%
+set filepath=%userprofile%<span style="color:#a31515">\%</span>filename%
 echo.
 set outLineNum=35
 del /f /q %filepath%
@@ -141,18 +134,18 @@ more +%outLineNum% %0 &gt;&gt; %filepath%
 echo 文件创建完成！路径为:%filepath%
 echo.
 echo 开始写入注册表...
-reg add &quot;HKEY_CURRENT_USER\Software\Microsoft\Command Processor&quot; /v AutoRun /d %filepath% /f &gt; nul
+reg add <span style="color:#a31515">&#34;HKEY_CURRENT_USER\Software\Microsoft\Command Processor&#34;</span> /v AutoRun /d %filepath% /f &gt; nul
 echo 安装已完成.
 pause
 exit /b 0
 
 :: 配置系统环境变量
 :: 此配置文件会随windows开机启动
-:: 如需删除启动项，请手动删除「HKEY_CURRENT_USER\Software\Microsoft\Command Processor」下的AutoRun
-:: 如需删除启动项，请手动删除「HKCU\Software\Microsoft\Command Processor」下的AutoRun
+:: 如需删除启动项，请手动删除「HKEY_CURRENT_USER<span style="color:#a31515">\S</span>oftware<span style="color:#a31515">\M</span>icrosoft<span style="color:#a31515">\C</span>ommand Processor」下的AutoRun
+:: 如需删除启动项，请手动删除「HKCU<span style="color:#a31515">\S</span>oftware<span style="color:#a31515">\M</span>icrosoft<span style="color:#a31515">\C</span>ommand Processor」下的AutoRun
 @echo off
 doskey ls=dir /b $*
-</code></pre>
+</code></pre></div>
                         </div>
 
                         
@@ -220,6 +213,10 @@ doskey ls=dir /b $*
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -255,10 +252,6 @@ doskey ls=dir /b $*
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -278,7 +271,7 @@ doskey ls=dir /b $*
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

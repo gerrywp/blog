@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -93,57 +93,44 @@
                         
                         <div class="post-content">
                             <p>　　es6引入了大量的语法糖，其中有不少是不好理解的，一边实践一边用文字记录之。</p>
-
 <h3 id="import-和-export">import 和 export</h3>
-
 <p><code>import</code> 和 <code>export</code> 这对孪生兄弟是要成对出现的，因为使用的时候，导入导出要分成2种情况，一种变量带大括号，一种不带括号，如下：</p>
-
-<pre><code class="language-js">import React from 'react';//不带大括号的
-import {Component} from 'react';//带大括号的
-export {variableName};
-</code></pre>
-
-<p>总结:<code>import</code>和<code>export</code>要带大括号就都带，要么都不带！</p>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">import</span> React from <span style="color:#a31515">&#39;react&#39;</span>;<span style="color:#008000">//不带大括号的
+</span><span style="color:#008000"></span><span style="color:#00f">import</span> {Component} from <span style="color:#a31515">&#39;react&#39;</span>;<span style="color:#008000">//带大括号的
+</span><span style="color:#008000"></span><span style="color:#00f">export</span> {variableName};
+</code></pre></div><p>总结:<code>import</code>和<code>export</code>要带大括号就都带，要么都不带！</p>
 <h4 id="具名变量">具名变量</h4>
-
 <p>必须要建立变量与接口一一对应的关系</p>
-
-<pre><code class="language-js">//---myclass.js--- 
-// 方式1
-class MyClass {
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#008000">//---myclass.js--- 
+</span><span style="color:#008000">// 方式1
+</span><span style="color:#008000"></span><span style="color:#00f">class</span> MyClass {
     ...
 }
-export {MyClass};
-// 方式2
-export class MyClass {
+<span style="color:#00f">export</span> {MyClass};
+<span style="color:#008000">// 方式2
+</span><span style="color:#008000"></span><span style="color:#00f">export</span> <span style="color:#00f">class</span> MyClass {
 
 }
-// 方式3
-class n{
+<span style="color:#008000">// 方式3
+</span><span style="color:#008000"></span><span style="color:#00f">class</span> n{
 
 }
-export {n as MyClass}
-//然后import的时候也要是具名的变量
-import {MyClass} from './myclass.js'
-</code></pre>
-
-<h4 id="匿名变量-主要由export-default-引起">匿名变量(主要由export default)引起</h4>
-
-<pre><code class="language-js">// ---myclass.js---
-// 导出匿名的class
-export default class MyClass {
+<span style="color:#00f">export</span> {n as MyClass}
+<span style="color:#008000">//然后import的时候也要是具名的变量
+</span><span style="color:#008000"></span><span style="color:#00f">import</span> {MyClass} from <span style="color:#a31515">&#39;./myclass.js&#39;</span>
+</code></pre></div><h4 id="匿名变量主要由export-default引起">匿名变量(主要由export default)引起</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#008000">// ---myclass.js---
+</span><span style="color:#008000">// 导出匿名的class
+</span><span style="color:#008000"></span><span style="color:#00f">export</span> <span style="color:#00f">default</span> <span style="color:#00f">class</span> MyClass {
 
 }
-class MyClass{
+<span style="color:#00f">class</span> MyClass{
 
 }
-export default MyClass;// 导出匿名的class
-// 因此import可以随意命名变量(这里是不能带大括号的)
-import customName from './myclass.js'
-</code></pre>
-
-<p>说明：其实这只是一种偷懒的记忆方式，它们别样的语法有很多种，这里只记住常见的用法！</p>
+<span style="color:#00f">export</span> <span style="color:#00f">default</span> MyClass;<span style="color:#008000">// 导出匿名的class
+</span><span style="color:#008000">// 因此import可以随意命名变量(这里是不能带大括号的)
+</span><span style="color:#008000"></span><span style="color:#00f">import</span> customName from <span style="color:#a31515">&#39;./myclass.js&#39;</span>
+</code></pre></div><p>说明：其实这只是一种偷懒的记忆方式，它们别样的语法有很多种，这里只记住常见的用法！</p>
                         </div>
 
                         
@@ -211,6 +198,10 @@ import customName from './myclass.js'
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -246,10 +237,6 @@ import customName from './myclass.js'
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -269,7 +256,7 @@ import customName from './myclass.js'
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

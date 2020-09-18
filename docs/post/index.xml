@@ -6,10 +6,15 @@
     <description>Recent content in Posts on 云亦海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 12 Sep 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://gerrywp.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Fri, 18 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://gerrywp.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>一致性哈希</title>
+      <link>https://gerrywp.github.io/blog/post/200918hash/</link>
+      <pubDate>Fri, 18 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/200918hash/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;一致性哈希&lt;/strong&gt; 是一种特殊的&lt;code&gt;hash&lt;/code&gt;算法。在hash表槽位扩容或缩容的时候，只需对平均&lt;code&gt;K/n&lt;/code&gt;个关键字进行映射，其中&lt;strong&gt;K&lt;/strong&gt;是关键字的数量，&lt;em&gt;n&lt;/em&gt;是槽位数量。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>OD使用</title>
@@ -26,7 +31,7 @@
       <pubDate>Sat, 12 Sep 2020 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/200912winhook/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;&lt;em&gt;SetWindowsHookEx&lt;/em&gt;&lt;/strong&gt;安装钩子程序，通过对操作系统消息的拦截,实现跨进程的操作。&lt;/p&gt;</description>
+      <description>&lt;p&gt;___SetWindowsHookEx___安装钩子程序，通过对操作系统消息的拦截,实现跨进程的操作。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -53,7 +58,7 @@
       <pubDate>Sat, 12 Sep 2020 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/200912task/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;TAP(Task-based async pattern)&lt;/strong&gt;基于任务的异步编程模型&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;strong&gt;TAP(Task-based async pattern)&lt;/strong&gt; 基于任务的异步编程模型&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -80,7 +85,7 @@
       <pubDate>Wed, 08 Jul 2020 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/200708wide/</guid>
-      <description>&lt;p&gt;&amp;ldquo;海纳百川，有容乃大。&amp;rdquo;齐桓公心拥有着宽广的心胸，一笑泯了恩仇。成就了齐国千秋的霸业，留下千古美名。&lt;/p&gt;</description>
+      <description>&lt;p&gt;&amp;ldquo;海纳百川，有容乃大。&amp;ldquo;齐桓公心拥有着宽广的心胸，一笑泯了恩仇。成就了齐国千秋的霸业，留下千古美名。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -281,7 +286,7 @@ condition条件判断就成为了对&lt;code&gt;cin&lt;/code&gt;对象的判断�
     </item>
     
     <item>
-      <title>线性存储和hashcode</title>
+      <title>线性存储</title>
       <link>https://gerrywp.github.io/blog/post/180703linear7hash/</link>
       <pubDate>Tue, 03 Jul 2018 00:00:00 +0000</pubDate>
       
@@ -359,7 +364,7 @@ condition条件判断就成为了对&lt;code&gt;cin&lt;/code&gt;对象的判断�
       <pubDate>Sat, 09 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/180609msbuild1/</guid>
-      <description>&lt;p&gt;　　使用MS的开发工具&lt;strong&gt;Visual Studio&lt;/strong&gt;(以下简称VS)不得不使用msbuild进行项目的构建。VS能简化很多工作，同时也隐藏了很多内部实现细节。其中包括点击&amp;rdquo;部署&amp;rdquo;(publish)的时候VS通过msbuild为我们做了哪些工作？&lt;br /&gt;
+      <description>&lt;p&gt;　　使用MS的开发工具__Visual Studio__(以下简称VS)不得不使用msbuild进行项目的构建。VS能简化很多工作，同时也隐藏了很多内部实现细节。其中包括点击&amp;quot;部署&amp;quot;(publish)的时候VS通过msbuild为我们做了哪些工作？&lt;br&gt;
 参阅&lt;a href=&#34;https://msdn.microsoft.com/zh-cn/library/dd393574.aspx?f=255&amp;amp;MSPPError=-2147217396&#34; title=&#34;点我访问&#34;&gt;msbuild官网&lt;/a&gt;文档，归纳如下！&lt;/p&gt;</description>
     </item>
     
@@ -370,7 +375,7 @@ condition条件判断就成为了对&lt;code&gt;cin&lt;/code&gt;对象的判断�
       
       <guid>https://gerrywp.github.io/blog/post/180420sea1/</guid>
       <description>&lt;p&gt;　　云亦海从梦中惊醒，他抬起左手摸索着开了灯，额头豆大的汗珠嗖嗖的往下滴落，顺着脖子流到了胸口。他拿起了手机看了下时间凌晨3点，眯着眼睛起身，
-他走到了镜子面前，对着镜子凝望了一会儿然后用右手狠狠地拍打了几下自己的右脸，顿时感到一阵灼热。&amp;rdquo;刚才应该是做了一个梦，不过为什么都是一个相同的梦？&amp;rdquo;他嘀咕着，不自觉的皱起了眉头。他转身走向了洗手间，一边顺手打开了水龙头往桶里面接水，一边尿尿。&lt;/p&gt;</description>
+他走到了镜子面前，对着镜子凝望了一会儿然后用右手狠狠地拍打了几下自己的右脸，顿时感到一阵灼热。&amp;ldquo;刚才应该是做了一个梦，不过为什么都是一个相同的梦？&amp;ldquo;他嘀咕着，不自觉的皱起了眉头。他转身走向了洗手间，一边顺手打开了水龙头往桶里面接水，一边尿尿。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -388,7 +393,7 @@ condition条件判断就成为了对&lt;code&gt;cin&lt;/code&gt;对象的判断�
       <pubDate>Thu, 29 Mar 2018 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/180329singletoninnodejs/</guid>
-      <description>&lt;p&gt;　　How to create singleton in Node.js?这个问题实际是错误的！因为nodejs模块缓存的原因，require(&amp;ldquo;)每次出来的都是单例的！&lt;/p&gt;</description>
+      <description>&lt;p&gt;　　How to create singleton in Node.js?这个问题实际是错误的！因为nodejs模块缓存的原因，require(&#39;&#39;)每次出来的都是单例的！&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -397,7 +402,7 @@ condition条件判断就成为了对&lt;code&gt;cin&lt;/code&gt;对象的判断�
       <pubDate>Thu, 29 Mar 2018 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/180329dllnotcopy/</guid>
-      <description>&lt;p&gt;　　添加了reference的*dll*文件并且&lt;code&gt;Copy Local&lt;/code&gt;值为True为何不拷贝到输出目录？&lt;/p&gt;</description>
+      <description>&lt;p&gt;　　添加了reference的&lt;em&gt;dll&lt;/em&gt;文件并且&lt;code&gt;Copy Local&lt;/code&gt;值为True为何不拷贝到输出目录？&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -513,7 +518,7 @@ github上有很多现成的可以使用。&lt;/p&gt;</description>
       <pubDate>Mon, 06 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/171106double11/</guid>
-      <description>&lt;p&gt;&amp;emsp;&amp;emsp;在无聊的日子，搞些乐子出来！！！有关于双11今天突然闲扯了一些比较有意思的文字，所以想把它记录下来。&lt;/p&gt;</description>
+      <description>&lt;p&gt;  在无聊的日子，搞些乐子出来！！！有关于双11今天突然闲扯了一些比较有意思的文字，所以想把它记录下来。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -531,7 +536,7 @@ github上有很多现成的可以使用。&lt;/p&gt;</description>
       <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/171030vimuse/</guid>
-      <description>&lt;p&gt;&amp;emsp;&amp;emsp;以普通用户身份vim编辑的文件,如何强制保存？&lt;/p&gt;</description>
+      <description>&lt;p&gt;  以普通用户身份vim编辑的文件,如何强制保存？&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -559,7 +564,7 @@ github上有很多现成的可以使用。&lt;/p&gt;</description>
       <pubDate>Wed, 25 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/171025visudo/</guid>
-      <description>&lt;p&gt;&amp;emsp;&amp;emsp;管理好你的主机，首要任务是配置好账户的权限，不能把root账户密码泄露出去。但是只有拥有root管理员权限才能安装软件，如何解决。&lt;br /&gt;
+      <description>&lt;p&gt;  管理好你的主机，首要任务是配置好账户的权限，不能把root账户密码泄露出去。但是只有拥有root管理员权限才能安装软件，如何解决。&lt;br&gt;
 相对于使用&lt;code&gt;su&lt;/code&gt;命令我们需要待切换用户的密码（通常是root密码），而使用&lt;code&gt;sudo&lt;/code&gt;命令仅需要当前用户的密码，甚至可以设置不需要密码！&lt;/p&gt;</description>
     </item>
     
@@ -618,9 +623,11 @@ github上有很多现成的可以使用。&lt;/p&gt;</description>
       <pubDate>Sat, 15 Jul 2017 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/170715curl/</guid>
-      <description>&lt;p&gt;ubuntu系统下想要使用curl-ssl只能是自己下载源码进行安装，因为开启ssl(&amp;ndash;with-ssl)需要openssl的库文件。默认ubuntu安装的openssl未包含库(lib)文件和头文件(include)。使用curl下载https文件的时候,会报以下错误：&lt;br /&gt;
-* Protocol https not supported or disabled in libcurl
-* Unsupport protocol&lt;/p&gt;</description>
+      <description>&lt;p&gt;ubuntu系统下想要使用curl-ssl只能是自己下载源码进行安装，因为开启ssl(&amp;ndash;with-ssl)需要openssl的库文件。默认ubuntu安装的openssl未包含库(lib)文件和头文件(include)。使用curl下载https文件的时候,会报以下错误：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Protocol https not supported or disabled in libcurl&lt;/li&gt;
+&lt;li&gt;Unsupport protocol&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
     <item>
@@ -629,7 +636,7 @@ github上有很多现成的可以使用。&lt;/p&gt;</description>
       <pubDate>Mon, 22 May 2017 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/170522dangal/</guid>
-      <description>&lt;p&gt;人都是为希望而活，因为有了希望，人才有生活的勇气。&lt;br /&gt;
+      <description>&lt;p&gt;人都是为希望而活，因为有了希望，人才有生活的勇气。&lt;br&gt;
 — 列夫·托尔斯泰  《安娜·卡列妮娜》&lt;/p&gt;</description>
     </item>
     
@@ -639,7 +646,7 @@ github上有很多现成的可以使用。&lt;/p&gt;</description>
       <pubDate>Thu, 18 May 2017 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/170518prediction/</guid>
-      <description>&lt;p&gt;不妨在闲暇之余跟未来的自己对话。跟&amp;rdquo;你&amp;rdquo;玩一个游戏吧，若干年以后或许是一个神预测，亦或许是个笑谈！&lt;/p&gt;</description>
+      <description>&lt;p&gt;不妨在闲暇之余跟未来的自己对话。跟&amp;quot;你&amp;quot;玩一个游戏吧，若干年以后或许是一个神预测，亦或许是个笑谈！&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -658,8 +665,8 @@ github上有很多现成的可以使用。&lt;/p&gt;</description>
       
       <guid>https://gerrywp.github.io/blog/post/170421accuratetimer/</guid>
       <description>&lt;p&gt;今天偶然看到了一篇讲解javascript各定时器的文章。文章使用对话的方式阐述了&lt;code&gt;setInterval&lt;/code&gt;不足，颇有意思。
-但是觉得不太好理解，原文如下：&lt;br /&gt;
-&lt;a href=&#34;http://imweb.io/topic/56ac67fbe39ca21162ae6c78&#34; title=&#34;点我访问&#34;&gt;setTimeout那些事儿&lt;/a&gt;&lt;br /&gt;
+但是觉得不太好理解，原文如下：&lt;br&gt;
+&lt;a href=&#34;http://imweb.io/topic/56ac67fbe39ca21162ae6c78&#34; title=&#34;点我访问&#34;&gt;setTimeout那些事儿&lt;/a&gt;&lt;br&gt;
 其中的第三点，咱们还是代码见(show you code)。&lt;/p&gt;</description>
     </item>
     
@@ -680,7 +687,7 @@ github上有很多现成的可以使用。&lt;/p&gt;</description>
       <pubDate>Tue, 11 Apr 2017 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/170411pkgmanager/</guid>
-      <description>&lt;p&gt;linux界的 2 大主流软件管理方式(命令):RPM(RedHat Package Manager)和DPKG(Debian Packager)。&lt;br /&gt;
+      <description>&lt;p&gt;linux界的 2 大主流软件管理方式(命令):RPM(RedHat Package Manager)和DPKG(Debian Packager)。&lt;br&gt;
 它们对应的在线(线上)管理方式(命令):YUM(Yellowdog Updater, Modified)和APT(Advanced Packaging Tool)。&lt;/p&gt;</description>
     </item>
     
@@ -709,7 +716,7 @@ github上有很多现成的可以使用。&lt;/p&gt;</description>
       <pubDate>Thu, 23 Mar 2017 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/170323encoding/</guid>
-      <description>&lt;p&gt;Unicode是一个编码字符集，统一维护着世界上所有的&amp;rsquo;字符&amp;rsquo;。Unicode只是一个符号集，它只规定了符号的二进制代码，
+      <description>&lt;p&gt;Unicode是一个编码字符集，统一维护着世界上所有的&amp;rsquo;字符&#39;。Unicode只是一个符号集，它只规定了符号的二进制代码，
 却没有规定这个二进制代码应该如何存储。utf8只是Unicode字符集的一个具体的编码(解码)的实现方式之一，其它的还有utf-16
 ,utf-32等。&lt;/p&gt;</description>
     </item>
@@ -720,7 +727,7 @@ github上有很多现成的可以使用。&lt;/p&gt;</description>
       <pubDate>Tue, 21 Mar 2017 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/170321winbatch/</guid>
-      <description>&lt;p&gt;最近被外甥问到一个初中的奥数题目，涉及到高中的排列组合问题。因想求证一下答案，故考虑到使用&amp;rdquo;穷举法&amp;rdquo;编程来解决这个问题。
+      <description>&lt;p&gt;最近被外甥问到一个初中的奥数题目，涉及到高中的排列组合问题。因想求证一下答案，故考虑到使用&amp;quot;穷举法&amp;quot;编程来解决这个问题。
 一开始使用的是高级语言c#来解决但是觉得不够大众化，并且不便与之交流。思考了下，觉得脚本文件可以解决这个问题，
 由于batch script很少用，使用起来并不方便，而且有很多坑，因此引出了这篇博客。&lt;/p&gt;</description>
     </item>
@@ -806,7 +813,7 @@ github上有很多现成的可以使用。&lt;/p&gt;</description>
       <pubDate>Fri, 30 Dec 2016 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/161230vmware/</guid>
-      <description>&lt;p&gt;兲朝&amp;rdquo;科学上网&amp;rdquo;:[Vmware-Ubuntu]使用Nat模式，也能使用本机的shadowsocks proxy&lt;/p&gt;</description>
+      <description>&lt;p&gt;兲朝&amp;quot;科学上网&amp;quot;:[Vmware-Ubuntu]使用Nat模式，也能使用本机的shadowsocks proxy&lt;/p&gt;</description>
     </item>
     
     <item>

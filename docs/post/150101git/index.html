@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -93,157 +93,103 @@
                         
                         <div class="post-content">
                             <p>依据linux、windows系统的不同，对git常用命令进行归类。</p>
-
 <h3 id="git-config">git config</h3>
-
-<p><strong><em>参数</em></strong></p>
-
+<p><em><strong>参数</strong></em></p>
 <ol>
-<li><p><strong>--global</strong>: 当前用户配置<br />
-windows下路径: <code>%HOMEPATH%\.gitconfig</code>。<br />
-linux下路径: <code>cd ~</code>下的.gitconfig文件。</p></li>
-
-<li><p><strong>--local</strong>: 项目配置(.gitconfig文件)</p></li>
-
-<li><p><strong>--system</strong>: 系统配置<br />
+<li>
+<p><strong>--global</strong>: 当前用户配置<br>
+windows下路径: <code>%HOMEPATH%\.gitconfig</code>。<br>
+linux下路径: <code>cd ~</code>下的.gitconfig文件。</p>
+</li>
+<li>
+<p><strong>--local</strong>: 项目配置(.gitconfig文件)</p>
+</li>
+<li>
+<p><strong>--system</strong>: 系统配置<br>
 windows下路径: git安装路径下的<code>\mingw32\etc\gitconfig</code>文件(或<code>C:\ProgramData\Git\</code>下的config文件)。
-linux下路径: <code>/etc/gitconfig</code>文件。</p></li>
+linux下路径: <code>/etc/gitconfig</code>文件。</p>
+</li>
 </ol>
-
-<p><strong><em>命令别名</em></strong></p>
-
-<pre><code class="language-shell"># 图形化显示提交日志
-# windows下值需要用双引号括起来(linux下双引号单引号都可以)
-git config --global alias.glog &quot;log --shortstat --abbrev-commit --pretty=format:%h-%cn,%cr:%s%d --graph&quot;
-</code></pre>
-
-<h3 id="选择修订版本-git手册7-1节-https-git-scm-com-book-zh-v2-git-e5-b7-a5-e5-85-b7-e9-80-89-e6-8b-a9-e4-bf-ae-e8-ae-a2-e7-89-88-e6-9c-ac">选择修订版本(<a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%80%89%E6%8B%A9%E4%BF%AE%E8%AE%A2%E7%89%88%E6%9C%AC">git手册7.1节</a>)</h3>
-
+<p><em><strong>命令别名</strong></em></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#008000"># 图形化显示提交日志</span>
+<span style="color:#008000"># windows下值需要用双引号括起来(linux下双引号单引号都可以)</span>
+git config --global alias.glog <span style="color:#a31515">&#34;log --shortstat --abbrev-commit --pretty=format:%h-%cn,%cr:%s%d --graph&#34;</span>
+</code></pre></div><h3 id="选择修订版本git手册71节httpsgit-scmcombookzhv2git-e5b7a5e585b7-e98089e68ba9e4bfaee8aea2e78988e69cac">选择修订版本(<a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%80%89%E6%8B%A9%E4%BF%AE%E8%AE%A2%E7%89%88%E6%9C%AC">git手册7.1节</a>)</h3>
 <p><strong>祖先引用</strong></p>
-
 <p>git使用^符号(或者~)表示祖先引用</p>
-
-<pre><code class="language-bash">git show HEAD^ #显示上一个commit
-git show HEAD~3 #显示上一个的上一个的上一个的commit
-git show d921970^2 #代表&quot;d921970&quot;的第二父提交。这个语法只适用于合并(merge)的提交，因为合并提交会有多个父提交。
-</code></pre>
-
-<p><strong>区间选择</strong></p>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git show HEAD^ <span style="color:#008000">#显示上一个commit</span>
+git show HEAD~3 <span style="color:#008000">#显示上一个的上一个的上一个的commit</span>
+git show d921970^2 <span style="color:#008000">#代表&#34;d921970&#34;的第二父提交。这个语法只适用于合并(merge)的提交，因为合并提交会有多个父提交。</span>
+</code></pre></div><p><strong>区间选择</strong></p>
 <ol>
-<li><p>双点(..)</p>
-
-<pre><code class="language-bash">git log master..experiment
-</code></pre></li>
-
-<li><p>多点</p>
-
-<pre><code class="language-bash">git log ^refA refB
-</code></pre></li>
-
-<li><p>三点(&hellip;)</p>
-
-<pre><code class="language-bash">git log refA...refB
-</code></pre></li>
+<li>双点(..)</li>
 </ol>
-
-<h3 id="http-https记住用户名密码">http/https记住用户名密码</h3>
-
-<p><code>git config --global credential.helper</code><br />
-<strong>&ldquo;store&rdquo;</strong>模式接受一个 --file <path> 参数，可以自定义存放密码的文件路径（默认是<code>~/.git-credentials</code>）。</p>
-
-<pre><code class="language-bash">git config --global credential.helper store --file ~/.my-credentials
-</code></pre>
-
-<h3 id="撤销和重置操作">撤销和重置操作</h3>
-
-<p>checkout、reset都可以对workstation工作区的文件进行撤销更改。<br />
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git log master..experiment
+</code></pre></div><ol start="2">
+<li>多点</li>
+</ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git log ^refA refB
+</code></pre></div><ol start="3">
+<li>三点(&hellip;)</li>
+</ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git log refA...refB
+</code></pre></div><h3 id="httphttps记住用户名密码">http/https记住用户名密码</h3>
+<p><code>git config --global credential.helper</code><br>
+**&ldquo;store&rdquo;**模式接受一个 --file <!-- raw HTML omitted --> 参数，可以自定义存放密码的文件路径（默认是<code>~/.git-credentials</code>）。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git config --global credential.helper store --file ~/.my-credentials
+</code></pre></div><h3 id="撤销和重置操作">撤销和重置操作</h3>
+<p>checkout、reset都可以对workstation工作区的文件进行撤销更改。<br>
 具体的区别参考git-scm的文档说明
 <a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%87%8D%E7%BD%AE%E6%8F%AD%E5%AF%86" title="点我访问">git手册</a></p>
-
-<pre><code class="language-bash">git checkout --hard --filename
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git checkout --hard --filename
 git reset --hard --filename
-</code></pre>
-
-<h3 id="设置commit默认编辑器为vim">设置commit默认编辑器为vim</h3>
-
+</code></pre></div><h3 id="设置commit默认编辑器为vim">设置commit默认编辑器为vim</h3>
 <p>ubuntu下git默认使用的文本编辑器为nano,使用起来感觉不顺手，可以通过修改配置文件改成自己喜欢的编辑器。</p>
-
-<pre><code class="language-bash">#!/bin/bash
-# 可以使用git var --help 查看变量设置
-# git config --global --help 
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#00f">#!/bin/bash
+</span><span style="color:#00f"></span><span style="color:#008000"># 可以使用git var --help 查看变量设置</span>
+<span style="color:#008000"># git config --global --help </span>
 git config --global core.editor vim
-# 查看全局配置文件是否修改成功
+<span style="color:#008000"># 查看全局配置文件是否修改成功</span>
 git config --global -e
-</code></pre>
-
-<h3 id="git-log显示commit所属分支">git log显示commit所属分支</h3>
-
+</code></pre></div><h3 id="git-log显示commit所属分支">git log显示commit所属分支</h3>
 <p>option:&ndash;decorate</p>
-
-<pre><code class="language-bash">git log --graph --decorate
-# 或者使用format %d 达到同样的效果
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git log --graph --decorate
+<span style="color:#008000"># 或者使用format %d 达到同样的效果</span>
 git log --graph --format=%d
-</code></pre>
-
-<h3 id="远程分支">远程分支</h3>
-
-<pre><code class="language-bash"># 查看远程分支
+</code></pre></div><h3 id="远程分支">远程分支</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># 查看远程分支</span>
 git branch -a
-# 删除远程分支和标签
+<span style="color:#008000"># 删除远程分支和标签</span>
 git push origin --delete &lt;branchname&gt;
 git push origin --delete tag &lt;tagname&gt;
-# 否则使用下面的方式，推送空分支
+<span style="color:#008000"># 否则使用下面的方式，推送空分支</span>
 git push origin:
-</code></pre>
-
-<h3 id="windows下vs2017">windows下vs2017</h3>
-
+</code></pre></div><h3 id="windows下vs2017">windows下vs2017</h3>
 <ol>
-<li>visual studio 2017默认集成了git工具，在选择安装包的时候我们需要安装git for windows。<br />
+<li>visual studio 2017默认集成了git工具，在选择安装包的时候我们需要安装git for windows。<br>
 在「单个组件」···「代码工具」里面选中「适用于windows的git」。
-<img src="/blog/pictures/QQ20170627205054.png" alt="git in vs" title="请开启" /></li>
-
-<li><p>打开安装好的git-bash,使用ssh-keygen命令生成ssh公钥和私钥</p>
-
-<pre><code class="language-bash">ssh-keygen -t rsa -C&quot;your comment&quot;
-#-t参数 加密类型
-#-C参数 注释
-</code></pre>
-
-<p>win10系统下必须要指定公钥生成的路径<code>c:\users\username\.ssh\id_rsa</code></p></li>
-
-<li><p>将生成的公钥id_rsa.pub里面的内容复制，并添加到远程服务器上的「密钥管理」里面。</p></li>
-
-<li><p>生成known_hosts文件</p>
-
-<pre><code class="language-bash">ssh -t git@site.com #连接远程服务器
-git pull
-</code></pre>
-
-<p>上述两个命令都会在.ssh\目录下生成一个known_hosts的文件</p></li>
-
-<li><p>现在可以直接使用vs2017自带的git工具了。</p></li>
+<img src="/blog/pictures/QQ20170627205054.png" alt="git in vs" title="请开启"></li>
+<li>打开安装好的git-bash,使用ssh-keygen命令生成ssh公钥和私钥</li>
 </ol>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ssh-keygen -t rsa -C<span style="color:#a31515">&#34;your comment&#34;</span>
+<span style="color:#008000">#-t参数 加密类型</span>
+<span style="color:#008000">#-C参数 注释</span>
+</code></pre></div><p>win10系统下必须要指定公钥生成的路径<code>c:\users\username\.ssh\id_rsa</code>
+3. 将生成的公钥id_rsa.pub里面的内容复制，并添加到远程服务器上的「密钥管理」里面。
+4. 生成known_hosts文件</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ssh -t git@site.com <span style="color:#008000">#连接远程服务器</span>
+git pull
+</code></pre></div><p>上述两个命令都会在.ssh\目录下生成一个known_hosts的文件
+5. 现在可以直接使用vs2017自带的git工具了。</p>
 <h3 id="git无法clone私有库">git无法clone私有库</h3>
-
 <p>问题背景：公司有一个私有库我需要拷贝下来，使用git-gui图形页面可以克隆但是使用terminal克隆死活克隆不下来</p>
-
-<pre><code class="language-bash">git clone http://192.168.0.30:3000
-</code></pre>
-
-<p>这样直接clone会提示无法连接到服务器，我们需要带上用户名密码</p>
-
-<pre><code class="language-bash">git clone http://gerry:wp@192.168.0.30:3000
-</code></pre>
-
-<p>说明：gerry是用户名(请注意不是email)，wp是密码</p>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone http://192.168.0.30:3000
+</code></pre></div><p>这样直接clone会提示无法连接到服务器，我们需要带上用户名密码</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone http://gerry:wp@192.168.0.30:3000
+</code></pre></div><p>说明：gerry是用户名(请注意不是email)，wp是密码</p>
 <p>参考链接</p>
-
 <blockquote>
-<p><a href="https://git-scm.com/book/zh/v2" target="_blank">git手册</a></p>
+<p><!-- raw HTML omitted -->git手册<!-- raw HTML omitted --></p>
 </blockquote>
                         </div>
 
@@ -310,6 +256,10 @@ git pull
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -345,10 +295,6 @@ git pull
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -368,7 +314,7 @@ git pull
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

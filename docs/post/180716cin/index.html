@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -94,113 +94,83 @@
                         <div class="post-content">
                             <p>　　<code>while(cin&gt;&gt;m)</code>为什么可以做这样的判断，完全是因为c++的操作符重载。<code>cin&gt;&gt;m</code>操作会返回<code>cin</code>对象，前面的
 condition条件判断就成为了对<code>cin</code>对象的判断。</p>
-
 <h3 id="cin的操作符重载">cin的操作符重载</h3>
-
 <p><code>cin</code>是<code>istream</code>的实例对象，而<code>istream</code>是<code>basic_iostram</code>类的别名，<code>basic_iostream</code>继承自<code>basic_ios</code>,最终
 在头文件<code>xiosbase</code>可以看到运算符重载<code>bool ()</code>和 <code>! ()</code>。</p>
-
-<pre><code class="language-cpp">explicit __CLR_OR_THIS_CALL operator bool() const
-	{	// test if no stream operation has failed
-	return (!fail());
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">explicit</span> __CLR_OR_THIS_CALL <span style="color:#00f">operator</span> bool() <span style="color:#00f">const</span>
+	{	<span style="color:#008000">// test if no stream operation has failed
+</span><span style="color:#008000"></span>	<span style="color:#00f">return</span> (!fail());
 	}
 
-_NODISCARD bool __CLR_OR_THIS_CALL operator!() const
-	{	// test if any stream operation has failed
-	return (fail());
+_NODISCARD <span style="color:#2b91af">bool</span> __CLR_OR_THIS_CALL <span style="color:#00f">operator</span>!() <span style="color:#00f">const</span>
+	{	<span style="color:#008000">// test if any stream operation has failed
+</span><span style="color:#008000"></span>	<span style="color:#00f">return</span> (fail());
 	}
-</code></pre>
-
-<p>可以看到最终调用的是fail函数，fail函数源码如下：</p>
-
-<pre><code class="language-cpp">_NODISCARD bool __CLR_OR_THIS_CALL fail() const
-	{	// test if badbit or failbit is set in stream state
-	return (((int)rdstate()
-		&amp; ((int)badbit | (int)failbit)) != 0);
+</code></pre></div><p>可以看到最终调用的是fail函数，fail函数源码如下：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">_NODISCARD <span style="color:#2b91af">bool</span> __CLR_OR_THIS_CALL fail() <span style="color:#00f">const</span>
+	{	<span style="color:#008000">// test if badbit or failbit is set in stream state
+</span><span style="color:#008000"></span>	<span style="color:#00f">return</span> (((<span style="color:#2b91af">int</span>)rdstate()
+		&amp; ((<span style="color:#2b91af">int</span>)badbit | (<span style="color:#2b91af">int</span>)failbit)) != 0);
 	}
-</code></pre>
-
-<p>根据io-stream state状态来判断输入流的成败与否！<br />
+</code></pre></div><p>根据io-stream state状态来判断输入流的成败与否！<br>
 当将cin作为while的条件的时候会隐式将cin类型转换成bool类型,因此会调用重载运算符函数，返回<code>cin</code>流状态。
 可以通过如下代码验证输入流的正确性：</p>
-
-<pre><code class="language-cpp">int m;
-bool stateResult=static_cast&lt;bool&gt;(cin &gt;&gt; m);
-</code></pre>
-
-<p>通过调试我们键入一个非数字的任意字符，看到输出<code>stateResult=false</code>!</p>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#2b91af">int</span> m;
+<span style="color:#2b91af">bool</span> stateResult=<span style="color:#00f">static_cast</span>&lt;<span style="color:#2b91af">bool</span>&gt;(cin &gt;&gt; m);
+</code></pre></div><p>通过调试我们键入一个非数字的任意字符，看到输出<code>stateResult=false</code>!</p>
 <h3 id="输入缓冲区问题">输入缓冲区问题</h3>
-
 <p>使用如下代码：</p>
-
-<pre><code class="language-cpp">#include &lt;iostream&gt;
-#include &lt;string&gt;
-using namespace std;
-int main() {
-	int m;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#include</span> <span style="color:#00f">&lt;iostream&gt;</span><span style="color:#00f">
+</span><span style="color:#00f">#include</span> <span style="color:#00f">&lt;string&gt;</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">using</span> <span style="color:#00f">namespace</span> std;
+<span style="color:#2b91af">int</span> main() {
+	<span style="color:#2b91af">int</span> m;
 	cin &gt;&gt; m;
 	cout &lt;&lt; m&lt;&lt;endl;
-	cout &lt;&lt; &quot;cin state is:&quot; &lt;&lt; cin.rdstate() &lt;&lt; endl;
+	cout &lt;&lt; <span style="color:#a31515">&#34;cin state is:&#34;</span> &lt;&lt; cin.rdstate() &lt;&lt; endl;
 	string leftStr;
 	cin &gt;&gt; leftStr;
 	cout &lt;&lt; leftStr&lt;&lt;endl;
-	system(&quot;pause&quot;);
+	system(<span style="color:#a31515">&#34;pause&#34;</span>);
 }
-</code></pre>
-
-<p>当我们输入<code>12345abcde</code>的时候，会得出如下结果：</p>
-
-<pre><code class="language-cmd">12345
+</code></pre></div><p>当我们输入<code>12345abcde</code>的时候，会得出如下结果：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">12345
 cin state is:0
 abcde
-</code></pre>
-
-<p>因为m是整数，当流遇到字符<code>a</code>的时候检测到非法输入，剩余的<code>abcde</code>字符会留在输入缓冲区，下一次输入的时候
+</code></pre></div><p>因为m是整数，当流遇到字符<code>a</code>的时候检测到非法输入，剩余的<code>abcde</code>字符会留在输入缓冲区，下一次输入的时候
 <code>cin&gt;&gt;leftStr</code>会直接从输入缓冲区读取数据，cmd程序不会等待外部输入！当我们在第一个字符就输入非法字符的时候
 得到的是如下输出：</p>
-
-<pre><code class="language-cmd">-858993460
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">-858993460
 cin state is:2
-</code></pre>
-
-<p>可以看到当首字符是非法字符的时候，流产生错误返回代码为2！</p>
-
-<h3 id="如何让cin只接受数字-并循环提示">如何让cin只接受数字,并循环提示?</h3>
-
+</code></pre></div><p>可以看到当首字符是非法字符的时候，流产生错误返回代码为2！</p>
+<h3 id="如何让cin只接受数字并循环提示">如何让cin只接受数字,并循环提示?</h3>
 <p>依据上述实例可以看出，流在处理输入的时候，是一个字符一个字符处理的，因此我们可以通过string来判断，所有输入的结果是否是数字构成：</p>
-
-<pre><code class="language-cpp">#include &lt;iostream&gt;
-#include &lt;sstream&gt;
-#include &lt;string&gt;
-using namespace std;
-int main() {
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">#include</span> <span style="color:#00f">&lt;iostream&gt;</span><span style="color:#00f">
+</span><span style="color:#00f">#include</span> <span style="color:#00f">&lt;sstream&gt;</span><span style="color:#00f">
+</span><span style="color:#00f">#include</span> <span style="color:#00f">&lt;string&gt;</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">using</span> <span style="color:#00f">namespace</span> std;
+<span style="color:#2b91af">int</span> main() {
 	string s;
-	unsigned n;
-	do 
+	<span style="color:#2b91af">unsigned</span> n;
+	<span style="color:#00f">do</span> 
 	{
-		do
+		<span style="color:#00f">do</span>
 		{
-			cin.clear();//reset istream state
-			cin.sync();//flush buffer
-			cout &lt;&lt; &quot;please input number:&quot; &lt;&lt; endl;
+			cin.clear();<span style="color:#008000">//reset istream state
+</span><span style="color:#008000"></span>			cin.sync();<span style="color:#008000">//flush buffer
+</span><span style="color:#008000"></span>			cout &lt;&lt; <span style="color:#a31515">&#34;please input number:&#34;</span> &lt;&lt; endl;
 			cin &gt;&gt; s;
-		} while (s.find_first_not_of(&quot;0123456789&quot;) != string::npos || s.size() == 0);
+		} <span style="color:#00f">while</span> (s.find_first_not_of(<span style="color:#a31515">&#34;0123456789&#34;</span>) != string::npos || s.size() == 0);
 		istringstream(s) &gt;&gt; n;
-	} while (n&lt;10||n&gt;100);
-	system(&quot;pause&quot;);
-	return 0;
+	} <span style="color:#00f">while</span> (n&lt;10||n&gt;100);
+	system(<span style="color:#a31515">&#34;pause&#34;</span>);
+	<span style="color:#00f">return</span> 0;
 }
-</code></pre>
-
-<blockquote>
+</code></pre></div><blockquote>
 <p>说明：上例只能判断无符号整数。判断n是否大于10小于100</p>
 </blockquote>
-
 <h3 id="拷贝构造函数和拷贝赋值函数">拷贝构造函数和拷贝赋值函数</h3>
-
 <p>调用的是拷贝构造函数还是赋值运算符，主要是看是否有新的对象实例产生。如果产生了新的对象实例，那调用的就是拷贝构造函数；如果没有，那就是对已有的对象赋值，调用的是赋值运算符。</p>
-
 <ol>
 <li>有新对象产生：拷贝构造</li>
 <li>没有新对象产生，仅仅对已有对象赋值：拷贝赋值</li>
@@ -218,7 +188,7 @@ int main() {
         
         <li><a href="/blog/post/180705cpprelative/">c&#43;&#43;开发环境</a></li>
         
-        <li><a href="/blog/post/180703linear7hash/">线性存储和hashcode</a></li>
+        <li><a href="/blog/post/180703linear7hash/">线性存储</a></li>
         
         <li><a href="/blog/post/180627thinkinjava/">Think in java(Java编程思想)笔记</a></li>
         
@@ -272,6 +242,10 @@ int main() {
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -307,10 +281,6 @@ int main() {
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -330,7 +300,7 @@ int main() {
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

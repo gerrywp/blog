@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -93,119 +93,73 @@
                         
                         <div class="post-content">
                             <p>一片祥和全赖墙，吾辈凤歌影疏狂。今朝方公倾其智，吓哭当年秦始皇！</p>
-
-<h3 id="websocks-tls-nginx的流量伪装">websocks+tls+nginx的流量伪装</h3>
-
-<p>GFW技术的日新月异，造成了我们使用google的难度(不要问我为什么要用谷歌，你搜下百度不是卖假药就是广告)，随着岁月的流逝，曾经的shadowsocks已经淹没于洪荒之中。为何需要使用tls包装？因为借助于tls的加密，可以使墙很难识别你的服务器请求到底是一个正规请求还是vpn请求。举例：<br />
-当请求<a href="https://www.yoursite.com/awesomepath">https://www.yoursite.com/awesomepath</a>的时候，你的服务器直接返回<code>404 bad request</code>。看上去就是一个正规网站，墙是很难识别的。<br />
+<h3 id="websockstlsnginx的流量伪装">websocks+tls+nginx的流量伪装</h3>
+<p>GFW技术的日新月异，造成了我们使用google的难度(不要问我为什么要用谷歌，你搜下百度不是卖假药就是广告)，随着岁月的流逝，曾经的shadowsocks已经淹没于洪荒之中。为何需要使用tls包装？因为借助于tls的加密，可以使墙很难识别你的服务器请求到底是一个正规请求还是vpn请求。举例：<br>
+当请求<a href="https://www.yoursite.com/awesomepath">https://www.yoursite.com/awesomepath</a>的时候，你的服务器直接返回<code>404 bad request</code>。看上去就是一个正规网站，墙是很难识别的。 <br>
 有关于tls的原理，请移步<a href="https://www.ruanyifeng.com/blog/2014/09/illustration-ssl.html">https://www.ruanyifeng.com/blog/2014/09/illustration-ssl.html</a>。</p>
-
 <h3 id="前提条件">前提条件</h3>
-
 <p>本文假设你有一定的computer since and technology基础，并且略懂linux。</p>
-
 <ol>
 <li>一台境外的vps(例如：谷歌云)请自行申请，有免费的有便宜的，请谷歌！</li>
 <li>一个域名无需备案(你可以申请一个阿里云的xyz域名比较便宜5元/年),最好是无备案的(不然被police叔叔邀请去喝茶更容易了)。
 为什么需要一个域名？因为申请免费的tls证书是需要提供域名的。</li>
 <li>会使用vim编辑器</li>
 </ol>
-
 <h3 id="操作步骤">操作步骤</h3>
-
-<h4 id="1-nginx反向代理">1.nginx反向代理</h4>
-
+<h4 id="1nginx反向代理">1.nginx反向代理</h4>
 <p>本文使用的是ubuntu系统，使用如下命令安装nginx</p>
-
-<pre><code class="language-shell"># 安装
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#008000"># 安装</span>
 apt install nginx 
-</code></pre>
-
-<p>当期时间的linux发行版多使用systemctl管理服务，如果你使用旧版本系统，如果启/禁用服务，自行谷歌。</p>
-
-<pre><code class="language-shell">systemctl status nginx
+</code></pre></div><p>当期时间的linux发行版多使用systemctl管理服务，如果你使用旧版本系统，如何启/禁用服务，自行谷歌。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">systemctl status nginx
 systemctl stop nginx
-</code></pre>
-
-<p>安装伪站点(让你的服务器成为一个真实存在的服务器)</p>
-
-<pre><code class="language-shell">rm -rf /home/wwwroot &amp;&amp; mkdir -p /home/wwwroot &amp;&amp; cd /home/wwwroot
+</code></pre></div><p>安装伪站点(让你的服务器成为一个真实存在的服务器)</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">rm -rf /home/wwwroot &amp;&amp; mkdir -p /home/wwwroot &amp;&amp; cd /home/wwwroot
 git clone https://github.com/dunizb/sCalc.git
-</code></pre>
-
-<p>配置nginx反向代理指向静态站点</p>
-
-<pre><code class="language-shell">#找到nginx可执行文件绝对路径
+</code></pre></div><p>配置nginx反向代理指向静态站点</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#008000">#找到nginx可执行文件绝对路径</span>
 whereis nginx
-#切换至root账号
-#sudo -i 
-#一般情况如下，查看配置文件路径
+<span style="color:#008000">#切换至root账号</span>
+<span style="color:#008000">#sudo -i </span>
+<span style="color:#008000">#一般情况如下，查看配置文件路径</span>
 /usr/sbin/nginx -t
-</code></pre>
-
-<p>配置nginx指向你的静态站点</p>
-
-<pre><code class="language-shell">#nginx的配置文件路径默认如下
+</code></pre></div><p>配置nginx指向你的静态站点</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#008000">#nginx的配置文件路径默认如下</span>
 vim /etc/nginx/nginx.conf
-</code></pre>
-
-<p>配置我们的网站(将你的域名site.xyz,www.site.xyz都解析到vps服务器)</p>
-
+</code></pre></div><p>配置我们的网站(将你的域名site.xyz,www.site.xyz都解析到vps服务器)</p>
 <pre><code>server {
     listen 80;
     server_name site.xyz www.site.xyz;# 改成你的域名
 	index index.html index.htm;
 	root  /home/wwwroot/sCalc;
 }
-</code></pre>
-
-<p>重新启动nginx</p>
-
-<pre><code class="language-shell">systemctl restart nginx
-</code></pre>
-
-<p>现在通过域名你应该可以能直接访问你的静态网站了，打开另一个计算器web应用程序，如下：</p>
-
-<p><img src="../../pictures/20200503203230.png" alt="伪站点" /></p>
-
+</code></pre><p>重新启动nginx</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">systemctl restart nginx
+</code></pre></div><p>现在通过域名你应该可以能直接访问你的静态网站了，打开一个计算器web应用程序，如下：</p>
+<p><img src="../../pictures/20200503203230.png" alt="伪站点"></p>
 <blockquote>
 <p>什么是反向代理？</p>
 </blockquote>
-
-<p>这里不赘述那么多原理，反向代理是相对(正向)代理而言的，以一言而蔽之曰：<br />
+<p>这里不赘述那么多原理，反向代理是相对(正向)代理而言的，以一言而蔽之曰：<br>
 正向代理隐藏真实的客户端，反向代理隐藏真实的服务器。</p>
-
-<h3 id="2-生成证书并使用https">2.生成证书并使用https</h3>
-
+<h3 id="2生成证书并使用https">2.生成证书并使用https</h3>
 <p>使用TLS需要证书，证书有免费付费的，在此使用免费证书，证书认证机构为<a href="https://letsencrypt.org/">Let&rsquo;s Encrypt</a>。
 证书的生成有许多方法，这里使用的是比较简单的方法：使用<code>acme.sh</code>脚本生成，参考<a href="https://github.com/acmesh-official/acme.sh/blob/master/README.md">acme.sh README</a>。</p>
-
 <p>执行以下命令，acme.sh 会安装到 ~/.acme.sh 目录下。</p>
-
-<pre><code class="language-shell">curl  https://get.acme.sh | sh
-</code></pre>
-
-<p>安装成功后执行<code>source ~/.bashrc</code>以确保脚本所设置的命令别名生效。</p>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl  https://get.acme.sh | sh
+</code></pre></div><p>安装成功后执行<code>source ~/.bashrc</code>以确保脚本所设置的命令别名生效。</p>
 <h4 id="生成证书">生成证书</h4>
-
-<pre><code class="language-shell">###标准生成
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#008000">###标准生成</span>
 sudo ~/.acme.sh/acme.sh --issue -d yoursite.xyz --standalone -k ec-256
-</code></pre>
-
-<p>如果提示错误(按照提示安装即可)</p>
-
-<pre><code class="language-shell">Please install socat tools first.
-</code></pre>
-
-<p>因为我们已经安装了nginx，在这里我们可以直接根据nginx配置文件生成证书(并安装)。<br />
+</code></pre></div><p>如果提示错误(按照提示安装即可)</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">Please install socat tools first.
+</code></pre></div><p>因为我们已经安装了nginx，在这里我们可以直接根据nginx配置文件生成证书(并安装)。<br>
 nginx的配置文件如下：</p>
-
-<pre><code class="language-shell">   server {
-   #Server configuration
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">   server {
+   <span style="color:#008000">#Server configuration</span>
    listen 80;
    server_name yoursit.xyz www.yoursite.xyz;
-   return 301 https://yoursite.xyz$request_uri;
+   <span style="color:#00f">return</span> 301 https://yoursite.xyz$request_uri;
    }
    server {
    listen 443 ssl;
@@ -214,7 +168,7 @@ nginx的配置文件如下：</p>
    ssl_certificate_key   /etc/v2ray/v2ray.key;
    ssl_protocols         TLSv1.2 TLSv1.3;
    ssl_ciphers           ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA    384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
-   add_header Strict-Transport-Security &quot;max-age=63072000&quot; always;
+   add_header Strict-Transport-Security <span style="color:#a31515">&#34;max-age=63072000&#34;</span> always;
    server_name aiyoe.xyz www.aiyoe.xyz;
    index index.html index.htm;
    root  /home/wwwroot/sCalc;
@@ -224,106 +178,73 @@ nginx的配置文件如下：</p>
      proxy_pass http://127.0.0.1:10000;
      proxy_http_version 1.1;
      proxy_set_header Upgrade $http_upgrade;
-     proxy_set_header Connection &quot;upgrade&quot;;
+     proxy_set_header Connection <span style="color:#a31515">&#34;upgrade&#34;</span>;
      proxy_set_header Host $http_host;
      }
    }
 
-</code></pre>
-
-<p>生成证书</p>
-
-<pre><code class="language-shell">sudo ~/.acme.sh/acme.sh --issue -d yoursite.xyz --nginx -k ec-256
-</code></pre>
-
-<h4 id="安装ecc证书">安装ECC证书</h4>
-
+</code></pre></div><p>生成证书</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo ~/.acme.sh/acme.sh --issue -d yoursite.xyz --nginx -k ec-256
+</code></pre></div><h4 id="安装ecc证书">安装ECC证书</h4>
 <p>安装证书到v2ray目录</p>
-
-<pre><code class="language-shell">sudo ~/.acme.sh/acme.sh --installcert -d yoursite.xyz --fullchainpath /etc/v2ray/v2ray.crt --keypath /etc/v2ray/v2ray.key --ecc
-</code></pre>
-
-<blockquote>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo ~/.acme.sh/acme.sh --installcert -d yoursite.xyz --fullchainpath /etc/v2ray/v2ray.crt --keypath /etc/v2ray/v2ray.key --ecc
+</code></pre></div><blockquote>
 <p><a href="https://github.com/mikewubox/V2Ray3">nginx和v2ray配置</a></p>
 </blockquote>
-
 <h4 id="证书过期">证书过期</h4>
-
 <p>客户端连接错误<code>io read/write on closed pipe</code>,日志显示x509(ssl)错误</p>
-
 <p>查看linux服务器端证书过期日期</p>
-
-<pre><code class="language-shell">openssl x509 -in /etc/v2ray/v2ray.crt -noout -dates
-### 显示如下信息
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">openssl x509 -in /etc/v2ray/v2ray.crt -noout -dates
+<span style="color:#008000">### 显示如下信息</span>
 notBefore=Jul 29 01:47:53 2020 GMT
 notAfter=Oct 27 01:47:53 2020 GMT
-</code></pre>
-
-<p>重新生成证书</p>
-
-<pre><code class="language-shell">### 安装socat
+</code></pre></div><p>重新生成证书</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#008000">### 安装socat</span>
 sudo apt-get install socat
 sudo systemctl stop nginx
 sudo ~/.acme.sh/acme.sh --issue -d yoursite.xyz --standalone -k ec-256
 sudo systemctl start nginx
 sudo systemctl status nginx
-</code></pre>
-
-<p>通过nginx生成证书一直报错误：</p>
-
+</code></pre></div><p>通过nginx生成证书一直报错误：</p>
 <p><code>Verify error:Invalid response from https://github.com/404.html [140.82.113.4]</code></p>
-
 <p>尝试如下解决方案(不一定有效):</p>
-
 <ol>
-<li><p>在nginx配置文件server节点下添加如下配置</p>
-
-<pre><code class="language-shell">location ~ /.well-known {
+<li>在nginx配置文件server节点下添加如下配置</li>
+</ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">location ~ /.well-known {
 allow all;
 }
-</code></pre></li>
-
-<li><p>在站点根目录下创建对应的文件夹</p>
-
-<pre><code class="language-shell">cd /home/wwwroot/sCalc
-sudo mkdir .well-known/acme-challenge
-</code></pre></li>
+</code></pre></div><ol start="2">
+<li>在站点根目录下创建对应的文件夹</li>
 </ol>
-
-<h3 id="3-安装v2ray">3.安装v2ray</h3>
-
-<pre><code class="language-shell">curl https://install.direct/go.sh
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cd /home/wwwroot/sCalc
+sudo mkdir .well-known/acme-challenge
+</code></pre></div><h3 id="3安装v2ray">3.安装v2ray</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl https://install.direct/go.sh
 ./go.sh
-</code></pre>
-
-<blockquote>
+</code></pre></div><blockquote>
 <p><a href="https://toutyrater.github.io/prep/install.html">v2ray配置指南</a></p>
 </blockquote>
-
 <p>修改v2ray的配置文件<code>/etc/v2ray/config.json</code></p>
-
-<pre><code class="language-shell">  7   &quot;inbounds&quot;: [{
-  8     &quot;port&quot;:10000,
-  9     &quot;listen&quot;:&quot;127.0.0.1&quot;,
- 10     &quot;protocol&quot;: &quot;vmess&quot;,
- 11     &quot;settings&quot;: {
- 12       &quot;clients&quot;: [
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">  7   <span style="color:#a31515">&#34;inbounds&#34;</span>: [{
+  8     <span style="color:#a31515">&#34;port&#34;</span>:10000,
+  9     <span style="color:#a31515">&#34;listen&#34;</span>:<span style="color:#a31515">&#34;127.0.0.1&#34;</span>,
+ 10     <span style="color:#a31515">&#34;protocol&#34;</span>: <span style="color:#a31515">&#34;vmess&#34;</span>,
+ 11     <span style="color:#a31515">&#34;settings&#34;</span>: {
+ 12       <span style="color:#a31515">&#34;clients&#34;</span>: [
  13         {
- 14           &quot;id&quot;: &quot;xxxxxxxx&quot;,#your id
- 15           &quot;level&quot;: 1,
- 16           &quot;alterId&quot;: 64
+ 14           <span style="color:#a31515">&#34;id&#34;</span>: <span style="color:#a31515">&#34;xxxxxxxx&#34;</span>,#your id
+ 15           <span style="color:#a31515">&#34;level&#34;</span>: 1,
+ 16           <span style="color:#a31515">&#34;alterId&#34;</span>: 64
  17         }
  18       ]
  19     },
- 20    &quot;streamSettings&quot;: {
- 21   &quot;network&quot;: &quot;ws&quot;,
- 39   &quot;wsSettings&quot;: {
- 40   &quot;path&quot;:&quot;/ray&quot; #跟nginx配置路径保持一致
+ 20    <span style="color:#a31515">&#34;streamSettings&#34;</span>: {
+ 21   <span style="color:#a31515">&#34;network&#34;</span>: <span style="color:#a31515">&#34;ws&#34;</span>,
+ 39   <span style="color:#a31515">&#34;wsSettings&#34;</span>: {
+ 40   <span style="color:#a31515">&#34;path&#34;</span>:<span style="color:#a31515">&#34;/ray&#34;</span> <span style="color:#008000">#跟nginx配置路径保持一致</span>
  41   },
-</code></pre>
-
-<h3 id="总结">总结</h3>
-
+</code></pre></div><h3 id="总结">总结</h3>
 <p>如果你使用的流量过大，你可以使用go语言搭建一个图片站点服务器，然后使用nginx反向代理你的图片服务器，这样更不容易被GFW察觉！</p>
                         </div>
 
@@ -392,6 +313,10 @@ sudo mkdir .well-known/acme-challenge
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -427,10 +352,6 @@ sudo mkdir .well-known/acme-challenge
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -450,7 +371,7 @@ sudo mkdir .well-known/acme-challenge
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

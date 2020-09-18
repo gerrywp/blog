@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -93,35 +93,28 @@
                         
                         <div class="post-content">
                             <p>配置putyy能够自动登陆、开启显示密码、在下达完整个命令之后才发送至服务端！</p>
-
 <h3 id="设置自动登陆">设置自动登陆</h3>
-
 <p>windows下右键属性，给启动命令添加如下参数</p>
-
-<pre><code class="language-bash">&quot;C:\Program Files\PuTTY\putty.exe&quot; -load &quot;sessionname&quot; -l &quot;username&quot; -pw &quot;password&quot;
-# 示例
-&quot;C:\Program Files\PuTTY\putty.exe&quot; -load &quot;banwagong&quot; -l &quot;pai&quot; -pw &quot;123456&quot;
-</code></pre>
-
-<p><img src="../../pictures/QQ20171029112826.png" alt="图片" title="点我显示" /></p>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#a31515">&#34;C:\Program Files\PuTTY\putty.exe&#34;</span> -load <span style="color:#a31515">&#34;sessionname&#34;</span> -l <span style="color:#a31515">&#34;username&#34;</span> -pw <span style="color:#a31515">&#34;password&#34;</span>
+<span style="color:#008000"># 示例</span>
+<span style="color:#a31515">&#34;C:\Program Files\PuTTY\putty.exe&#34;</span> -load <span style="color:#a31515">&#34;banwagong&#34;</span> -l <span style="color:#a31515">&#34;pai&#34;</span> -pw <span style="color:#a31515">&#34;123456&#34;</span>
+</code></pre></div><p><img src="../../pictures/QQ20171029112826.png" alt="图片" title="点我显示"></p>
 <h3 id="部分配置说明">部分配置说明</h3>
-
-<p>Line discipline 选项：(推荐使用auto)
-1. Local echo ：
-如果此选项关闭的话，则输入的字符不会显示在 PuTTY ，这里我们选择auto。</p>
-
+<p>Line discipline 选项：(推荐使用auto)</p>
 <ol>
-<li>Local line editing ：(推荐使用auto)
-当输入任意一个字符时， PuTTY 会立即传送到远端，当此选项开启时， PuTTY会一直等到有换行符出现时，才会把整行指令传送到远端,设为auto。</li>
+<li>
+<p>Local echo ：
+如果此选项关闭的话，则输入的字符不会显示在 PuTTY ，这里我们选择auto。</p>
+</li>
+<li>
+<p>Local line editing ：(推荐使用auto)
+当输入任意一个字符时， PuTTY 会立即传送到远端，当此选项开启时， PuTTY会一直等到有换行符出现时，才会把整行指令传送到远端,设为auto。</p>
+</li>
 </ol>
-
-<p><img src="../../pictures/QQ20171029120630.png" alt="图片" title="点我显示" /></p>
-
+<p><img src="../../pictures/QQ20171029120630.png" alt="图片" title="点我显示"></p>
 <blockquote>
 <p>参考</p>
 </blockquote>
-
 <p><a href="https://bcc16.ncu.edu.tw/6/putty/puttyt.html" title="点我访问">Terminal panel</a></p>
                         </div>
 
@@ -190,6 +183,10 @@
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -225,10 +222,6 @@
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -248,7 +241,7 @@
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

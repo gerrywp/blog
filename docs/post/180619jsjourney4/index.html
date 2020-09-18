@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -93,127 +93,104 @@
                         
                         <div class="post-content">
                             <p>　　前端(browser)模块性的开发，目前来说就不得不用到webpack(module bundle)打包工具。因为使用了react的<code>JSX</code>语法，所以必须要用到babel进行转码,因为browser是不认识<code>JSX</code>语法的。并且由于目前大部分的浏览器对ES6语法(例如：<code>import</code>和<code>export</code>等语法并不支持)，也必须用到babel对这类型新的ES6语法进行转码。鉴于前端技术发展的太快了，在此只做基本使用理念的介绍，不对细节做过多的处理！具体的各工具的使用，以在线参考文档为主！</p>
-
 <h3 id="babel和webpack的有机结合">babel和webpack的有机结合</h3>
-
 <p><strong>环境</strong>:</p>
-
 <ul>
 <li>nodejs版本:v8.9.1</li>
 <li>babel版本:v7.1.4</li>
 <li>webpack版本:v4.12.0</li>
 </ul>
-
 <ol>
-<li><p><strong>安装babel</strong>
-参照<a href="https://www.babeljs.cn/docs/setup/#installation" title="点我访问">官网</a>，本例使用的构建系统是<code>webpack</code>所以选webpack,如图：<br />
-<img src="../../pictures/QQ20180619223937.png" alt="安装babel for wepack" title="点我访问" /></p>
-
-<pre><code class="language-bash">npm install --save-dev babel-loader babel-core
-</code></pre></li>
-
-<li><p><strong>配置文件</strong> webpack的配置文件<code>webpack.config.js</code>，添加对应的loader</p>
-
-<pre><code class="language-js">#由于目前暂未安装webpack,先将配置贴出来
-module: {
-rules: [
-{ test: /\.js$/, exclude: /node_modules/, loader: &quot;babel-loader&quot; }
-]
-}
-</code></pre></li>
-
-<li><p><strong>创建.babelrc文件</strong>  (本例不需要这一步)<br />
-文档说:&ldquo;虽然已经配置好了 Babel ，但并没有让它真正生效。在项目的根目录中创建一个 .babelrc 文件并启用一些插件。&rdquo;这一步其实也是可以放到webpack的配置文件里面的！(后续说明)</p></li>
+<li><strong>安装babel</strong>
+参照<a href="https://www.babeljs.cn/docs/setup/#installation" title="点我访问">官网</a>，本例使用的构建系统是<code>webpack</code>所以选webpack,如图：<br>
+<img src="../../pictures/QQ20180619223937.png" alt="安装babel for wepack" title="点我访问"></li>
 </ol>
-
-<h3 id="安装webpack-依据-官网-https-www-webpackjs-com-guides-installation-点我访问">安装webpack(依据<a href="https://www.webpackjs.com/guides/installation/" title="点我访问">官网</a>)</h3>
-
-<pre><code class="language-bash">npm i webpack -D //-D 安装development依赖
-</code></pre>
-
-<p>配置<code>webpack.config.js</code>，具体参考文档，本例只对特殊地方做必要说明<br />
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm install --save-dev babel-loader babel-core
+</code></pre></div><ol start="2">
+<li><strong>配置文件</strong> webpack的配置文件<code>webpack.config.js</code>，添加对应的loader</li>
+</ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="">#</span>由于目前暂未安装webpack,先将配置贴出来
+module: {
+  rules: [
+    { test: <span style="color:#a31515">/\.js$/</span>, exclude: <span style="color:#a31515">/node_modules/</span>, loader: <span style="color:#a31515">&#34;babel-loader&#34;</span> }
+  ]
+}
+</code></pre></div><ol start="3">
+<li><strong>创建.babelrc文件</strong>  (本例不需要这一步)<br>
+文档说:&ldquo;虽然已经配置好了 Babel ，但并没有让它真正生效。在项目的根目录中创建一个 .babelrc 文件并启用一些插件。&ldquo;这一步其实也是可以放到webpack的配置文件里面的！(后续说明)</li>
+</ol>
+<h3 id="安装webpack依据官网httpswwwwebpackjscomguidesinstallation-点我访问">安装webpack(依据<a href="https://www.webpackjs.com/guides/installation/" title="点我访问">官网</a>)</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm i webpack -D //-D 安装development依赖
+</code></pre></div><p>配置<code>webpack.config.js</code>，具体参考文档，本例只对特殊地方做必要说明<br>
 在此开发的是音乐站点的管理员管理应用，目录形式没有按照react开发常规处理。目录结构如下</p>
-
 <ul>
-<li><p>Admin</p>
-
+<li>Admin
 <ul>
-<li>routes<br /></li>
-
-<li><p>views<br />
-index.html<br />
-selina.js</p>
-
-<pre><code class="language-js">const path = require('path');
+<li>routes</li>
+<li>views<br>
+index.html<br>
+selina.js</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">const</span> path = require(<span style="color:#a31515">&#39;path&#39;</span>);
 
 module.exports = {
-entry: './Admin/selina.js',
-output: {
-filename: 'bundle.js',
-path: path.resolve(__dirname, 'dist/Admin')
-},
-devtool:'source-map',
-module: {
-rules: [
-{
-test: /\.js$/,
-include: path.join(__dirname, 'Admin'),
-use: [{
-  loader: 'babel-loader'
-}]
-},
-{
-test: /\.css$/,
-use: ['style-loader', 'css-loader']
-}
-]
-},
-mode: 'development'
-};
-</code></pre></li>
-</ul></li>
-</ul>
-
-<p>入口文件为<code>selina.js</code>,并且对Admin目录下的所有js文件使用<code>babel-loader</code>进行转码，正如babel文档步骤4所说，要想让babel生效，必须添加一些插件！</p>
-
-<blockquote>
-<p>备注：<code>devtool</code>选项开启代码调试功能，生成相应的.map文件便于代码的调试！</p>
-</blockquote>
-
-<h3 id="安装-es6-和-jsx-转码器">安装<code>ES6</code>和<code>JSX</code>转码器</h3>
-
-<blockquote>
-<p><a href="https://babeljs.io/docs/en/babel-preset-react" title="点我访问">安装jsx转码器</a></p>
-</blockquote>
-
-<pre><code class="language-bash">npm install --save-dev babel-preset-env babel-preset-react
-</code></pre>
-
-<p>preset意思:预设<br />
-env(enviroment):环境<br />
-文档解释的很清楚，<code>babel-preset-env</code>预设babel转码环境为(ES2015+ES2016+ES2017)。<code>babel-preset-react</code>对react的JSX语法进行转码。</p>
-
-<p>安装完毕之后，需要配置<code>babel</code>的preset让转码器生效！本来这个配置是在<code>.babelrc</code>文件中，因为使用了webpack，直接配置webpack就可以了两者是等价的！</p>
-
-<pre><code class="language-js">//webpack.config.js 
-// 修改module配置节为以下
+  entry: <span style="color:#a31515">&#39;./Admin/selina.js&#39;</span>,
+  output: {
+    filename: <span style="color:#a31515">&#39;bundle.js&#39;</span>,
+    path: path.resolve(__dirname, <span style="color:#a31515">&#39;dist/Admin&#39;</span>)
+  },
+  devtool:<span style="color:#a31515">&#39;source-map&#39;</span>,
   module: {
     rules: [
       {
-        test: /\.js$/,
-        include: path.join(__dirname, 'Admin'),
+        test: <span style="color:#a31515">/\.js$/</span>,
+        include: path.join(__dirname, <span style="color:#a31515">&#39;Admin&#39;</span>),
         use: [{
-          loader: 'babel-loader',
+          loader: <span style="color:#a31515">&#39;babel-loader&#39;</span>
+        }]
+      },
+      {
+        test: <span style="color:#a31515">/\.css$/</span>,
+        use: [<span style="color:#a31515">&#39;style-loader&#39;</span>, <span style="color:#a31515">&#39;css-loader&#39;</span>]
+      }
+    ]
+  },
+  mode: <span style="color:#a31515">&#39;development&#39;</span>
+};
+</code></pre></div><p>入口文件为<code>selina.js</code>,并且对Admin目录下的所有js文件使用<code>babel-loader</code>进行转码，正如babel文档步骤4所说，要想让babel生效，必须添加一些插件！</p>
+<blockquote>
+<p>备注：<code>devtool</code>选项开启代码调试功能，生成相应的.map文件便于代码的调试！</p>
+</blockquote>
+<h3 id="安装es6和jsx转码器">安装<code>ES6</code>和<code>JSX</code>转码器</h3>
+<blockquote>
+<p><a href="https://babeljs.io/docs/en/babel-preset-react" title="点我访问">安装jsx转码器</a></p>
+</blockquote>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm install --save-dev babel-preset-env babel-preset-react
+</code></pre></div><p>preset意思:预设<br>
+env(enviroment):环境<br>
+文档解释的很清楚，<code>babel-preset-env</code>预设babel转码环境为(ES2015+ES2016+ES2017)。<code>babel-preset-react</code>对react的JSX语法进行转码。</p>
+<p>安装完毕之后，需要配置<code>babel</code>的preset让转码器生效！本来这个配置是在<code>.babelrc</code>文件中，因为使用了webpack，直接配置webpack就可以了两者是等价的！</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#008000">//webpack.config.js 
+</span><span style="color:#008000">// 修改module配置节为以下
+</span><span style="color:#008000"></span>  module: {
+    rules: [
+      {
+        test: <span style="color:#a31515">/\.js$/</span>,
+        include: path.join(__dirname, <span style="color:#a31515">&#39;Admin&#39;</span>),
+        use: [{
+          loader: <span style="color:#a31515">&#39;babel-loader&#39;</span>,
           options: {
-            presets: ['env', 'react','stage-0'],//添加'stage-0'为了让bable支持...扩展运算符的转码！
-            plugins:
+            presets: [<span style="color:#a31515">&#39;env&#39;</span>, <span style="color:#a31515">&#39;react&#39;</span>,<span style="color:#a31515">&#39;stage-0&#39;</span>],<span style="color:#008000">//添加&#39;stage-0&#39;为了让bable支持...扩展运算符的转码！
+</span><span style="color:#008000"></span>            plugins:
               [
                 [
-                  'import',
+                  <span style="color:#a31515">&#39;import&#39;</span>,
                   {
-                    'libraryName': 'antd',
-                    'libraryDirectory': 'es',
-                    'style': 'css'
+                    <span style="color:#a31515">&#39;libraryName&#39;</span>: <span style="color:#a31515">&#39;antd&#39;</span>,
+                    <span style="color:#a31515">&#39;libraryDirectory&#39;</span>: <span style="color:#a31515">&#39;es&#39;</span>,
+                    <span style="color:#a31515">&#39;style&#39;</span>: <span style="color:#a31515">&#39;css&#39;</span>
                   }
                 ]
               ]
@@ -221,62 +198,48 @@ env(enviroment):环境<br />
         }]
       },
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        test: <span style="color:#a31515">/\.css$/</span>,
+        use: [<span style="color:#a31515">&#39;style-loader&#39;</span>, <span style="color:#a31515">&#39;css-loader&#39;</span>]
       }
     ]
   }
-</code></pre>
-
-<p>其实等价与</p>
-
-<pre><code class="language-js">// .babelrc 
-{
-	presets:['env','react'，'stage-0'],
+</code></pre></div><p>其实等价与</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#008000">// .babelrc 
+</span><span style="color:#008000"></span>{
+	presets:[<span style="color:#a31515">&#39;env&#39;</span>,<span style="color:#a31515">&#39;react&#39;</span><span style="">，</span><span style="color:#a31515">&#39;stage-0&#39;</span>],
 	plugins:[
                 [
-                  'import',
+                  <span style="color:#a31515">&#39;import&#39;</span>,
                   {
-                    'libraryName': 'antd',
-                    'libraryDirectory': 'es',
-                    'style': 'css'
+                    <span style="color:#a31515">&#39;libraryName&#39;</span>: <span style="color:#a31515">&#39;antd&#39;</span>,
+                    <span style="color:#a31515">&#39;libraryDirectory&#39;</span>: <span style="color:#a31515">&#39;es&#39;</span>,
+                    <span style="color:#a31515">&#39;style&#39;</span>: <span style="color:#a31515">&#39;css&#39;</span>
                   }
                 ]
             ]
 }
-</code></pre>
-
-<p>上例中<code>plugins</code>插件部分的配置，下面做详细介绍！</p>
-
+</code></pre></div><p>上例中<code>plugins</code>插件部分的配置，下面做详细介绍！</p>
 <h3 id="antd库的使用">antd库的使用</h3>
-
 <p>在做管理员应用的时候使用了第三方蚂蚁金服的<a href="https://ant.design/docs/react/getting-started-cn" title="点我访问">antd库</a></p>
-
 <ol>
-<li><p>安装</p>
-
-<pre><code class="language-bash">npm i antd  babel-plugin-import  -D
-</code></pre></li>
+<li>安装</li>
 </ol>
-
-<p>当使用组件的时候，为了简化开发编写，可以使用<code>babel-plugin-import</code>来按需加载,如图：</p>
-
-<p><img src="../../pictures/QQ20180619231904.png" alt="babel-plugin-import" title="点我显示" /></p>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm i antd  babel-plugin-import  -D
+</code></pre></div><p>当使用组件的时候，为了简化开发编写，可以使用<code>babel-plugin-import</code>来按需加载,如图：</p>
+<p><img src="../../pictures/QQ20180619231904.png" alt="babel-plugin-import" title="点我显示"></p>
 <p>文档描述，仅使用这个插件还需手动在代码中添加css样式的引用，配合<code>style</code>属性可以做到模块样式的按需自动加载。进入<code>style</code>说明了解详细配置如下：</p>
-
-<pre><code class="language-js">// .babelrc
-&quot;plugins&quot;: [
-  [&quot;import&quot;, { &quot;libraryName&quot;: &quot;antd&quot;, &quot;libraryDirectory&quot;: &quot;lib&quot;}, &quot;ant&quot;],
-  [&quot;import&quot;, { &quot;libraryName&quot;: &quot;ant-mobile&quot;, &quot;libraryDirectory&quot;: &quot;lib&quot;}, &quot;ant-mobile&quot;]
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#008000">// .babelrc
+</span><span style="color:#008000"></span><span style="color:#a31515">&#34;plugins&#34;</span>: [
+  [<span style="color:#a31515">&#34;import&#34;</span>, { <span style="color:#a31515">&#34;libraryName&#34;</span>: <span style="color:#a31515">&#34;antd&#34;</span>, <span style="color:#a31515">&#34;libraryDirectory&#34;</span>: <span style="color:#a31515">&#34;lib&#34;</span>}, <span style="color:#a31515">&#34;ant&#34;</span>],
+  [<span style="color:#a31515">&#34;import&#34;</span>, { <span style="color:#a31515">&#34;libraryName&#34;</span>: <span style="color:#a31515">&#34;ant-mobile&#34;</span>, <span style="color:#a31515">&#34;libraryDirectory&#34;</span>: <span style="color:#a31515">&#34;lib&#34;</span>}, <span style="color:#a31515">&#34;ant-mobile&#34;</span>]
 ]
-</code></pre>
-
-<p>在此直接把配置糅合进<code>webpack.config.js</code>即可，webpack的配置节<br />
-<code>rules.use.options</code>提供了
-1. presets
-2. plugins
-属性和<code>.babelrc</code>里面的同名配置属性一一对应！</p>
+</code></pre></div><p>在此直接把配置糅合进<code>webpack.config.js</code>即可，webpack的配置节<br>
+<code>rules.use.options</code>提供了</p>
+<ol>
+<li>presets</li>
+<li>plugins
+属性和<code>.babelrc</code>里面的同名配置属性一一对应！</li>
+</ol>
                         </div>
 
                         
@@ -344,6 +307,10 @@ env(enviroment):环境<br />
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -379,10 +346,6 @@ env(enviroment):环境<br />
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -402,7 +365,7 @@ env(enviroment):环境<br />
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

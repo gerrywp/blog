@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -93,65 +93,46 @@
                         
                         <div class="post-content">
                             <p>　　今天在将nodejs程序部署到远程linux服务器上遇到了问题，很长时间才得以解决！</p>
-
 <h3 id="nodejs程序部署到linux">nodejs程序部署到Linux</h3>
-
 <p>使用ftp工具将开发包上传到了linux服务器用户目录，然后进入目录执行<code>node</code>命令：</p>
-
-<pre><code class="language-bash">cd ~/www/website/
-node app.js &amp; # 后台运行
-# app.js 端口地址3000
-</code></pre>
-
-<p><code>app.js</code>里面使用的是&rsquo;0.0.0.0&rsquo;监听地址，所以理论上可以接受来自任何IP主机的请求。<br />
-假设远程Linux服务器ip为：<code>10.120.110.119</code>,事实上，当我们通过本机访问&rdquo;<a href="http://10.120.110.119:3000&quot;">http://10.120.110.119:3000&quot;</a> 的时候并不能访问，提示拒绝访问！原因是linux服务器开启了防火墙，需要将3000端口加到防火墙的信任之中，操作如下：</p>
-
-<pre><code class="language-bash">sudo /sbin/iptables -I INPUT -p tcp --dport 3000 -j ACCEPT
-# 使用 iptables -vnL 
-iptables -vnL # 查看当前系统的防火墙规则，已经添加了同意3000端口
-# 待考证(网上说要保存，没试过)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd ~/www/website/
+node app.js &amp; <span style="color:#008000"># 后台运行</span>
+<span style="color:#008000"># app.js 端口地址3000</span>
+</code></pre></div><p><code>app.js</code>里面使用的是'0.0.0.0&rsquo;监听地址，所以理论上可以接受来自任何IP主机的请求。<br>
+假设远程Linux服务器ip为：<code>10.120.110.119</code>,事实上，当我们通过本机访问&quot;http://10.120.110.119:3000&quot; 的时候并不能访问，提示拒绝访问！原因是linux服务器开启了防火墙，需要将3000端口加到防火墙的信任之中，操作如下：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo /sbin/iptables -I INPUT -p tcp --dport 3000 -j ACCEPT
+<span style="color:#008000"># 使用 iptables -vnL </span>
+iptables -vnL <span style="color:#008000"># 查看当前系统的防火墙规则，已经添加了同意3000端口</span>
+<span style="color:#008000"># 待考证(网上说要保存，没试过)</span>
 /etc/rc.d/init.d/iptables save
-</code></pre>
-
-<p>说明：<code>0.0.0.0</code>与<code>127.0.0.1</code>的不同。<code>0.0.0.0</code>可以接受来自网络上所有IP的请求，而<code>127.0.0.1</code>只能接受本机的回环地址的请求。所以app.listen的第二个参数要置空，否则外网就只能通过反向代理来访问！</p>
-
+</code></pre></div><p>说明：<code>0.0.0.0</code>与<code>127.0.0.1</code>的不同。<code>0.0.0.0</code>可以接受来自网络上所有IP的请求，而<code>127.0.0.1</code>只能接受本机的回环地址的请求。所以app.listen的第二个参数要置空，否则外网就只能通过反向代理来访问！</p>
 <h3 id="安装nginx反向代理">安装nginx反向代理</h3>
-
-<pre><code class="language-bash"># 下载包
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># 下载包</span>
 cd /usr/local/src
 curl -O http://nginx.org/download/nginx-1.13.7.tar.gz
-# 解压缩
+<span style="color:#008000"># 解压缩</span>
 tar -zxvf nginx-1.13.7.tar.gz
 cd nginx-1.13.7
-# 配置生成Makefile文件
-./configure #可使用 --prefix-path=
+<span style="color:#008000"># 配置生成Makefile文件</span>
+./configure <span style="color:#008000">#可使用 --prefix-path=</span>
 make install
-# 默认安装到/usr/local/nginx路径下
+<span style="color:#008000"># 默认安装到/usr/local/nginx路径下</span>
 cd /usr/local/nginx/sbin
-./nginx -t #测试是否安装成功
-</code></pre>
-
-<p>上述执行完毕，当运行<code>./nginx -c /usr/local/nginx/conf/nginx.conf</code>启动的时候报80端口被占用。因为服务器上装了apache，80端口被httpd服务占用。</p>
-
-<pre><code class="language-bash"># 查看80端口占用情况
+./nginx -t <span style="color:#008000">#测试是否安装成功</span>
+</code></pre></div><p>上述执行完毕，当运行<code>./nginx -c /usr/local/nginx/conf/nginx.conf</code>启动的时候报80端口被占用。因为服务器上装了apache，80端口被httpd服务占用。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># 查看80端口占用情况</span>
 sudo netstat -antp | grep 80
-</code></pre>
-
-<p>apache的默认安装路径在<code>/www/wdlinux/apache</code>下</p>
-
-<pre><code class="language-bash"># 进入apache配置文件目录
+</code></pre></div><p>apache的默认安装路径在<code>/www/wdlinux/apache</code>下</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># 进入apache配置文件目录</span>
 cd /www/wdlinux/apache/conf
-# 这里可以设置apache-httpd的端口
+<span style="color:#008000"># 这里可以设置apache-httpd的端口</span>
 vim httpd.conf
-# 查看httpd服务状态(占用了80端口)
+<span style="color:#008000"># 查看httpd服务状态(占用了80端口)</span>
 service httpd status
-</code></pre>
-
-<h3 id="查看服务器的外网ip地址">查看服务器的外网ip地址</h3>
-
-<pre><code class="language-bash"># 以下命令可以查看服务器的外网IP地址
+</code></pre></div><h3 id="查看服务器的外网ip地址">查看服务器的外网ip地址</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># 以下命令可以查看服务器的外网IP地址</span>
 curl ifconfig.me
-</code></pre>
+</code></pre></div>
                         </div>
 
                         
@@ -219,6 +200,10 @@ curl ifconfig.me
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -254,10 +239,6 @@ curl ifconfig.me
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -277,7 +258,7 @@ curl ifconfig.me
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

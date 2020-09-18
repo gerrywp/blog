@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -93,95 +93,79 @@
                         
                         <div class="post-content">
                             <p>　　c#的多线程编程由于其高级的语法糖(synax)而变化的相对简单，然而又有些神秘莫测。对于线程安全与否与同步(synchronize)经常有人将其混为一谈，其实这是2个不同的概念。</p>
-
 <h3 id="非线程安全">非线程安全</h3>
-
 <p>先来说说线程安全的问题，Show your code(用代码说话)，以MSDN官网的
 <a href="https://msdn.microsoft.com/library/6sh2ey19.aspx?f=255&amp;MSPPError=-2147217396#Anchor_10" title="点我访问">List&lt;T&gt;</a>
 为例：在<code>线程安全</code>这一小节，来自微软官网的描述:</p>
-
 <blockquote>
 <p>公共静态 (Shared 在 Visual Basic 中) 这种类型的成员是线程安全。 但不保证所有实例成员都是线程安全的。</p>
 </blockquote>
-
-<pre><code class="language-cs">//创建控制台应用程序,并编写如下代码
-static void Main(string[] args)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#008000">//创建控制台应用程序,并编写如下代码
+</span><span style="color:#008000"></span><span style="color:#00f">static</span> <span style="color:#00f">void</span> Main(<span style="color:#2b91af">string</span>[] args)
 {
-    do
+    <span style="color:#00f">do</span>
     {
         ParallelList();
-    } while (true);
+    } <span style="color:#00f">while</span> (<span style="color:#00f">true</span>);
 }
-static void ParallelList()
+<span style="color:#00f">static</span> <span style="color:#00f">void</span> ParallelList()
 {
-    List&lt;Int32&gt; list = new List&lt;int&gt;();//非线程安全的
-    ParallelLoopResult result= Parallel.For(0, 100000, item =&gt;
+    List&lt;Int32&gt; list = <span style="color:#00f">new</span> List&lt;<span style="color:#2b91af">int</span>&gt;();<span style="color:#008000">//非线程安全的
+</span><span style="color:#008000"></span>    ParallelLoopResult result= Parallel.For(0, 100000, item =&gt;
     {
         list.Add(item);
     });
-    Console.WriteLine($&quot;parallel is completed: {result.IsCompleted}! &quot;);
+    Console.WriteLine(<span style="color:#a31515">$&#34;parallel is completed: {result.IsCompleted}! &#34;</span>);
 }
-</code></pre>
-
-<ol>
-<li>据官方文档可知，List<T>的实例成员就不是线程安全的。</li>
+</code></pre></div><ol>
+<li>据官方文档可知，List<!-- raw HTML omitted -->的实例成员就不是线程安全的。</li>
 <li>所以上述代码在死循环下会抛出异常，为什么会抛出异常不在这次的讨论范围内。</li>
 <li>所以对一个非线程安全的对象进行write操作(写操作包括更新、删除)在多次测试下是会抛出异常的，所以对非线程安全的对象进行写操作的代码是错误的代码！</li>
 </ol>
-
 <h3 id="线程安全">线程安全</h3>
-
 <p>同样是上面的代码，经过MSDN的提醒「公共静态成员是线程安全的」，代码作如下调整</p>
-
-<pre><code class="language-cs">static List&lt;Int32&gt; list = new List&lt;int&gt;();//线程安全的
-static void Main(string[] args)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#00f">static</span> List&lt;Int32&gt; list = <span style="color:#00f">new</span> List&lt;<span style="color:#2b91af">int</span>&gt;();<span style="color:#008000">//线程安全的
+</span><span style="color:#008000"></span><span style="color:#00f">static</span> <span style="color:#00f">void</span> Main(<span style="color:#2b91af">string</span>[] args)
 {
-    do
+    <span style="color:#00f">do</span>
     {
         ParallelList(list);
-    } while (true);
+    } <span style="color:#00f">while</span> (<span style="color:#00f">true</span>);
 }
-static void ParallelList(List&lt;Int32&gt; temp)
+<span style="color:#00f">static</span> <span style="color:#00f">void</span> ParallelList(List&lt;Int32&gt; temp)
 {
-    //List&lt;Int32&gt; list = new List&lt;int&gt;();//非线程安全的
-    ParallelLoopResult result= Parallel.For(0, 100000, item =&gt;
+    <span style="color:#008000">//List&lt;Int32&gt; list = new List&lt;int&gt;();//非线程安全的
+</span><span style="color:#008000"></span>    ParallelLoopResult result= Parallel.For(0, 100000, item =&gt;
     {
         temp.Add(item);
     });
-    Console.WriteLine($&quot;parallel is completed: {result.IsCompleted}! &quot;);
+    Console.WriteLine(<span style="color:#a31515">$&#34;parallel is completed: {result.IsCompleted}! &#34;</span>);
 }
-</code></pre>
-
-<ol>
+</code></pre></div><ol>
 <li>仅仅是将list变量提升为了公共Static变量</li>
 <li>上述代码无论怎么样运行都不会抛出异常，程序并不会挂掉！</li>
 <li>但是细心的你一定会发现，结果并不是我们想要的，因为list插入值并不对。</li>
-<li>这也是由此要引出多线程的同步的问题。
-&gt; 说明:线程安全的并不代表，操作就是合理的。按照所需业务来说，如果不是您期望的结果，这里就需要有lock，就需要有线程同步。</li>
+<li>这也是由此要引出多线程的同步的问题。</li>
 </ol>
-
+<blockquote>
+<p>说明:线程安全的并不代表，操作就是合理的。按照所需业务来说，如果不是您期望的结果，这里就需要有lock，就需要有线程同步。</p>
+</blockquote>
 <h3 id="非线程安全就一定有问题吗">非线程安全就一定有问题吗？</h3>
-
 <p>上面已经讨论到了线程安全与非线程安全的概念问题，如果我们将非线程安全的代码作如下修改：</p>
-
-<pre><code class="language-cs">static void ParallelList()
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#00f">static</span> <span style="color:#00f">void</span> ParallelList()
 {
-    List&lt;Int32&gt; list = new List&lt;int&gt;();//非线程安全的
-    for(Int32 i=0;i&lt;10000;i++){
+    List&lt;Int32&gt; list = <span style="color:#00f">new</span> List&lt;<span style="color:#2b91af">int</span>&gt;();<span style="color:#008000">//非线程安全的
+</span><span style="color:#008000"></span>    <span style="color:#00f">for</span>(Int32 i=0;i&lt;10000;i++){
         list.Add(i);
     }
     ParallelLoopResult result= Parallel.For(0, 100000, item =&gt;
     {
         Int32 currentItem=list[item];
     });
-    Console.WriteLine($&quot;parallel is completed: {result.IsCompleted}! &quot;);
+    Console.WriteLine(<span style="color:#a31515">$&#34;parallel is completed: {result.IsCompleted}! &#34;</span>);
 }
-</code></pre>
-
-<p><strong><em>仅仅将多线程的操作由write改为了read，这样多对一个非线程安全的对象实例也是没有任何问题的！</em></strong></p>
-
+</code></pre></div><p><em><strong>仅仅将多线程的操作由write改为了read，这样多对一个非线程安全的对象实例也是没有任何问题的！</strong></em></p>
 <p><strong>综上所述：</strong></p>
-
 <ol>
 <li>即使线程安全的对象，在进行write写操作的时候,还是必须要使用lock锁同步来保证业务逻辑的一致性和正确性。</li>
 <li>即使是非线程安全的对象，当只进行read操作的时候，线程的安全与否已经不重要了！</li>
@@ -253,6 +237,10 @@ static void ParallelList(List&lt;Int32&gt; temp)
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -288,10 +276,6 @@ static void ParallelList(List&lt;Int32&gt; temp)
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -311,7 +295,7 @@ static void ParallelList(List&lt;Int32&gt; temp)
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

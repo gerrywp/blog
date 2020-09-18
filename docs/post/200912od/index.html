@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -93,106 +93,78 @@
                         
                         <div class="post-content">
                             <p><strong>Ollydbg</strong>使用技巧</p>
-
 <h3 id="初识反汇编代码">初识反汇编代码</h3>
-
-<h4 id="使用vs2012创建vc-mfc工程-书写代码如下">使用vs2012创建vc++MFC工程，书写代码如下：</h4>
-
-<pre><code class="language-cpp">int AddResult(int x,int y,int z)
+<h4 id="使用vs2012创建vcmfc工程书写代码如下">使用vs2012创建vc++MFC工程，书写代码如下：</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#2b91af">int</span> AddResult(<span style="color:#2b91af">int</span> x,<span style="color:#2b91af">int</span> y,<span style="color:#2b91af">int</span> z)
 {
-	__asm{
+	<span style="color:#00f">__asm</span>{
 		mov edi,edi
 	    mov edi,edi
 	}
-	int result=x+y+z;
-	return result;
+	<span style="color:#2b91af">int</span> result=x+y+z;
+	<span style="color:#00f">return</span> result;
 }
-void CMFCDialogDlg::OnBnClickedOk()
+<span style="color:#2b91af">void</span> CMFCDialogDlg::OnBnClickedOk()
 {
-	// TODO: 在此添加控件通知处理程序代码
-	int x=10,y=20,z=30;
-	int re=AddResult(x,y,z);
-	printf(&quot;%d&quot;,re);
-	//CDialogEx::OnOK();
-}	
-</code></pre>
-
-<h4 id="使用od加载应用程序-exe文件">使用OD加载应用程序.exe文件</h4>
-
-<p>首先我们使用OD强大的功能分析代码(快捷键Ctrl+A)<br />
+	<span style="color:#008000">// TODO: 在此添加控件通知处理程序代码
+</span><span style="color:#008000"></span>	<span style="color:#2b91af">int</span> x=10,y=20,z=30;
+	<span style="color:#2b91af">int</span> re=AddResult(x,y,z);
+	printf(<span style="color:#a31515">&#34;%d&#34;</span>,re);
+	<span style="color:#008000">//CDialogEx::OnOK();
+</span><span style="color:#008000"></span>}	
+</code></pre></div><h4 id="使用od加载应用程序exe文件">使用OD加载应用程序.exe文件</h4>
+<p>首先我们使用OD强大的功能分析代码(快捷键Ctrl+A)<br>
 右键-&gt;查找-&gt;命令序列(快捷键Ctrl+S)输入内容：</p>
-
-<pre><code class="language-asm">mov edi,edi
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-asm" data-lang="asm">mov edi,edi
 mov edi,edi
-</code></pre>
-
-<p><img src="../../pictures/20200912163200.png" alt="od" title="点我访问" />
+</code></pre></div><p><img src="../../pictures/20200912163200.png" alt="od" title="点我访问">
 有时候你会找不到,原因在于没有选中我们自己的代码模块(右键-&gt;查看)如下图所示，我们选中上述代码所在的模块(此例为:MFCDialo)
-<img src="../../pictures/20200912163300.png" alt="od" title="点我访问" /></p>
-
+<img src="../../pictures/20200912163300.png" alt="od" title="点我访问"></p>
 <h4 id="反汇编结果">反汇编结果</h4>
-
 <p><strong><code>Release</code>版本：</strong>
-<img src="../../pictures/202009121636.png" alt="od" title="点我访问" /></p>
-
+<img src="../../pictures/202009121636.png'%E7%82%B9%E6%88%91%E8%AE%BF%E9%97%AE'" alt="od"></p>
 <blockquote>
 <p><strong>AddResult</strong>的结果<code>60=0x3c</code>直接被编译到了OnBnClickedOk函数的内部，并且以立即数的形势push进栈给printf调用。</p>
 </blockquote>
-
 <p><strong><code>Debug</code>版本：</strong>
-<img src="../../pictures/20200912163800.png" alt="od" title="点我访问" />
-<img src="../../pictures/20200912163900.png" alt="od" title="点我访问" /></p>
-
-<pre><code class="language-asm">sub esp,0xFC; 申请局部变量内存空间
-......省略
-lea edi,dword ptr ss:[ebp-0xFC]; edi指向(局部变量)的初始地址
-mov ecx,0x3F; 计数0x3F=63/63*4=252=0xFC(开辟了63字节的空间)
-mov eax,0xCCCCCCCC          ; int3
-rep stos dword ptr es:[edi]      ; 初始化所有的局部变量为int3
-pop ecx
-mov dword ptr ss:[ebp-0x8],ecx  ; 第一参数：this指针指向调用函数(MFC的某个函数)
-</code></pre>
-
-<h4 id="32位汇编中的段寄存器基本无用-使用通用寄存器寻址-不需要偏移">32位汇编中的段寄存器基本无用(使用通用寄存器寻址，不需要偏移)</h4>
-
-<p><strong>ES</strong>(External Segment)<br />
-<strong>DS</strong>(Data Segment)<br />
+<img src="../../pictures/20200912163800.png'%E7%82%B9%E6%88%91%E8%AE%BF%E9%97%AE'" alt="od">
+<img src="../../pictures/20200912163900.png'%E7%82%B9%E6%88%91%E8%AE%BF%E9%97%AE'" alt="od"></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-asm" data-lang="asm">sub esp,0xFC<span style="color:#008000">; 申请局部变量内存空间
+</span><span style="color:#008000"></span>......省略
+lea edi,dword ptr ss:[ebp-0xFC]<span style="color:#008000">; edi指向(局部变量)的初始地址
+</span><span style="color:#008000"></span>mov ecx,0x3F<span style="color:#008000">; 计数0x3F=63/63*4=252=0xFC(开辟了63字节的空间)
+</span><span style="color:#008000"></span>mov eax,0xCCCCCCCC          <span style="color:#008000">; int3
+</span><span style="color:#008000"></span>rep stos dword ptr es:[edi]      <span style="color:#008000">; 初始化所有的局部变量为int3
+</span><span style="color:#008000"></span>pop ecx
+mov dword ptr ss:[ebp-0x8],ecx  <span style="color:#008000">; 第一参数：this指针指向调用函数(MFC的某个函数)
+</span></code></pre></div><h4 id="32位汇编中的段寄存器基本无用使用通用寄存器寻址不需要偏移">32位汇编中的段寄存器基本无用(使用通用寄存器寻址，不需要偏移)</h4>
+<p><strong>ES</strong>(External Segment)<br>
+<strong>DS</strong>(Data Segment)<br>
 <strong>CS</strong>(Code Segment)</p>
-
 <p>使用DD命令在command窗口直接查看内存地址处的值：
-<img src="../../pictures/20200912164612.png" alt="od" title="点我访问" /></p>
-
-<pre><code class="language-asm">dd  ebp-0x20 //而不需要使用 
+<img src="../../pictures/20200912164612.png" alt="od" title="点我访问"></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-asm" data-lang="asm">dd  ebp-0x20 <span style="">//而不需要使用</span> 
 dd ss:[ebp-0x20]
-</code></pre>
-
-<h4 id="vc-编辑器里面的内联汇编指令">VC++编辑器里面的内联汇编指令</h4>
-
+</code></pre></div><h4 id="vc编辑器里面的内联汇编指令">VC++编辑器里面的内联汇编指令</h4>
 <p><code>_asm</code>和<code>__asm</code>没有本质的区别。<code>_asm</code>是旧标准(兼容)，<code>__asm</code>是新的标准。</p>
-
 <h3 id="下断点">下断点</h3>
-
 <h4 id="窗口消息断点">窗口消息断点</h4>
-
 <ol>
 <li>打开工具栏-&gt;查看-&gt;窗口
-<img src="../../pictures/20200912170400.png" alt="od" title="点我访问" /></li>
+<img src="../../pictures/20200912170400.png" alt="od" title="点我访问"></li>
 <li>选择要监听的控件-&gt;右键-&gt;在<strong>ClassPro</strong>上设置消息断点
-<img src="../../pictures/20200912170500.png" alt="od" title="点我访问" /></li>
-
-<li><p>WM_COMMAND消息(111)、WM_LBUTTONUP消息(202)
-<img src="../../pictures/20200912170600.png" alt="od" title="点我访问" /></p>
-
-<h4 id="命令行断点">命令行断点</h4>
-
-<pre><code class="language-asm">bp send		//表示下 send消息断点
-bp WS2_32.Send		//现在的socket基本上都是使
-bc   //清除断点
-HW   //hardware write硬件写入
-HR
-? eax //显示表达式的值
-</code></pre></li>
+<img src="../../pictures/20200912170500.png" alt="od" title="点我访问"></li>
+<li>WM_COMMAND消息(111)、WM_LBUTTONUP消息(202)
+<img src="../../pictures/20200912170600.png" alt="od" title="点我访问"></li>
 </ol>
+<h4 id="命令行断点">命令行断点</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-asm" data-lang="asm">bp send		<span style="">//表示下</span> send消息断点
+bp WS2_32.Send		<span style="">//现在的</span>socket基本上都是使
+bc   <span style="">//清除断点</span>
+HW   <span style="">//</span>hardware write硬件写入
+HR
+<span style="">?</span> eax <span style="">//显示表达式的值</span>
+</code></pre></div>
                         </div>
 
                         
@@ -260,6 +232,10 @@ HR
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -295,10 +271,6 @@ HR
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -318,7 +290,7 @@ HR
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

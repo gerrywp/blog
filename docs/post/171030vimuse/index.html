@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -92,33 +92,21 @@
                         
                         
                         <div class="post-content">
-                            <p>&emsp;&emsp;以普通用户身份vim编辑的文件,如何强制保存？</p>
-
+                            <p>  以普通用户身份vim编辑的文件,如何强制保存？</p>
 <h3 id="vim强制保存文件">vim强制保存文件</h3>
-
 <p>当用Vim编辑完一个文件，运行:wq保存退出，突然蹦出一个错误。提示不能保存，这个时候才想起来，是直接vim打开的文件，并没有使用<code>visudo</code>命令！这时候只能是将修改过的文件保存为临时文件，相当的麻烦，有没有什么方式，可以直接保存文件的吗？</p>
-
 <p><strong>解决方案</strong></p>
-
 <p>执行如下命令即可:</p>
-
-<pre><code class="language-bash">:w !sudo tee %
-</code></pre>
-
-<p>备注： 其中%代表当前编辑的文件名
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">:w !sudo tee %
+</code></pre></div><p>备注： 其中%代表当前编辑的文件名
 执行完上面的命令会出现如下提示：</p>
-
-<pre><code class="language-bash">W12: Warning: File &quot;readonly-file-name&quot; has changed and the buffer was changed in Vim as well
-See &quot;:help W12&quot; for more info.
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">W12: Warning: File <span style="color:#a31515">&#34;readonly-file-name&#34;</span> has changed and the buffer was changed in Vim as well
+See <span style="color:#a31515">&#34;:help W12&#34;</span> <span style="color:#00f">for</span> more info.
 [O]K, (L)oad File:
-</code></pre>
-
-<p>Vim提示文件更新，询问是确认还是重新加载文件。建议直接输入O，因为这样可以保留Vim的工作状态，比如编辑历史，buffer等，撤消等操作仍然可以继续。而如果选择L，文件会以全新的文件打开，所有的工作状态便丢失了，此时无法执行撤消，buffer中的内容也被清空。</p>
-
+</code></pre></div><p>Vim提示文件更新，询问是确认还是重新加载文件。建议直接输入O，因为这样可以保留Vim的工作状态，比如编辑历史，buffer等，撤消等操作仍然可以继续。而如果选择L，文件会以全新的文件打开，所有的工作状态便丢失了，此时无法执行撤消，buffer中的内容也被清空。</p>
 <blockquote>
 <p>参考</p>
 </blockquote>
-
 <ol>
 <li><a href="http://feihu.me/blog/2014/vim-write-read-only-file/" title="点我访问">以普通用户启动的Vim如何保存需要root权限的文件</a></li>
 <li><a href="http://vimcdoc.sourceforge.net/doc/autocmd.html#autocmd-events" title="点我访问">vim手册</a></li>
@@ -190,6 +178,10 @@ See &quot;:help W12&quot; for more info.
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -225,10 +217,6 @@ See &quot;:help W12&quot; for more info.
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -248,7 +236,7 @@ See &quot;:help W12&quot; for more info.
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

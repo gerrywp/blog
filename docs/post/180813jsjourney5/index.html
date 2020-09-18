@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -94,119 +94,94 @@
                         <div class="post-content">
                             <p>　　在web开发中，最重要的数据交互方式首推就该属表单了。html通过表单实现了客户端与服务器端数据的交互。谈及表单就不得不说<code>MIME</code>类型，此类型
 关系到服务器端和浏览器端处理数据的方式和手段！</p>
-
 <h3 id="form的常用四种mime类型">form的常用四种MIME类型</h3>
-
 <table>
 <thead>
 <tr>
-<th align="left">MIME</th>
-<th align="left">数据格式</th>
+<th style="text-align:left">MIME</th>
+<th style="text-align:left">数据格式</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="left">text/plain</td>
-<td align="left">name=&lsquo;pai&rsquo;&amp;id=&lsquo;id&rsquo;</td>
+<td style="text-align:left">text/plain</td>
+<td style="text-align:left">name=&lsquo;pai&rsquo;&amp;id=&lsquo;id&rsquo;</td>
 </tr>
-
 <tr>
-<td align="left">application/json;charset=utf-8</td>
-<td align="left">{&ldquo;name&rdquo;:&ldquo;pai&rdquo;,&ldquo;id&rdquo;:&ldquo;1&rdquo;}</td>
+<td style="text-align:left">application/json;charset=utf-8</td>
+<td style="text-align:left">{&ldquo;name&rdquo;:&ldquo;pai&rdquo;,&ldquo;id&rdquo;:&ldquo;1&rdquo;}</td>
 </tr>
-
 <tr>
-<td align="left">application/x-www-form-urlencoded;charset=utf-8</td>
-<td align="left">name=&lsquo;pai&rsquo;&amp;id=&lsquo;1&rsquo;</td>
+<td style="text-align:left">application/x-www-form-urlencoded;charset=utf-8</td>
+<td style="text-align:left">name=&lsquo;pai&rsquo;&amp;id=&lsquo;1&rsquo;</td>
 </tr>
-
 <tr>
-<td align="left">multipart/form-data</td>
-<td align="left">带有boundary的附件上传形式</td>
+<td style="text-align:left">multipart/form-data</td>
+<td style="text-align:left">带有boundary的附件上传形式</td>
 </tr>
 </tbody>
 </table>
-
 <p>在js前端使用<code>fetch</code>往服务器端发送数据的时候，通常指定的<code>Content-Type</code>数据类型就是MIME类型</p>
-
-<pre><code class="language-js">var url='api/user';
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">var</span> url=<span style="color:#a31515">&#39;api/user&#39;</span>;
 fetch(url,{
-  method:'POST',
-  headers:{'Content-Type':'application/x-www-form-urlencoded;charset=utf-8'},
-  credentials: 'same-origin',
-  body:'name=&quot;pai&quot;&amp;id=&quot;1&quot;'
+  method:<span style="color:#a31515">&#39;POST&#39;</span>,
+  headers:{<span style="color:#a31515">&#39;Content-Type&#39;</span>:<span style="color:#a31515">&#39;application/x-www-form-urlencoded;charset=utf-8&#39;</span>},
+  credentials: <span style="color:#a31515">&#39;same-origin&#39;</span>,
+  body:<span style="color:#a31515">&#39;name=&#34;pai&#34;&amp;id=&#34;1&#34;&#39;</span>
 })
-</code></pre>
-
-<p>因为使用了MIME类型为&rsquo;application/x-www-form-urlencoded&rsquo;，nodejs在服务器端接受数据的时候，会使用body.parse()根据数据类型处理数据，
+</code></pre></div><p>因为使用了MIME类型为&rsquo;application/x-www-form-urlencoded'，nodejs在服务器端接受数据的时候，会使用body.parse()根据数据类型处理数据，
 因此我们编码的时候不需要再对数据进行解析！</p>
-
 <p>通常我们使用的<code>MIME</code>类型为<code>application/json</code>,服务器端会根据类型找到匹配的解析器！</p>
-
-<pre><code class="language-js">var url='api/user';
-var data={name:'pai',id:'1'};
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">var</span> url=<span style="color:#a31515">&#39;api/user&#39;</span>;
+<span style="color:#00f">var</span> data={name:<span style="color:#a31515">&#39;pai&#39;</span>,id:<span style="color:#a31515">&#39;1&#39;</span>};
 fetch(url,{
-  method:'POST',
-  headers:{'Content-Type':'application/json;charset=utf-8'},
-  credentials: 'same-origin',
+  method:<span style="color:#a31515">&#39;POST&#39;</span>,
+  headers:{<span style="color:#a31515">&#39;Content-Type&#39;</span>:<span style="color:#a31515">&#39;application/json;charset=utf-8&#39;</span>},
+  credentials: <span style="color:#a31515">&#39;same-origin&#39;</span>,
   body:JSON.stringify(data)
 })
-</code></pre>
-
-<blockquote>
+</code></pre></div><blockquote>
 <p><code>credentials: 'same-origin'</code>发送同源的cookie凭据需要添加此字段，值还有其他的类型。如果需要发送coolie凭据必须要添加此字段！</p>
 </blockquote>
-
-<h3 id="multipart-form-data-上传附件的mime类型">multipart/form-data 上传附件的MIME类型</h3>
-
+<h3 id="multipartform-data-上传附件的mime类型">multipart/form-data 上传附件的MIME类型</h3>
 <p>最重要的是使用多文件的附件上传的<code>Content-Type</code>类型，我们通过查看chrome或者fiddler的网络请求查看文件上传的表单请求的数据格式如下：</p>
-
-<pre><code class="language-html">Content-Type: multipart/form-data; boundary=aBoundaryString
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">Content-Type: multipart/form-data; boundary=aBoundaryString
 (other headers associated with the multipart document as a whole)
 
 --aBoundaryString
-Content-Disposition: form-data; name=&quot;myFile&quot;; filename=&quot;img.jpg&quot;
+Content-Disposition: form-data; name=&#34;myFile&#34;; filename=&#34;img.jpg&#34;
 Content-Type: image/jpeg
 
 (data)
 --aBoundaryString
-Content-Disposition: form-data; name=&quot;myField&quot;
+Content-Disposition: form-data; name=&#34;myField&#34;
 
 (data)
 --aBoundaryString
 (more subparts)
 --aBoundaryString--
-</code></pre>
+</code></pre></div><p>我们可以构造如上所示的数据结构进行文件上传和表单字段的提交，但是过于麻烦！在js中我们可以通过<code>FormData</code>对象来构造以上形式的数据：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">var</span> formData = <span style="color:#00f">new</span> FormData();
+<span style="color:#00f">var</span> fileField = document.querySelector(<span style="color:#a31515">&#34;input[type=&#39;file&#39;]&#34;</span>);
 
-<p>我们可以构造如上所示的数据结构进行文件上传和表单字段的提交，但是过于麻烦！在js中我们可以通过<code>FormData</code>对象来构造以上形式的数据：</p>
-
-<pre><code class="language-js">var formData = new FormData();
-var fileField = document.querySelector(&quot;input[type='file']&quot;);
-
-formData.append('username', 'abc123');
-formData.append('avatar', fileField.files[0]);
+formData.append(<span style="color:#a31515">&#39;username&#39;</span>, <span style="color:#a31515">&#39;abc123&#39;</span>);
+formData.append(<span style="color:#a31515">&#39;avatar&#39;</span>, fileField.files[0]);
 fetch(url,{
-  method:'POST',
-  credentials: 'same-origin',
+  method:<span style="color:#a31515">&#39;POST&#39;</span>,
+  credentials: <span style="color:#a31515">&#39;same-origin&#39;</span>,
   body:formData
 })
-</code></pre>
-
-<p>在nodejs的服务器端，我们需要使用<code>multer</code>中间件处理文件的上传。</p>
-
+</code></pre></div><p>在nodejs的服务器端，我们需要使用<code>multer</code>中间件处理文件的上传。</p>
 <h4 id="http-request在java中的应用">http-request在java中的应用</h4>
-
 <p>使用java模拟发送http请求，除了使用appache官网的<code>HttpClient</code>之外，
 还可以使用<code>http-request</code>发送请求<a href="https://search.maven.org/artifact/com.github.kevinsawicki/http-request/6.0/jar" title="点我访问">Maven Central</a>
 在maven仓库中的位置如下，使用超级方便！</p>
-
-<pre><code class="language-xml">&lt;dependency&gt;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;com.github.kevinsawicki&lt;/groupId&gt;
   &lt;artifactId&gt;http-request&lt;/artifactId&gt;
   &lt;version&gt;6.0&lt;/version&gt;
 &lt;/dependency&gt;
-</code></pre>
+</code></pre></div>
                         </div>
 
                         
@@ -274,6 +249,10 @@ fetch(url,{
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -309,10 +288,6 @@ fetch(url,{
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -332,7 +307,7 @@ fetch(url,{
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

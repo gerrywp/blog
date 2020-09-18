@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -93,261 +93,201 @@
                         
                         <div class="post-content">
                             <p>　　阅读java编程思想，用笔记辅助记忆！</p>
-
-<h3 id="primitive类型-基元类型">Primitive类型(基元类型)</h3>
-
+<h3 id="primitive类型基元类型">Primitive类型(基元类型)</h3>
 <p>在这里我借鉴了CLR via c#的翻译，将它翻译为<strong>基元类型</strong>以区别于<strong>Wrapper类型</strong></p>
-
 <table>
 <thead>
 <tr>
-<th align="left">基元类型</th>
-<th align="center">大小(bit)</th>
-<th align="center">封装器类型</th>
+<th style="text-align:left">基元类型</th>
+<th style="text-align:center">大小(bit)</th>
+<th style="text-align:center">封装器类型</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="left">boolean</td>
-<td align="center">1</td>
-<td align="center">Boolean</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">Boolean</td>
 </tr>
-
 <tr>
-<td align="left">char</td>
-<td align="center">16</td>
-<td align="center">Character</td>
+<td style="text-align:left">char</td>
+<td style="text-align:center">16</td>
+<td style="text-align:center">Character</td>
 </tr>
-
 <tr>
-<td align="left">byte</td>
-<td align="center">8</td>
-<td align="center">Byte</td>
+<td style="text-align:left">byte</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">Byte</td>
 </tr>
-
 <tr>
-<td align="left">short</td>
-<td align="center">16</td>
-<td align="center">Short</td>
+<td style="text-align:left">short</td>
+<td style="text-align:center">16</td>
+<td style="text-align:center">Short</td>
 </tr>
-
 <tr>
-<td align="left">int</td>
-<td align="center">32</td>
-<td align="center">Integer</td>
+<td style="text-align:left">int</td>
+<td style="text-align:center">32</td>
+<td style="text-align:center">Integer</td>
 </tr>
-
 <tr>
-<td align="left">long</td>
-<td align="center">64</td>
-<td align="center">Long</td>
+<td style="text-align:left">long</td>
+<td style="text-align:center">64</td>
+<td style="text-align:center">Long</td>
 </tr>
-
 <tr>
-<td align="left">float</td>
-<td align="center">32</td>
-<td align="center">Float</td>
+<td style="text-align:left">float</td>
+<td style="text-align:center">32</td>
+<td style="text-align:center">Float</td>
 </tr>
-
 <tr>
-<td align="left">double</td>
-<td align="center">64</td>
-<td align="center">Double</td>
+<td style="text-align:left">double</td>
+<td style="text-align:center">64</td>
+<td style="text-align:center">Double</td>
 </tr>
-
 <tr>
-<td align="left">Void</td>
-<td align="center"></td>
-<td align="center">Void</td>
+<td style="text-align:left">Void</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">Void</td>
 </tr>
 </tbody>
 </table>
-
 <blockquote>
 <p>说明：基元类型存储在内存<del>堆栈</del>(<code>Stack</code>)上，封装器类型存储在内存<del>堆</del>(<code>Heap</code>)上。</p>
 </blockquote>
-
-<p>类成员变量(基元类型或封装器类型)都默认在new对象的时候初始化，但是函数里面的&rdquo;局部&rdquo;变量不会初始化并且java编译器会给出编译期错误警告！</p>
-
-<h3 id="有包名的情况下编译-javac-及运行-java">有包名的情况下编译(javac)及运行(java)</h3>
-
-<p>创建了带包名的.java源文件，编译之后运行报错：找不到或无法加载主类。<br />
+<p>类成员变量(基元类型或封装器类型)都默认在new对象的时候初始化，但是函数里面的&quot;局部&quot;变量不会初始化并且java编译器会给出编译期错误警告！</p>
+<h3 id="有包名的情况下编译javac及运行java">有包名的情况下编译(javac)及运行(java)</h3>
+<p>创建了带包名的.java源文件，编译之后运行报错：找不到或无法加载主类。<br>
 例如：在src/com/aiyoe下创建文件<code>Stuent.java</code></p>
-
 <ul>
 <li>包名称需同目录名称一致</li>
-
-<li><p>public的类名需同文件名一致</p>
-
-<pre><code class="language-java">//需一致
-package com.aiyoe
-public class Student{
-}
-</code></pre></li>
+<li>public的类名需同文件名一致</li>
 </ul>
-
-<p>编译运行步骤如下：</p>
-
-<pre><code class="language-bash">cd src/com/aiyoe
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#008000">//需一致
+</span><span style="color:#008000"></span><span style="color:#00f">package</span> com.aiyoe
+<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Student</span>{
+}
+</code></pre></div><p>编译运行步骤如下：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd src/com/aiyoe
 javac Student.java
-#注意运行的时候要返回到包的最外层目录，此处为src
+<span style="color:#008000">#注意运行的时候要返回到包的最外层目录，此处为src</span>
 cd src
-#运行时候要使用类的全名，即带上包名称！
+<span style="color:#008000">#运行时候要使用类的全名，即带上包名称！</span>
 java com.aiyoe.Student
-</code></pre>
-
-<h3 id="深刻理解classpath">深刻理解classpath</h3>
-
+</code></pre></div><h3 id="深刻理解classpath">深刻理解classpath</h3>
 <p>项目文件夹结构如下</p>
-
 <ul>
-<li><p>src</p>
-
+<li>src
 <ul>
-<li><p>com</p>
-
+<li>com
 <ul>
 <li>aiyoe
-
 <ul>
 <li>Main.java</li>
-</ul></li>
-
-<li><p>util</p>
-
+</ul>
+</li>
+<li>util
 <ul>
-<li><p>Console.java</p>
+<li>Console.java</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#008000">//Main.java
+</span><span style="color:#008000"></span><span style="color:#00f">import static</span> util.Console
 
-<pre><code class="language-java">//Main.java
-import static util.Console
-
-public class Main{
+<span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">Main</span>{
 }
-</code></pre>
-
-<pre><code class="language-java">//Console.java
-public Console{
-	public static void write(Object o){
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#008000">//Console.java
+</span><span style="color:#008000"></span><span style="color:#00f">public</span> Console{
+	<span style="color:#00f">public</span> <span style="color:#00f">static</span> <span style="color:#2b91af">void</span> write(Object o){
 		System.out.print(o);
 	}
 }
-</code></pre></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
-
-<p>当进入src/com/aiyoe目录下直接编译Main.java文件的时候会报错,找不到包util<br />
+</code></pre></div><p>当进入src/com/aiyoe目录下直接编译Main.java文件的时候会报错,找不到包util<br>
 需要先进入src/util目录先编译Console.java</p>
-
-<pre><code class="language-java">cd src/util
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">cd src/util
 javac Console.java
-</code></pre>
-
-<p>然后再进入src/com/aiyoe编译Main.java还是报错<br />
+</code></pre></div><p>然后再进入src/com/aiyoe编译Main.java还是报错<br>
 因为javac编译文件的时候在没有设置<code>classpath</code>的时候，是在当前目录下查找字节码文件，当通过<code>import</code>语句引入包中的具体类的时候，
-会将包名中的<code>.</code>替换成<code>/</code>并在当前目录下查找，举例：<br />
+会将包名中的<code>.</code>替换成<code>/</code>并在当前目录下查找，举例：<br>
 当前路径为src/com/aiyoe,引入的包路径为<code>import util.Console</code>,所以会在以下路径<code>/src/com/aiyoe/util/Console.class</code>查找文件，当然是找不到的，
 所以编译文件的时候最好指定<code>classpath</code></p>
-
-<pre><code class="language-bash">#当前目录为src/com/aiyoe
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000">#当前目录为src/com/aiyoe</span>
 javac -cp ../../ com.aiyoe.Main.java
-</code></pre>
-
-<p>这样就会去<code>src</code>目录底下寻找<code>util/Console.class</code>文件以及<code>com/aiyoe/Main.java</code>文件进行编译<br />
+</code></pre></div><p>这样就会去<code>src</code>目录底下寻找<code>util/Console.class</code>文件以及<code>com/aiyoe/Main.java</code>文件进行编译<br>
 同理运行的时候也一样，最好指定<code>classpath</code></p>
-
-<pre><code class="language-bash">#先进入src目录
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000">#先进入src目录</span>
 cd src
 java -cp . com.aiyoe.Main
-#注意需要使用java虚拟机运行的带main函数的class，需要指定全名(带包路径的的名称)
-</code></pre>
-
-<h3 id="推荐-编译-javac-和运行-java-操作都在src目录底下进行">推荐-编译(javac)和运行(java)操作都在src目录底下进行</h3>
-
+<span style="color:#008000">#注意需要使用java虚拟机运行的带main函数的class，需要指定全名(带包路径的的名称)</span>
+</code></pre></div><h3 id="推荐-编译javac和运行java操作都在src目录底下进行">推荐-编译(javac)和运行(java)操作都在src目录底下进行</h3>
 <p>将当前目录添加到<code>classpath</code></p>
-
-<pre><code class="language-bash">cd src
-#编译Console.java
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd src
+<span style="color:#008000">#编译Console.java</span>
 javac util/Console.java
-#编译Main.java
+<span style="color:#008000">#编译Main.java</span>
 javac com/aiyoe/Main.java
-#运行main函数
+<span style="color:#008000">#运行main函数</span>
 java -cp . com.aiyoe.Main
-</code></pre>
-
-<blockquote>
+</code></pre></div><blockquote>
 <p>说明：编译指定相对路径，运行指定<code>classpath</code>及类全名！</p>
 </blockquote>
-
 <h3 id="异常说明">异常说明</h3>
-
-<p>异常说明，使你能以礼貌的方式告知客户端程序员某个方法可能会抛出异常。它属于方法声明的一部分，紧跟在形式参数列表之后！<strong>Java 强制使用这个语法</strong><br />
+<p>异常说明，使你能以礼貌的方式告知客户端程序员某个方法可能会抛出异常。它属于方法声明的一部分，紧跟在形式参数列表之后！<strong>Java 强制使用这个语法</strong><br>
 异常说明使用了附加的关键字<code>throws</code>:</p>
-
-<pre><code class="language-java">void f() throws TooBig,TooSmall { //...
-}
-</code></pre>
-
-<p>代码必须与异常说明保持一致。如果方法里的代码产生了异常却没有进行处理，编译器会发现这个问题并提醒你：<br />
-要么处理这个异常，要么就在异常说明中表明此方法将产生异常。<br />
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#2b91af">void</span> f() <span style="color:#00f">throws</span> TooBig,TooSmall { <span style="color:#008000">//...
+</span><span style="color:#008000"></span>}
+</code></pre></div><p>代码必须与异常说明保持一致。如果方法里的代码产生了异常却没有进行处理，编译器会发现这个问题并提醒你：<br>
+要么处理这个异常，要么就在异常说明中表明此方法将产生异常。<br>
 通过这种自顶向下的强制执行的异常说明机制，Java在编译时就可以保证一定水平的异常正确性。
-不过还是有个能&rdquo;作弊&rdquo;的地方：可以声明方法将抛出异常，实际上却不抛出。编译器相信了这个<strong>异常声明</strong>,并强制调用此方法的客户像真的有抛出异常那样使用
+不过还是有个能&quot;作弊&quot;的地方：可以声明方法将抛出异常，实际上却不抛出。编译器相信了这个<strong>异常声明</strong>,并强制调用此方法的客户像真的有抛出异常那样使用
 这个方法。这样做的好处是，为异常先占个位子，以后就可以抛出这个异常而不用修改已有的代码。在定义抽象基类和接口时这种能力很重要，这样派生类或接口实现
-就能够抛出这些预先声明的异常。<br />
+就能够抛出这些预先声明的异常。<br>
 这种在编译时被强制检查的异常称为<strong>被检查的异常</strong>。</p>
-
 <p>有<strong>被检查的异常</strong>自然就有<strong>不被检查的异常</strong></p>
-
-<h3 id="特例-runtimeexception-不被检查的异常">特例：RuntimeException(不被检查的异常)</h3>
-
-<p>属于运行时的异常的类型有很多，它们会自动被java虚拟机抛出，所以不必在<code>异常说明</code>中把它们列出来。这些异常都是从[<strong>RuntimeException</strong>]( &lsquo;点我访问&rsquo;)类继承,它们也被称为&rdquo;不受检查异常&rdquo;。这种异常属于错误，将被自动捕获，就不用你亲自动手了。不过尽管通常不用捕获<strong>RuntimeException</strong>异常，但还是可以在代码中抛出<strong>RuntimeException</strong>异常。</p>
-
+<h3 id="特例runtimeexception不被检查的异常">特例：RuntimeException(不被检查的异常)</h3>
+<p>属于运行时的异常的类型有很多，它们会自动被java虚拟机抛出，所以不必在<code>异常说明</code>中把它们列出来。这些异常都是从<a href="'%E7%82%B9%E6%88%91%E8%AE%BF%E9%97%AE'"><strong>RuntimeException</strong></a>类继承,它们也被称为&quot;不受检查异常&quot;。这种异常属于错误，将被自动捕获，就不用你亲自动手了。不过尽管通常不用捕获<strong>RuntimeException</strong>异常，但还是可以在代码中抛出<strong>RuntimeException</strong>异常。</p>
 <p><strong>RuntimeException</strong> 是一个特例。对于这种异常类型，编译器不需要异常说明，其输出被报告给了<strong>System.err</strong>。
-所以答案是：如果 <strong>RuntimeException</strong> 没有被捕获二直达main(),那么程序退出前将调用异常的 <strong>printStackTrace()</strong> 方法。<br />
-请务必记住：只能在代码中忽略<strong>RuntimeException</strong>(及其子类)类型的异常,其他类型异常的处理都是由编译器强制实施的。究其原因，<strong>RuntimeException</strong>代表的是编程错误：
-1. 无法预料的错误。比如你从控制范围之外传递进来的null引用
-2. 应该在代码中进行检查的错误。(比如对于ArrayIndexOutOfBoundsException,就得注意下数组的大小了。)在一个地方发生的异常，常常会在另一个地方导致错误。</p>
-
-<h3 id="gc">GC</h3>
-
-<p><img src="../../pictures/20180919140600.png" alt="GC回收" title="点我访问" /></p>
-
-<p>线上产品频繁GC，也就是产生了内存泄露该如何处理？<br />
-java的jdk(bin目录)里面提供了很多套件
-1. 使用jps查看java应用程序进程名和端口号</p>
-
-<pre><code class="language-shell">jps -lv
-</code></pre>
-
+所以答案是：如果 <strong>RuntimeException</strong> 没有被捕获二直达main(),那么程序退出前将调用异常的 <strong>printStackTrace()</strong> 方法。<br>
+请务必记住：只能在代码中忽略<strong>RuntimeException</strong>(及其子类)类型的异常,其他类型异常的处理都是由编译器强制实施的。究其原因，<strong>RuntimeException</strong>代表的是编程错误：</p>
 <ol>
-<li><p>使用jstat命令查看内存时候泄露，FGC是否频繁释放</p>
-
-<pre><code class="language-shell">jstat -gcutil 进程ID 多少毫秒执行一次
+<li>无法预料的错误。比如你从控制范围之外传递进来的null引用</li>
+<li>应该在代码中进行检查的错误。(比如对于ArrayIndexOutOfBoundsException,就得注意下数组的大小了。)在一个地方发生的异常，常常会在另一个地方导致错误。</li>
+</ol>
+<h3 id="gc">GC</h3>
+<p><img src="../../pictures/20180919140600.png" alt="GC回收" title="点我访问"></p>
+<p>线上产品频繁GC，也就是产生了内存泄露该如何处理？<br>
+java的jdk(bin目录)里面提供了很多套件</p>
+<ol>
+<li>使用jps查看java应用程序进程名和端口号</li>
+</ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">jps -lv
+</code></pre></div><ol start="2">
+<li>使用jstat命令查看内存时候泄露，FGC是否频繁释放</li>
+</ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">jstat -gcutil 进程ID 多少毫秒执行一次
 //例如
 jsp -lv
 jstat -gcutil 12544 3000
-</code></pre></li>
-
-<li><p>或者使用可视化工具jconsole查看内存、CPU等使用情况</p></li>
-
-<li><p>查看GC日志，需要配置java虚拟机jvm参数</p>
-
-<pre><code class="language-shell">java -?
+</code></pre></div><ol start="3">
+<li>或者使用可视化工具jconsole查看内存、CPU等使用情况</li>
+<li>查看GC日志，需要配置java虚拟机jvm参数</li>
+</ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">java -?
 java -XX:+PrintGCDetails
-</code></pre></li>
-
-<li><p>使用jmap生对存储快照dump文件</p>
-
-<pre><code class="language-shell">jmap histo:live vmid
+</code></pre></div><ol start="5">
+<li>使用jmap生对存储快照dump文件</li>
+</ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">jmap histo:live vmid
 //histo是histogram简写，直方图的意思
 jmap histo:live 95521
-</code></pre></li>
-
-<li><p>也可以将dump生成下来使用jvisualvm可视化工具或者jhat查询分析</p>
-
-<pre><code class="language-shell">//使用jmap生成
+</code></pre></div><ol start="6">
+<li>也可以将dump生成下来使用jvisualvm可视化工具或者jhat查询分析</li>
+</ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">//使用jmap生成
 jmap -dump:live,format=b,file=heap-dump.bin &lt;pid&gt;
 //其中的pid是JVM进程的id，heap-dump.bin是生成的文件名称，在执行命令的目录下面。
 
@@ -355,62 +295,47 @@ jmap -dump:live,format=b,file=heap-dump.bin &lt;pid&gt;
 
 //在JVM中添加参数生成
 java -XX:+HeapDumpOnOutOfMemoryError
-</code></pre></li>
-</ol>
-
-<p>使用jvisualvm查看的时候可以使用<strong>QQL</strong>查询Referrers</p>
-
+</code></pre></div><p>使用jvisualvm查看的时候可以使用<strong>QQL</strong>查询Referrers</p>
 <h3 id="多线程">多线程</h3>
-
-<p>说到多线程首先要谈到的就是内存，内存结构以及内存可见性。多线程之间的通信(涉及到同步、锁等)由java内存模型(JMM)控制。JMM将内存分为两种类型，一种是堆内存(称为主存main memory),线程间的共享变量存放处。另一种是线程自身的内存(称为本地内存local memory),存储了自身的可以访问主内存变量的副本，只对线程本身可见！<br />
-由于不同的线程，对同一对象的写操作在local memory(Main memory的副本)上，读操作都是从main memory上读取。<br />
-如果想线程不共享对象变量可以使用<strong>ThreadLocal</strong>线程本地存储，这样写/读操作都直接在local memory上进行！<br />
+<p>说到多线程首先要谈到的就是内存，内存结构以及内存可见性。多线程之间的通信(涉及到同步、锁等)由java内存模型(JMM)控制。JMM将内存分为两种类型，一种是堆内存(称为主存main memory),线程间的共享变量存放处。另一种是线程自身的内存(称为本地内存local memory),存储了自身的可以访问主内存变量的副本，只对线程本身可见！<br>
+由于不同的线程，对同一对象的写操作在local memory(Main memory的副本)上，读操作都是从main memory上读取。<br>
+如果想线程不共享对象变量可以使用<strong>ThreadLocal</strong>线程本地存储，这样写/读操作都直接在local memory上进行！<br>
 由于local memory和main memory不同步的原因，引出了<strong>Atomicity</strong>(原子性)和<strong>Volatility</strong>(易变性)</p>
-
-<p><strong>Atomicity</strong>(原子性)<br />
+<p><strong>Atomicity</strong>(原子性)<br>
 原子性即不可再分性，也就是对对象的操作在汇编代码或者IL中间代码下，一步即可完成的操作。
 简单的赋值操作和返回操作可视为原子性，其它的操作最好不要视为原子操作！</p>
-
-<pre><code class="language-java">//---赋值和返回
-int i=10;//原子操作
-return i;//原子操作
-
-//以下操作不一定是原子操作
-i++;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#008000">//---赋值和返回
+</span><span style="color:#008000"></span><span style="color:#2b91af">int</span> i=10;<span style="color:#008000">//原子操作
+</span><span style="color:#008000"></span><span style="color:#00f">return</span> i;<span style="color:#008000">//原子操作
+</span><span style="color:#008000"></span>
+<span style="color:#008000">//以下操作不一定是原子操作
+</span><span style="color:#008000"></span>i++;
 i+=2;
-</code></pre>
-
-<p><strong>Volatility</strong>(易变性)<br />
+</code></pre></div><p><strong>Volatility</strong>(易变性)<br>
 可以将类的字段用关键字<strong>volatile</strong>修饰，这样这个字段会事实强制刷新线程local memory的值到main memory,实现不同线程之间的数据同步共享！</p>
-
 <h4 id="最佳实践">最佳实践</h4>
-
 <ol>
 <li>能使用同步的地方尽量使用同步<strong>synchronized</strong>,同步也会导致线程内存向主存中刷新</li>
 <li>使用<strong>volatile</strong>而不是<strong>synchronize</strong>唯一安全的情况是类中只有一个可变的字段(filed),并且不同线程对该字段的操作必须是原子操作！即仅仅是赋值或者返回操作</li>
-
-<li><p>多线程之间对同一对象的写操作和读操作都必须应用同步</p>
-
-<pre><code class="language-java">public class AtomicityTest implements Runnable{
-private int i=0;
-public int getValue(){return i;}
-private synchronized void setValue(){i++;i++}
-public void run(){
-while(true){
-setValue();
-}
-}
-}
-/*
-由于只有setValue应用了同步，假设现在有A,B两个线程使用同一个AtomicityTest对象：
-A线程调用run()修改了i的值，由于setValue应用了同步synchronized，会刷新i值到主内存
-B线程调用getValue得到是线程本地变量，很有可能不是最新的值，非线程安全。
-安全的作法getValue也要使用关键字synchronized,强制B线程刷新主存数据到B本地线程
-*/
-</code></pre></li>
+<li>多线程之间对同一对象的写操作和读操作都必须应用同步</li>
 </ol>
-
-<p><a href="https://zhuanlan.zhihu.com/p/25108871" title="点我访问">HashMap.entrySet方法分析</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">public</span> <span style="color:#00f">class</span> <span style="color:#2b91af">AtomicityTest</span> <span style="color:#00f">implements</span> Runnable{
+<span style="color:#00f">private</span> <span style="color:#2b91af">int</span> i=0;
+<span style="color:#00f">public</span> <span style="color:#2b91af">int</span> getValue(){<span style="color:#00f">return</span> i;}
+<span style="color:#00f">private</span> <span style="color:#00f">synchronized</span> <span style="color:#2b91af">void</span> setValue(){i++;i++}
+<span style="color:#00f">public</span> <span style="color:#2b91af">void</span> run(){
+<span style="color:#00f">while</span>(<span style="color:#00f">true</span>){
+  setValue();
+}
+}
+}
+<span style="color:#008000">/*
+</span><span style="color:#008000">由于只有setValue应用了同步，假设现在有A,B两个线程使用同一个AtomicityTest对象：
+</span><span style="color:#008000">A线程调用run()修改了i的值，由于setValue应用了同步synchronized，会刷新i值到主内存
+</span><span style="color:#008000">B线程调用getValue得到是线程本地变量，很有可能不是最新的值，非线程安全。
+</span><span style="color:#008000">安全的作法getValue也要使用关键字synchronized,强制B线程刷新主存数据到B本地线程
+</span><span style="color:#008000">*/</span>
+</code></pre></div><p><a href="https://zhuanlan.zhihu.com/p/25108871" title="点我访问">HashMap.entrySet方法分析</a></p>
                         </div>
 
                         
@@ -478,6 +403,10 @@ B线程调用getValue得到是线程本地变量，很有可能不是最新的�
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -513,10 +442,6 @@ B线程调用getValue得到是线程本地变量，很有可能不是最新的�
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -536,7 +461,7 @@ B线程调用getValue得到是线程本地变量，很有可能不是最新的�
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

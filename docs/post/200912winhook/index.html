@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -92,42 +92,37 @@
                         
                         
                         <div class="post-content">
-                            <p><strong><em>SetWindowsHookEx</em></strong>安装钩子程序，通过对操作系统消息的拦截,实现跨进程的操作。</p>
-
+                            <p>___SetWindowsHookEx___安装钩子程序，通过对操作系统消息的拦截,实现跨进程的操作。</p>
 <p>该方法有以下限制：</p>
-
 <ol>
 <li>有些钩子类型只能是线程的钩子，有些类型只能是全局的钩子。具体见msdn</li>
 <li>不能用于Console控制台应用程序，因为微软使用了一种完全不同的机制来实现Console程序
 (此API只能挂接系统中的所有GUI线程，对于Windows console类的程序就无能为力了)</li>
 </ol>
-
 <p>控制台应用可以通过<code>SetConsoleCtrlHandler</code>函数来处理，
 这是一个控制台类型钩子，用来设置控制台的消息回调函数。</p>
-
 <blockquote>
 <p>Console程序的消息循环是在<strong>Windows</strong>的<code>kernel</code>中实现的，
 因此我们想为Console程序设置钩子的话，必须在main函数中捕获消息循环。</p>
 </blockquote>
-
-<pre><code class="language-cpp">int main(int argc,char* argv[])
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#2b91af">int</span> main(<span style="color:#2b91af">int</span> argc,<span style="color:#2b91af">char</span>* argv[])
 {
 	g_hHook = SetWindowsHookEx(WH_MOUSE_LL,MouseProc,NULL,0);
 	HANDLE hListenThread = (HANDLE) _beginthreadex(NULL,0,ListenTask,&amp;sock,0,NULL);
 	MSG	msg;
 	BOOL bRet;
-	while (bRet = ::GetMessage(&amp;msg, NULL, 0, 0))
+	<span style="color:#00f">while</span> (bRet = ::GetMessage(&amp;msg, NULL, 0, 0))
 	{
-		if (bRet == -1)
+		<span style="color:#00f">if</span> (bRet == -1)
 		{
-			printf(&quot;GetMessage fail:errVal=%d]n&quot;, ::GetLastError());
-			system(&quot;pause&quot;);
-			break;
+			printf(<span style="color:#a31515">&#34;GetMessage fail:errVal=%d]n&#34;</span>, ::GetLastError());
+			system(<span style="color:#a31515">&#34;pause&#34;</span>);
+			<span style="color:#00f">break</span>;
 		}
-		if (msg.message == UM_CLOSE &amp;&amp; ::MessageBox(::GetConsoleWindow(), &quot;Confirm exit yes or not&quot;, &quot;CenterServer&quot;, MB_YESNO ) == IDYES)
+		<span style="color:#00f">if</span> (msg.message == UM_CLOSE &amp;&amp; ::MessageBox(::GetConsoleWindow(), <span style="color:#a31515">&#34;Confirm exit yes or not&#34;</span>, <span style="color:#a31515">&#34;CenterServer&#34;</span>, MB_YESNO ) == IDYES)
 		{
 			g_bExit  =  true;
-			break;
+			<span style="color:#00f">break</span>;
 		}
 	}
 	::WaitForSingleObject(hListenThread,  INFINITE);
@@ -135,9 +130,9 @@
 	::closesocket(sock);
 	::WSACleanup();
 	UnhookWindowsHookEx(g_hHook);
-	return 0;
+	<span style="color:#00f">return</span> 0;
 }
-</code></pre>
+</code></pre></div>
                         </div>
 
                         
@@ -205,6 +200,10 @@
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -240,10 +239,6 @@
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -263,7 +258,7 @@
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

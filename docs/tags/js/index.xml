@@ -6,11 +6,7 @@
     <description>Recent content in js on 云亦海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 21 Nov 2017 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://gerrywp.github.io/blog/tags/js/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 21 Nov 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://gerrywp.github.io/blog/tags/js/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>es6语法糖(syntax sugar)</title>
       <link>https://gerrywp.github.io/blog/post/171121es6syntax/</link>
@@ -27,8 +23,8 @@
       
       <guid>https://gerrywp.github.io/blog/post/170421accuratetimer/</guid>
       <description>&lt;p&gt;今天偶然看到了一篇讲解javascript各定时器的文章。文章使用对话的方式阐述了&lt;code&gt;setInterval&lt;/code&gt;不足，颇有意思。
-但是觉得不太好理解，原文如下：&lt;br /&gt;
-&lt;a href=&#34;http://imweb.io/topic/56ac67fbe39ca21162ae6c78&#34; title=&#34;点我访问&#34;&gt;setTimeout那些事儿&lt;/a&gt;&lt;br /&gt;
+但是觉得不太好理解，原文如下：&lt;br&gt;
+&lt;a href=&#34;http://imweb.io/topic/56ac67fbe39ca21162ae6c78&#34; title=&#34;点我访问&#34;&gt;setTimeout那些事儿&lt;/a&gt;&lt;br&gt;
 其中的第三点，咱们还是代码见(show you code)。&lt;/p&gt;</description>
     </item>
     

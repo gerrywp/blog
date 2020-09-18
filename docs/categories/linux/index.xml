@@ -6,11 +6,7 @@
     <description>Recent content in linux on 云亦海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 03 May 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://gerrywp.github.io/blog/categories/linux/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 03 May 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://gerrywp.github.io/blog/categories/linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>v2ray跨越GFW</title>
       <link>https://gerrywp.github.io/blog/post/200503v2ray/</link>
@@ -101,7 +97,7 @@
       <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/171030vimuse/</guid>
-      <description>&lt;p&gt;&amp;emsp;&amp;emsp;以普通用户身份vim编辑的文件,如何强制保存？&lt;/p&gt;</description>
+      <description>&lt;p&gt;  以普通用户身份vim编辑的文件,如何强制保存？&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -110,7 +106,7 @@
       <pubDate>Wed, 25 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/171025visudo/</guid>
-      <description>&lt;p&gt;&amp;emsp;&amp;emsp;管理好你的主机，首要任务是配置好账户的权限，不能把root账户密码泄露出去。但是只有拥有root管理员权限才能安装软件，如何解决。&lt;br /&gt;
+      <description>&lt;p&gt;  管理好你的主机，首要任务是配置好账户的权限，不能把root账户密码泄露出去。但是只有拥有root管理员权限才能安装软件，如何解决。&lt;br&gt;
 相对于使用&lt;code&gt;su&lt;/code&gt;命令我们需要待切换用户的密码（通常是root密码），而使用&lt;code&gt;sudo&lt;/code&gt;命令仅需要当前用户的密码，甚至可以设置不需要密码！&lt;/p&gt;</description>
     </item>
     
@@ -120,9 +116,11 @@
       <pubDate>Sat, 15 Jul 2017 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/170715curl/</guid>
-      <description>&lt;p&gt;ubuntu系统下想要使用curl-ssl只能是自己下载源码进行安装，因为开启ssl(&amp;ndash;with-ssl)需要openssl的库文件。默认ubuntu安装的openssl未包含库(lib)文件和头文件(include)。使用curl下载https文件的时候,会报以下错误：&lt;br /&gt;
-* Protocol https not supported or disabled in libcurl
-* Unsupport protocol&lt;/p&gt;</description>
+      <description>&lt;p&gt;ubuntu系统下想要使用curl-ssl只能是自己下载源码进行安装，因为开启ssl(&amp;ndash;with-ssl)需要openssl的库文件。默认ubuntu安装的openssl未包含库(lib)文件和头文件(include)。使用curl下载https文件的时候,会报以下错误：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Protocol https not supported or disabled in libcurl&lt;/li&gt;
+&lt;li&gt;Unsupport protocol&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
     <item>
@@ -131,7 +129,7 @@
       <pubDate>Tue, 11 Apr 2017 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/170411pkgmanager/</guid>
-      <description>&lt;p&gt;linux界的 2 大主流软件管理方式(命令):RPM(RedHat Package Manager)和DPKG(Debian Packager)。&lt;br /&gt;
+      <description>&lt;p&gt;linux界的 2 大主流软件管理方式(命令):RPM(RedHat Package Manager)和DPKG(Debian Packager)。&lt;br&gt;
 它们对应的在线(线上)管理方式(命令):YUM(Yellowdog Updater, Modified)和APT(Advanced Packaging Tool)。&lt;/p&gt;</description>
     </item>
     

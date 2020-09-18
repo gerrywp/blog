@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -93,49 +93,33 @@
                         
                         <div class="post-content">
                             <p>ANSI和Unicode的历史由来已久,为了应对ASCII编码和Unicode-16编码，微软定义了大量的宏来处理字符串。</p>
-
 <h3 id="windows原始数据类型定义">Windows原始数据类型定义</h3>
-
 <ol>
-<li><p>WinNT.h<br />
-路径：c:\Program Files (x86)\Windows Kits\8.0\Include\um\winnt.h<br />
-微软团队希望定义自己的数据类型，于是他们在<strong>WinNT.h</strong>里面定义了字符串相关的数据类型</p>
-
-<pre><code class="language-cpp">typedef char 	CHAR；//有符号 字符类型(8bit)
-typedef wchar_t 	WCHAR；//有符号 字符类型(16bit)
-</code></pre>
-
-<p>除此之外<strong>WinNT.h</strong>头文件还定义了一系列方便的数据类型用来处理<code>字符指针</code>和<code>字符串指针</code></p>
-
-<pre><code class="language-cpp">typedef CHAR *PCHAR, *LPCH, *PCH;
-typedef CONST WCHAR *LPCWCH, *PCWCH;
-</code></pre></li>
-
-<li><p>minwindef.h<br />
-路径：c:\Program Files (x86)\Windows Kits\8.0\Include\shared\minwindef.h<br />
-其中定义了大量的数据类型</p>
-
-<pre><code class="language-cpp">...
-typedef unsigned char       BYTE;//无符号的 字符(8bit)类型
-</code></pre></li>
+<li>WinNT.h<br>
+路径：c:\Program Files (x86)\Windows Kits\8.0\Include\um\winnt.h<br>
+微软团队希望定义自己的数据类型，于是他们在<strong>WinNT.h</strong>里面定义了字符串相关的数据类型</li>
 </ol>
-
-<h3 id="宏的使用">宏的使用</h3>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">typedef</span> <span style="color:#2b91af">char</span> 	CHAR<span style="">；</span><span style="color:#008000">//有符号 字符类型(8bit)
+</span><span style="color:#008000"></span><span style="color:#00f">typedef</span> <span style="color:#2b91af">wchar_t</span> 	WCHAR<span style="">；</span><span style="color:#008000">//有符号 字符类型(16bit)
+</span></code></pre></div><p>除此之外<strong>WinNT.h</strong>头文件还定义了一系列方便的数据类型用来处理<code>字符指针</code>和<code>字符串指针</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">typedef</span> CHAR *PCHAR, *LPCH, *PCH;
+<span style="color:#00f">typedef</span> CONST WCHAR *LPCWCH, *PCWCH;
+</code></pre></div><ol start="2">
+<li>minwindef.h<br>
+路径：c:\Program Files (x86)\Windows Kits\8.0\Include\shared\minwindef.h<br>
+其中定义了大量的数据类型</li>
+</ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">...
+<span style="color:#00f">typedef</span> <span style="color:#2b91af">unsigned</span> <span style="color:#2b91af">char</span>       BYTE;<span style="color:#008000">//无符号的 字符(8bit)类型
+</span></code></pre></div><h3 id="宏的使用">宏的使用</h3>
 <p>通常我们使用宏来定义字符串。这样就不必考虑环境是ANSI还是Unicode编码，因为宏已经帮我们做了适配。</p>
-
-<pre><code class="language-cpp">// if Unicode defined,a 16-bit character;else an 8 –bit character
-TCHAR  c=TEXT('A');
-</code></pre>
-
-<blockquote>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#008000">// if Unicode defined,a 16-bit character;else an 8 –bit character
+</span><span style="color:#008000"></span>TCHAR  c=TEXT(<span style="color:#a31515">&#39;A&#39;</span>);
+</code></pre></div><blockquote>
 <p>TCHAR和TEXT分别是两个宏</p>
 </blockquote>
-
 <h3 id="推荐方式">推荐方式</h3>
-
 <p>使用T家族类型，也就是每个类型都有一个T这个字母。它们会根据是否定义Unicode编码来进行自动适配。(transitional：过渡的，过渡时期的)</p>
-
 <ol>
 <li>开始将文本字符串想象为字符(8bit或16bit)的数组，而不是char或者字节的数组</li>
 <li>用通用的数据类型(如TCHAR/PTSTR)来表示文本字符和字符串</li>
@@ -144,10 +128,8 @@ TCHAR  c=TEXT('A');
 <li>字符串处理函数全部换成T家族_s(代表安全的)函数(如:<code>_tcscpy_s</code>、<code>_tcscat_s</code>)</li>
 <li>不要使用sizeof(),要改成_countof()，因为不确定编码是ANSI还是Unicode。内存分配也一样</li>
 </ol>
-
 <h3 id="异常处理">异常处理</h3>
-
-<p><strong>__try</strong>: 属于操作系统的（SEH）结构化异常处理<br />
+<p><strong>__try</strong>: 属于操作系统的（SEH）结构化异常处理<br>
 <strong>try</strong>:C++中的异常处理(内部实现上其实就是利用了编译器和操作系统的SEH结构化异常处理)</p>
                         </div>
 
@@ -216,6 +198,10 @@ TCHAR  c=TEXT('A');
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -251,10 +237,6 @@ TCHAR  c=TEXT('A');
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -274,7 +256,7 @@ TCHAR  c=TEXT('A');
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

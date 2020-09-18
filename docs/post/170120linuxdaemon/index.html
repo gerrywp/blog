@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -93,16 +93,11 @@
                         
                         <div class="post-content">
                             <p>如何将应用程序启动为守护进程(daemon),换言之作为服务(service)启动。</p>
-
 <h3 id="守护进程">守护进程</h3>
-
 <p><a href="http://www.ruanyifeng.com/blog/2016/02/linux-daemon.html" title="点我访问">Linux 守护进程的启动方法</a></p>
-
 <h3 id="管线命令">管线命令(|)</h3>
-
 <p>能接受前一个的指令的输出(standard output)作为输入(standard in)的的指令才能称之为管线命令。
 Linux有如下的管线命令：</p>
-
 <ol>
 <li>截取：cut, grep</li>
 <li>排序：sort, uniq, wc</li>
@@ -111,45 +106,33 @@ Linux有如下的管线命令：</p>
 <li>分割： split</li>
 <li>参数代换： xargs</li>
 </ol>
-
 <p>其中的参数代换指令xargs说明一下。因为很多命令不是管线命令，所以可以使用xargs命令将前面的命令结果转成参数形式传递给后续的指令：</p>
-
-<pre><code class="language-bash"># 我们要查询系统里面的所有S99local这个名字文件，并且看它的详细链接
-updatedb # 更新资料库
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># 我们要查询系统里面的所有S99local这个名字文件，并且看它的详细链接</span>
+updatedb <span style="color:#008000"># 更新资料库</span>
 locate -i s99local | xargs ls -al
-</code></pre>
-
-<blockquote>
+</code></pre></div><blockquote>
 <p>说明:因为ls并不是管线命令，所以通过xargs将输出转成参数传递给ls，来达到目的。</p>
 </blockquote>
-
-<h4 id="指令-和-指令-推荐">$(指令)和`指令<code>`</code>(推荐)</h4>
-
+<h4 id="指令和指令--推荐">$(指令)和`指令<code>`</code>(推荐)</h4>
 <p>通过复合指令可以动态的获取指令内容，作为参数传递</p>
-
-<pre><code class="language-bash">ls -al $(locate -i s99local)
-file $(locate -i s99local)
-</code></pre>
-
-<h3 id="关于减号的用途">关于减号的用途(-)</h3>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ls -al <span style="color:#00f">$(</span>locate -i s99local<span style="color:#00f">)</span>
+file <span style="color:#00f">$(</span>locate -i s99local<span style="color:#00f">)</span>
+</code></pre></div><h3 id="关于减号的用途-">关于减号的用途(-)</h3>
 <ol>
 <li>表示标准输出(standard output)</li>
-
-<li><p>表示前面指令存储的文件的文件名</p>
-
-<pre><code class="language-bash"># 此时的-代表标准输出，因为小写的-o参数，后面要接outfilename。所以用-符号代替了文件名，输出到标准输出传递给bash
+<li>表示前面指令存储的文件的文件名</li>
+</ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># 此时的-代表标准输出，因为小写的-o参数，后面要接outfilename。所以用-符号代替了文件名，输出到标准输出传递给bash</span>
 curl -o - https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh | bash
 等同
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh | bash \
-
-# 也可以使用以下的方式
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh | bash <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>
+<span style="color:#008000"># 也可以使用以下的方式</span>
 curl -O https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh | bash -
-# 此时bash后面的 - 表示传入当前目录的install.sh这个文件
+<span style="color:#008000"># 此时bash后面的 - 表示传入当前目录的install.sh这个文件</span>
 等同于
 bash ./install.sh
-</code></pre></li>
-</ol>
+</code></pre></div>
                         </div>
 
                         
@@ -217,6 +200,10 @@ bash ./install.sh
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -252,10 +239,6 @@ bash ./install.sh
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -275,7 +258,7 @@ bash ./install.sh
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

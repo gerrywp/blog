@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -93,87 +93,57 @@
                         
                         <div class="post-content">
                             <p>　　go大部分站点在国内被墙，想要直接使用<code>go get</code>命令下载包，就必须使用代理，本文使用的是shadowsocks代理访问外部网。</p>
-
 <h3 id="设置步骤">设置步骤</h3>
-
-<h4 id="1-使用shadowsocks">1.使用shadowsocks</h4>
-
+<h4 id="1使用shadowsocks">1.使用shadowsocks</h4>
 <p>在windows下配置好shadowsocks并运行</p>
-
-<h4 id="2-配置环境变量http-proxy">2.配置环境变量http_proxy</h4>
-
+<h4 id="2配置环境变量http_proxy">2.配置环境变量http_proxy</h4>
 <p>因为<code>go get</code>命令首先要从后面的url路径上取得meta tags如下：</p>
-
-<pre><code class="language-bash">Fetching https://google.golang.org/grpc?go-get=1
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Fetching https://google.golang.org/grpc?go-get=1
 Parsing meta tags from https://google.golang.org/grpc?go-get=1 (status code 200)
-</code></pre>
-
-<p>go命令本身走代理是依靠环境变量来设置的，因此：</p>
-
-<pre><code class="language-bash"># cmd 下设置临时环境变量
+</code></pre></div><p>go命令本身走代理是依靠环境变量来设置的，因此：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># cmd 下设置临时环境变量</span>
 set http_proxy=http://127.0.0.1:1080
 
-#linux下为
+<span style="color:#008000">#linux下为</span>
 export http_proxy=http://127.0.0.1:1080
-</code></pre>
-
-<blockquote>
+</code></pre></div><blockquote>
 <p>其中：127.0.0.1:1080为shadowsocks代理的本地路径</p>
 </blockquote>
-
-<p>还可以设置<code>go</code>命令的别名，这样每次打开cmd都不需要设置临时的环境变量
-&gt;参考：<a href="https://gerrywp.github.io/iblog/windows/cmdalias.html" title="点我访问">cmd命令别名</a></p>
-
-<h4 id="3-设置代理">3.设置代理</h4>
-
+<p>还可以设置<code>go</code>命令的别名，这样每次打开cmd都不需要设置临时的环境变量</p>
+<blockquote>
+<p>参考：<a href="https://gerrywp.github.io/iblog/windows/cmdalias.html" title="点我访问">cmd命令别名</a></p>
+</blockquote>
+<h4 id="3设置代理">3.设置代理</h4>
 <p>(1) <strong>配置vscode代理</strong></p>
-
 <p>找到setting-&gt;user-&gt;application-&gt;proxy 如图：</p>
-
-<p><img src="../../pictures/QQ20190706132230.png" alt="配置" title="点我访问" /></p>
-
+<p><img src="../../pictures/QQ20190706132230.png" alt="配置" title="点我访问"></p>
 <p>(2) <strong>配置git代理</strong></p>
-
 <p>因为go最终使用的是源码管理工具下载包文件，本文使用的源码管理工具是git</p>
-
-<pre><code class="language-bash">#配置git proxy
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000">#配置git proxy</span>
 git config --global http.proxy=http://127.0.0.1:1080
-</code></pre>
-
-<h3 id="换行符自动转换的坑">换行符自动转换的坑</h3>
-
+</code></pre></div><h3 id="换行符自动转换的坑">换行符自动转换的坑</h3>
 <p>git在安装的时候会默认勾选换行符转换的checkbox，然后每次提交文件的时候，就会自动将<code>CRLF</code>替换成<code>LF</code>
 如下禁用此设置不需要重新安装：</p>
-
-<pre><code class="language-bash">git config --system core.autocrlf=false
-#显示所有配置文件的路径
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git config --system core.autocrlf=false
+<span style="color:#008000">#显示所有配置文件的路径</span>
 git config --list --show-origin
-</code></pre>
-
-<p>配置文件路径在<code>C:\ProgramData\Git\config</code>
-&gt;参考: <a href="https://github.com/cssmagic/blog/issues/22" title="点我访问">自动换行</a></p>
-
+</code></pre></div><p>配置文件路径在<code>C:\ProgramData\Git\config</code></p>
+<blockquote>
+<p>参考: <a href="https://github.com/cssmagic/blog/issues/22" title="点我访问">自动换行</a></p>
+</blockquote>
 <p>然后<code>go get</code>命令可以直接下载墙外的包了</p>
-
-<pre><code class="language-bash">#下载gRPC包
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000">#下载gRPC包</span>
 go get -v -u google.golang.org/grpc
-</code></pre>
-
-<h3 id="go1-11之后的代理">go1.11之后的代理</h3>
-
+</code></pre></div><h3 id="go111之后的代理">go1.11之后的代理</h3>
 <p>go开始使用module包管理工具(版本&gt;go1.11)后;<code>go get</code>下载可以使用镜像代理，链接如下:
-<a href="https://goproxy.io" title="点我访问">goproxy.io</a><br />
+<a href="https://goproxy.io" title="点我访问">goproxy.io</a><br>
 我们必须在windows下设置环境变量<code>GOPROXY</code>：</p>
-
-<pre><code class="language-bash">GO111MODULE=&quot;on&quot;
-GOPROXY=&quot;https://goproxy.io&quot;
-</code></pre>
-
-<p>这样vscode里面才能使用go module模式通过代理来下载go包：
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">GO111MODULE=<span style="color:#a31515">&#34;on&#34;</span>
+GOPROXY=<span style="color:#a31515">&#34;https://goproxy.io&#34;</span>
+</code></pre></div><p>这样vscode里面才能使用go module模式通过代理来下载go包：
 在help/Toggle Developer Tools里面我们可以看到环境变量有值了。</p>
-
-<pre><code class="language-bash">process.env.GOPROXY
-</code></pre>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">process.env.GOPROXY
+</code></pre></div>
                         </div>
 
                         
@@ -243,6 +213,10 @@ GOPROXY=&quot;https://goproxy.io&quot;
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -278,10 +252,6 @@ GOPROXY=&quot;https://goproxy.io&quot;
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -301,7 +271,7 @@ GOPROXY=&quot;https://goproxy.io&quot;
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

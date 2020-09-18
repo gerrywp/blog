@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -93,34 +93,24 @@
                         
                         <div class="post-content">
                             <p>FTP文件传输两种模式：(1). PORT(主动)模式 (2). PASV(被动)模式.</p>
-
 <p>FTP客户端和服务器之间需要建立两条TCP连接，一条是控制连接，用来发送控制指令，另外一条是数据连接，文件传输。
 两种模式下控制连接的建立一样，服务器监听21端口，客户端向服务器的该端口发起TCP连接。
 不同之处在于数据连接的建立。</p>
-
 <h3 id="数据连接的建立">数据连接的建立</h3>
-
-<h4 id="port-主动-模式">PORT(主动)模式</h4>
-
+<h4 id="port主动模式">PORT(主动)模式</h4>
 <p>服务器使用自己的20端口作为源端口，主动向客户端发起TCP连接。</p>
-
-<h4 id="pasv-被动-模式">PASV(被动)模式</h4>
-
+<h4 id="pasv被动模式">PASV(被动)模式</h4>
 <p>服务器监听1024-65535的一个随机端口，并通过控制连接将该端口告诉客户端，客户端向服务器的该端口发起TCP数据连接。</p>
-
 <h3 id="iis下被动模式的设置">IIS下被动模式的设置</h3>
-
-<p>在IIS服务根节点设置&rdquo;FTP Firewall Support&rdquo;<br />
-1. Data channel port range 指定数据连接服务器监听的端口<br />
-2. External IP Address of Firewall 指定防火墙可以放行服务器的ID<br />
-3. 系统工具windows firewall with advanced security 启用Inbound-Rules里面的ftp服务</p>
-
+<p>在IIS服务根节点设置&quot;FTP Firewall Support&quot;</p>
+<ol>
+<li>Data channel port range 指定数据连接服务器监听的端口</li>
+<li>External IP Address of Firewall 指定防火墙可以放行服务器的ID</li>
+<li>系统工具windows firewall with advanced security 启用Inbound-Rules里面的ftp服务</li>
+</ol>
 <h3 id="iis反向代理的设置">IIS反向代理的设置</h3>
-
 <p>安装微软web plateform</p>
-
 <p>在web plateform上安装ARR(Application Request Routing)</p>
-
 <p>双击IIS服务器的<strong>Application Request Routing Cache</strong>,启动Proxy,在website添加相应的规则</p>
                         </div>
 
@@ -189,6 +179,10 @@
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -224,10 +218,6 @@
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -247,7 +237,7 @@
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

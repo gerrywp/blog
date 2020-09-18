@@ -34,3 +34,7 @@ hasCJKLanguage = true
   name = "归档"
   url = "/archives/"
   weight=2
+  
+[markup]
+  [markup.highlight]
+  style = "vs"

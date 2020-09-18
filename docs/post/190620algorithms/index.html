@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -93,84 +93,70 @@
                         
                         <div class="post-content">
                             <p>　　算法心得，使用golang实现常用的算法。算法导论中阐述了经典常用的数据结构和典型算法。</p>
-
 <h3 id="排序">排序</h3>
-
-<h4 id="插入排序-insertionsort-o-n-sup-2-sup">插入排序(InsertionSort)O(n<sup>2</sup>)</h4>
-
-<p>解决问题思路：<br />
+<h4 id="插入排序insertionsortonsup2sup">插入排序(InsertionSort)O(n<!-- raw HTML omitted -->2<!-- raw HTML omitted -->)</h4>
+<p>解决问题思路：<br>
 给定任意数组a1,a2,&hellip;,an</p>
-
 <ol>
 <li>从第一个元素开始，该元素可以认为已经被排序</li>
 <li>取出下一个元素，在已经排序的元素序列中从后向前扫描</li>
 <li>如果该元素（已排序）大于新元素，将该元素移到下一位置</li>
 <li>重复步骤3，直到找到已排序的元素小于或者等于新元素的位置</li>
 <li>将新元素插入到该位置后</li>
-
-<li><p>重复步骤2~5</p>
-
-<pre><code class="language-go">func InsertionSort(arr []int) {
-	for i := 1; i &lt; len(arr); i++ {
-		for j := i - 1; j &gt;= 0 &amp;&amp; arr[j+1] &lt; arr[j]; j-- {
+<li>重复步骤2~5</li>
+</ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#00f">func</span> InsertionSort(arr []<span style="color:#2b91af">int</span>) {
+	<span style="color:#00f">for</span> i := 1; i &lt; len(arr); i++ {
+		<span style="color:#00f">for</span> j := i - 1; j &gt;= 0 &amp;&amp; arr[j+1] &lt; arr[j]; j-- {
 			arr[j+1], arr[j] = arr[j], arr[j+1]
 		}
-		fmt.Printf(&quot;%v : %v\n&quot;, i, arr)
+		fmt.Printf(<span style="color:#a31515">&#34;%v : %v\n&#34;</span>, i, arr)
 	}
 }
-</code></pre></li>
-</ol>
-
-<p>说明：外层循环从数组的第二个元素开始(下标为1),依次与左侧数组部分进行比较。golang语法可以直接交换数组变量值，因此可以少定义一个temp临时变量。<br />
+</code></pre></div><p>说明：外层循环从数组的第二个元素开始(下标为1),依次与左侧数组部分进行比较。golang语法可以直接交换数组变量值，因此可以少定义一个temp临时变量。<br>
 备注：内存循环j:=i-1从后往前扫描，并且左右数组的当前元素与key关键元素的比较要放在for的condition条件里面。当key值大于左侧数组最后一个元素时候，不需要进入循环体内部！
 for循环执行步骤</p>
-
 <ol>
 <li>初始化变量</li>
 <li>条件判断</li>
 <li>进入循环体</li>
 <li>执行post重新赋值变量</li>
-
-<li><p><strong>倘若循环体里面使用了break的话，会直接退出循环，这样一来post是没有执行操作的，与未使用break的时候，条件变量是不一样的！</strong></p>
-
-<pre><code class="language-go">func main(){
-	for ; i &lt; 5; i++ {
-		if i == 4 {
-			break
-		}
-	}
-	fmt.Println(i) //此时i=4
-	for ; i &lt; 5; i++ {
-		if i == 4 {
-		}
-	}
-	fmt.Println(i) //此时i=5
-}
-</code></pre></li>
+<li><strong>倘若循环体里面使用了break的话，会直接退出循环，这样一来post是没有执行操作的，与未使用break的时候，条件变量是不一样的！</strong></li>
 </ol>
-
-<h4 id="归并排序-mergesort-o-nlog-sup-n-sup">归并排序(MergeSort)O(nlog<sup>n</sup>)</h4>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#00f">func</span> main(){
+	<span style="color:#00f">for</span> ; i &lt; 5; i++ {
+		<span style="color:#00f">if</span> i == 4 {
+			<span style="color:#00f">break</span>
+		}
+	}
+	fmt.Println(i) <span style="color:#008000">//此时i=4
+</span><span style="color:#008000"></span>	<span style="color:#00f">for</span> ; i &lt; 5; i++ {
+		<span style="color:#00f">if</span> i == 4 {
+		}
+	}
+	fmt.Println(i) <span style="color:#008000">//此时i=5
+</span><span style="color:#008000"></span>}
+</code></pre></div><h4 id="归并排序mergesortonlogsupnsup">归并排序(MergeSort)O(nlog<!-- raw HTML omitted -->n<!-- raw HTML omitted -->)</h4>
 <ol>
-<li><p>递归实现</p>
-
-<pre><code class="language-go">func MergeSort(src []int) []int {
+<li>递归实现</li>
+</ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#00f">func</span> MergeSort(src []<span style="color:#2b91af">int</span>) []<span style="color:#2b91af">int</span> {
 	length := len(src)
-	if length &lt;= 1 {
-		return src
+	<span style="color:#00f">if</span> length &lt;= 1 {
+		<span style="color:#00f">return</span> src
 	}
 	left := MergeSort(src[:length/2])
 	right := MergeSort(src[length/2:])
-	return merge(left, right)
+	<span style="color:#00f">return</span> merge(left, right)
 }
 
-func merge(left, right []int) (result []int) {
+<span style="color:#00f">func</span> merge(left, right []<span style="color:#2b91af">int</span>) (result []<span style="color:#2b91af">int</span>) {
 	l, r := 0, 0
-	for l &lt; len(left) &amp;&amp; r &lt; len(right) {
-		if left[l] &lt; right[r] {
+	<span style="color:#00f">for</span> l &lt; len(left) &amp;&amp; r &lt; len(right) {
+		<span style="color:#00f">if</span> left[l] &lt; right[r] {
 			result = append(result, left[l])
 			l++
-		} else {
+		} <span style="color:#00f">else</span> {
 			result = append(result, right[r])
 			r++
 		}
@@ -178,38 +164,37 @@ func merge(left, right []int) (result []int) {
 	}
 	result = append(result, left[l:]...)
 	result = append(result, right[r:]...)
-	return
+	<span style="color:#00f">return</span>
 }
-</code></pre></li>
-
-<li><p>循环实现</p>
-
-<pre><code class="language-go">func MergeSort(arr []int) {
+</code></pre></div><ol start="2">
+<li>循环实现</li>
+</ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#00f">func</span> MergeSort(arr []<span style="color:#2b91af">int</span>) {
 	l := len(arr)
-	b := make([]int, l)
-	for seg := 1; seg &lt; l; seg *= 2 {
-		for start := 0; start &lt; l; start += seg * 2 {
+	b := make([]<span style="color:#2b91af">int</span>, l)
+	<span style="color:#00f">for</span> seg := 1; seg &lt; l; seg *= 2 {
+		<span style="color:#00f">for</span> start := 0; start &lt; l; start += seg * 2 {
 			low, mid, high := start, min(start+seg, l), min(start+seg*2, l)
 			k := low
 			start1, end1 := low, mid
 			start2, end2 := mid, high
-			for start1 &lt; end1 &amp;&amp; start2 &lt; end2 {
-				if arr[start1] &lt; arr[start2] {
+			<span style="color:#00f">for</span> start1 &lt; end1 &amp;&amp; start2 &lt; end2 {
+				<span style="color:#00f">if</span> arr[start1] &lt; arr[start2] {
 					b[k] = arr[start1]
 					k++
 					start1++
-				} else {
+				} <span style="color:#00f">else</span> {
 					b[k] = arr[start2]
 					k++
 					start2++
 				}
 			}
-			for start1 &lt; end1 {
+			<span style="color:#00f">for</span> start1 &lt; end1 {
 				b[k] = arr[start1]
 				k++
 				start1++
 			}
-			for start2 &lt; end2 {
+			<span style="color:#00f">for</span> start2 &lt; end2 {
 				b[k] = arr[start2]
 				k++
 				start2++
@@ -220,33 +205,28 @@ func merge(left, right []int) (result []int) {
 	copy(b, arr)
 }
 
-func min(x, y int) int {
-	if x &lt; y {
-		return x
+<span style="color:#00f">func</span> min(x, y <span style="color:#2b91af">int</span>) <span style="color:#2b91af">int</span> {
+	<span style="color:#00f">if</span> x &lt; y {
+		<span style="color:#00f">return</span> x
 	}
-	return y
+	<span style="color:#00f">return</span> y
 }
-</code></pre></li>
-</ol>
-
-<blockquote>
+</code></pre></div><blockquote>
 <p>提示：arr,b=b,arr交换的是引用类型(指针)。因此arr指向了一块新的临时内存temp(arr=b=new([&ldquo;memory:temp&rdquo;])),b指向了arr(形参)指向的内存，任何对b的修改
 最终都反应到了arr实参上的修改。copy(b,arr)是必须的，将最终结果拷贝到(b=arr)所指向的内存地址，即改变了形参的值！</p>
 </blockquote>
-
-<h4 id="快速排序-qicksort">快速排序(QickSort)</h4>
-
+<h4 id="快速排序qicksort">快速排序(QickSort)</h4>
 <ol>
-<li><p>平均时间复杂度O(nlg<sup>n</sup>)</p>
-
-<pre><code class="language-go">func QickSort(a []int, p, q int) {
-	if p &gt;= q {
-		return
+<li>平均时间复杂度O(nlg<!-- raw HTML omitted -->n<!-- raw HTML omitted -->)</li>
+</ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#00f">func</span> QickSort(a []<span style="color:#2b91af">int</span>, p, q <span style="color:#2b91af">int</span>) {
+	<span style="color:#00f">if</span> p &gt;= q {
+		<span style="color:#00f">return</span>
 	}
 	key := a[p]
 	i := p
-	for j := p + 1; j &lt;= q; j++ {
-		if a[j] &lt; key {
+	<span style="color:#00f">for</span> j := p + 1; j &lt;= q; j++ {
+		<span style="color:#00f">if</span> a[j] &lt; key {
 			i++
 			temp := a[j]
 			a[j] = a[i]
@@ -257,8 +237,7 @@ func min(x, y int) int {
 	QickSort(a, p, i-1)
 	QickSort(a, i+1, q)
 }
-</code></pre></li>
-</ol>
+</code></pre></div>
                         </div>
 
                         
@@ -270,7 +249,7 @@ func min(x, y int) int {
     <h2>See Also</h2>
     <ul class="listing">
         
-        <li><a href="/blog/post/180703linear7hash/">线性存储和hashcode</a></li>
+        <li><a href="/blog/post/180703linear7hash/">线性存储</a></li>
         
         <li><a href="/blog/post/181120gosyntax/">GO语言圣经笔记</a></li>
         
@@ -326,6 +305,10 @@ func min(x, y int) int {
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -361,10 +344,6 @@ func min(x, y int) int {
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -384,7 +363,7 @@ func min(x, y int) int {
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -93,47 +93,30 @@
                         
                         <div class="post-content">
                             <p>使用谷歌GCP平台搭建的SSR-VPN过一段时间就没法访问了，几经波折原来是因为TCP端口被封了的缘故。</p>
-
-<h3 id="能ping通服务器-但是shadowsocks-r客户端连不上服务器">能ping通服务器，但是shadowsocks-r客户端连不上服务器</h3>
-
-<p>使用ping命令使用的ICMP协议，ssr代理使用的是TCP协议，我们可以使用<br />
-<a href="https://www.toolsdaquan.com/ipcheck/">IP检测工具检测一下</a><br />
+<h3 id="能ping通服务器但是shadowsocks-r客户端连不上服务器">能ping通服务器，但是shadowsocks-r客户端连不上服务器</h3>
+<p>使用ping命令使用的ICMP协议，ssr代理使用的是TCP协议，我们可以使用<br>
+<a href="https://www.toolsdaquan.com/ipcheck/">IP检测工具检测一下</a><br>
 看指定服务器IP下的指定端口号是否可用，如果显示为国内、国外都可用即可。如果国外的TCP都不能使用，说明IP被封了，需要更换IP。</p>
-
 <h3 id="使用v2ray流量伪装绕过tcp阻断">使用v2ray流量伪装绕过TCP阻断</h3>
-
 <p>使用v2ray代替ssr代理，将tcp伪装成udp绕过GFW的墙</p>
-
 <p><a href="https://toutyrater.github.io/">https://toutyrater.github.io/</a></p>
-
 <p>使用ps命令查看shadowsocksR进程pid</p>
-
-<pre><code class="language-shell">ps -aux|grep shadowsocks-r
-</code></pre>
-
-<p>使用ss命令查看端口使用情况</p>
-
-<pre><code class="language-shell">ss -tlnp
-# -t tcp协议
-# -n numeric
-# -p process name进程名称
-# -l 
-</code></pre>
-
-<h3 id="使用-systemctl-启动ssr进程">使用<code>systemctl</code>启动ssr进程</h3>
-
-<pre><code class="language-shell">vim /etc/shadowsocks-r/config.json #更改ssr端口号并保存
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">ps -aux|grep shadowsocks-r
+</code></pre></div><p>使用ss命令查看端口使用情况</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">ss -tlnp
+<span style="color:#008000"># -t tcp协议</span>
+<span style="color:#008000"># -n numeric</span>
+<span style="color:#008000"># -p process name进程名称</span>
+<span style="color:#008000"># -l </span>
+</code></pre></div><h3 id="使用systemctl启动ssr进程">使用<code>systemctl</code>启动ssr进程</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">vim /etc/shadowsocks-r/config.json <span style="color:#008000">#更改ssr端口号并保存</span>
 systemctl restart shadowsocks-r
-</code></pre>
-
-<h3 id="安装google-cloud-sdk失败">安装google cloud sdk失败</h3>
-
+</code></pre></div><h3 id="安装google-cloud-sdk失败">安装google cloud sdk失败</h3>
 <p>因为自己之前设置了cmd的启动项，将cmd的代码页改成了65001,但是google cloud sdk中文安装包使用的是936(简体中文)的编码</p>
-
-<pre><code class="language-shell">Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Command Processor\AutoRun
-# 将里面的值清空即可
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">Computer<span style="color:#a31515">\H</span>KEY_LOCAL_MACHINE<span style="color:#a31515">\S</span>OFTWARE<span style="color:#a31515">\M</span>icrosoft<span style="color:#a31515">\C</span>ommand Processor<span style="color:#a31515">\A</span>utoRun
+<span style="color:#008000"># 将里面的值清空即可</span>
 chcp 65001 &gt;nul 2&gt;&amp;1
-</code></pre>
+</code></pre></div>
                         </div>
 
                         
@@ -201,6 +184,10 @@ chcp 65001 &gt;nul 2&gt;&amp;1
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -236,10 +223,6 @@ chcp 65001 &gt;nul 2&gt;&amp;1
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -259,7 +242,7 @@ chcp 65001 &gt;nul 2&gt;&amp;1
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

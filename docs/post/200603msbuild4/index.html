@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -93,167 +93,127 @@
                         
                         <div class="post-content">
                             <p>让windows应用生成时自动构建版本号。</p>
-
 <h3 id="自定义版本号property">自定义版本号Property</h3>
-
 <p>在项目解决方案根目录下自定义工程文件：</p>
-
 <p><strong>version.props</strong></p>
-
-<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;Project ToolsVersion=&quot;12.0&quot; DefaultTargets=&quot;Build&quot; xmlns=&quot;http://schemas.microsoft.com/developer/msbuild/2003&quot;&gt;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#00f">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
+&lt;Project ToolsVersion=<span style="color:#a31515">&#34;12.0&#34;</span> DefaultTargets=<span style="color:#a31515">&#34;Build&#34;</span> xmlns=<span style="color:#a31515">&#34;http://schemas.microsoft.com/developer/msbuild/2003&#34;</span>&gt;
   &lt;PropertyGroup&gt;
-    &lt;Year&gt;$([System.DateTime]::Now.ToString(&quot;yy&quot;))&lt;/Year&gt;
-    &lt;Month&gt;$([System.DateTime]::Now.ToString(&quot;MM&quot;))&lt;/Month&gt;
-    &lt;Date&gt;$([System.DateTime]::Now.ToString(&quot;dd&quot;))&lt;/Date&gt;
-    &lt;Time&gt;$([System.DateTime]::Now.ToString(&quot;HHmm&quot;))&lt;/Time&gt;
+    &lt;Year&gt;$([System.DateTime]::Now.ToString(&#34;yy&#34;))&lt;/Year&gt;
+    &lt;Month&gt;$([System.DateTime]::Now.ToString(&#34;MM&#34;))&lt;/Month&gt;
+    &lt;Date&gt;$([System.DateTime]::Now.ToString(&#34;dd&#34;))&lt;/Date&gt;
+    &lt;Time&gt;$([System.DateTime]::Now.ToString(&#34;HHmm&#34;))&lt;/Time&gt;
   &lt;/PropertyGroup&gt;
   &lt;ItemGroup&gt;
-	&lt;AssemblyAttributes Include=&quot;AssemblyFileVersion&quot;&gt;
+	&lt;AssemblyAttributes Include=<span style="color:#a31515">&#34;AssemblyFileVersion&#34;</span>&gt;
 	  &lt;_Parameter1&gt;$(Year).$(Month).$(Date).$(Time)&lt;/_Parameter1&gt;
 	&lt;/AssemblyAttributes&gt;
   &lt;/ItemGroup&gt;
 &lt;/Project&gt;
-</code></pre>
-
-<p>创建的<code>Year</code>,<code>Month</code>变量供Item调用。<br />
-<code>ItemGroup</code>里面的<code>AssemblyAttributes</code>的<code>Include</code>属性内容是要赋值的具体属性，这里是<code>AssemblyFileVersion</code>。<br />
+</code></pre></div><p>创建的<code>Year</code>,<code>Month</code>变量供Item调用。<br>
+<code>ItemGroup</code>里面的<code>AssemblyAttributes</code>的<code>Include</code>属性内容是要赋值的具体属性，这里是<code>AssemblyFileVersion</code>。<br>
 整个<code>ItemGroup</code>供下文的<code>WriteCodeFragment</code>任务调用</p>
-
 <blockquote>
 <p>参考 <a href="https://docs.microsoft.com/zh-cn/visualstudio/msbuild/writecodefragment-task?view=vs-2015">WriteCodeFragment任务</a></p>
 </blockquote>
-
 <p>WriteCodeFragment任务的AssemblyAttributes参数就是Item。</p>
-
-<h3 id="自定义-csproj的beforebuild任务">自定义.csproj的BeforeBuild任务</h3>
-
+<h3 id="自定义csproj的beforebuild任务">自定义.csproj的BeforeBuild任务</h3>
 <p>在<strong>projname.csproj</strong>中编辑以下内容</p>
-
-<pre><code class="language-xml">//引入自定义工程文件
-  &lt;Import Project=&quot;..\version.props&quot; /&gt;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">//引入自定义工程文件
+  &lt;Import Project=<span style="color:#a31515">&#34;..\version.props&#34;</span> /&gt;
 //添加target目标
-  &lt;Target Name=&quot;BeforeBuild&quot;&gt;
-    &lt;WriteCodeFragment AssemblyAttributes=&quot;@(AssemblyAttributes)&quot;
-                       Language=&quot;C#&quot;
-                       OutputDirectory=&quot;$(IntermediateOutputPath)&quot;
-                       OutputFile=&quot;BuildVersion.cs&quot;&gt;
-      &lt;Output TaskParameter=&quot;OutputFile&quot; ItemName=&quot;Compile&quot; /&gt;
-      &lt;Output TaskParameter=&quot;OutputFile&quot; ItemName=&quot;FileWrites&quot; /&gt;
+  &lt;Target Name=<span style="color:#a31515">&#34;BeforeBuild&#34;</span>&gt;
+    &lt;WriteCodeFragment AssemblyAttributes=<span style="color:#a31515">&#34;@(AssemblyAttributes)&#34;</span>
+                       Language=<span style="color:#a31515">&#34;C#&#34;</span>
+                       OutputDirectory=<span style="color:#a31515">&#34;$(IntermediateOutputPath)&#34;</span>
+                       OutputFile=<span style="color:#a31515">&#34;BuildVersion.cs&#34;</span>&gt;
+      &lt;Output TaskParameter=<span style="color:#a31515">&#34;OutputFile&#34;</span> ItemName=<span style="color:#a31515">&#34;Compile&#34;</span> /&gt;
+      &lt;Output TaskParameter=<span style="color:#a31515">&#34;OutputFile&#34;</span> ItemName=<span style="color:#a31515">&#34;FileWrites&#34;</span> /&gt;
     &lt;/WriteCodeFragment&gt;
   &lt;/Target&gt;
-</code></pre>
-
-<ol>
+</code></pre></div><ol>
 <li>AssemblyAttributes引用的是自定义工程文件里面的ItemGroup</li>
 <li><code>$(IntermediateOutputPath)</code>是目录路径，为中间路径(./obj/debug)</li>
 <li><code>Output</code>将任务生成的文件(TaskParameter),添加到ItemGroup下的<code>Complie</code>元素里面，这样就可以将cs代码编译进程序集文件</li>
 </ol>
-
 <blockquote>
 <p>参考 <a href="https://docs.microsoft.com/zh-cn/visualstudio/msbuild/msbuild-items?view=vs-2015">msbuild在执行中创建Item</a></p>
 </blockquote>
-
-<h3 id="assemblyinfo-cs">AssemblyInfo.cs</h3>
-
+<h3 id="assemblyinfocs">AssemblyInfo.cs</h3>
 <p>要删除<strong>Properties\AssemblyInfo.cs</strong>下的AssemblyFileVersion，不然会提示重复定义</p>
-
 <h3 id="增量更新">增量更新</h3>
-
 <p>因为我们不希望每次生成的时候都生成新的版本号，需要采取增量更新，即有文件修改的时候我们才生成新的版本号。</p>
-
-<pre><code class="language-xml">  &lt;Target Name=&quot;BeforeBuild&quot; Inputs=&quot;@(Compile)&quot; Outputs=&quot;BuildVersion.cs&quot;&gt;
-    &lt;WriteCodeFragment AssemblyAttributes=&quot;@(AssemblyAttributes)&quot;
-                       Language=&quot;C#&quot;
-                       &lt;!-- OutputDirectory=&quot;$(IntermediateOutputPath)&quot; --&gt; //删除此行
-                       OutputFile=&quot;BuildVersion.cs&quot;&gt;
-      &lt;Output TaskParameter=&quot;OutputFile&quot; ItemName=&quot;Compile&quot; /&gt;
-      &lt;Output TaskParameter=&quot;OutputFile&quot; ItemName=&quot;FileWrites&quot; /&gt;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">  &lt;Target Name=<span style="color:#a31515">&#34;BeforeBuild&#34;</span> Inputs=<span style="color:#a31515">&#34;@(Compile)&#34;</span> Outputs=<span style="color:#a31515">&#34;BuildVersion.cs&#34;</span>&gt;
+    &lt;WriteCodeFragment AssemblyAttributes=<span style="color:#a31515">&#34;@(AssemblyAttributes)&#34;</span>
+                       Language=<span style="color:#a31515">&#34;C#&#34;</span>
+                       <span style="">&lt;!--</span> OutputDirectory=<span style="color:#a31515">&#34;$(IntermediateOutputPath)&#34;</span> <span style="">--</span>&gt; //删除此行
+                       OutputFile=&#34;BuildVersion.cs&#34;&gt;
+      &lt;Output TaskParameter=<span style="color:#a31515">&#34;OutputFile&#34;</span> ItemName=<span style="color:#a31515">&#34;Compile&#34;</span> /&gt;
+      &lt;Output TaskParameter=<span style="color:#a31515">&#34;OutputFile&#34;</span> ItemName=<span style="color:#a31515">&#34;FileWrites&#34;</span> /&gt;
     &lt;/WriteCodeFragment&gt;
   &lt;/Target&gt;
-</code></pre>
-
-<p><code>Target</code>的<em>Attribute</em></p>
-
+</code></pre></div><p><code>Target</code>的<em>Attribute</em></p>
 <ol>
 <li>Inputs输入的文件，这里是所有待编译的cs文件</li>
-<li>Outputs输出的文件(移除OutputDirectory，不要将生成的文件放入<code>obj\debug</code>等临时目录)。<br />
+<li>Outputs输出的文件(移除OutputDirectory，不要将生成的文件放入<code>obj\debug</code>等临时目录)。<br>
 假如放入临时目录，每次重新生成的时候都会提前删除了Version.cs文件，造成每次都会重新编译，使用增量更新失效。</li>
 <li>将Inputs和Outputs的时间戳进行比对，如果Inputs文件较新就重新生成Version.cs文件。</li>
 <li>在<code>.gitignore</code>文件中添加对<code>BuildVersion.cs</code>文件的忽略。</li>
 </ol>
-
 <h4 id="在task中动态修改properties和items">在Task中动态修改Properties和Items</h4>
-
 <p>所有的Propertied和Items值在build之前都已经被替换成了字符串常量(我们称之为静态值)，之后一直会保持不会的。
 我们可以通过<code>Task</code>的子元素<code>Output</code>(也可称为Property)动态修改指定的Item或Property。</p>
-
-<pre><code class="language-xml">&lt;PropertyGroup&gt;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">&lt;PropertyGroup&gt;
 	&lt;FileName&gt;temp.cs&lt;/FileName&gt;
 &lt;/PropertyGroup&gt;
 &lt;Target&gt;
-  &lt;WriteCodeFragment AssemblyAttributes=&quot;@(AssemblyAttributes)&quot;
-                       Language=&quot;C#&quot;
-                       &lt;!-- OutputDirectory=&quot;$(IntermediateOutputPath)&quot; --&gt; //删除此行
-                       OutputFile=&quot;BuildVersion.cs&quot;&gt;
-      &lt;Output TaskParameter=&quot;OutputFile&quot; ItemName=&quot;Compile&quot; /&gt;
-      &lt;Output TaskParameter=&quot;OutputFile&quot; PropertyName=&quot;FileName&quot; /&gt;
+  &lt;WriteCodeFragment AssemblyAttributes=<span style="color:#a31515">&#34;@(AssemblyAttributes)&#34;</span>
+                       Language=<span style="color:#a31515">&#34;C#&#34;</span>
+                       <span style="">&lt;!--</span> OutputDirectory=<span style="color:#a31515">&#34;$(IntermediateOutputPath)&#34;</span> <span style="">--</span>&gt; //删除此行
+                       OutputFile=&#34;BuildVersion.cs&#34;&gt;
+      &lt;Output TaskParameter=<span style="color:#a31515">&#34;OutputFile&#34;</span> ItemName=<span style="color:#a31515">&#34;Compile&#34;</span> /&gt;
+      &lt;Output TaskParameter=<span style="color:#a31515">&#34;OutputFile&#34;</span> PropertyName=<span style="color:#a31515">&#34;FileName&#34;</span> /&gt;
   &lt;/WriteCodeFragment&gt;
 &lt;/Target&gt;
-</code></pre>
-
-<p>上例：</p>
-
+</code></pre></div><p>上例：</p>
 <ol>
 <li>将<strong>WriteCodeFragment</strong>的输出文件名称添加到名为Compile的Item列表项里面去。</li>
-<li>将名为FileName的Property值更改为了<strong><em>BuildVersion.cs</em></strong></li>
+<li>将名为FileName的Property值更改为了<em><strong>BuildVersion.cs</strong></em></li>
 </ol>
-
 <h3 id="propertygroup缓存问题">PropertyGroup缓存问题</h3>
-
 <p>上文的设置由于PropertyGroup缓存，是存在问题的，每次更新了代码后，BuildVersion.cs里面的版本时间并未得到有效的更新。</p>
-
 <h4 id="方案1">方案1:</h4>
-
 <p>将Property所有变量全部移到Target里面，让每次运行都获取一下当前时间。</p>
-
 <p><strong>version.targets</strong>(重命名<code>vsersion.props</code>为<code>version.targets</code>)</p>
-
-<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;Project ToolsVersion=&quot;12.0&quot; DefaultTargets=&quot;Build&quot; xmlns=&quot;http://schemas.microsoft.com/developer/msbuild/2003&quot;&gt;
-  &lt;Target Name=&quot;GenerateVersion&quot; Inputs=&quot;@(Compile)&quot; Outputs=&quot;BuildVersion.cs&quot;&gt;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#00f">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
+&lt;Project ToolsVersion=<span style="color:#a31515">&#34;12.0&#34;</span> DefaultTargets=<span style="color:#a31515">&#34;Build&#34;</span> xmlns=<span style="color:#a31515">&#34;http://schemas.microsoft.com/developer/msbuild/2003&#34;</span>&gt;
+  &lt;Target Name=<span style="color:#a31515">&#34;GenerateVersion&#34;</span> Inputs=<span style="color:#a31515">&#34;@(Compile)&#34;</span> Outputs=<span style="color:#a31515">&#34;BuildVersion.cs&#34;</span>&gt;
     &lt;PropertyGroup&gt;
-      &lt;Year&gt;$([System.DateTime]::Now.ToString(&quot;yy&quot;))&lt;/Year&gt;
-      &lt;Month&gt;$([System.DateTime]::Now.ToString(&quot;MM&quot;))&lt;/Month&gt;
-      &lt;Date&gt;$([System.DateTime]::Now.ToString(&quot;dd&quot;))&lt;/Date&gt;
-      &lt;Time&gt;$([System.DateTime]::Now.ToString(&quot;HHmm&quot;))&lt;/Time&gt;
+      &lt;Year&gt;$([System.DateTime]::Now.ToString(&#34;yy&#34;))&lt;/Year&gt;
+      &lt;Month&gt;$([System.DateTime]::Now.ToString(&#34;MM&#34;))&lt;/Month&gt;
+      &lt;Date&gt;$([System.DateTime]::Now.ToString(&#34;dd&#34;))&lt;/Date&gt;
+      &lt;Time&gt;$([System.DateTime]::Now.ToString(&#34;HHmm&#34;))&lt;/Time&gt;
     &lt;/PropertyGroup&gt;
     &lt;ItemGroup&gt;
-      &lt;AssemblyAttributes Include=&quot;AssemblyFileVersion&quot;&gt;
+      &lt;AssemblyAttributes Include=<span style="color:#a31515">&#34;AssemblyFileVersion&#34;</span>&gt;
         &lt;_Parameter1&gt;$(Year).$(Month).$(Date).$(Time)&lt;/_Parameter1&gt;
       &lt;/AssemblyAttributes&gt;
     &lt;/ItemGroup&gt;
-    &lt;WriteCodeFragment AssemblyAttributes=&quot;@(AssemblyAttributes)&quot; Language=&quot;C#&quot; 
-    OutputFile=&quot;BuildVersion.cs&quot;&gt;
-      &lt;Output TaskParameter=&quot;OutputFile&quot; ItemName=&quot;Compile&quot; /&gt;
-      &lt;Output TaskParameter=&quot;OutputFile&quot; ItemName=&quot;FileWrites&quot; /&gt;
+    &lt;WriteCodeFragment AssemblyAttributes=<span style="color:#a31515">&#34;@(AssemblyAttributes)&#34;</span> Language=<span style="color:#a31515">&#34;C#&#34;</span> 
+    OutputFile=<span style="color:#a31515">&#34;BuildVersion.cs&#34;</span>&gt;
+      &lt;Output TaskParameter=<span style="color:#a31515">&#34;OutputFile&#34;</span> ItemName=<span style="color:#a31515">&#34;Compile&#34;</span> /&gt;
+      &lt;Output TaskParameter=<span style="color:#a31515">&#34;OutputFile&#34;</span> ItemName=<span style="color:#a31515">&#34;FileWrites&#34;</span> /&gt;
     &lt;/WriteCodeFragment&gt;
   &lt;/Target&gt;
 &lt;/Project&gt;
-</code></pre>
-
-<p>修改项目工程文件，引入<code>version.target</code></p>
-
+</code></pre></div><p>修改项目工程文件，引入<code>version.target</code></p>
 <p><strong>projname.csproj</strong></p>
-
-<pre><code class="language-xml">//引入自定义工程文件
-  &lt;Import Project=&quot;..\version.props&quot; /&gt;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">//引入自定义工程文件
+  &lt;Import Project=<span style="color:#a31515">&#34;..\version.props&#34;</span> /&gt;
 //添加target目标依赖
-  &lt;Target Name=&quot;BeforeBuild&quot; DependsOnTargets=&quot;GenerateVersion&quot;&gt;&lt;/Target&gt;
-</code></pre>
-
-<blockquote>
-<p>说明: 直接在<code>version.target</code>里面定义Name=&ldquo;BeforeBuild&rdquo;的Target，在Import引入的时候并会不被msbuild自动执行，
+  &lt;Target Name=<span style="color:#a31515">&#34;BeforeBuild&#34;</span> DependsOnTargets=<span style="color:#a31515">&#34;GenerateVersion&#34;</span>&gt;&lt;/Target&gt;
+</code></pre></div><blockquote>
+<p>说明: 直接在<code>version.target</code>里面定义Name=&ldquo;BeforeBuild&quot;的Target，在Import引入的时候并会不被msbuild自动执行，
 因此必须以依赖的方式成为BeforeBuild前置任务。</p>
 </blockquote>
                         </div>
@@ -323,6 +283,10 @@
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -358,10 +322,6 @@
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -381,7 +341,7 @@
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

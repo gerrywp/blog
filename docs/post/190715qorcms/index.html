@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -94,96 +94,69 @@
                         <div class="post-content">
                             <p>QOR-CMS Open source has lots of bugs.to fix these bugs cost me lots of time.So record them into this
 article!</p>
-
 <h3 id="win10下consle日志乱码问题">Win10下consle日志乱码问题</h3>
-
 <p>我最原始的猜想是不是因为cmd编码的问题，因为系统是中文系统cmd编码是GBK。这里引入另外一个问题，我们每次都要使用<code>chcp 65001</code>将当前code page更改为UTF-8，或者修改注册表：</p>
-
-<pre><code class="language-bash">regedit-&gt;[HKEY_LOCAL_MACHINE]\[SOFTWARE]\[Microsoft]\[Command Processor]\
-新建字符串值，
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">regedit-&gt;[HKEY_LOCAL_MACHINE]<span style="color:#a31515">\[</span>SOFTWARE]<span style="color:#a31515">\[</span>Microsoft]<span style="color:#a31515">\[</span>Command Processor]<span style="color:#a31515">\
+</span><span style="color:#a31515"></span>新建字符串值，
 AutoRun=chcp 65001 &gt;nul 2&gt;&amp;1
-</code></pre>
-
-<p>其实可以在语言和区域(区域-&gt;管理-&gt;更改系统区域设置)通过勾选&rdquo;使用Unicode UTF-8提供全球语言支持&rdquo;即可(谨慎使用，有些软件会出现乱码的现象)，如下图所示:</p>
-
-<p><img src="../../pictures/20190715004216.png" alt="编码" title="点我访问" /></p>
-
+</code></pre></div><p>其实可以在语言和区域(区域-&gt;管理-&gt;更改系统区域设置)通过勾选&quot;使用Unicode UTF-8提供全球语言支持&quot;即可(谨慎使用，有些软件会出现乱码的现象)，如下图所示:</p>
+<p><img src="../../pictures/20190715004216.png" alt="编码" title="点我访问"></p>
 <p>然而事实上我发现即使改了编码，在cmd下还是乱码。继续下一个猜测，因为就乱码表现形式来看，日志行使用了背景色，源码使用<code>chi</code>的<code>middleware.Logger</code>中间件来记录日志,在<code>terminal.go</code>源文件里，使用了isTTY来判断当前环境是否是linux-shell环境。使用<code>fmt.Println()</code>打印调试证实是这里出现了问题：</p>
-
-<pre><code class="language-go">func init() {
-	// This is sort of cheating: if stdout is a character device, we assume
-	// that means it's a TTY. Unfortunately, there are many non-TTY
-	// character devices, but fortunately stdout is rarely set to any of
-	// them.
-	//
-	// We could solve this properly by pulling in a dependency on
-	// code.google.com/p/go.crypto/ssh/terminal, for instance, but as a
-	// heuristic for whether to print in color or in black-and-white, I'd
-	// really rather not.
-	fi, err := os.Stdout.Stat()
-	if err == nil {
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#00f">func</span> init() {
+	<span style="color:#008000">// This is sort of cheating: if stdout is a character device, we assume
+</span><span style="color:#008000"></span>	<span style="color:#008000">// that means it&#39;s a TTY. Unfortunately, there are many non-TTY
+</span><span style="color:#008000"></span>	<span style="color:#008000">// character devices, but fortunately stdout is rarely set to any of
+</span><span style="color:#008000"></span>	<span style="color:#008000">// them.
+</span><span style="color:#008000"></span>	<span style="color:#008000">//
+</span><span style="color:#008000"></span>	<span style="color:#008000">// We could solve this properly by pulling in a dependency on
+</span><span style="color:#008000"></span>	<span style="color:#008000">// code.google.com/p/go.crypto/ssh/terminal, for instance, but as a
+</span><span style="color:#008000"></span>	<span style="color:#008000">// heuristic for whether to print in color or in black-and-white, I&#39;d
+</span><span style="color:#008000"></span>	<span style="color:#008000">// really rather not.
+</span><span style="color:#008000"></span>	fi, err := os.Stdout.Stat()
+	<span style="color:#00f">if</span> err == <span style="color:#00f">nil</span> {
 		m := os.ModeDevice | os.ModeCharDevice
 		isTTY = fi.Mode()&amp;m == m
 	}
 }
-</code></pre>
-
-<p><code>isTTY</code>此变量在win10-cmd下被赋值为<code>true</code>,因此我们需要关闭logger中间件的色彩日志记录功能，设置<code>DefaultLogger</code>为自定义的日志格式：</p>
-
-<pre><code class="language-go">	noneColorLoggerFormatter := middleware.DefaultLogFormatter{
-		Logger:  log.New(os.Stdout, &quot;&quot;, log.LstdFlags),
-		NoColor: true,
+</code></pre></div><p><code>isTTY</code>此变量在win10-cmd下被赋值为<code>true</code>,因此我们需要关闭logger中间件的色彩日志记录功能，设置<code>DefaultLogger</code>为自定义的日志格式：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">	noneColorLoggerFormatter := middleware.DefaultLogFormatter{
+		Logger:  log.New(os.Stdout, <span style="color:#a31515">&#34;&#34;</span>, log.LstdFlags),
+		NoColor: <span style="color:#00f">true</span>,
 	}
 	middleware.DefaultLogger = middleware.RequestLogger(&amp;noneColorLoggerFormatter)
 	Router.Use(middleware.Logger)
-</code></pre>
-
-<h3 id="bindatafs-binary-data-file-system">bindatafs(binary-data-file-system)</h3>
-
+</code></pre></div><h3 id="bindatafsbinary-data-file-system">bindatafs(binary-data-file-system)</h3>
 <p>QOR使用bindatafs组件将所有admin后端使用到的文件打包成二进制文件，编译链接进2进制可执行文件里面去。步骤如下：</p>
-
 <ol>
 <li>配置vs-code的launch.json文件，设置可执行文件参数<code>--compile-templates</code>。</li>
 <li>这样会执行<code>bindatafs.AssetFS.Compile()</code>。</li>
 <li>找到所有被引用过的文件，并拷贝到<code>config\bindatafs\templates</code>目录下，然后生成<code>templates-bindatafs.go</code>文件(请阅读生成的源码)。</li>
 <li>生成可执行程序，使用编译tags做条件编译。默认编译不带任何参数是使用<code>templates.go</code>文件进行编译。</li>
-
-<li><p>可以配置launch.json文件，<code>&quot;buildFlags&quot;: &quot;-tags \'bindatafs\'&quot;</code>开启条件编译，即可将所有文件编译进target文件。</p>
-
-<pre><code class="language-go">//templates.go
-
-// +build !bindatafs
-</code></pre></li>
+<li>可以配置launch.json文件，<code>&quot;buildFlags&quot;: &quot;-tags \'bindatafs\'&quot;</code>开启条件编译，即可将所有文件编译进target文件。</li>
 </ol>
-
-<blockquote>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#008000">//templates.go
+</span><span style="color:#008000"></span>
+<span style="color:#008000">// +build !bindatafs
+</span></code></pre></div><blockquote>
 <p>说明: // +build !bindatafs  即为编译条件</p>
 </blockquote>
-
 <h3 id="gorm异步日志记录">gorm异步日志记录</h3>
-
 <p>gorm错误日志记录采用异步的方式，在新的gorutine里面运行。采用<code>gorm.Logger{revel.TRACE}</code>来记录日志。</p>
-
-<pre><code class="language-go">db.Model(Product{}).Where(&amp;b).Scan(&amp;b)
-</code></pre>
-
-<p>通过Scan源码了解到，该库使用了<code>s.parent.callbacks.queries</code>回调函数来执行数据库的查询功能。
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">db.Model(Product{}).Where(&amp;b).Scan(&amp;b)
+</code></pre></div><p>通过Scan源码了解到，该库使用了<code>s.parent.callbacks.queries</code>回调函数来执行数据库的查询功能。
 而<code>queries</code>回调函数通过<code>Register</code>进行注册，查找所有引用(Find All References)找到<code>query_callback.go-&gt;queryCallback</code>
 方法，在方法内部使用了如下：</p>
-
-<pre><code class="language-go">//调用Err方法
-scope.Err(err)
-//Err方法内部又调用了
-scope.db.AddError(err)
-//在AddError内部，发现开辟了一个新的gorutine记录错误日志
-if s.logMode == defaultLogMode {
-	go s.print(&quot;error&quot;, fileWithLineNum(), err)
-} else {
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#008000">//调用Err方法
+</span><span style="color:#008000"></span>scope.Err(err)
+<span style="color:#008000">//Err方法内部又调用了
+</span><span style="color:#008000"></span>scope.db.AddError(err)
+<span style="color:#008000">//在AddError内部，发现开辟了一个新的gorutine记录错误日志
+</span><span style="color:#008000"></span><span style="color:#00f">if</span> s.logMode == defaultLogMode {
+	<span style="color:#00f">go</span> s.print(<span style="color:#a31515">&#34;error&#34;</span>, fileWithLineNum(), err)
+} <span style="color:#00f">else</span> {
 	s.log(err)
 }
-</code></pre>
-
-<p>因为使用了多线程，多线程的调试全凭看源码+猜测然后精准定位，目前没有找到好的调试方法。</p>
+</code></pre></div><p>因为使用了多线程，多线程的调试全凭看源码+猜测然后精准定位，目前没有找到好的调试方法。</p>
                         </div>
 
                         
@@ -251,6 +224,10 @@ if s.logMode == defaultLogMode {
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -286,10 +263,6 @@ if s.logMode == defaultLogMode {
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -309,7 +282,7 @@ if s.logMode == defaultLogMode {
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

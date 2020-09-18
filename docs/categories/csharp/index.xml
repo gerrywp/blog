@@ -6,18 +6,14 @@
     <description>Recent content in csharp on 云亦海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 12 Sep 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://gerrywp.github.io/blog/categories/csharp/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 12 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://gerrywp.github.io/blog/categories/csharp/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>浅谈Task</title>
       <link>https://gerrywp.github.io/blog/post/200912task/</link>
       <pubDate>Sat, 12 Sep 2020 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/200912task/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;TAP(Task-based async pattern)&lt;/strong&gt;基于任务的异步编程模型&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;strong&gt;TAP(Task-based async pattern)&lt;/strong&gt; 基于任务的异步编程模型&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -62,7 +58,7 @@
       <pubDate>Sat, 09 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/180609msbuild1/</guid>
-      <description>&lt;p&gt;　　使用MS的开发工具&lt;strong&gt;Visual Studio&lt;/strong&gt;(以下简称VS)不得不使用msbuild进行项目的构建。VS能简化很多工作，同时也隐藏了很多内部实现细节。其中包括点击&amp;rdquo;部署&amp;rdquo;(publish)的时候VS通过msbuild为我们做了哪些工作？&lt;br /&gt;
+      <description>&lt;p&gt;　　使用MS的开发工具__Visual Studio__(以下简称VS)不得不使用msbuild进行项目的构建。VS能简化很多工作，同时也隐藏了很多内部实现细节。其中包括点击&amp;quot;部署&amp;quot;(publish)的时候VS通过msbuild为我们做了哪些工作？&lt;br&gt;
 参阅&lt;a href=&#34;https://msdn.microsoft.com/zh-cn/library/dd393574.aspx?f=255&amp;amp;MSPPError=-2147217396&#34; title=&#34;点我访问&#34;&gt;msbuild官网&lt;/a&gt;文档，归纳如下！&lt;/p&gt;</description>
     </item>
     
@@ -72,7 +68,7 @@
       <pubDate>Thu, 29 Mar 2018 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/180329dllnotcopy/</guid>
-      <description>&lt;p&gt;　　添加了reference的*dll*文件并且&lt;code&gt;Copy Local&lt;/code&gt;值为True为何不拷贝到输出目录？&lt;/p&gt;</description>
+      <description>&lt;p&gt;　　添加了reference的&lt;em&gt;dll&lt;/em&gt;文件并且&lt;code&gt;Copy Local&lt;/code&gt;值为True为何不拷贝到输出目录？&lt;/p&gt;</description>
     </item>
     
     <item>

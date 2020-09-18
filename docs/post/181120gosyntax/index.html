@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -93,273 +93,204 @@
                         
                         <div class="post-content">
                             <p>　　本书翻译的版本看的有些别扭，在此把相似的东西进行归类做好常用知识点的笔记！</p>
-
 <h3 id="fmt与格式化">fmt与格式化</h3>
-
 <h4 id="println">Println</h4>
-
 <p>打印以空格间隔的一个或多个值，并添加换行符。</p>
-
-<pre><code class="language-go">fmt.Println(&quot;hello&quot;,&quot;世界&quot;)
-</code></pre>
-
-<h4 id="printf-https-golang-org-pkg-fmt-点我访问"><a href="https://golang.org/pkg/fmt/" title="点我访问">Printf</a></h4>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">fmt.Println(<span style="color:#a31515">&#34;hello&#34;</span>,<span style="color:#a31515">&#34;世界&#34;</span>)
+</code></pre></div><h4 id="printfhttpsgolangorgpkgfmt-点我访问"><a href="https://golang.org/pkg/fmt/" title="点我访问">Printf</a></h4>
 <p>对表达式产生格式化输出，输出到标准输出。该函数的首个参数是个格式字符串，指定后续参数如何被格式化！<code>Printf</code>有一大堆格式化符号，GO程序员称之为<em>动词(verb)</em>:</p>
-
 <table>
 <thead>
 <tr>
-<th align="left">转换字符</th>
-<th align="left">含义</th>
+<th style="text-align:left">转换字符</th>
+<th style="text-align:left">含义</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="left">%d</td>
-<td align="left">十进制数</td>
+<td style="text-align:left">%d</td>
+<td style="text-align:left">十进制数</td>
 </tr>
-
 <tr>
-<td align="left">%x,%o,%b</td>
-<td align="left">十六进制,八进制,二进制</td>
+<td style="text-align:left">%x,%o,%b</td>
+<td style="text-align:left">十六进制,八进制,二进制</td>
 </tr>
-
 <tr>
-<td align="left">%f,%g,%e</td>
-<td align="left">浮点数:3.141593 3.141592653589793 3.141593e+00</td>
+<td style="text-align:left">%f,%g,%e</td>
+<td style="text-align:left">浮点数:3.141593 3.141592653589793 3.141593e+00</td>
 </tr>
-
 <tr>
-<td align="left">%t</td>
-<td align="left">布尔:true或false</td>
+<td style="text-align:left">%t</td>
+<td style="text-align:left">布尔:true或false</td>
 </tr>
-
 <tr>
-<td align="left">%c</td>
-<td align="left">字符(rune)(Unicode码点)</td>
+<td style="text-align:left">%c</td>
+<td style="text-align:left">字符(rune)(Unicode码点)</td>
 </tr>
-
 <tr>
-<td align="left">%s</td>
-<td align="left">字符串</td>
+<td style="text-align:left">%s</td>
+<td style="text-align:left">字符串</td>
 </tr>
-
 <tr>
-<td align="left">%q</td>
-<td align="left">带双引号的字符串&rdquo;abc&rdquo;或带单引号的字符&rsquo;c&rsquo;</td>
+<td style="text-align:left">%q</td>
+<td style="text-align:left">带双引号的字符串&quot;abc&quot;或带单引号的字符&rsquo;c'</td>
 </tr>
-
 <tr>
-<td align="left">%v</td>
-<td align="left">变量的自然形式(natural format)</td>
+<td style="text-align:left">%v</td>
+<td style="text-align:left">变量的自然形式(natural format)</td>
 </tr>
-
 <tr>
-<td align="left">%T</td>
-<td align="left">变量的类型</td>
+<td style="text-align:left">%T</td>
+<td style="text-align:left">变量的类型</td>
 </tr>
-
 <tr>
-<td align="left">%%</td>
-<td align="left">百分号:转义百分号</td>
+<td style="text-align:left">%%</td>
+<td style="text-align:left">百分号:转义百分号</td>
 </tr>
-
 <tr>
-<td align="left">%p</td>
-<td align="left">slice:第一个元素的地址 pointer:指针指向的地址</td>
+<td style="text-align:left">%p</td>
+<td style="text-align:left">slice:第一个元素的地址 pointer:指针指向的地址</td>
 </tr>
 </tbody>
 </table>
-
 <blockquote>
 <p>惯例：以字母f结尾的格式化函数，如<code>log.Printf</code>和<code>fmt.Errorf</code>都采用<code>fmt.Printf</code>的格式化准则；而以<code>ln</code>结尾的格式化函数，则遵循<code>Println</code>的方式，
 以跟<code>%v</code>差不多的方式格式化参数。</p>
 </blockquote>
-
-<pre><code class="language-go">f 指 format
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">f 指 format
 ln 指 line
-</code></pre>
-
-<pre><code class="language-go">o := 0666// 0开头的八进制
-fmt.Printf(&quot;%d %[1]o %#[1]o\n&quot;, o) // &quot;438 666 0666&quot;
-x := int64(0xdeadbeef)
-fmt.Printf(&quot;%d %[1]x %#[1]x %#[1]X\n&quot;, x)
-</code></pre>
-
-<p><strong>副词</strong>:</p>
-
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">o := 0666<span style="color:#008000">// 0开头的八进制
+</span><span style="color:#008000"></span>fmt.Printf(<span style="color:#a31515">&#34;%d %[1]o %#[1]o\n&#34;</span>, o) <span style="color:#008000">// &#34;438 666 0666&#34;
+</span><span style="color:#008000"></span>x := int64(0xdeadbeef)
+fmt.Printf(<span style="color:#a31515">&#34;%d %[1]x %#[1]x %#[1]X\n&#34;</span>, x)
+</code></pre></div><p><strong>副词</strong>:</p>
 <ol>
 <li>请注意fmt的两个使用技巧。通常Printf格式化字符串包含多个%参数时将会包含对应相同数量的额外操作数，但是%之后的[1]副词告诉Printf函数再次使用第一个操作数。第二，%后的#副词告诉Printf在用%o、%x或%X输出时生成0、0x或0X前缀。</li>
 <li>需要注意的是Printf函数中%v参数包含的#副词，它表示用和Go语言类似的语法打印值。对于结构体类型来说，将包含每个成员的名字。</li>
 </ol>
-
-<h4 id="sprintf-sprint">Sprintf(Sprint)</h4>
-
+<h4 id="sprintfsprint">Sprintf(Sprint)</h4>
 <p>将结果以字符串的形式返回！</p>
-
 <h4 id="fprintf">Fprintf</h4>
-
 <p>Fprintf的前缀<strong>F</strong>表示文件(File)也表明格式化输出结果应该被写入第一个参数提供的文件中。<code>Printf</code>和
-<code>Sprintf</code>实际上是对<code>Fprintf</code>的封装。<br />
+<code>Sprintf</code>实际上是对<code>Fprintf</code>的封装。<br>
 在Printf函数中的第一个参数<strong>os.Stdout</strong>是*os.File类型;在Sprintf函数中的第一个参数&amp;buf是一个指向可以写入字节的内存缓冲区！</p>
-
 <h3 id="数据类型">数据类型</h3>
-
 <table>
 <thead>
 <tr>
-<th align="center">类型</th>
-<th align="center">等价类型</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">等价类型</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="center">rune</td>
-<td align="center">int32</td>
+<td style="text-align:center">rune</td>
+<td style="text-align:center">int32</td>
 </tr>
-
 <tr>
-<td align="center">byte</td>
-<td align="center">uint8</td>
+<td style="text-align:center">byte</td>
+<td style="text-align:center">uint8</td>
 </tr>
 </tbody>
 </table>
-
 <h3 id="new和make区别">new和make区别</h3>
-
 <ol>
 <li>new生成指定类型的指针变量，但是不初始化变量即不给变量分配内存</li>
 <li>make生成指定类型变量，并初始化该变量</li>
 </ol>
-
 <blockquote>
 <p>总结：因此不成文的规定是new必须用在值类型上，make必须用在引用类型上</p>
 </blockquote>
-
-<h4 id="make-chan-type-和make-chan-type-0-等价类型">make(chan Type)和make(chan Type,0)等价类型</h4>
-
+<h4 id="makechan-type和makechan-type0等价类型">make(chan Type)和make(chan Type,0)等价类型</h4>
 <p>使用make创建channel时候，不指定len长度的和指定长度为0创建的都是不带buffer(缓冲区)的channel。
 不带缓冲区的channel被称为同步channel。</p>
-
 <h3 id="参数-按引用传递">参数-按引用传递</h3>
-
 <p>考虑以下代码：</p>
-
-<pre><code class="language-go">func ChangeSlice(a []int) {
-	for i := 0; i &lt; len(a); i++ {
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#00f">func</span> ChangeSlice(a []<span style="color:#2b91af">int</span>) {
+	<span style="color:#00f">for</span> i := 0; i &lt; len(a); i++ {
 		a[i] = i * 2
 	}
 	a = a[1:]
 }
-</code></pre>
-
-<p>本来的意图是丢弃掉a切片的第一位，将结果反应给实参。但是由于直接给引用类型变量a赋了一个新的值，因此a指向了一块
+</code></pre></div><p>本来的意图是丢弃掉a切片的第一位，将结果反应给实参。但是由于直接给引用类型变量a赋了一个新的值，因此a指向了一块
 新的内存，造成原有的实参引用丢失。所以在函数内部重新给引用类型变量赋值要格外注意!在c++里面有一个指针常量的概念，
 很遗憾golang里面没有！要达成修改实参的目的可以使用如下代码：</p>
-
-<pre><code class="language-go">func ChangeSlice(a []int) []int {
-	for i := 0; i &lt; len(a); i++ {
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#00f">func</span> ChangeSlice(a []<span style="color:#2b91af">int</span>) []<span style="color:#2b91af">int</span> {
+	<span style="color:#00f">for</span> i := 0; i &lt; len(a); i++ {
 		a[i] = i * 2
 	}
-	//append扩容就会分配新的数组，所以切片最好赋值给另外一个切片，并返回新的切片。
-	return append(a, 4, 5, 6, 7)//只能通过返回值的方式，切记切记！
-}
-</code></pre>
-
-<h3 id="反射-reflection">反射(reflection)</h3>
-
+	<span style="color:#008000">//append扩容就会分配新的数组，所以切片最好赋值给另外一个切片，并返回新的切片。
+</span><span style="color:#008000"></span>	<span style="color:#00f">return</span> append(a, 4, 5, 6, 7)<span style="color:#008000">//只能通过返回值的方式，切记切记！
+</span><span style="color:#008000"></span>}
+</code></pre></div><h3 id="反射reflection">反射(reflection)</h3>
 <p>有些情况下我们需要使用一个未知的类型(即没有明确的类型定义)，反射应运而生。</p>
-
-<h4 id="reflect-type-类型"><code>reflect.Type</code>类型</h4>
-
+<h4 id="reflecttype类型"><code>reflect.Type</code>类型</h4>
 <p>函数<code>reflect.TypeOf()</code>接收任意类型并返回动态类型，</p>
-
-<pre><code class="language-go">reflect.TypeOf(3)
-</code></pre>
-
-<p>它标识了接口值的动态类型，类型描述信息如下图所示：
-<img src="../../pictures/20190722104901.png" alt="Type结构图" title="点我访问" />
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">reflect.TypeOf(3)
+</code></pre></div><p>它标识了接口值的动态类型，类型描述信息如下图所示：
+<img src="../../pictures/20190722104901.png" alt="Type结构图" title="点我访问">
 它由两部分组成，type部分描述动态类型，value部分存储动态值。
 <code>Type</code>满足<code>fmt.Stringer()</code>接口，<code>fmt</code>参数<code>%T</code>内部使用<code>reflect.TypeOf()</code>来输出</p>
-
-<h4 id="reflect-value-类型"><code>reflect.Value</code>类型</h4>
-
+<h4 id="reflectvalue类型"><code>reflect.Value</code>类型</h4>
 <p>此类型可以装载任意类型的值。函数<code>reflect.ValueOf()</code>接受任意类型，并返回装有动态值的<code>reflect.Value</code>:</p>
-
-<pre><code class="language-go">type IPerson interface{
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#00f">type</span> IPerson <span style="color:#00f">interface</span>{
 Sleep()
 }
-type Student struct{
-Name string
+<span style="color:#00f">type</span> Student <span style="color:#00f">struct</span>{
+Name <span style="color:#2b91af">string</span>
 }
-func (*Student) Sleep(){
+<span style="color:#00f">func</span> (*Student) Sleep(){
 }
-func main(){
-var ip1 IPerson
+<span style="color:#00f">func</span> main(){
+<span style="color:#00f">var</span> ip1 IPerson
 s1:=new(Student)
-s1.Name=&quot;Gerry&quot;
+s1.Name=<span style="color:#a31515">&#34;Gerry&#34;</span>
 ip1=s1
 rv:=reflect.ValueOf(ip1)
-//打印动态值
-fmt.Println(rv)//默认使用%v打印，结果&amp;{Gerry}
-}
-</code></pre>
-
-<p><code>Reflect.Value</code>的零值</p>
-
+<span style="color:#008000">//打印动态值
+</span><span style="color:#008000"></span>fmt.Println(rv)<span style="color:#008000">//默认使用%v打印，结果&amp;{Gerry}
+</span><span style="color:#008000"></span>}
+</code></pre></div><p><code>Reflect.Value</code>的零值</p>
 <p>Value有三个methods可以校验是否0值：</p>
-
 <ol>
 <li><code>IsValid()</code></li>
 <li><code>Kind()</code></li>
-
-<li><p><code>String()</code></p>
-
-<pre><code class="language-go">var ip2 IPerson
-reflect.ValueOf(ip1).IsValid() //return false
-reflect.ValueOf(ip1).Kind()  //return Invalid
-reflect.ValueOf(ip1).String() //return &quot;&lt;invalid Value&gt;&quot; 
-//考虑以下代码：(包含nil指针的非空动态值类型Value)
-var ip2 IPerson
-var s2 Student
-ip2 = &amp;s2
-fmt.Println(reflect.ValueOf(ip2).IsValid()) // true
-fmt.Println(reflect.ValueOf(ip2).Kind())  //ptr
-fmt.Println(reflect.ValueOf(ip2).String()) // &lt;*main.Student Value&gt;
-</code></pre></li>
+<li><code>String()</code></li>
 </ol>
-
-<p>其它的方法全部会抛出<code>panic</code>异常。
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#00f">var</span> ip2 IPerson
+reflect.ValueOf(ip1).IsValid() <span style="color:#008000">//return false
+</span><span style="color:#008000"></span>reflect.ValueOf(ip1).Kind()  <span style="color:#008000">//return Invalid
+</span><span style="color:#008000"></span>reflect.ValueOf(ip1).String() <span style="color:#008000">//return &#34;&lt;invalid Value&gt;&#34; 
+</span><span style="color:#008000">//考虑以下代码：(包含nil指针的非空动态值类型Value)
+</span><span style="color:#008000"></span><span style="color:#00f">var</span> ip2 IPerson
+<span style="color:#00f">var</span> s2 Student
+ip2 = &amp;s2
+fmt.Println(reflect.ValueOf(ip2).IsValid()) <span style="color:#008000">// true
+</span><span style="color:#008000"></span>fmt.Println(reflect.ValueOf(ip2).Kind())  <span style="color:#008000">//ptr
+</span><span style="color:#008000"></span>fmt.Println(reflect.ValueOf(ip2).String()) <span style="color:#008000">// &lt;*main.Student Value&gt;
+</span></code></pre></div><p>其它的方法全部会抛出<code>panic</code>异常。
 <code>Value</code>类型也满足<code>fmt.Stringer()</code>接口，<code>String()</code>方法只返回其类型。默认fmt包的%v标志参数，会对<code>reflect.Values</code>特殊处理。</p>
-
 <p><code>interface()</code>方法，返回一个任意(interface{}类型)类型。</p>
-
 <h3 id="空结构体">空结构体</h3>
-
-<pre><code class="language-go">func main() {
-	var i int
-	fmt.Printf(&quot;int value:%v\n&quot;, i)
-	fmt.Printf(&quot;int mem size:%v\n&quot;, unsafe.Sizeof(i))
-	var st struct{}
-	fmt.Printf(&quot;struct value:%v\n&quot;, st)
-	fmt.Printf(&quot;nil struct mem size:%v\n&quot;, unsafe.Sizeof(st))
-	var b bool
-	fmt.Printf(&quot;bool value:%v\n&quot;, b)
-	fmt.Printf(&quot;bool mem size:%v\n&quot;, unsafe.Sizeof(b))
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#00f">func</span> main() {
+	<span style="color:#00f">var</span> i <span style="color:#2b91af">int</span>
+	fmt.Printf(<span style="color:#a31515">&#34;int value:%v\n&#34;</span>, i)
+	fmt.Printf(<span style="color:#a31515">&#34;int mem size:%v\n&#34;</span>, unsafe.Sizeof(i))
+	<span style="color:#00f">var</span> st <span style="color:#00f">struct</span>{}
+	fmt.Printf(<span style="color:#a31515">&#34;struct value:%v\n&#34;</span>, st)
+	fmt.Printf(<span style="color:#a31515">&#34;nil struct mem size:%v\n&#34;</span>, unsafe.Sizeof(st))
+	<span style="color:#00f">var</span> b <span style="color:#2b91af">bool</span>
+	fmt.Printf(<span style="color:#a31515">&#34;bool value:%v\n&#34;</span>, b)
+	fmt.Printf(<span style="color:#a31515">&#34;bool mem size:%v\n&#34;</span>, unsafe.Sizeof(b))
 }
-//结果
-int value:0
-int mem size:8
-struct value:{}
-nil struct mem size:0
-bool value:false
-bool mem size:1
-</code></pre>
-
-<p>结论：空结构体是不占用内存空间的</p>
+<span style="color:#008000">//结果
+</span><span style="color:#008000"></span><span style="color:#2b91af">int</span> value:0
+<span style="color:#2b91af">int</span> mem size:8
+<span style="color:#00f">struct</span> value:{}
+<span style="color:#00f">nil</span> <span style="color:#00f">struct</span> mem size:0
+<span style="color:#2b91af">bool</span> value:<span style="color:#00f">false</span>
+<span style="color:#2b91af">bool</span> mem size:1
+</code></pre></div><p>结论：空结构体是不占用内存空间的</p>
                         </div>
 
                         
@@ -427,6 +358,10 @@ bool mem size:1
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -462,10 +397,6 @@ bool mem size:1
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -485,7 +416,7 @@ bool mem size:1
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

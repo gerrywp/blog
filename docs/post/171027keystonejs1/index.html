@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -94,130 +94,95 @@
                         <div class="post-content">
                             <p>keystonejs跨平台内容管理系统开发的又一利器。通过定义数据model层，即可完成一个企业型应用站点的开发，并自动生成后台管理界面。
 我们需要做的只是做前端UI，给定模板套样式即可。下面一步一步学习并搭建一个站点起来，并进行二次开发，以一系列文章记录下来。</p>
-
 <h3 id="环境的搭建">环境的搭建</h3>
-
 <ol>
 <li>ubuntu 16.04x64 虚拟机一台</li>
 <li>nodejs &amp; mongodb</li>
 <li>vscode工具</li>
 </ol>
-
 <h4 id="安装nodejs">安装nodejs</h4>
-
 <p>建议使用nvm来安装nodejs这样可以在不同的版本之间进行切换</p>
-
-<pre><code class="language-bash"># 直接使用apt安装
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># 直接使用apt安装</span>
 apt install nvm
 nvm install node
-# 遇到node包下载不下来的时候，可以根据提示使用 curl 命令将node包先下载到nvm安装目录下的cache文件夹下
+<span style="color:#008000"># 遇到node包下载不下来的时候，可以根据提示使用 curl 命令将node包先下载到nvm安装目录下的cache文件夹下</span>
 nvm use node
-</code></pre>
-
-<h4 id="安装mongodb">安装mongodb</h4>
-
+</code></pre></div><h4 id="安装mongodb">安装mongodb</h4>
 <ul>
-<li><p>在<a href="https://www.mongodb.com/download-center#community" title="点我访问">mongodb官网下载中心</a>,获取所需版本的下载链接</p>
-
-<pre><code class="language-bash">cd ~
+<li>在<a href="https://www.mongodb.com/download-center#community" title="点我访问">mongodb官网下载中心</a>,获取所需版本的下载链接</li>
+</ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd ~
 curl -o- https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1604-3.4.10.tgz | bash
-# 解压缩
+<span style="color:#008000"># 解压缩</span>
 tar -zxvf mongodb-linux-x86_64-ubuntu1604-3.4.10.tgz
-# 移动到/usr/local/mongodb
+<span style="color:#008000"># 移动到/usr/local/mongodb</span>
 mv mongodb-linux-x86_64-ubuntu1604-3.4.10 /usr/local/mongodb
-# 设定mongodb的环境变量
+<span style="color:#008000"># 设定mongodb的环境变量</span>
 vim .bashrc
 MONGODB_PATH=/usr/local/mongodb
-PATH=${MONGODB_PATH}/bin:${PATH}
-# 二进制文件的安装方式下，需要手动建数据库文件的存放路径，默认是/data/mongodb
+PATH=<span style="color:#a31515">${</span>MONGODB_PATH<span style="color:#a31515">}</span>/bin:<span style="color:#a31515">${</span>PATH<span style="color:#a31515">}</span>
+<span style="color:#008000"># 二进制文件的安装方式下，需要手动建数据库文件的存放路径，默认是/data/mongodb</span>
 mkdir -p /data/mongodb
-# 改变目录所有者让其拥有写入权限
+<span style="color:#008000"># 改变目录所有者让其拥有写入权限</span>
 ls -al /data /data/mongodb
 chgown -v username /data 
-# 启动mongodb服务
+<span style="color:#008000"># 启动mongodb服务</span>
 mongod
-</code></pre></li>
-</ul>
-
-<p>备注：注意要手动闯将文件目录<code>/data/mongodb</code>并更改所有者</p>
-
+</code></pre></div><p>备注：注意要手动闯将文件目录<code>/data/mongodb</code>并更改所有者</p>
 <ul>
 <li>开机启动mongod服务(待补充)</li>
 </ul>
-
 <p>将mongod配置成系统服务，完成开机自启动</p>
-
 <h4 id="安装yeoman脚手架">安装yeoman脚手架</h4>
-
-<pre><code class="language-bash">npm install -g yo
-</code></pre>
-
-<h4 id="安装keystonejs-yeoman生成器-创建项目">安装keystonejs yeoman生成器&amp;创建项目</h4>
-
-<pre><code class="language-bash">npm install -g generator-keystone
-# 项目创建
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm install -g yo
+</code></pre></div><h4 id="安装keystonejs-yeoman生成器创建项目">安装keystonejs yeoman生成器&amp;创建项目</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm install -g generator-keystone
+<span style="color:#008000"># 项目创建</span>
 cd ~/documents
 mkdir myproject
 cd myproject
 yo keystone
-# 根据提示自己输入一些配置
-# 这里我选择的template engine为handlerbars
-</code></pre>
-
-<h3 id="配置修改">配置修改</h3>
-
+<span style="color:#008000"># 根据提示自己输入一些配置</span>
+<span style="color:#008000"># 这里我选择的template engine为handlerbars</span>
+</code></pre></div><h3 id="配置修改">配置修改</h3>
 <p>默认的配置并不能满足我们的要求,我们需要customization。例如改下后台管理的路径等</p>
-
 <h4 id="生成的后台管理界面url路径的更改">生成的后台管理界面url路径的更改</h4>
-
-<pre><code class="language-bash">keystone.init({
-  'name': 'My Project',
-  'admin path': 'dyt'，
-  'host':'127.0.0.1'，//设置本地ip
-  'favicon': 'public/favicon.ico',
-  'less': 'public',
-  'static': ['public'],
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">keystone.init({
+  <span style="color:#a31515">&#39;name&#39;</span>: <span style="color:#a31515">&#39;My Project&#39;</span>,
+  <span style="color:#a31515">&#39;admin path&#39;</span>: <span style="color:#a31515">&#39;dyt&#39;</span>，
+  <span style="color:#a31515">&#39;host&#39;</span>:<span style="color:#a31515">&#39;127.0.0.1&#39;</span>，//设置本地ip
+  <span style="color:#a31515">&#39;favicon&#39;</span>: <span style="color:#a31515">&#39;public/favicon.ico&#39;</span>,
+  <span style="color:#a31515">&#39;less&#39;</span>: <span style="color:#a31515">&#39;public&#39;</span>,
+  <span style="color:#a31515">&#39;static&#39;</span>: [<span style="color:#a31515">&#39;public&#39;</span>],
   
-  'views': 'templates/views',
-  'view engine': 'jade',
+  <span style="color:#a31515">&#39;views&#39;</span>: <span style="color:#a31515">&#39;templates/views&#39;</span>,
+  <span style="color:#a31515">&#39;view engine&#39;</span>: <span style="color:#a31515">&#39;jade&#39;</span>,
   
-  'auto update': true,
-  'mongo': 'mongodb://localhost/my-project',
+  <span style="color:#a31515">&#39;auto update&#39;</span>: true,
+  <span style="color:#a31515">&#39;mongo&#39;</span>: <span style="color:#a31515">&#39;mongodb://localhost/my-project&#39;</span>,
   
-  'session': true,
-  'auth': true,
-  'user model': 'User',
-  'cookie secret': '(your secret here)'
+  <span style="color:#a31515">&#39;session&#39;</span>: true,
+  <span style="color:#a31515">&#39;auth&#39;</span>: true,
+  <span style="color:#a31515">&#39;user model&#39;</span>: <span style="color:#a31515">&#39;User&#39;</span>,
+  <span style="color:#a31515">&#39;cookie secret&#39;</span>: <span style="color:#a31515">&#39;(your secret here)&#39;</span>
   
 });
-</code></pre>
-
-<p>添加键值对<code>admin path</code>，值指定为你想要的任何名字,然后更改页面模板的登录/退出路径。
+</code></pre></div><p>添加键值对<code>admin path</code>，值指定为你想要的任何名字,然后更改页面模板的登录/退出路径。 
 修改<code>/views/index.hbs</code>页面里面的内容</p>
-
-<pre><code class="language-html">&lt;p&gt;&lt;a href=&quot;/keystone/signin&quot; style=&quot;margin-right: 10px&quot; class=&quot;btn btn-lg btn-primary&quot;&gt;Sign in&lt;/a&gt; to use the Admin UI.&lt;/p&gt;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;p&gt;&lt;a href=<span style="color:#a31515">&#34;/keystone/signin&#34;</span> style=<span style="color:#a31515">&#34;margin-right: 10px&#34;</span> class=<span style="color:#a31515">&#34;btn btn-lg btn-primary&#34;</span>&gt;Sign in&lt;/a&gt; to use the Admin UI.&lt;/p&gt;
 更改为
-&lt;p&gt;&lt;a href=&quot;/dyt/signin&quot; style=&quot;margin-right: 10px&quot; class=&quot;btn btn-lg btn-primary&quot;&gt;Sign in&lt;/a&gt; to use the Admin UI.&lt;/p&gt;
-</code></pre>
-
-<p>其它相关地方修改类同</p>
-
+&lt;p&gt;&lt;a href=<span style="color:#a31515">&#34;/dyt/signin&#34;</span> style=<span style="color:#a31515">&#34;margin-right: 10px&#34;</span> class=<span style="color:#a31515">&#34;btn btn-lg btn-primary&#34;</span>&gt;Sign in&lt;/a&gt; to use the Admin UI.&lt;/p&gt;
+</code></pre></div><p>其它相关地方修改类同</p>
 <h4 id="启动">启动</h4>
-
 <ul>
-<li><p>手动启动</p>
-
-<pre><code class="language-bash">cd ~/documents/myproject
-node keystone.js
-</code></pre></li>
+<li>手动启动</li>
 </ul>
-
-<p>访问<code>http://127.0.0.1:3000</code>站点</p>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd ~/documents/myproject
+node keystone.js
+</code></pre></div><p>访问<code>http://127.0.0.1:3000</code>站点</p>
 <ul>
 <li>配置服务开机自启动(待续)</li>
 </ul>
-
 <p><a href="/javascript/keystonejs2.html" title="点我访问">keystonejs(2)dotenv等常用库</a></p>
                         </div>
 
@@ -286,6 +251,10 @@ node keystone.js
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -321,10 +290,6 @@ node keystone.js
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -344,7 +309,7 @@ node keystone.js
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -95,96 +95,70 @@
                             <p>　　Linux的服务也是以etc配置的形式完成的，启动一个daemon(守护进程)来提供service(服务)。服务的管理是一个既复杂又细致的工作，Linux提供了两种方式来
 管理服务：一种是透过<code>systemctl</code>这一个命令管理服务，另一种是透过<code>service</code>来管理服务的启动、停止、重启等等，透过<code>chkconfig</code>来管理服务的开机启动与否。
 在此以<code>systemctl</code>应用出来之前和<code>systemctl</code>应用出来之后的服务管理方式分别作介绍！</p>
-
-<h3 id="service-chkconfig-管理service-服务"><code>service&amp;&amp;chkconfig</code>管理service(服务)</h3>
-
+<h3 id="servicechkconfig管理service服务"><code>service&amp;&amp;chkconfig</code>管理service(服务)</h3>
 <p>　　daemon的命名规则，所有服务的开发者，在提供服务应用程序的时候都会在服务的名称后加上字母d，d代表的就是daemon的意思。提供的服务是要与端口一一对应的，
 这样守护进程才能对外提供服务。Linux中是通过/etc/services配置文件来定义服务的端口号的。</p>
-
-<pre><code class="language-shell"># 查看服务与端口号的对应关系
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#008000"># 查看服务与端口号的对应关系</span>
 cat /etc/services
-</code></pre>
-
-<h4 id="daemon的启动脚本和启动方式">daemon的启动脚本和启动方式</h4>
-
+</code></pre></div><h4 id="daemon的启动脚本和启动方式">daemon的启动脚本和启动方式</h4>
 <p>　　daemon的启动是个复杂的过程，包括侦测环境、配置文件分析加载等等。所以通常服务应用程序在安装完成之后会提供一个script脚本，帮助使用者完成上述一系列操作。
-daemon的shell script(启动脚本)通常存放在以下几个路径(*代表应用程序名称)：
-* /etc/init.d/* : 启动脚本放置目录
-* /etc/* : 服务各自的配置</p>
-
-<h5 id="etc-init-d-与-etc-rc-d-init-d-之间的关系"><code>/etc/init.d</code>与<code>/etc/rc.d/init.d</code>之间的关系</h5>
-
-<p>　　透过如下命令我们可以看到，其实<code>/etc/init.d</code>是<code>/etc/rc.d/init.d</code>的文件夹软链接档：</p>
-
-<pre><code class="language-shell">ls -alF /etc/init.d
-</code></pre>
-
-<p>因此我们自定义的服务启动程序可以放在<code>/etc/init.d</code>和<code>/etc/rc.d/int.d</code>这两个地方。</p>
-
-<p>名词解析
-&gt; rc(run level control)运行等级控制。.d(directory)代表路径是一个目录</p>
-
-<h5 id="stand-alone服务应用-daemon-的启动">stand alone服务应用(daemon)的启动</h5>
-
+daemon的shell script(启动脚本)通常存放在以下几个路径(*代表应用程序名称)：</p>
 <ul>
-<li><p>可以直接运行脚本以启动</p>
-
-<pre><code class="language-shell"># 直接运行可以查看服务应用程序脚本的使用方法
-/etc/init.d/vsftpd 
-</code></pre></li>
-
-<li><p>透过<code>service</code>命令，其实是一个shell script应用程序脚本,它可以分析下达的参数，完成服务的启动等</p>
-
-<pre><code class="language-shell"># 查看帮助说明
-service -h
-# 查看所有守护进程服务的状态
-service --status-all
-</code></pre></li>
+<li>/etc/init.d/* : 启动脚本放置目录</li>
+<li>/etc/* : 服务各自的配置</li>
 </ul>
-
-<h5 id="观察系统启动的服务">观察系统启动的服务</h5>
-
-<pre><code class="language-shell">netstat -tulp
+<h5 id="etcinitd与etcrcdinitd之间的关系"><code>/etc/init.d</code>与<code>/etc/rc.d/init.d</code>之间的关系</h5>
+<p>　　透过如下命令我们可以看到，其实<code>/etc/init.d</code>是<code>/etc/rc.d/init.d</code>的文件夹软链接档：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">ls -alF /etc/init.d
+</code></pre></div><p>因此我们自定义的服务启动程序可以放在<code>/etc/init.d</code>和<code>/etc/rc.d/int.d</code>这两个地方。</p>
+<p>名词解析</p>
+<blockquote>
+<p>rc(run level control)运行等级控制。.d(directory)代表路径是一个目录</p>
+</blockquote>
+<h5 id="stand-alone服务应用daemon的启动">stand alone服务应用(daemon)的启动</h5>
+<ul>
+<li>可以直接运行脚本以启动</li>
+</ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#008000"># 直接运行可以查看服务应用程序脚本的使用方法</span>
+/etc/init.d/vsftpd 
+</code></pre></div><ul>
+<li>透过<code>service</code>命令，其实是一个shell script应用程序脚本,它可以分析下达的参数，完成服务的启动等</li>
+</ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#008000"># 查看帮助说明</span>
+service -h
+<span style="color:#008000"># 查看所有守护进程服务的状态</span>
+service --status-all
+</code></pre></div><h5 id="观察系统启动的服务">观察系统启动的服务</h5>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">netstat -tulp
 netstat -lnp
-</code></pre>
-
-<h5 id="服务的自启动">服务的自启动</h5>
-
-<p>　　服务启动之后，如果服务器(计算机)重启了，那么服务下次还会自动启动吗？这就需要了解到底我们的Linux主机是如何启动的。
-1. 打开计算机电源，开始读取 BIOS 并进行主机的自我测试；
-2. 透过 BIOS 取得第一个可启动装置，读取主要启动区 (MBR) 取得启动管理程序；
-3. 透过启动管理程序的配置，取得 kernel 并加载内存且侦测系统硬件；
-4. 核心主动呼叫 init 程序；
-5. init 程序开始运行系统初始化 (/etc/rc.d/rc.sysinit)
-6. 依据 init 的配置进行 daemon start (/etc/rc.d/rc[0-6].d/*)
-7. 加载本机配置 (/etc/rc.d/rc.local)
-Linux系统启动时，会进入不同的运行等级(run level)。不同的运行等级有不同的功能和服务。使用<code>chkconfig</code>命令可以查询不同等级有哪些服务会启动！</p>
-
-<pre><code class="language-shell">chkconfig --list
-# 透过这个命令我们可以看到一共有7个运行等级，并且会显示每个daemon服务在不同run level的运行状态
-</code></pre>
-
-<p>其实<code>chkconfig</code>这个命令只是为服务的启动脚本在不同的run level下建立了链接档。
+</code></pre></div><h5 id="服务的自启动">服务的自启动</h5>
+<p>　　服务启动之后，如果服务器(计算机)重启了，那么服务下次还会自动启动吗？这就需要了解到底我们的Linux主机是如何启动的。</p>
+<ol>
+<li>打开计算机电源，开始读取 BIOS 并进行主机的自我测试；</li>
+<li>透过 BIOS 取得第一个可启动装置，读取主要启动区 (MBR) 取得启动管理程序；</li>
+<li>透过启动管理程序的配置，取得 kernel 并加载内存且侦测系统硬件；</li>
+<li>核心主动呼叫 init 程序；</li>
+<li>init 程序开始运行系统初始化 (/etc/rc.d/rc.sysinit)</li>
+<li>依据 init 的配置进行 daemon start (/etc/rc.d/rc[0-6].d/*)</li>
+<li>加载本机配置 (/etc/rc.d/rc.local)
+Linux系统启动时，会进入不同的运行等级(run level)。不同的运行等级有不同的功能和服务。使用<code>chkconfig</code>命令可以查询不同等级有哪些服务会启动！</li>
+</ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">chkconfig --list
+<span style="color:#008000"># 透过这个命令我们可以看到一共有7个运行等级，并且会显示每个daemon服务在不同run level的运行状态</span>
+</code></pre></div><p>其实<code>chkconfig</code>这个命令只是为服务的启动脚本在不同的run level下建立了链接档。
 使用如下命令，可以看出来<code>rc0.d</code>到<code>rc6.d</code>分别对应run level的七个运行等级：</p>
-
-<pre><code class="language-shell">ls /etc/rc.d
-# 实际上chkconfig改变httpd的状态，是在rc0.d ...... rc6.d 中建立了对应的链接档案到`/etc/rc.d/init.d/*`下的具体文件
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">ls /etc/rc.d
+<span style="color:#008000"># 实际上chkconfig改变httpd的状态，是在rc0.d ...... rc6.d 中建立了对应的链接档案到`/etc/rc.d/init.d/*`下的具体文件</span>
 chkconfig httpd on
-</code></pre>
-
-<h5 id="创建自己的服务脚本">创建自己的服务脚本</h5>
-
+</code></pre></div><h5 id="创建自己的服务脚本">创建自己的服务脚本</h5>
 <p>　　当我们创建自己的shell script服务脚本的时候，如何让chkconfig来管理呢？
 我们只需要在<code>/etc/init.d</code>或者<code>/etc/rc.d/init.d</code>下创建好我们的服务启动脚本，具体的脚本写法我们可以打开系统本有的脚本参照来写！然后我们将自定义的脚本
 加入到<code>chkconfig</code>的控制范围中即可。</p>
-
-<pre><code class="language-shell"># 添加脚本到chkconfig控制
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#008000"># 添加脚本到chkconfig控制</span>
 chkconfig --add myscript
-# 删除脚本控制
+<span style="color:#008000"># 删除脚本控制</span>
 chkconfig --del myscript
-</code></pre>
-
-<p>然后就可以透过chkconfig来管理自定义脚本在不同run level的自启动与否了！</p>
+</code></pre></div><p>然后就可以透过chkconfig来管理自定义脚本在不同run level的自启动与否了！</p>
                         </div>
 
                         
@@ -252,6 +226,10 @@ chkconfig --del myscript
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -287,10 +265,6 @@ chkconfig --del myscript
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -310,7 +284,7 @@ chkconfig --del myscript
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

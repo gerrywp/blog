@@ -6,11 +6,7 @@
     <description>Recent content in sql on 云亦海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 17 Mar 2017 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://gerrywp.github.io/blog/categories/sql/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 17 Mar 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://gerrywp.github.io/blog/categories/sql/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>拾遗ms-sql stored procedure</title>
       <link>https://gerrywp.github.io/blog/post/170317mssqlsp/</link>

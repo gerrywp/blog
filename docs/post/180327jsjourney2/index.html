@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -95,16 +95,13 @@
                             <p>　　express-handlebars服务端模板引擎的局部渲染。非SPA应用程序，在最原始的动态页面并使用了layout布局的情况下，
 我们通常希望能够将index.hbs里面的UI结构和js逻辑部分组合在一起，并且需要将js逻辑统一放置到layout布局页的最底部。
 handlebars的<strong>Block Helper</strong>能够帮我们解决这个问题！</p>
-
 <h3 id="block-helper">Block Helper</h3>
-
 <p>通常我们的layout.hbs文件结构组织如下:</p>
-
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#00f">&lt;!DOCTYPE html&gt;</span>
+&lt;html lang=<span style="color:#a31515">&#34;en&#34;</span>&gt;
   &lt;head&gt;
-    &lt;!--引入css文件--&gt;
-    &lt;link href=&quot;./*.css&quot;/&gt;
+    <span style="color:#008000">&lt;!--引入css文件--&gt;</span>
+    &lt;link href=<span style="color:#a31515">&#34;./*.css&#34;</span>/&gt;
   &lt;/head&gt;
   &lt;body&gt;
     &lt;header&gt;&lt;/header&gt;
@@ -112,83 +109,67 @@ handlebars的<strong>Block Helper</strong>能够帮我们解决这个问题！</
       { { {body} } }
     &lt;/main&gt;
     &lt;footer&gt;&lt;/footer&gt;
-    &lt;!--javascript 脚本--&gt;
-    &lt;script  src=&quot;./javascripts/jquery.min.js&quot;/&gt;
-    &lt;!--其它页面的脚本放置在这里--&gt;
+    <span style="color:#008000">&lt;!--javascript 脚本--&gt;</span>
+    &lt;script  src=<span style="color:#a31515">&#34;./javascripts/jquery.min.js&#34;</span>/&gt;
+    <span style="color:#008000">&lt;!--其它页面的脚本放置在这里--&gt;</span>
   &lt;/body&gt;
 &lt;/html&gt;
-</code></pre>
-
-<p>index.hbs文件结构如下：</p>
-
-<pre><code class="language-html">&lt;div class=&quot;container&quot;&gt;
-  &lt;div class=&quot;row&quot;&gt;
-    &lt;div class=&quot;col-12&quot;&gt;&lt;/div&gt;
+</code></pre></div><p>index.hbs文件结构如下：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;div class=<span style="color:#a31515">&#34;container&#34;</span>&gt;
+  &lt;div class=<span style="color:#a31515">&#34;row&#34;</span>&gt;
+    &lt;div class=<span style="color:#a31515">&#34;col-12&#34;</span>&gt;&lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 &lt;script&gt;
-  $(function(){
-    //do something here
-  })();
+  $(<span style="color:#00f">function</span>(){
+    <span style="color:#008000">//do something here
+</span><span style="color:#008000"></span>  })();
 &lt;/script&gt;
-</code></pre>
-
-<p>很明显index.hbs页面需要在layout.hbs页面的jquery.js加载之后再加载。也就是在物理顺序上index.hbs页面的js逻辑代码，
-要放置在laout.hbs中<code>&lt;script&gt;标签</code>最后面引入！<br />
+</code></pre></div><p>很明显index.hbs页面需要在layout.hbs页面的jquery.js加载之后再加载。也就是在物理顺序上index.hbs页面的js逻辑代码，
+要放置在laout.hbs中<code>&lt;script&gt;标签</code>最后面引入！<br>
 handlebar的页面渲染流程：</p>
-
-<pre><code class="language-js">  app.get('/', function (req, res, next) {
-    res.render('index');
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">  app.get(<span style="color:#a31515">&#39;/&#39;</span>, <span style="color:#00f">function</span> (req, res, next) {
+    res.render(<span style="color:#a31515">&#39;index&#39;</span>);
 });
-</code></pre>
-
-<ol>
+</code></pre></div><ol>
 <li>handlebars引擎编译index.hbs生成局部hmtl模板</li>
 <li>引擎编译layout.hbs生成布局html模板</li>
 <li>compine合并步骤(1)&amp;步骤(2)的操作结果,使用步骤(1)结果替换掉步骤(2)中的占位符</li>
 <li>输出最终页面</li>
 </ol>
-
-<p>解决问题的关键在于:<br />
+<p>解决问题的关键在于:<br>
 使用handlebar引擎编译index.hbs的时候，<strong>Block Helper</strong>让引擎生成的js脚本不输出到局部的html模板中，
-而是保存在[引擎全局对象]<strong>memory script</strong>上。等到步骤(3)的时候，用<strong>memory script</strong>替换掉步骤(2)中的script占位符即可！<br />
-具体实现如下：<br />
+而是保存在[引擎全局对象]<strong>memory script</strong>上。等到步骤(3)的时候，用<strong>memory script</strong>替换掉步骤(2)中的script占位符即可！<br>
+具体实现如下：<br>
 在app.js中注册自定义<strong>Block Helper</strong></p>
-
-<pre><code class="language-js">var sectionHelper={section:function(name,options){
-  if(!this.renderSection)this.renderSection={};
-  //将引擎渲染的代码块，保存到引擎对象上
-  this.renderSection[name]=options.fn(this);
-  return null;//让BlockHelper在此次不渲染
-}};
-app.engine('.hbs', exphbs({extname: '.hbs',helpers:sectionHelper}));
-</code></pre>
-
-<p>在index.hbs页面使用app.js中注册的section <strong>Block Helper</strong></p>
-
-<pre><code class="language-html">&lt;div class=&quot;container&quot;&gt;
-  &lt;div class=&quot;row&quot;&gt;
-    &lt;div class=&quot;col-12&quot;&gt;&lt;/div&gt;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">var</span> sectionHelper={section:<span style="color:#00f">function</span>(name,options){
+  <span style="color:#00f">if</span>(!<span style="color:#00f">this</span>.renderSection)<span style="color:#00f">this</span>.renderSection={};
+  <span style="color:#008000">//将引擎渲染的代码块，保存到引擎对象上
+</span><span style="color:#008000"></span>  <span style="color:#00f">this</span>.renderSection[name]=options.fn(<span style="color:#00f">this</span>);
+  <span style="color:#00f">return</span> <span style="color:#00f">null</span>;<span style="color:#008000">//让BlockHelper在此次不渲染
+</span><span style="color:#008000"></span>}};
+app.engine(<span style="color:#a31515">&#39;.hbs&#39;</span>, exphbs({extname: <span style="color:#a31515">&#39;.hbs&#39;</span>,helpers:sectionHelper}));
+</code></pre></div><p>在index.hbs页面使用app.js中注册的section <strong>Block Helper</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;div class=<span style="color:#a31515">&#34;container&#34;</span>&gt;
+  &lt;div class=<span style="color:#a31515">&#34;row&#34;</span>&gt;
+    &lt;div class=<span style="color:#a31515">&#34;col-12&#34;</span>&gt;&lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 //使用注册过section block helper
-{ { #section 'js' } }
+{ { #section &#39;js&#39; } }
 &lt;script&gt;
-  $(function(){
-    //do something here
-  })();
+  $(<span style="color:#00f">function</span>(){
+    <span style="color:#008000">//do something here
+</span><span style="color:#008000"></span>  })();
 &lt;/script&gt;
 { {/section} }
 //此处只是生成了模板的内存数据，并不会在此处渲染html结构
-</code></pre>
-
-<p>在layout.hbs页面渲染index.hbs生成的模板内存数据</p>
-
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
+</code></pre></div><p>在layout.hbs页面渲染index.hbs生成的模板内存数据</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#00f">&lt;!DOCTYPE html&gt;</span>
+&lt;html lang=<span style="color:#a31515">&#34;en&#34;</span>&gt;
   &lt;head&gt;
-    &lt;!--引入css文件--&gt;
-    &lt;link href=&quot;./*.css&quot;/&gt;
+    <span style="color:#008000">&lt;!--引入css文件--&gt;</span>
+    &lt;link href=<span style="color:#a31515">&#34;./*.css&#34;</span>/&gt;
   &lt;/head&gt;
   &lt;body&gt;
     &lt;header&gt;&lt;/header&gt;
@@ -196,19 +177,16 @@ app.engine('.hbs', exphbs({extname: '.hbs',helpers:sectionHelper}));
       { { {body} } }
     &lt;/main&gt;
     &lt;footer&gt;&lt;/footer&gt;
-    &lt;!--javascript 脚本--&gt;
-    &lt;script  src=&quot;./javascripts/jquery.min.js&quot;/&gt;
-    &lt;!--其它页面的脚本放置在这里--&gt;
-    &lt;!-- 渲染index.hbs页面的section模板到此位置--&gt;
+    <span style="color:#008000">&lt;!--javascript 脚本--&gt;</span>
+    &lt;script  src=<span style="color:#a31515">&#34;./javascripts/jquery.min.js&#34;</span>/&gt;
+    <span style="color:#008000">&lt;!--其它页面的脚本放置在这里--&gt;</span>
+    <span style="color:#008000">&lt;!-- 渲染index.hbs页面的section模板到此位置--&gt;</span>
     { { {renderSection.js} } }
   &lt;/body&gt;
 &lt;/html&gt;
-</code></pre>
-
-<blockquote>
+</code></pre></div><blockquote>
 <p>使用{ { { } } }语法原样输出handlebar-engine上下文context中的renderSection.js变量!</p>
 </blockquote>
-
 <p>备注：<code>{ { {} } }</code>与<code>{ {} }</code>的区别，两者都是求值输出变量，前者对html标签不做转义处理，后者对html标签做了转义处理。</p>
                         </div>
 
@@ -277,6 +255,10 @@ app.engine('.hbs', exphbs({extname: '.hbs',helpers:sectionHelper}));
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -312,10 +294,6 @@ app.engine('.hbs', exphbs({extname: '.hbs',helpers:sectionHelper}));
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -335,7 +313,7 @@ app.engine('.hbs', exphbs({extname: '.hbs',helpers:sectionHelper}));
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

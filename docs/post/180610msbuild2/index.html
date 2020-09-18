@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -93,69 +93,48 @@
                         
                         <div class="post-content">
                             <p>　　使用<strong>Visual Stuido</strong>(以下简称VS)发布(publish)web application到文件系统(File System)的时候，我们希望可以定制待发布的前端文件，并且在msbuild deploy的时候对构建流程进行处理！如何做呢？</p>
-
 <h3 id="pubxml的配置">*.pubxml的配置</h3>
-
 <p>vs-msbuild发布的流程如下：</p>
-
 <ol>
 <li>编译依赖的各个项目工程</li>
 <li>编译web主站点</li>
 <li>拷贝html+css+view文件到obj目录下的临时文件夹中(例如：<code>obj\x86\Release\Package\PackageTmp\</code>)</li>
-<li>拷贝步骤(3)的文件到.pubxml指定的&rdquo;publishUrl&rdquo;中去</li>
+<li>拷贝步骤(3)的文件到.pubxml指定的&quot;publishUrl&quot;中去</li>
 </ol>
-
-<p>通常我们想做的事情是在以上步骤的第三步之后，对临时生成的PackageTmp做定制化处理(custom)!<br />
+<p>通常我们想做的事情是在以上步骤的第三步之后，对临时生成的PackageTmp做定制化处理(custom)!<br>
 通过<strong>GatherAllFilesToPublish</strong>这个可以办到：</p>
-
-<pre><code class="language-xml">&lt;!--.pubxml的配置文件中添加如下节点--&gt;
-  &lt;Target Name=&quot;CustomPostPublishActions&quot; AfterTargets=&quot;GatherAllFilesToPublish&quot; &gt;
-    &lt;Exec Command=&quot;echo Post-PUBLISH event: Active configuration is: $(ConfigurationName)&quot; /&gt;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#008000">&lt;!--.pubxml的配置文件中添加如下节点--&gt;</span>
+  &lt;Target Name=<span style="color:#a31515">&#34;CustomPostPublishActions&#34;</span> AfterTargets=<span style="color:#a31515">&#34;GatherAllFilesToPublish&#34;</span> &gt;
+    &lt;Exec Command=<span style="color:#a31515">&#34;echo Post-PUBLISH event: Active configuration is: $(ConfigurationName)&#34;</span> /&gt;
   &lt;/Target&gt;
-</code></pre>
-
-<p>并且透过Exec任务结合echo命令打印出调试信息！</p>
-
+</code></pre></div><p>并且透过Exec任务结合echo命令打印出调试信息！</p>
 <h3 id="output中不显示message任务">Output中不显示Message任务</h3>
-
-<p>在此同时解决一下上一篇文章中提到的Message这个任务不在Output中显示的问题。<br />
+<p>在此同时解决一下上一篇文章中提到的Message这个任务不在Output中显示的问题。<br>
 方法1：设置Message的Importance=&ldquo;high&rdquo;</p>
-
-<pre><code class="language-xml">  &lt;Target Name=&quot;CustomPostPublishActions&quot; AfterTargets=&quot;GatherAllFilesToPublish&quot; &gt;
-    &lt;Message Importance=&quot;high&quot; Text=&quot;This is debug info!&quot;&gt;&lt;/Message&gt;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">  &lt;Target Name=<span style="color:#a31515">&#34;CustomPostPublishActions&#34;</span> AfterTargets=<span style="color:#a31515">&#34;GatherAllFilesToPublish&#34;</span> &gt;
+    &lt;Message Importance=<span style="color:#a31515">&#34;high&#34;</span> Text=<span style="color:#a31515">&#34;This is debug info!&#34;</span>&gt;&lt;/Message&gt;
   &lt;/Target&gt;
-</code></pre>
-
-<p>方法2：设置<strong>MSBuild output verbosity</strong>为Detailed，路径如下：<br />
+</code></pre></div><p>方法2：设置<strong>MSBuild output verbosity</strong>为Detailed，路径如下：<br>
 <code>Tools -&gt; Options -&gt; Projects and Solutinos -&gt; Build and Run -&gt; MSBuild</code>
 如果想看msbuild详细的Build Target顺序，可以将此项设置为<code>Diagnostic</code></p>
-
-<p><img src="../../pictures/QQ20180610165051.png" alt="msbuild-output配置" title="点我访问" /></p>
-
+<p><img src="../../pictures/QQ20180610165051.png" alt="msbuild-output配置" title="点我访问"></p>
 <blockquote>
 <p>说明：写脚本调试，强烈推荐设置成<code>Diagnostic</code>,这样可以看到超详细的msbuild构建信息。例如：加载内置的环境变量，加载msbuild保留属性(resolve-properties)。
 同时由于VS各个版本的不同，构建Target名称不一样，通过这个设置也能快速定位Target，找到定制切入点！</p>
 </blockquote>
-
 <p>c# web构建使用的是<code>C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\Microsoft\VisualStudio\v15.0\Web\Microsoft.Web.Publishing.targets</code>
 这个targets文件，感兴趣的可以研究下这个文件了解详细的构建过程！ 如图：</p>
-
-<p><img src="../../pictures/QQ20180610170738.png" alt="deploy-targets" title="点我访问" /></p>
-
-<p>通过查看<strong>Microsoft.Web.Publishing.targets</strong>文件不难看出<code>GatherAllFilesToPublish</code>是一个空目标，它的依赖目标有一个<code>CopyAllFilesToSingleFolderForPackage</code>,通过设置AfterTarget=&ldquo;CopyAllFilesToSingleFolderForPackage&rdquo;可以自定义web publish流程.</p>
-
-<h3 id="实例-发布前删除非压缩模式的css文件">实例：发布前删除非压缩模式的css文件</h3>
-
-<pre><code class="language-xml">  &lt;Target Name=&quot;CustomPostPublishActions&quot; AfterTargets=&quot;GatherAllFilesToPublish&quot; &gt;
+<p><img src="../../pictures/QQ20180610170738.png" alt="deploy-targets" title="点我访问"></p>
+<p>通过查看<strong>Microsoft.Web.Publishing.targets</strong>文件不难看出<code>GatherAllFilesToPublish</code>是一个空目标，它的依赖目标有一个<code>CopyAllFilesToSingleFolderForPackage</code>,通过设置AfterTarget=&ldquo;CopyAllFilesToSingleFolderForPackage&quot;可以自定义web publish流程.</p>
+<h3 id="实例发布前删除非压缩模式的css文件">实例：发布前删除非压缩模式的css文件</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">  &lt;Target Name=<span style="color:#a31515">&#34;CustomPostPublishActions&#34;</span> AfterTargets=<span style="color:#a31515">&#34;GatherAllFilesToPublish&#34;</span> &gt;
     &lt;ItemGroup&gt;
-      &lt;CssFiles Include=&quot;$(WPPAllFilesInSingleFolder)\Content\*.css&quot;&gt;&lt;/CssFiles&gt;
+      &lt;CssFiles Include=<span style="color:#a31515">&#34;$(WPPAllFilesInSingleFolder)\Content\*.css&#34;</span>&gt;&lt;/CssFiles&gt;
     &lt;/ItemGroup&gt;
-    &lt;Delete Files=&quot;@(CssFiles)&quot;&gt;&lt;/Delete&gt;
+    &lt;Delete Files=<span style="color:#a31515">&#34;@(CssFiles)&#34;</span>&gt;&lt;/Delete&gt;
   &lt;/Target&gt;
-</code></pre>
-
-<blockquote>
-<p>小技巧: $(WPPAllFilesInSingleFolder)这个变量通过在Microsoft.Web.Publishing.targets目标文件搜索关键字&rdquo;PackageTemp&rdquo;就可以找到！</p>
+</code></pre></div><blockquote>
+<p>小技巧: $(WPPAllFilesInSingleFolder)这个变量通过在Microsoft.Web.Publishing.targets目标文件搜索关键字&quot;PackageTemp&quot;就可以找到！</p>
 </blockquote>
                         </div>
 
@@ -224,6 +203,10 @@
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -259,10 +242,6 @@
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -282,7 +261,7 @@
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

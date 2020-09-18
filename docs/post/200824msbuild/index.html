@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -93,63 +93,46 @@
                         
                         <div class="post-content">
                             <p>vs解决方案下，不同的环境，使用不同的配置文件。</p>
-
-<h3 id="安装-microsoft-web-developer-tools">安装<strong>Microsoft Web Developer Tools</strong></h3>
-
+<h3 id="安装microsoft-web-developer-tools">安装<strong>Microsoft Web Developer Tools</strong></h3>
 <p>非web应用程序想要使用<code>TransformXml</code>Task的话需要安装web发布工具组件。</p>
-
 <h3 id="配置项目工程文件">配置项目工程文件</h3>
-
 <p>在<code>ItemGroup</code>节点下，新增如下节点</p>
-
-<pre><code class="language-xml">  &lt;ItemGroup&gt;
-    &lt;None Include=&quot;App.config&quot;&gt;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">  &lt;ItemGroup&gt;
+    &lt;None Include=<span style="color:#a31515">&#34;App.config&#34;</span>&gt;
       &lt;SubType&gt;Designer&lt;/SubType&gt;
     &lt;/None&gt;
-    &lt;None Include=&quot;App.Debug.config&quot;&gt;
+    &lt;None Include=<span style="color:#a31515">&#34;App.Debug.config&#34;</span>&gt;
       &lt;DependentUpon&gt;App.config&lt;/DependentUpon&gt;
     &lt;/None&gt;
-    &lt;None Include=&quot;App.DeDebug.config&quot;&gt;
+    &lt;None Include=<span style="color:#a31515">&#34;App.DeDebug.config&#34;</span>&gt;
       &lt;DependentUpon&gt;App.config&lt;/DependentUpon&gt;
     &lt;/None&gt;
   &lt;/ItemGroup&gt;
-</code></pre>
-
-<p>在项目的根目录下，创建不同环境下对应的.config文件</p>
-
-<p><img src="../../pictures/268BA9B3-246E-489a-BE13-CEA8F3A38E93.png" alt="配置文件" title="点我访问" /></p>
-
+</code></pre></div><p>在项目的根目录下，创建不同环境下对应的.config文件</p>
+<p><img src="../../pictures/268BA9B3-246E-489a-BE13-CEA8F3A38E93.png" alt="配置文件" title="点我访问"></p>
 <h3 id="添加transformxml任务">添加TransformXml任务</h3>
-
 <p>在项目工程文件下，添加<code>AfterBuild</code>的<code>Target</code>对App.config文件进行处理</p>
-
-<pre><code class="language-xml">  &lt;UsingTask TaskName=&quot;TransformXml&quot;
-           AssemblyFile=&quot;$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v15.0\Web\Microsoft.Web.Publishing.Tasks.dll&quot; /&gt;
-  &lt;Target Name=&quot;AfterBuild&quot;&gt;
-    &lt;TransformXml Source=&quot;App.config&quot; Transform=&quot;App.$(Configuration).config&quot; Destination=&quot;$(OutputPath)\$(AssemblyName).exe.config&quot; /&gt;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">  &lt;UsingTask TaskName=<span style="color:#a31515">&#34;TransformXml&#34;</span>
+           AssemblyFile=<span style="color:#a31515">&#34;$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v15.0\Web\Microsoft.Web.Publishing.Tasks.dll&#34;</span> /&gt;
+  &lt;Target Name=<span style="color:#a31515">&#34;AfterBuild&#34;</span>&gt;
+    &lt;TransformXml Source=<span style="color:#a31515">&#34;App.config&#34;</span> Transform=<span style="color:#a31515">&#34;App.$(Configuration).config&#34;</span> Destination=<span style="color:#a31515">&#34;$(OutputPath)\$(AssemblyName).exe.config&#34;</span> /&gt;
   &lt;/Target&gt;
-</code></pre>
-
-<ol>
+</code></pre></div><ol>
 <li>使用<code>UsingTask</code>引入<code>TransformXml</code>任务的dll文件</li>
 <li>配置<code>TransformXml</code></li>
 </ol>
-
 <h3 id="应用transformxml任务">应用TransformXml任务</h3>
-
 <ul>
-<li><p>在App.DeDebug.config文件中，修改<strong>configuration</strong>节点，添加<code>TransformXml</code>的名称空间</p>
-
-<pre><code class="language-xml">&lt;configuration xmlns:xdt=&quot;http://schemas.microsoft.com/XML-Document-Transform&quot;&gt;
-</code></pre></li>
-
-<li><p>使用<code>xdt:Transform=&quot;Replace&quot;</code>替换想要更改的配置</p>
-
-<pre><code class="language-xml">&lt;connectionStrings&gt;
-&lt;add name=&quot;testdb&quot; connectionString=&quot;XO/a/G9SUz5hlFz9f7aSknZatm/ouBJf6d/cOhv5pB4neoEWSrGyj60LSeAey1UuepYm5ItZ5FlmzBRfNfQfxA==&quot; xdt:Transform=&quot;Replace&quot;/&gt;
-&lt;/connectionStrings&gt;
-</code></pre></li>
+<li>在App.DeDebug.config文件中，修改<strong>configuration</strong>节点，添加<code>TransformXml</code>的名称空间</li>
 </ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">&lt;configuration xmlns:xdt=<span style="color:#a31515">&#34;http://schemas.microsoft.com/XML-Document-Transform&#34;</span>&gt;
+</code></pre></div><ul>
+<li>使用<code>xdt:Transform=&quot;Replace&quot;</code>替换想要更改的配置</li>
+</ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">  &lt;connectionStrings&gt;
+    &lt;add name=<span style="color:#a31515">&#34;testdb&#34;</span> connectionString=<span style="color:#a31515">&#34;XO/a/G9SUz5hlFz9f7aSknZatm/ouBJf6d/cOhv5pB4neoEWSrGyj60LSeAey1UuepYm5ItZ5FlmzBRfNfQfxA==&#34;</span> xdt:Transform=<span style="color:#a31515">&#34;Replace&#34;</span>/&gt;
+  &lt;/connectionStrings&gt;
+</code></pre></div>
                         </div>
 
                         
@@ -217,6 +200,10 @@
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -252,10 +239,6 @@
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -275,7 +258,7 @@
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

@@ -6,11 +6,7 @@
     <description>Recent content in nodejs on 云亦海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 16 Aug 2018 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://gerrywp.github.io/blog/tags/nodejs/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 16 Aug 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://gerrywp.github.io/blog/tags/nodejs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>nodejs之旅(6)热替换与热加载</title>
       <link>https://gerrywp.github.io/blog/post/180816jsjourney6/</link>
@@ -65,7 +61,7 @@
       <pubDate>Thu, 29 Mar 2018 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/post/180329singletoninnodejs/</guid>
-      <description>&lt;p&gt;　　How to create singleton in Node.js?这个问题实际是错误的！因为nodejs模块缓存的原因，require(&amp;ldquo;)每次出来的都是单例的！&lt;/p&gt;</description>
+      <description>&lt;p&gt;　　How to create singleton in Node.js?这个问题实际是错误的！因为nodejs模块缓存的原因，require(&#39;&#39;)每次出来的都是单例的！&lt;/p&gt;</description>
     </item>
     
     <item>

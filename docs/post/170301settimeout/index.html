@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -93,23 +93,17 @@
                         
                         <div class="post-content">
                             <p>增量随机，很好实现。那如果要实现时间间隔随机，应该如何处理？我们可以使用setTimeout递归调用来实现</p>
-
-<h3 id="settimeout-fn-param-ms-argument">setTimeout(fn(param){},ms,argument)</h3>
-
+<h3 id="settimeoutfnparammsargument">setTimeout(fn(param){},ms,argument)</h3>
 <p>可以使用外层函数将<code>setTimeout</code>封装，并使用<code>setTimeout</code>调用外层函数</p>
-
-<pre><code class="language-js">function animatedFn(){
-  let [vector,timerId]=[Math.random()*5000,null];
-  console.log('***');
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">function</span> animatedFn(){
+  <span style="color:#00f">let</span> [vector,timerId]=[Math.random()*5000,<span style="color:#00f">null</span>];
+  console.log(<span style="color:#a31515">&#39;***&#39;</span>);
   timerId=setTimeout((pValue)=&gt;{
-    console.log('interval time is:'+pValue);
-    animatedFn();//递归调用
-  },vector,vector)
+    console.log(<span style="color:#a31515">&#39;interval time is:&#39;</span>+pValue);
+    animatedFn();<span style="color:#008000">//递归调用
+</span><span style="color:#008000"></span>  },vector,vector)
 }
-</code></pre>
-
-<p>参数：</p>
-
+</code></pre></div><p>参数：</p>
 <ol>
 <li>fn(param){},定时器回调函数可以带参数</li>
 <li>ms,定时器下次启动，时间间隔(单位:毫秒)</li>
@@ -182,6 +176,10 @@
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -217,10 +215,6 @@
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -240,7 +234,7 @@
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -93,24 +93,15 @@
                         
                         <div class="post-content">
                             <p>个别汇编指令英文全称说明，便于使用和记忆</p>
-
-<h3 id="lea-load-effective-address-加载有效地址">lea (<strong>Load Effective Address</strong> 加载有效地址 )</h3>
-
-<pre><code class="language-clike">lea eax,[ecx+0x48]
-</code></pre>
-
-<p>说明: 将ecx+048这个结果作为一个地址传给eax(那么现在eax里面存的就是一个地址了)</p>
-
+<h3 id="lea-load-effective-address-加载有效地址-">lea (<strong>Load Effective Address</strong> 加载有效地址 )</h3>
+<pre><code class="language-clike" data-lang="clike">lea eax,[ecx+0x48]
+</code></pre><p>说明: 将ecx+048这个结果作为一个地址传给eax(那么现在eax里面存的就是一个地址了)</p>
 <h3 id="赋值操作">赋值操作</h3>
-
-<pre><code class="language-clike">lea eax,pVariable
+<pre><code class="language-clike" data-lang="clike">lea eax,pVariable
 /*结果：将指针变量自身的地址赋值给了eax*/
-</code></pre>
-
-<p>说明:pVariable是一个指针变量。在高级语言的概念里,传递*指针*就是传递<em>地址</em>,上例的地址是指针自身的地址
+</code></pre><p>说明:pVariable是一个指针变量。在高级语言的概念里,传递<em>指针</em>就是传递<em>地址</em>,上例的地址是指针自身的地址
 处理方法：将lea指令换成mov指令</p>
-
-<pre><code class="language-clike">mov eax,pVariable
+<pre><code class="language-clike" data-lang="clike">mov eax,pVariable
 //将pVariable指针指向的内容(一个内存地址)传递给eax
 </code></pre>
                         </div>
@@ -176,6 +167,10 @@
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -211,10 +206,6 @@
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -234,7 +225,7 @@
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -93,56 +93,36 @@
                         
                         <div class="post-content">
                             <p>　　透过keystonejs接触了很多常用的库，查阅npm文档了解它们的基本用法。dotenv从.env文件中加载并设置环境变量。</p>
-
 <h3 id="dotenv">dotenv</h3>
-
 <p>nodejs运行很多时候依靠环境变量在开发环境和生产环境做不同的适配。通过引入<code>dotenv</code>库，并添加.env文件，我们就可以自定义环境变量了！
 例如，常用的cookie密钥就可以设置在.env文件中：</p>
-
-<pre><code class="language-js">// .env
-//cookie密钥
-COOKIE_SECRET={your secret key}
-DEVOLOPMENT=true
-</code></pre>
-
-<p>express中的使用</p>
-
-<pre><code class="language-js">// app.js
-require('dotenv').config()
-if(process.env.COOKIE_SECRET){
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#008000">// .env
+</span><span style="color:#008000">//cookie密钥
+</span><span style="color:#008000"></span>COOKIE_SECRET={your secret key}
+DEVOLOPMENT=<span style="color:#00f">true</span>
+</code></pre></div><p>express中的使用</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#008000">// app.js
+</span><span style="color:#008000"></span>require(<span style="color:#a31515">&#39;dotenv&#39;</span>).config()
+<span style="color:#00f">if</span>(process.env.COOKIE_SECRET){
   console.log(process.env.COOKIE_SECRET);
 }
-</code></pre>
-
-<h3 id="debug">debug</h3>
-
+</code></pre></div><h3 id="debug">debug</h3>
 <p>一个调试工具，可以通过环境变量的设置来输出自己模块日志。在当前模块中调用，并命名然后根据环境变量来确定是不是要启用调试日志！</p>
-
-<pre><code class="language-js">// app.js
-var debug = require('debug')('app');
-var name='baung!';
-debug('%o is running!',name);
-</code></pre>
-
-<p>在.env中配置环境变量<code>DEBUG</code>来启动调试日志！</p>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#008000">// app.js
+</span><span style="color:#008000"></span><span style="color:#00f">var</span> debug = require(<span style="color:#a31515">&#39;debug&#39;</span>)(<span style="color:#a31515">&#39;app&#39;</span>);
+<span style="color:#00f">var</span> name=<span style="color:#a31515">&#39;baung!&#39;</span>;
+debug(<span style="color:#a31515">&#39;%o is running!&#39;</span>,name);
+</code></pre></div><p>在.env中配置环境变量<code>DEBUG</code>来启动调试日志！</p>
 <pre><code>//仅开启名称为app的模块日志
 DEBUG=app
 //开启除了名字为&quot;express:*&quot;的模块日志
 DEBUG=*,-express:*
-</code></pre>
-
-<p>你可以通过&rdquo;-&ldquo;符号，排除指定的debuggers</p>
-
+</code></pre><p>你可以通过&quot;-&ldquo;符号，排除指定的debuggers</p>
 <h3 id="express-session">express-session</h3>
-
 <p>集成express管理session会话</p>
-
 <h3 id="morgan">morgan</h3>
-
 <p>HTTP request logger中间件，用来记录http请求的详细信息，可以配置各种显示样式！
 有以下几种<code>Predefined Formats</code>格式化选项可选：</p>
-
 <ol>
 <li>combined</li>
 <li>common</li>
@@ -167,7 +147,7 @@ DEBUG=*,-express:*
         
         <li><a href="/blog/post/180705cpprelative/">c&#43;&#43;开发环境</a></li>
         
-        <li><a href="/blog/post/180703linear7hash/">线性存储和hashcode</a></li>
+        <li><a href="/blog/post/180703linear7hash/">线性存储</a></li>
         
         <li><a href="/blog/post/180627thinkinjava/">Think in java(Java编程思想)笔记</a></li>
         
@@ -217,6 +197,10 @@ DEBUG=*,-express:*
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -252,10 +236,6 @@ DEBUG=*,-express:*
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -275,7 +255,7 @@ DEBUG=*,-express:*
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

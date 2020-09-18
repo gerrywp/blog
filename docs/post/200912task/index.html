@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -92,52 +92,43 @@
                         
                         
                         <div class="post-content">
-                            <p><strong>TAP(Task-based async pattern)</strong>基于任务的异步编程模型</p>
-
+                            <p><strong>TAP(Task-based async pattern)</strong> 基于任务的异步编程模型</p>
 <h3 id="概念">概念</h3>
-
 <ol>
 <li>thread创建的线程，默认是前台线程。必须等待thread线程任务执行完毕之后，主线程才得以退出。令<code>isBackground=false</code>将创建后台线程。主线程不需要等待后台线程执行完毕就会直接退出。</li>
 <li>使用Task创建的线程，默认就是后台线程。并且Task的线程是基于ThreadPool线程池的，相对于直接new Thread来说，Task创建的线程系统开销低效率较高。若想等Task线程执行完毕，主线程才能结束，可以使用Task.Wait()来等待线程调用完毕。</li>
 </ol>
-
-<h3 id="async-await">async/await</h3>
-
+<h3 id="asyncawait">async/await</h3>
 <p>示例：</p>
-
-<pre><code class="language-csharp">static void Main(string[] args)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#00f">static</span> <span style="color:#00f">void</span> Main(<span style="color:#2b91af">string</span>[] args)
 {
-	Task&lt;string&gt; taskA=TaskA();
-	//Task taskA=TaskA();//这种写法，相当于强制类型转换Task&lt;string&gt;到Task
-	Console.WriteLine(&quot;main doing something.&quot;);
-	Console.WriteLine(&quot;task result is:&quot; + taskA.Result);
+	Task&lt;<span style="color:#2b91af">string</span>&gt; taskA=TaskA();
+	<span style="color:#008000">//Task taskA=TaskA();//这种写法，相当于强制类型转换Task&lt;string&gt;到Task
+</span><span style="color:#008000"></span>	Console.WriteLine(<span style="color:#a31515">&#34;main doing something.&#34;</span>);
+	Console.WriteLine(<span style="color:#a31515">&#34;task result is:&#34;</span> + taskA.Result);
 	Console.ReadKey();
 }
 
-static async Task&lt;string&gt; TaskA()
+<span style="color:#00f">static</span> <span style="color:#00f">async</span> Task&lt;<span style="color:#2b91af">string</span>&gt; TaskA()
 {
-	Console.WriteLine(&quot;TaskA started.&quot;);
-	string result = await TaskB();
-	Console.WriteLine(&quot;TaskA ended.&quot;);
-	return result;
+	Console.WriteLine(<span style="color:#a31515">&#34;TaskA started.&#34;</span>);
+	<span style="color:#2b91af">string</span> result = <span style="color:#00f">await</span> TaskB();
+	Console.WriteLine(<span style="color:#a31515">&#34;TaskA ended.&#34;</span>);
+	<span style="color:#00f">return</span> result;
 }
-static Task&lt;string&gt; TaskB()
+<span style="color:#00f">static</span> Task&lt;<span style="color:#2b91af">string</span>&gt; TaskB()
 {
-	return Task.Run(() =&gt; {
-		Thread.Sleep(3000);//模拟耗时操作
-		return &quot;TaskB&quot;;
+	<span style="color:#00f">return</span> Task.Run(() =&gt; {
+		Thread.Sleep(3000);<span style="color:#008000">//模拟耗时操作
+</span><span style="color:#008000"></span>		<span style="color:#00f">return</span> <span style="color:#a31515">&#34;TaskB&#34;</span>;
 	});
 }
-</code></pre>
-
-<h4 id="总结">总结：</h4>
-
+</code></pre></div><h4 id="总结">总结：</h4>
 <ol>
 <li><code>async</code>关键字标识的方法,当我们在<code>main</code>函数里面对其进行调用时,可以看出taskA变量代表的是<code>TaskA</code>(异步方法)本身。而并不是<code>TaskA</code>里面返回的<code>TaskB</code>的执行结果result这个变量。</li>
-
-<li><p>整个调用流程为</p>
-
-<pre><code class="language-console">&gt;&gt;&gt; main  
+<li>整个调用流程为</li>
+</ol>
+<pre><code class="language-console" data-lang="console">&gt;&gt;&gt; main  
 &gt;&gt;&gt; TaskA  
 &gt;&gt;&gt; TaskA挂起  
 &gt;&gt;&gt; 返回到main(并同时执行TaskB)  
@@ -146,12 +137,10 @@ static Task&lt;string&gt; TaskB()
 &gt;&gt;&gt; 返回到TaskA的await的下一条语句return result  
 &gt;&gt;&gt; taskA.Result=result  
 &gt;&gt;&gt; main函数退出  
-</code></pre></li>
-
-<li><p>透过<code>async</code>和<code>await</code>关键字，轻松的把TaskA方法拆开成了2个部分，await的上半部分和await的下半部分。&rdquo;异步方法&rdquo;下半部分相当于上半部分的回调函数。在上半部分处理完毕之后，继续处理下半部分的操作，并将结果返回给main。</p></li>
+</code></pre><ol start="3">
+<li>透过<code>async</code>和<code>await</code>关键字，轻松的把TaskA方法拆开成了2个部分，await的上半部分和await的下半部分。&ldquo;异步方法&quot;下半部分相当于上半部分的回调函数。在上半部分处理完毕之后，继续处理下半部分的操作，并将结果返回给main。</li>
 </ol>
-
-<p><img src="../../pictures/20200912145631.png" alt="Task流程" title="点我访问" /></p>
+<p><img src="../../pictures/20200912145631.png" alt="Task流程" title="点我访问"></p>
                         </div>
 
                         
@@ -219,6 +208,10 @@ static Task&lt;string&gt; TaskB()
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -254,10 +247,6 @@ static Task&lt;string&gt; TaskB()
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -277,7 +266,7 @@ static Task&lt;string&gt; TaskB()
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     

@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -92,44 +92,34 @@
                         
                         
                         <div class="post-content">
-                            <p>　　How to create singleton in Node.js?这个问题实际是错误的！因为nodejs模块缓存的原因，require(&ldquo;)每次出来的都是单例的！</p>
-
+                            <p>　　How to create singleton in Node.js?这个问题实际是错误的！因为nodejs模块缓存的原因，require('')每次出来的都是单例的！</p>
 <h3 id="单例模式">单例模式</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">var</span> HelloWorld = (<span style="color:#00f">function</span> () {
 
-<pre><code class="language-js">var HelloWorld = (function () {
+  <span style="color:#00f">this</span>.greeting = <span style="">“</span>Hello, World<span style="">”</span>;
 
-  this.greeting = “Hello, World”;
-
-  return this;
+  <span style="color:#00f">return</span> <span style="color:#00f">this</span>;
 
 })();
 
 module.exports = HelloWorld;
-</code></pre>
-
-<p>模块缓存的作用，造成了每次require(&lsquo;helloworld.js&rsquo;)的时候返回的都是同一个对象！
+</code></pre></div><p>模块缓存的作用，造成了每次require(&lsquo;helloworld.js&rsquo;)的时候返回的都是同一个对象！
 <a href="https://nodejs.org/api/modules.html#modules_caching" title="点我访问">module-cache</a></p>
-
 <blockquote>
 <p>原文：Modules are cached after the first time they are loaded. This means (among other things) that every call to require(&lsquo;foo&rsquo;) will get exactly the same object returned, if it would resolve to the same file.</p>
 </blockquote>
-
 <h3 id="如何创建非单例模式">如何创建非单例模式？</h3>
-
 <p>不要暴露一个对象出来，而是暴露一个function出来并call它。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">function</span> HelloWorld() {
 
-<pre><code class="language-js">function HelloWorld() {
+  <span style="color:#00f">this</span>.greeting = <span style="">“</span>Hello, World<span style="">”</span>;
 
-  this.greeting = “Hello, World”;
-
-  return this;
+  <span style="color:#00f">return</span> <span style="color:#00f">this</span>;
 
 }
 
 module.exports = HelloWorld;
-</code></pre>
-
-<blockquote>
+</code></pre></div><blockquote>
 <p><a href="https://medium.com/@iaincollins/how-not-to-create-a-singleton-in-node-js-bd7fde5361f5" title="点我访问">How (not) to create a singleton in Node.js</a></p>
 </blockquote>
                         </div>
@@ -199,6 +189,10 @@ module.exports = HelloWorld;
 <ul class="widget-list">
     
     <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
         <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
     </li>
     
@@ -234,10 +228,6 @@ module.exports = HelloWorld;
         <a href="https://gerrywp.github.io/blog/post/200702beyongd/" title="静夜思">静夜思</a>
     </li>
     
-    <li>
-        <a href="https://gerrywp.github.io/blog/post/200603msbuild4/" title="msbuid(4)-winform版本更新">msbuid(4)-winform版本更新</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -257,7 +247,7 @@ module.exports = HelloWorld;
     
     <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
     
-    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
     
