@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.75.1" />
+    <meta name="generator" content="Hugo 0.76.0-DEV" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -155,33 +155,33 @@ sudo ~/.acme.sh/acme.sh --issue -d yoursite.xyz --standalone -k ec-256
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">Please install socat tools first.
 </code></pre></div><p>因为我们已经安装了nginx，在这里我们可以直接根据nginx配置文件生成证书(并安装)。<br>
 nginx的配置文件如下：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">   server {
-   <span style="color:#008000">#Server configuration</span>
-   listen 80;
-   server_name yoursit.xyz www.yoursite.xyz;
-   <span style="color:#00f">return</span> 301 https://yoursite.xyz$request_uri;
-   }
-   server {
-   listen 443 ssl;
-   ssl on;
-   ssl_certificate       /etc/v2ray/v2ray.crt;
-   ssl_certificate_key   /etc/v2ray/v2ray.key;
-   ssl_protocols         TLSv1.2 TLSv1.3;
-   ssl_ciphers           ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA    384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
-   add_header Strict-Transport-Security <span style="color:#a31515">&#34;max-age=63072000&#34;</span> always;
-   server_name aiyoe.xyz www.aiyoe.xyz;
-   index index.html index.htm;
-   root  /home/wwwroot/sCalc;
-   error_page 400 401 402 403 404 405 408 410 412 413 414 415 500 501 502 503 506 = https://github.com/404.html;
-     location /ray {
-     proxy_redirect off;
-     proxy_pass http://127.0.0.1:10000;
-     proxy_http_version 1.1;
-     proxy_set_header Upgrade $http_upgrade;
-     proxy_set_header Connection <span style="color:#a31515">&#34;upgrade&#34;</span>;
-     proxy_set_header Host $http_host;
-     }
-   }
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">server {
+	<span style="color:#008000">#Server configuration</span>
+	listen 80;
+	server_name yoursite.xyz www.yoursite.xyz;
+	<span style="color:#00f">return</span> 301 https://yoursite.xyz$request_uri;
+}
+server {
+	listen 443 ssl;
+	ssl on;
+	ssl_certificate       /etc/v2ray/v2ray.crt;
+	ssl_certificate_key   /etc/v2ray/v2ray.key;
+	ssl_protocols         TLSv1.2 TLSv1.3;
+	ssl_ciphers           ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+	add_header Strict-Transport-Security <span style="color:#a31515">&#34;max-age=63072000&#34;</span> always;
+	server_name yoursite.xyz www.yoursite.xyz;
+	index index.html index.htm;
+	root  /home/wwwroot/sCalc;
+	error_page 400 401 402 403 404 405 408 410 412 413 414 415 500 501 502 503 506 = https://github.com/404.html;
+	location /ray {
+	proxy_redirect off;
+	proxy_pass http://127.0.0.1:10000;
+	proxy_http_version 1.1;
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection <span style="color:#a31515">&#34;upgrade&#34;</span>;
+	proxy_set_header Host $http_host;
+	}
+}
 
 </code></pre></div><p>生成证书</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo ~/.acme.sh/acme.sh --issue -d yoursite.xyz --nginx -k ec-256
@@ -226,24 +226,22 @@ sudo mkdir .well-known/acme-challenge
 <p><a href="https://toutyrater.github.io/prep/install.html">v2ray配置指南</a></p>
 </blockquote>
 <p>修改v2ray的配置文件<code>/etc/v2ray/config.json</code></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">  7   <span style="color:#a31515">&#34;inbounds&#34;</span>: [{
-  8     <span style="color:#a31515">&#34;port&#34;</span>:10000,
-  9     <span style="color:#a31515">&#34;listen&#34;</span>:<span style="color:#a31515">&#34;127.0.0.1&#34;</span>,
- 10     <span style="color:#a31515">&#34;protocol&#34;</span>: <span style="color:#a31515">&#34;vmess&#34;</span>,
- 11     <span style="color:#a31515">&#34;settings&#34;</span>: {
- 12       <span style="color:#a31515">&#34;clients&#34;</span>: [
- 13         {
- 14           <span style="color:#a31515">&#34;id&#34;</span>: <span style="color:#a31515">&#34;xxxxxxxx&#34;</span>,#your id
- 15           <span style="color:#a31515">&#34;level&#34;</span>: 1,
- 16           <span style="color:#a31515">&#34;alterId&#34;</span>: 64
- 17         }
- 18       ]
- 19     },
- 20    <span style="color:#a31515">&#34;streamSettings&#34;</span>: {
- 21   <span style="color:#a31515">&#34;network&#34;</span>: <span style="color:#a31515">&#34;ws&#34;</span>,
- 39   <span style="color:#a31515">&#34;wsSettings&#34;</span>: {
- 40   <span style="color:#a31515">&#34;path&#34;</span>:<span style="color:#a31515">&#34;/ray&#34;</span> <span style="color:#008000">#跟nginx配置路径保持一致</span>
- 41   },
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#a31515">&#34;inbounds&#34;</span>: [{
+	<span style="color:#a31515">&#34;port&#34;</span>:10000,
+	<span style="color:#a31515">&#34;listen&#34;</span>:<span style="color:#a31515">&#34;127.0.0.1&#34;</span>,
+	<span style="color:#a31515">&#34;protocol&#34;</span>: <span style="color:#a31515">&#34;vmess&#34;</span>,
+	<span style="color:#a31515">&#34;settings&#34;</span>: {
+	<span style="color:#a31515">&#34;clients&#34;</span>: [{
+		<span style="color:#a31515">&#34;id&#34;</span>: <span style="color:#a31515">&#34;xxxxxxxx&#34;</span>,#your id
+		<span style="color:#a31515">&#34;level&#34;</span>: 1,
+		<span style="color:#a31515">&#34;alterId&#34;</span>: 64
+	  }]
+	},
+	<span style="color:#a31515">&#34;streamSettings&#34;</span>: {
+		<span style="color:#a31515">&#34;network&#34;</span>: <span style="color:#a31515">&#34;ws&#34;</span>,
+		<span style="color:#a31515">&#34;wsSettings&#34;</span>: {<span style="color:#a31515">&#34;path&#34;</span>:<span style="color:#a31515">&#34;/ray&#34;</span> <span style="color:#008000">#跟nginx配置路径保持一致}</span>
+	}
+}]
 </code></pre></div><h3 id="总结">总结</h3>
 <p>如果你使用的流量过大，你可以使用go语言搭建一个图片站点服务器，然后使用nginx反向代理你的图片服务器，这样更不容易被GFW察觉！</p>
                         </div>
