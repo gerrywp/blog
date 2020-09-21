@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.76.0-DEV" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -163,8 +163,154 @@
 <blockquote>
 <p>确保均匀分布，使用primes(素数)做因子：例如37与17</p>
 </blockquote>
-<h4 id="c实现gethashcode方法">c#实现<code>GetHashCode()</code>方法</h4>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#">
+<h4 id="csharp实现">csharp实现</h4>
+<p>VS强大的重构功能<code>ctrl+.</code>,自动生成<strong>Equals</strong>和<strong>GetHashCode</strong>方法。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#00f">class</span> <span style="color:#2b91af">User</span> : IEquatable&lt;User&gt;
+{
+	<span style="color:#2b91af">string</span> name;
+	<span style="color:#2b91af">int</span> age;
+	<span style="color:#00f">public</span> User(<span style="color:#2b91af">string</span> name,<span style="color:#2b91af">int</span> age)
+	{
+		<span style="color:#00f">this</span>.name = name;
+		<span style="color:#00f">this</span>.age = age;
+	}
+
+	<span style="color:#00f">public</span> <span style="color:#00f">override</span> <span style="color:#2b91af">bool</span> Equals(<span style="color:#2b91af">object</span> obj)
+	{
+		<span style="color:#00f">return</span> Equals(obj <span style="color:#00f">as</span> User);
+	}
+
+	<span style="color:#00f">public</span> <span style="color:#2b91af">bool</span> Equals(User other)
+	{
+		<span style="color:#00f">return</span> other != <span style="color:#00f">null</span> &amp;&amp;
+			   name == other.name &amp;&amp;
+			   age == other.age;
+	}
+
+	<span style="color:#00f">public</span> <span style="color:#00f">override</span> <span style="color:#2b91af">int</span> GetHashCode()
+	{
+		<span style="color:#2b91af">var</span> hashCode = 1105990002;
+		hashCode = hashCode * -1521134295 + EqualityComparer&lt;<span style="color:#2b91af">string</span>&gt;.Default.GetHashCode(name);
+		hashCode = hashCode * -1521134295 + age.GetHashCode();
+		<span style="color:#00f">return</span> hashCode;
+	}
+}
+</code></pre></div><h4 id="golang实现">golang实现</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#00f">type</span> User <span style="color:#00f">struct</span> {
+	Name <span style="color:#2b91af">string</span>
+	age  <span style="color:#2b91af">int</span>
+}
+
+<span style="color:#00f">func</span> (u User) hashCode() <span style="color:#2b91af">int</span> {
+	<span style="color:#00f">return</span> hashcode.String(u.Name) + hashcode.String(strconv.Itoa(u.age))
+}
+</code></pre></div><blockquote>
+<p>在官方的<code>hash</code>和<code>crypto</code>有关加密和hash的实现</p>
+</blockquote>
+<h3 id="一致性hash">一致性hash</h3>
+<p>在动态变化的Cache环境中，衡量一个哈希算法的好坏通常有四个指标：</p>
+<ol>
+<li>单调性</li>
+<li>平衡性</li>
+<li>分散性</li>
+<li>负载</li>
+</ol>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/b26555301f8e" title="点我访问">一致性hash的golang实现</a></p>
+</blockquote>
+<h4 id="单调性">单调性</h4>
+<p>单调性指为了保证数据的在增加删除cache节点的时候不要rehash所有的数据，所以一致性哈希分成一下步骤：</p>
+<ol>
+<li>环形空间(哈希算法都是将value映射到一个32位的key值，也即是0 ~ 2^32-1次方的数值空间)</li>
+<li>用hash函数将待保存的对象object映射到环形空间(对象hashcode)</li>
+<li>用hash函数将cache服务器映射到环形空间(服务器hashcode)</li>
+<li>将对象沿着顺时针方向，碰到第一个cache就将对象存入此cache当中</li>
+<li>添加删除cache服务器，对部分失效object进行重新映射</li>
+</ol>
+<h4 id="平衡性">平衡性</h4>
+<p>为了让object能平衡的映射到cache服务器，需要引入服务器的<strong>虚拟节点</strong>。
+<strong>虚拟节点</strong>是实际节点在Hash空间中的复制品(replica)，实际节点对应了若干个虚拟节点，每个实际节点对应的虚拟节点个数称为复制个数，虚拟节点在Hash空间中以Hash值排列</p>
+<p><em>golang一致性hash实现</em></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#00f">package</span> consistenthash
+
+<span style="color:#00f">import</span> (
+	<span style="color:#a31515">&#34;hash/crc32&#34;</span>
+	<span style="color:#a31515">&#34;sort&#34;</span>
+	<span style="color:#a31515">&#34;strconv&#34;</span>
+)
+
+<span style="color:#008000">// UInt32Slice ...
+</span><span style="color:#008000"></span><span style="color:#00f">type</span> UInt32Slice []<span style="color:#2b91af">uint32</span>
+
+<span style="color:#008000">// Len ...
+</span><span style="color:#008000"></span><span style="color:#00f">func</span> (s UInt32Slice) Len() <span style="color:#2b91af">int</span> {
+	<span style="color:#00f">return</span> len(s)
+}
+
+<span style="color:#008000">// Less ...
+</span><span style="color:#008000"></span><span style="color:#00f">func</span> (s UInt32Slice) Less(i, j <span style="color:#2b91af">int</span>) <span style="color:#2b91af">bool</span> {
+	<span style="color:#00f">return</span> s[i] &lt; s[j]
+}
+
+<span style="color:#008000">// Swap
+</span><span style="color:#008000"></span><span style="color:#00f">func</span> (s UInt32Slice) Swap(i, j <span style="color:#2b91af">int</span>) {
+	s[i], s[j] = s[j], s[i]
+}
+
+<span style="color:#008000">// Hash ...
+</span><span style="color:#008000"></span><span style="color:#00f">type</span> Hash <span style="color:#00f">func</span>(data []<span style="color:#2b91af">byte</span>) <span style="color:#2b91af">uint32</span>
+
+<span style="color:#008000">//Map ...
+</span><span style="color:#008000"></span><span style="color:#00f">type</span> Map <span style="color:#00f">struct</span> {
+	hash     Hash
+	replicas <span style="color:#2b91af">int</span>
+	keys     UInt32Slice
+	hashMap  <span style="color:#00f">map</span>[<span style="color:#2b91af">uint32</span>]<span style="color:#2b91af">string</span>
+}
+
+<span style="color:#008000">// New ...
+</span><span style="color:#008000"></span><span style="color:#00f">func</span> New(replicas <span style="color:#2b91af">int</span>, fn Hash) *Map {
+	m := &amp;Map{
+		replicas: replicas,
+		hash:     fn,
+		hashMap:  make(<span style="color:#00f">map</span>[<span style="color:#2b91af">uint32</span>]<span style="color:#2b91af">string</span>),
+	}
+	<span style="color:#00f">if</span> m.hash == <span style="color:#00f">nil</span> {
+		m.hash = crc32.ChecksumIEEE
+	}
+	<span style="color:#00f">return</span> m
+}
+
+<span style="color:#008000">// IsEmpty ...
+</span><span style="color:#008000"></span><span style="color:#00f">func</span> (m *Map) IsEmpty() <span style="color:#2b91af">bool</span> {
+	<span style="color:#00f">return</span> len(m.keys) == 0
+}
+
+<span style="color:#008000">// Add function.insert virtual c-n(cache nodes) into a cycle.
+</span><span style="color:#008000">// key sometimes is a ip address of a pc,or pc&#39;s name
+</span><span style="color:#008000"></span><span style="color:#00f">func</span> (m *Map) Add(keys ...<span style="color:#2b91af">string</span>) {
+	<span style="color:#00f">for</span> _, key := <span style="color:#00f">range</span> keys {
+		<span style="color:#00f">for</span> i := 0; i &lt; m.replicas; i++ {
+			hash := m.hash([]byte(strconv.Itoa(i) + key))
+			m.keys = append(m.keys, hash)
+			m.hashMap[hash] = key
+		}
+	}
+	sort.Sort(m.keys)
+}
+
+<span style="color:#008000">//Get ..
+</span><span style="color:#008000"></span><span style="color:#00f">func</span> (m *Map) Get(key <span style="color:#2b91af">string</span>) <span style="color:#2b91af">string</span> {
+	<span style="color:#00f">if</span> m.IsEmpty() {
+		<span style="color:#00f">return</span> <span style="color:#a31515">&#34;&#34;</span>
+	}
+	hash := m.hash([]byte(key))
+	idx := sort.Search(len(m.keys), <span style="color:#00f">func</span>(i <span style="color:#2b91af">int</span>) <span style="color:#2b91af">bool</span> { <span style="color:#00f">return</span> m.keys[i] &gt;= hash })
+	<span style="color:#00f">if</span> idx == len(m.keys) {
+		idx = 0
+	}
+	<span style="color:#00f">return</span> m.hashMap[m.keys[idx]]
+}
 </code></pre></div>
                         </div>
 
