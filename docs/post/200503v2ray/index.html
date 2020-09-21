@@ -94,7 +94,8 @@
                         <div class="post-content">
                             <p>一片祥和全赖墙，吾辈凤歌影疏狂。今朝方公倾其智，吓哭当年秦始皇！</p>
 <h3 id="websockstlsnginx的流量伪装">websocks+tls+nginx的流量伪装</h3>
-<p>GFW技术的日新月异，造成了我们使用google的难度(不要问我为什么要用谷歌，你搜下百度不是卖假药就是广告)，随着岁月的流逝，曾经的shadowsocks已经淹没于洪荒之中。为何需要使用tls包装？因为借助于tls的加密，可以使墙很难识别你的服务器请求到底是一个正规请求还是vpn请求。举例：<br>
+<p>GFW技术的日新月异，造成了我们使用google的难度(不要问我为什么要用谷歌，你搜下百度不是卖假药就是广告)，随着岁月的流逝，曾经的shadowsocks已经淹没于洪荒之中。<br>
+为何需要使用tls包装？因为借助于tls的加密，可以使墙很难识别你的服务器请求到底是一个正规请求还是vpn请求。举例：<br>
 当请求<a href="https://www.yoursite.com/awesomepath">https://www.yoursite.com/awesomepath</a>的时候，你的服务器直接返回<code>404 bad request</code>。看上去就是一个正规网站，墙是很难识别的。 <br>
 有关于tls的原理，请移步<a href="https://www.ruanyifeng.com/blog/2014/09/illustration-ssl.html">https://www.ruanyifeng.com/blog/2014/09/illustration-ssl.html</a>。</p>
 <h3 id="前提条件">前提条件</h3>
@@ -127,13 +128,13 @@ whereis nginx
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#008000">#nginx的配置文件路径默认如下</span>
 vim /etc/nginx/nginx.conf
 </code></pre></div><p>配置我们的网站(将你的域名site.xyz,www.site.xyz都解析到vps服务器)</p>
-<pre><code>server {
-    listen 80;
-    server_name site.xyz www.site.xyz;# 改成你的域名
-	index index.html index.htm;
-	root  /home/wwwroot/sCalc;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cfg" data-lang="cfg">server {
+listen 80;
+server_name site.xyz www.site.xyz;# 改成你的域名
+index index.html index.htm;
+root  /home/wwwroot/sCalc;
 }
-</code></pre><p>重新启动nginx</p>
+</code></pre></div><p>重新启动nginx</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">systemctl restart nginx
 </code></pre></div><p>现在通过域名你应该可以能直接访问你的静态网站了，打开一个计算器web应用程序，如下：</p>
 <p><img src="../../pictures/20200503203230.png" alt="伪站点"></p>
@@ -149,45 +150,46 @@ vim /etc/nginx/nginx.conf
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl  https://get.acme.sh | sh
 </code></pre></div><p>安装成功后执行<code>source ~/.bashrc</code>以确保脚本所设置的命令别名生效。</p>
 <h4 id="生成证书">生成证书</h4>
+<p>因为我们已经安装了nginx，在这里我们可以直接根据nginx配置文件生成证书。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo ~/.acme.sh/acme.sh --issue -d yoursite.xyz --nginx -k ec-256
+</code></pre></div><p><strong>或者</strong></p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#008000">###标准生成</span>
 sudo ~/.acme.sh/acme.sh --issue -d yoursite.xyz --standalone -k ec-256
 </code></pre></div><p>如果提示错误(按照提示安装即可)</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">Please install socat tools first.
-</code></pre></div><p>因为我们已经安装了nginx，在这里我们可以直接根据nginx配置文件生成证书(并安装)。<br>
-nginx的配置文件如下：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">server {
+</code></pre></div><h4 id="安装ecc证书">安装ECC证书</h4>
+<p>安装证书到v2ray目录</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo ~/.acme.sh/acme.sh --installcert -d yoursite.xyz --fullchainpath /usr/local/etc/v2ray/v2ray.crt --keypath /usr/local/etc/v2ray/v2ray.key --ecc
+</code></pre></div><h4 id="修改nginx的配置">修改nginx的配置</h4>
+<p>如下：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cfg" data-lang="cfg">server {
 	<span style="color:#008000">#Server configuration</span>
 	listen 80;
 	server_name yoursite.xyz www.yoursite.xyz;
-	<span style="color:#00f">return</span> 301 https://yoursite.xyz$request_uri;
+	return 301 https://yoursite.xyz$request_uri;
 }
 server {
 	listen 443 ssl;
 	ssl on;
-	ssl_certificate       /etc/v2ray/v2ray.crt;
-	ssl_certificate_key   /etc/v2ray/v2ray.key;
+	ssl_certificate       /usr/local/etc/v2ray/v2ray.crt;
+	ssl_certificate_key   /usr/local/etc/v2ray/v2ray.key;
 	ssl_protocols         TLSv1.2 TLSv1.3;
 	ssl_ciphers           ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
-	add_header Strict-Transport-Security <span style="color:#a31515">&#34;max-age=63072000&#34;</span> always;
-	server_name yoursite.xyz www.yoursite.xyz;
-	index index.html index.htm;
-	root  /home/wwwroot/sCalc;
-	error_page 400 401 402 403 404 405 408 410 412 413 414 415 500 501 502 503 506 = https://github.com/404.html;
-	location /ray {
-	proxy_redirect off;
-	proxy_pass http://127.0.0.1:10000;
-	proxy_http_version 1.1;
-	proxy_set_header Upgrade $http_upgrade;
-	proxy_set_header Connection <span style="color:#a31515">&#34;upgrade&#34;</span>;
-	proxy_set_header Host $http_host;
-	}
+	add_header Strict-Transport-Security &#34;max-age=<span style="color:#a31515">63072000&#34; always;
+</span><span style="color:#a31515">	server_name yoursite.xyz www.yoursite.xyz;
+</span><span style="color:#a31515">	index index.html index.htm;
+</span><span style="color:#a31515">	root  /home/wwwroot/sCalc;
+</span><span style="color:#a31515">	error_page 400 401 402 403 404 405 408 410 412 413 414 415 500 501 502 503 506 = https://github.com/404.html;
+</span><span style="color:#a31515">	location /ray {
+</span><span style="color:#a31515">	proxy_redirect off;
+</span><span style="color:#a31515">	proxy_pass http://127.0.0.1:10000;
+</span><span style="color:#a31515">	proxy_http_version 1.1;
+</span><span style="color:#a31515">	proxy_set_header Upgrade $http_upgrade;
+</span><span style="color:#a31515">	proxy_set_header Connection &#34;upgrade&#34;;
+</span><span style="color:#a31515">	proxy_set_header Host $http_host;
+</span><span style="color:#a31515">	}</span>
 }
 
-</code></pre></div><p>生成证书</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo ~/.acme.sh/acme.sh --issue -d yoursite.xyz --nginx -k ec-256
-</code></pre></div><h4 id="安装ecc证书">安装ECC证书</h4>
-<p>安装证书到v2ray目录</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo ~/.acme.sh/acme.sh --installcert -d yoursite.xyz --fullchainpath /etc/v2ray/v2ray.crt --keypath /etc/v2ray/v2ray.key --ecc
 </code></pre></div><blockquote>
 <p><a href="https://github.com/mikewubox/V2Ray3">nginx和v2ray配置</a></p>
 </blockquote>
@@ -220,29 +222,53 @@ allow all;
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cd /home/wwwroot/sCalc
 sudo mkdir .well-known/acme-challenge
 </code></pre></div><h3 id="3安装v2ray">3.安装v2ray</h3>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl https://install.direct/go.sh
-./go.sh
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl -LROJ https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh
+bash install-release.sh
 </code></pre></div><blockquote>
-<p><a href="https://toutyrater.github.io/prep/install.html">v2ray配置指南</a></p>
+<p><a href="https://github.com/v2fly/fhs-install-v2ray/blob/master/README.zh-Hans-CN.md" title="点我访问">fhs-install-v2ray</a></p>
 </blockquote>
-<p>修改v2ray的配置文件<code>/etc/v2ray/config.json</code></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#a31515">&#34;inbounds&#34;</span>: [{
-	<span style="color:#a31515">&#34;port&#34;</span>:10000,
-	<span style="color:#a31515">&#34;listen&#34;</span>:<span style="color:#a31515">&#34;127.0.0.1&#34;</span>,
-	<span style="color:#a31515">&#34;protocol&#34;</span>: <span style="color:#a31515">&#34;vmess&#34;</span>,
-	<span style="color:#a31515">&#34;settings&#34;</span>: {
-	<span style="color:#a31515">&#34;clients&#34;</span>: [{
-		<span style="color:#a31515">&#34;id&#34;</span>: <span style="color:#a31515">&#34;xxxxxxxx&#34;</span>,#your id
-		<span style="color:#a31515">&#34;level&#34;</span>: 1,
-		<span style="color:#a31515">&#34;alterId&#34;</span>: 64
+<p>服务端配置 <strong>/usr/local/etc/v2ray/config.json</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+&#34;inbounds&#34;: [{
+	&#34;port&#34;:10000,
+	&#34;listen&#34;:<span style="color:#a31515">&#34;127.0.0.1&#34;</span>,
+	&#34;protocol&#34;: <span style="color:#a31515">&#34;vmess&#34;</span>,
+	&#34;settings&#34;: {
+	&#34;clients&#34;: [{
+		&#34;id&#34;: <span style="color:#a31515">&#34;xxxxxxxx&#34;</span>,<span style="">#your</span> <span style="">id</span>
+		&#34;level&#34;: 1,
+		&#34;alterId&#34;: 64
 	  }]
 	},
-	<span style="color:#a31515">&#34;streamSettings&#34;</span>: {
-		<span style="color:#a31515">&#34;network&#34;</span>: <span style="color:#a31515">&#34;ws&#34;</span>,
-		<span style="color:#a31515">&#34;wsSettings&#34;</span>: {<span style="color:#a31515">&#34;path&#34;</span>:<span style="color:#a31515">&#34;/ray&#34;</span> <span style="color:#008000">#跟nginx配置路径保持一致}</span>
+	&#34;streamSettings&#34;: {
+		&#34;network&#34;: <span style="color:#a31515">&#34;ws&#34;</span>,
+		&#34;wsSettings&#34;: {&#34;path&#34;:<span style="color:#a31515">&#34;/ray&#34;</span>}  <span style="">#跟nginx配置路径保持一致</span>
 	}
-}]
-</code></pre></div><h3 id="总结">总结</h3>
+}],
+&#34;outbounds&#34;: [
+	{
+	  &#34;protocol&#34;: <span style="color:#a31515">&#34;freedom&#34;</span>,  <span style="">#主传出协议</span>
+	  &#34;settings&#34;: {}
+	}
+]
+}
+</code></pre></div><p>客户端配置
+<img src="../../pictures/20200921231213.png" alt="图片" title="点我显示"></p>
+<blockquote>
+<p><a href="https://toutyrater.github.io/prep/install.html">v2ray配置指南</a></p>
+</blockquote>
+<h3 id="4-使用cdn">4. 使用CDN</h3>
+<ol>
+<li>注册cloudflare</li>
+<li>添加website,然后会生成2个NameServers</li>
+<li>进入域名控制台，修改域名dns为第二步提供的dns并禁用掉原有的域名解析</li>
+<li>使用cloudflare的域名解析</li>
+<li>设置cloudflare的<strong>SSL/TLS</strong>加密模式为完全(端到端加密，使用服务器上的自签名证书)</li>
+</ol>
+<blockquote>
+<p><a href="https://www.cloudflare.com/" title="点我访问">cloudflare官网</a></p>
+</blockquote>
+<h3 id="总结">总结</h3>
 <p>如果你使用的流量过大，你可以使用go语言搭建一个图片站点服务器，然后使用nginx反向代理你的图片服务器，这样更不容易被GFW察觉！</p>
                         </div>
 
