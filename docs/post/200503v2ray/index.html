@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.76.0-DEV" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -94,7 +94,7 @@
                         <div class="post-content">
                             <p>一片祥和全赖墙，吾辈凤歌影疏狂。今朝方公倾其智，吓哭当年秦始皇！</p>
 <h3 id="websockstlsnginx的流量伪装">websocks+tls+nginx的流量伪装</h3>
-<p>GFW技术的日新月异，造成了我们使用google的难度(不要问我为什么要用谷歌，你搜下百度不是卖假药就是广告)，随着岁月的流逝，曾经的shadowsocks已经淹没于洪荒之中。<br>
+<p>GFW技术的日新月异，增加了使用google的技术难度(不要问我为什么要用谷歌，你搜下百度不是卖假药就是广告)，随着岁月的流逝，曾经的shadowsocks已经淹没于洪荒之中。<br>
 为何需要使用tls包装？因为借助于tls的加密，可以使墙很难识别你的服务器请求到底是一个正规请求还是vpn请求。举例：<br>
 当请求<a href="https://www.yoursite.com/awesomepath">https://www.yoursite.com/awesomepath</a>的时候，你的服务器直接返回<code>404 bad request</code>。看上去就是一个正规网站，墙是很难识别的。 <br>
 有关于tls的原理，请移步<a href="https://www.ruanyifeng.com/blog/2014/09/illustration-ssl.html">https://www.ruanyifeng.com/blog/2014/09/illustration-ssl.html</a>。</p>
@@ -128,42 +128,46 @@ whereis nginx
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#008000">#nginx的配置文件路径默认如下</span>
 vim /etc/nginx/nginx.conf
 </code></pre></div><p>配置我们的网站(将你的域名site.xyz,www.site.xyz都解析到vps服务器)</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cfg" data-lang="cfg">server {
-listen 80;
-server_name site.xyz www.site.xyz;# 改成你的域名
-index index.html index.htm;
-root  /home/wwwroot/sCalc;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nginx" data-lang="nginx"><span style="color:#00f">server</span> {
+<span style="color:#00f">listen</span> 80;
+<span style="color:#00f">server_name</span> <span style="color:#a31515">site.xyz</span> <span style="color:#a31515">www.site.xyz</span>;<span style="color:#008000"># 改成你的域名
+</span><span style="color:#008000"></span><span style="color:#00f">index</span> <span style="color:#a31515">index.html</span> <span style="color:#a31515">index.htm</span>;
+<span style="color:#00f">root</span>  <span style="color:#a31515">/home/wwwroot/sCalc</span>;
 }
 </code></pre></div><p>重新启动nginx</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">systemctl restart nginx
-</code></pre></div><p>现在通过域名你应该可以能直接访问你的静态网站了，打开一个计算器web应用程序，如下：</p>
-<p><img src="../../pictures/20200503203230.png" alt="伪站点"></p>
+</code></pre></div><p>现在通过域名你应该可以能直接访问你的静态网站了，打开一个计算器web应用程序，如下：
+<img src="../../pictures/20200503203230.png" alt="伪站点"></p>
 <blockquote>
-<p>什么是反向代理？</p>
-</blockquote>
-<p>这里不赘述那么多原理，反向代理是相对(正向)代理而言的，以一言而蔽之曰：<br>
+<p>什么是反向代理？
+这里不赘述那么多原理，反向代理是相对(正向)代理而言的，以一言而蔽之曰：<br>
 正向代理隐藏真实的客户端，反向代理隐藏真实的服务器。</p>
+</blockquote>
 <h3 id="2生成证书并使用https">2.生成证书并使用https</h3>
 <p>使用TLS需要证书，证书有免费付费的，在此使用免费证书，证书认证机构为<a href="https://letsencrypt.org/">Let&rsquo;s Encrypt</a>。
-证书的生成有许多方法，这里使用的是比较简单的方法：使用<code>acme.sh</code>脚本生成，参考<a href="https://github.com/acmesh-official/acme.sh/blob/master/README.md">acme.sh README</a>。</p>
-<p>执行以下命令，acme.sh 会安装到 ~/.acme.sh 目录下。</p>
+证书的生成有许多方法，这里使用的是比较简单的方法：使用<code>acme.sh</code>脚本生成，参考<a href="https://github.com/acmesh-official/acme.sh/blob/master/README.md">acme.sh README</a>。
+执行以下命令，acme.sh 会安装到 ~/.acme.sh 目录下。</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl  https://get.acme.sh | sh
 </code></pre></div><p>安装成功后执行<code>source ~/.bashrc</code>以确保脚本所设置的命令别名生效。</p>
 <h4 id="生成证书">生成证书</h4>
-<p>因为我们已经安装了nginx，在这里我们可以直接根据nginx配置文件生成证书。</p>
+<p>依据上文配置，确保通过 <em><strong>yoursite.xyz</strong></em> 与 <em><strong><a href="http://www.yoursite.xyz">www.yoursite.xyz</a></strong></em> 在浏览器种能够打开站点。(如果yoursite.xyz跳转到https网址，或因域名解析有缓存)</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo ~/.acme.sh/acme.sh --issue -d yoursite.xyz --nginx -k ec-256
 </code></pre></div><p><strong>或者</strong></p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#008000">###标准生成</span>
 sudo ~/.acme.sh/acme.sh --issue -d yoursite.xyz --standalone -k ec-256
 </code></pre></div><p>如果提示错误(按照提示安装即可)</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">Please install socat tools first.
-</code></pre></div><h4 id="安装ecc证书">安装ECC证书</h4>
+</code></pre></div><blockquote>
+<p>两种方式都仅仅只是生成证书。使用<code>--nginx</code>参数并不会修改nginx配置文件(我们还是要手动配置证书路径)。
+不同是 <em><strong>&ndash;standalone</strong></em> 使用 <em><strong>80</strong></em> 端口对证书进行校验，必须确保 <em><strong>80</strong></em> 端口是空闲的; <em><strong>&ndash;nginx</strong></em> 使用域名对应的站点对证书进行校验。</p>
+</blockquote>
+<h4 id="安装ecc证书">安装ECC证书</h4>
 <p>安装证书到v2ray目录</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo ~/.acme.sh/acme.sh --installcert -d yoursite.xyz --fullchainpath /usr/local/etc/v2ray/v2ray.crt --keypath /usr/local/etc/v2ray/v2ray.key --ecc
 </code></pre></div><h4 id="修改nginx的配置">修改nginx的配置</h4>
 <p>如下：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cfg" data-lang="cfg">server {
-	<span style="color:#008000">#Server configuration</span>
+<pre><code class="language-conf" data-lang="conf">server {
+	#Server configuration
 	listen 80;
 	server_name yoursite.xyz www.yoursite.xyz;
 	return 301 https://yoursite.xyz$request_uri;
@@ -175,27 +179,27 @@ server {
 	ssl_certificate_key   /usr/local/etc/v2ray/v2ray.key;
 	ssl_protocols         TLSv1.2 TLSv1.3;
 	ssl_ciphers           ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
-	add_header Strict-Transport-Security &#34;max-age=<span style="color:#a31515">63072000&#34; always;
-</span><span style="color:#a31515">	server_name yoursite.xyz www.yoursite.xyz;
-</span><span style="color:#a31515">	index index.html index.htm;
-</span><span style="color:#a31515">	root  /home/wwwroot/sCalc;
-</span><span style="color:#a31515">	error_page 400 401 402 403 404 405 408 410 412 413 414 415 500 501 502 503 506 = https://github.com/404.html;
-</span><span style="color:#a31515">	location /ray {
-</span><span style="color:#a31515">	proxy_redirect off;
-</span><span style="color:#a31515">	proxy_pass http://127.0.0.1:10000;
-</span><span style="color:#a31515">	proxy_http_version 1.1;
-</span><span style="color:#a31515">	proxy_set_header Upgrade $http_upgrade;
-</span><span style="color:#a31515">	proxy_set_header Connection &#34;upgrade&#34;;
-</span><span style="color:#a31515">	proxy_set_header Host $http_host;
-</span><span style="color:#a31515">	}</span>
+	add_header Strict-Transport-Security &quot;max-age=63072000&quot; always;
+	server_name yoursite.xyz www.yoursite.xyz;
+	index index.html index.htm;
+	root  /home/wwwroot/sCalc;
+	error_page 400 401 402 403 404 405 408 410 412 413 414 415 500 501 502 503 506 = https://github.com/404.html;
+	location /ray {
+	proxy_redirect off;
+	proxy_pass http://127.0.0.1:10000;
+	proxy_http_version 1.1;
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection &quot;upgrade&quot;;
+	proxy_set_header Host $http_host;
+	}
 }
 
-</code></pre></div><blockquote>
+</code></pre><blockquote>
 <p><a href="https://github.com/mikewubox/V2Ray3">nginx和v2ray配置</a></p>
 </blockquote>
 <h4 id="证书过期">证书过期</h4>
-<p>客户端连接错误<code>io read/write on closed pipe</code>,日志显示x509(ssl)错误</p>
-<p>查看linux服务器端证书过期日期</p>
+<p>客户端连接错误<code>io read/write on closed pipe</code>,日志显示x509(ssl)错误
+查看linux服务器端证书过期日期</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">openssl x509 -in /etc/v2ray/v2ray.crt -noout -dates
 <span style="color:#008000">### 显示如下信息</span>
 notBefore=Jul 29 01:47:53 2020 GMT
@@ -207,9 +211,9 @@ sudo systemctl stop nginx
 sudo ~/.acme.sh/acme.sh --issue -d yoursite.xyz --standalone -k ec-256
 sudo systemctl start nginx
 sudo systemctl status nginx
-</code></pre></div><p>通过nginx生成证书一直报错误：</p>
-<p><code>Verify error:Invalid response from https://github.com/404.html [140.82.113.4]</code></p>
-<p>尝试如下解决方案(不一定有效):</p>
+</code></pre></div><p>通过nginx生成证书一直报错误：
+<code>Verify error:Invalid response from https://github.com/404.html [140.82.113.4]</code>
+尝试如下解决方案(不一定有效):</p>
 <ol>
 <li>在nginx配置文件server节点下添加如下配置</li>
 </ol>
@@ -225,9 +229,9 @@ sudo mkdir .well-known/acme-challenge
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl -LROJ https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh
 bash install-release.sh
 </code></pre></div><blockquote>
-<p><a href="https://github.com/v2fly/fhs-install-v2ray/blob/master/README.zh-Hans-CN.md" title="点我访问">fhs-install-v2ray</a></p>
+<p><a href="https://github.com/v2fly/fhs-install-v2ray/blob/master/README.zh-Hans-CN.md" title="点我访问">fhs-install-v2ray</a>
+服务端配置 <strong>/usr/local/etc/v2ray/config.json</strong></p>
 </blockquote>
-<p>服务端配置 <strong>/usr/local/etc/v2ray/config.json</strong></p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
 &#34;inbounds&#34;: [{
 	&#34;port&#34;:10000,

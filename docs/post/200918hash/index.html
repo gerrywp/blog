@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.76.0-DEV" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -111,9 +111,9 @@
 <li>具有相同值的对象应返回相同的<strong>HashCode</strong>。例如，两个字符串对象使用相同的文本应该返回相同的<strong>HashCode</strong>。</li>
 </ol>
 <blockquote>
-<p>不要持久化<code>GetHashCode()</code>方法生成的<strong>HashCode</strong>到数据库。因为随着版本的升级，算法会发生变化，造成意想不到的结果。</p>
+<p>不要持久化<code>GetHashCode()</code>方法生成的<strong>HashCode</strong>到数据库。因为随着版本的升级，算法会发生变化，造成意想不到的结果。
+Java编程思想提供了生成均匀分布的<code>HashCode</code>的基本方法：</p>
 </blockquote>
-<p>Java编程思想提供了生成均匀分布的<code>HashCode</code>的基本方法：</p>
 <ol>
 <li>在一个名为result的int变量中存储一些常量非零值，比如17。</li>
 <li>为对象中的每个不变字段，计算出一个<code>int</code>型的hash code <strong>c</strong>。
@@ -161,7 +161,7 @@
 <li>测试以确保相同的实例有相同的hash code。</li>
 </ol>
 <blockquote>
-<p>确保均匀分布，使用primes(素数)做因子：例如37与17</p>
+<p>采用primes(素数)做因子(factor)让hashcode均匀分布：例如37与17</p>
 </blockquote>
 <h4 id="csharp实现">csharp实现</h4>
 <p>VS强大的重构功能<code>ctrl+.</code>,自动生成<strong>Equals</strong>和<strong>GetHashCode</strong>方法。</p>
@@ -205,7 +205,7 @@
 	<span style="color:#00f">return</span> hashcode.String(u.Name) + hashcode.String(strconv.Itoa(u.age))
 }
 </code></pre></div><blockquote>
-<p>在官方的<code>hash</code>和<code>crypto</code>有关加密和hash的实现</p>
+<p>官方的<code>hash</code>和<code>crypto</code>的package种有相关hash与加密具体实现</p>
 </blockquote>
 <h3 id="一致性hash">一致性hash</h3>
 <p>在动态变化的Cache环境中，衡量一个哈希算法的好坏通常有四个指标：</p>
@@ -215,9 +215,6 @@
 <li>分散性</li>
 <li>负载</li>
 </ol>
-<blockquote>
-<p><a href="https://www.jianshu.com/p/b26555301f8e" title="点我访问">一致性hash的golang实现</a></p>
-</blockquote>
 <h4 id="单调性">单调性</h4>
 <p>单调性指为了保证数据的在增加删除cache节点的时候不要rehash所有的数据，所以一致性哈希分成一下步骤：</p>
 <ol>
@@ -229,8 +226,8 @@
 </ol>
 <h4 id="平衡性">平衡性</h4>
 <p>为了让object能平衡的映射到cache服务器，需要引入服务器的<strong>虚拟节点</strong>。
-<strong>虚拟节点</strong>是实际节点在Hash空间中的复制品(replica)，实际节点对应了若干个虚拟节点，每个实际节点对应的虚拟节点个数称为复制个数，虚拟节点在Hash空间中以Hash值排列</p>
-<p><em>golang一致性hash实现</em></p>
+<strong>虚拟节点</strong>是实际节点在Hash空间中的复制品(replica)，实际节点对应了若干个虚拟节点，每个实际节点对应的虚拟节点个数称为复制个数，虚拟节点在Hash空间中以Hash值排列
+<em>golang一致性hash实现</em></p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#00f">package</span> consistenthash
 
 <span style="color:#00f">import</span> (
@@ -311,7 +308,9 @@
 	}
 	<span style="color:#00f">return</span> m.hashMap[m.keys[idx]]
 }
-</code></pre></div>
+</code></pre></div><blockquote>
+<p><a href="https://www.jianshu.com/p/b26555301f8e" title="点我访问">一致性hash的golang实现</a></p>
+</blockquote>
                         </div>
 
                         
