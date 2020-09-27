@@ -47,9 +47,8 @@ categories = [ "others" ]
 免费
 
 1. [vue-element-admin](https://panjiachen.github.io/vue-element-admin-site/zh/guide/ '点我访问')
-2. [adminlte](https://adminlte.io/ '点我访问')
+2. [adminlte](https://adminlte.io/docs/3.0/index.html '点我访问')(github文档)
 3. [ligerui](http://www.ligerui.com/ '点我访问')
-4. [ace admin](https://github.com/bopoda/ace '点我访问')
 
 ### c++中const组合引用和指针
 
