@@ -3,12 +3,12 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.75.1" />
+    <meta name="generator" content="Hugo 0.76.0-DEV" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>拾遗ms-sql stored procedure | 云亦海</title>
-    <meta property="og:title" content="拾遗ms-sql stored procedure - 云亦海">
+    <title>拾遗stored procedure | 云亦海</title>
+    <meta property="og:title" content="拾遗stored procedure - 云亦海">
     <meta property="og:type" content="article">
         
     <meta property="article:published_time" content="2017-03-17T00:00:00&#43;08:00">
@@ -17,7 +17,7 @@
     <meta property="article:modified_time" content="2017-03-17T00:00:00&#43;08:00">
         
     <meta name="Keywords" content="golang,go语言,go语言笔记,项目管理,软件架构,公众号,小程序">
-    <meta name="description" content="拾遗ms-sql stored procedure">
+    <meta name="description" content="拾遗stored procedure">
         
     <meta name="author" content="gerry">
     <meta property="og:url" content="https://gerrywp.github.io/blog/post/170317mssqlsp/">
@@ -72,7 +72,7 @@
                 <div class="res-cons">
                     <article class="post">
                         <header>
-                            <h1 class="post-title">拾遗ms-sql stored procedure</h1>
+                            <h1 class="post-title">拾遗stored procedure</h1>
                         </header>
                         <date class="post-meta meta-date">
                             2017年3月17日
@@ -92,8 +92,8 @@
                         
                         
                         <div class="post-content">
-                            <p>一直以来sql都只使用用了最简单的功能，仅限于增删改查。最近因项目需要，要将所有的查询都改成存储过程。也就是说要将所有的业务逻辑放在了数据库端来处理。
-老实说以前业务的东西都是用高级语言代码来做，存储过程写的少，所以还是有很多东西不熟悉并值得考究的，仅以文字记之。</p>
+                            <p>长久以来仅仅使用了数据库最简单的功能，譬如增删改查。最近因项目需要，须将所有的查询都改用存储过程。也就是说要将所有的业务逻辑放在数据库端来处理。
+老实说以前业务的东西都是用高级语言代码来做，存储过程写的少，所以还是有很多东西不熟悉并值得学习得，仅以文字记之。</p>
 <h3 id="判断存储过程存在与否">判断存储过程存在与否</h3>
 <p>sql脚本常用语句。</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#008000">--第一参数，存储过程名称。第二参数，对象类型为存储过程
@@ -106,7 +106,7 @@
 <span style="color:#00f">GO</span>
 </code></pre></div><h3 id="declare-variable-and-set-value变量声明和赋值">declare variable and set value(变量声明和赋值)</h3>
 <p><strong>关键字declare/set</strong>
-使用declare声明变量，并使用set给变量赋值。<br>
+使用<code>declare</code>声明变量，并使用<code>set</code>给变量赋值。<br>
 本地变量使用@前缀标示,全局变量使用@@前缀标示。</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#008000">--声明变量
 </span><span style="color:#008000"></span><span style="color:#00f">declare</span> @local_variable INT; <span style="color:#008000">--局部变量  
@@ -119,7 +119,7 @@
 <span style="color:#008000">--初始化变量
 </span><span style="color:#008000"></span><span style="color:#00f">declare</span> @local_variable INT=1;<span style="color:#008000">--声明并赋值
 </span></code></pre></div><h4 id="select-variablecolumn与set赋值区别">select @variable=column与set赋值区别</h4>
-<p>推荐使用set对变量进行赋值，以避免不必要的错误。</p>
+<p>推荐使用<code>set</code>对变量进行赋值，以避免不必要的错误。</p>
 <ol>
 <li>查询返回多个值</li>
 </ol>
@@ -129,9 +129,9 @@
 <span style="color:#008000">--错误信息：子查询返回的值多于一个。当子查询跟随在 =、!=、&lt;、&lt;=、&gt;、&gt;= 之后，或子查询用作表达式时，这种情况是不允许的。
 </span><span style="color:#008000"></span><span style="color:#00f">select</span> @id=id <span style="color:#00f">from</span> student;<span style="color:#008000">--此时@id的值为查询结果集中，最后一行的值。
 </span></code></pre></div><ol start="2">
-<li>查询返回NULL</li>
+<li>查询返回<code>NULL</code></li>
 </ol>
-<p>set赋值情况：变量为空，select赋值情况:变量保持原有值</p>
+<p><code>set</code>赋值情况：变量为空，<code>select</code>赋值情况:变量保持原有值</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">decalre @name nvarchar(100);
 <span style="color:#00f">set</span> @name=<span style="color:#a31515">&#39;pai&#39;</span>;
 <span style="color:#00f">set</span> @name=(<span style="color:#00f">select</span> name <span style="color:#00f">from</span> student <span style="color:#00f">where</span> id=<span style="color:#a31515">&#39;-1&#39;</span>);
@@ -144,47 +144,54 @@ print @name;<span style="color:#008000">-- pai
     <span style="color:#00f">column</span>-name datatype,
     <span style="color:#00f">column</span>-name datatype
 );<span style="color:#008000">--声明表变量
-</span><span style="color:#008000"></span><span style="color:#00f">select</span> * <span style="color:#00f">into</span> #<span style="color:#00f">temporary</span>-<span style="color:#00f">table</span> <span style="color:#00f">from</span> <span style="color:#00f">table</span>;<span style="color:#008000">--取出数据插入临时表
+</span><span style="color:#008000"></span>
+<span style="color:#00f">select</span> * <span style="color:#00f">into</span> #<span style="color:#00f">temporary</span>-<span style="color:#00f">table</span> <span style="color:#00f">from</span> <span style="color:#00f">table</span>;<span style="color:#008000">--取出数据插入临时表
 </span><span style="color:#008000">--must drop #temporary-table
-</span><span style="color:#008000"></span><span style="color:#00f">drop</span> <span style="color:#00f">table</span> #remprary-<span style="color:#00f">table</span>
-</code></pre></div><p>使用<strong>临时表</strong>可以声明也可以不用声明，临时表命名必须以#开头，以标示是一张临时表。  
-临时表存放在本地System Databases下的tempdb数据库Temporary Tables下面。</p>
+</span><span style="color:#008000"></span><span style="color:#00f">drop</span> <span style="color:#00f">table</span> #<span style="color:#00f">temporary</span>-<span style="color:#00f">table</span>
+</code></pre></div><ol>
+<li>使用<strong>临时表</strong>可以声明也可以不声明，临时表命名必须以#开头，标示是一张临时表。
+临时表存放在本地<em>System Databases</em>下的<em>tempdb</em>数据库<em>Temporary Tables</em>下面。</li>
+<li>临时表使用完成之后必须手动显式删除、表变量在变量生命期结束时会自动删除。</li>
+</ol>
 <h3 id="select--intoinsert-into与表">select * [into]|insert [into]与表</h3>
-<p>select * into 后面接的一定是<strong>表</strong>(或者临时表)，不可以使用变量、表变量。<br>
-insert into 后面可以接表变量。
-语法：select * into [table|#temporary-table]</p>
+<p><code>select * into</code> 后面接的一定是<strong>表</strong>(或者临时表)，不可以使用变量、表变量。 <br>
+<code>insert into</code> 后面可以接表变量。<br>
+语法：<code>select * into [table|#temporary-table]</code></p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">declare</span> @users <span style="color:#00f">table</span>(
     userName varchar(50)
 <span style="">}</span>);
 <span style="color:#00f">select</span> name <span style="color:#00f">into</span> @users <span style="color:#00f">from</span> users; <span style="color:#008000">--错误用法
 </span><span style="color:#008000"></span><span style="color:#00f">select</span> name <span style="color:#00f">into</span> #tempUser <span style="color:#00f">from</span> users;<span style="color:#008000">--正确用法
-</span><span style="color:#008000">--insert into 后面可接表变量
-</span><span style="color:#008000">--方式1
+</span><span style="color:#008000"></span>
+<span style="color:#008000">--insert into 后面可接表变量
+</span><span style="color:#008000"></span>
+<span style="color:#008000">--方式1
 </span><span style="color:#008000"></span><span style="color:#00f">insert</span> <span style="color:#00f">into</span> @users <span style="color:#00f">select</span> name <span style="color:#00f">from</span> users;
 <span style="color:#008000">--方式2
 </span><span style="color:#008000"></span><span style="color:#00f">insert</span> <span style="color:#00f">into</span> @users <span style="color:#00f">exec</span> sp_executesql N<span style="color:#a31515">&#39;sqlstr&#39;</span>,param-string,param
 </code></pre></div><h3 id="存储过程返回数据集和变量赋值">存储过程返回数据集和变量赋值</h3>
-<p>存储过程默认会返回所有select查询的数据集，有几个select语句就会返回几个数据集。<br>
+<p>存储过程默认会返回所有<code>select</code>查询的数据集，有几个<code>select</code>语句就会返回几个数据集。<br>
 如果想让查询出来的数据集结果只做中间表，需要将查询结果赋值给变量，有以下几种方式：</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">declare</span> @name varchar(50);
 <span style="color:#008000">--以下查询结果并不会返回给存储过程调用者
 </span><span style="color:#008000"></span><span style="color:#00f">select</span> @name=name <span style="color:#00f">from</span> users;<span style="color:#008000">--方式1
 </span><span style="color:#008000"></span><span style="color:#00f">set</span> @name=(<span style="color:#00f">select</span> name <span style="color:#00f">from</span> users);<span style="color:#008000">--方式2
-</span><span style="color:#008000">--将查询结果返回给调用者
+</span><span style="color:#008000"></span>
+<span style="color:#008000">--将查询结果返回给调用者
 </span><span style="color:#008000"></span><span style="color:#00f">select</span> @name;
 </code></pre></div><h3 id="exec--exec-sp_executesql">exec &amp; exec sp_executesql</h3>
-<p>exec 和 exec sp_executesql 都可以用来执行dynamic sql(动态sql语句),后者的功能强大很多，并且允许有返回值。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">DECLARE</span> @<span style="color:#00f">result</span> int   
-<span style="color:#00f">DECLARE</span> @sqlStr nvarchar(500);
-<span style="color:#00f">DECLARE</span> @paramDefinition nvarchar(500);
+<p><code>exec</code>和<code>exec sp_executesql</code>都可以用来执行<strong>dynamic sql</strong>(动态sql语句),后者的功能强大很多，并且允许有返回值。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsql" data-lang="tsql"><span style="color:#00f">DECLARE</span> @result <span style="color:#2b91af">int</span>   
+<span style="color:#00f">DECLARE</span> @sqlStr <span style="color:#2b91af">nvarchar</span>(500);
+<span style="color:#00f">DECLARE</span> @paramDefinition <span style="color:#2b91af">nvarchar</span>(500);
 
-<span style="color:#00f">DECLARE</span> @tableName nvarchar(50)  
+<span style="color:#00f">DECLARE</span> @tableName <span style="color:#2b91af">nvarchar</span>(50)  
 <span style="color:#00f">SET</span> @tableName = N<span style="color:#a31515">&#39;products&#39;</span>  
 
 <span style="color:#00f">SELECT</span> @sqlStr = N<span style="color:#a31515">&#39;SELECT @resultOut = MAX(ID) FROM &#39;</span> + @tablename;<span style="color:#008000">-- exec sp_executesql 必须使用unicode字符串，因此字符串前面要带上N 
 </span><span style="color:#008000"></span><span style="color:#00f">SET</span> @paramDefinition = N<span style="color:#a31515">&#39;@resultOut int OUTPUT&#39;</span>;
 
-<span style="color:#00f">EXEC</span> sp_executesql @sqlStr, @paramDefinition, @resultOut=@<span style="color:#00f">result</span> <span style="color:#00f">OUTPUT</span>;
+<span style="color:#00f">EXEC</span> sp_executesql @sqlStr, @paramDefinition, @resultOut=@result <span style="color:#00f">OUTPUT</span>;
 <span style="color:#008000">--返回结果集给调用者
 </span><span style="color:#008000"></span><span style="color:#00f">SELECT</span> @retval; 
 </code></pre></div><blockquote>
