@@ -112,11 +112,30 @@ insert into @users exec sp_executesql N'sqlstr',param-string,param
 ```sql
 declare @name varchar(50);
 --以下查询结果并不会返回给存储过程调用者
-select @name=name from users;--方式1
-set @name=(select name from users);--方式2
-
+--方式1
+select @name=name from users;
+--方式2
+set @name=(select name from users);
 --将查询结果返回给调用者
 select @name;
+--方式3(with as子查询部分)
+with A as (select * from users)
+select name from A;
+
+-- Define the CTE expression name and column list.  
+WITH Sales_CTE (SalesPersonID, SalesOrderID, SalesYear)  
+AS  
+-- Define the CTE query.  
+(  
+    SELECT SalesPersonID, SalesOrderID, YEAR(OrderDate) AS SalesYear  
+    FROM Sales.SalesOrderHeader  
+    WHERE SalesPersonID IS NOT NULL  
+)  
+-- Define the outer query referencing the CTE name.  
+SELECT SalesPersonID, COUNT(SalesOrderID) AS TotalSales, SalesYear  
+FROM Sales_CTE  
+GROUP BY SalesYear, SalesPersonID  
+ORDER BY SalesPersonID, SalesYear; 
 ```
 ### exec & exec sp_executesql
 

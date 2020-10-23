@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.76.0-DEV" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -174,11 +174,30 @@ print @name;<span style="color:#008000">-- pai
 如果想让查询出来的数据集结果只做中间表，需要将查询结果赋值给变量，有以下几种方式：</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">declare</span> @name varchar(50);
 <span style="color:#008000">--以下查询结果并不会返回给存储过程调用者
-</span><span style="color:#008000"></span><span style="color:#00f">select</span> @name=name <span style="color:#00f">from</span> users;<span style="color:#008000">--方式1
-</span><span style="color:#008000"></span><span style="color:#00f">set</span> @name=(<span style="color:#00f">select</span> name <span style="color:#00f">from</span> users);<span style="color:#008000">--方式2
-</span><span style="color:#008000"></span>
+</span><span style="color:#008000">--方式1
+</span><span style="color:#008000"></span><span style="color:#00f">select</span> @name=name <span style="color:#00f">from</span> users;
+<span style="color:#008000">--方式2
+</span><span style="color:#008000"></span><span style="color:#00f">set</span> @name=(<span style="color:#00f">select</span> name <span style="color:#00f">from</span> users);
 <span style="color:#008000">--将查询结果返回给调用者
 </span><span style="color:#008000"></span><span style="color:#00f">select</span> @name;
+<span style="color:#008000">--方式3(with as子查询部分)
+</span><span style="color:#008000"></span><span style="color:#00f">with</span> A <span style="color:#00f">as</span> (<span style="color:#00f">select</span> * <span style="color:#00f">from</span> users)
+<span style="color:#00f">select</span> name <span style="color:#00f">from</span> A;
+
+<span style="color:#008000">-- Define the CTE expression name and column list.  
+</span><span style="color:#008000"></span><span style="color:#00f">WITH</span> Sales_CTE (SalesPersonID, SalesOrderID, SalesYear)  
+<span style="color:#00f">AS</span>  
+<span style="color:#008000">-- Define the CTE query.  
+</span><span style="color:#008000"></span>(  
+    <span style="color:#00f">SELECT</span> SalesPersonID, SalesOrderID, <span style="color:#00f">YEAR</span>(OrderDate) <span style="color:#00f">AS</span> SalesYear  
+    <span style="color:#00f">FROM</span> Sales.SalesOrderHeader  
+    <span style="color:#00f">WHERE</span> SalesPersonID <span style="color:#00f">IS</span> <span style="color:#00f">NOT</span> <span style="color:#00f">NULL</span>  
+)  
+<span style="color:#008000">-- Define the outer query referencing the CTE name.  
+</span><span style="color:#008000"></span><span style="color:#00f">SELECT</span> SalesPersonID, <span style="color:#00f">COUNT</span>(SalesOrderID) <span style="color:#00f">AS</span> TotalSales, SalesYear  
+<span style="color:#00f">FROM</span> Sales_CTE  
+<span style="color:#00f">GROUP</span> <span style="color:#00f">BY</span> SalesYear, SalesPersonID  
+<span style="color:#00f">ORDER</span> <span style="color:#00f">BY</span> SalesPersonID, SalesYear; 
 </code></pre></div><h3 id="exec--exec-sp_executesql">exec &amp; exec sp_executesql</h3>
 <p><code>exec</code>和<code>exec sp_executesql</code>都可以用来执行<strong>dynamic sql</strong>(动态sql语句),后者的功能强大很多，并且允许有返回值。</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsql" data-lang="tsql"><span style="color:#00f">DECLARE</span> @result <span style="color:#2b91af">int</span>   
