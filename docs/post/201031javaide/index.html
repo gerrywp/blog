@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.75.1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>VsCode搭建Java开发环境 | 云亦海</title>
+    <meta property="og:title" content="VsCode搭建Java开发环境 - 云亦海">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2020-10-31T00:00:00&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2020-10-31T00:00:00&#43;08:00">
+        
+    <meta name="Keywords" content="golang,go语言,go语言笔记,项目管理,软件架构,公众号,小程序">
+    <meta name="description" content="VsCode搭建Java开发环境">
+        
+    <meta name="author" content="gerry">
+    <meta property="og:url" content="https://gerrywp.github.io/blog/post/201031javaide/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/blog/css/normalize.css">
+    
+        <link rel="stylesheet" href="/blog/css/prism.css">
+    
+    <link rel="stylesheet" href="/blog/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://gerrywp.github.io/blog">
+                        云亦海
+                    </a>
+                
+                <p class="description">专注于Go语言(golang)、csharp、移动互联网、项目管理、软件架构</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://gerrywp.github.io/blog">首页</a>
+                    
+                    <a  href="https://gerrywp.github.io/blog/archives/" title="归档">归档</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+        
+        
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">VsCode搭建Java开发环境</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2020年10月31日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href='https://gerrywp.github.io/blog/categories/java'>java</a></span>
+                            
+                        </div>
+                        
+                        
+                        <div class="post-meta">
+                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
+                        </div>
+                        
+                        
+                        <div class="post-content">
+                            <p>破解版的IDEA注册失效，需要重新安装IDEA。开发环境客制化的配置丢失了，一怒之下,果断换到vscode开发java!</p>
+<h3 id="专有名词解释">专有名词解释</h3>
+<ol>
+<li><strong>jdt</strong>(java development tools)</li>
+<li><strong>ls</strong>(language server)语言服务器</li>
+<li><strong>APT</strong>(annotation processing tool)编译时数据注解处理器。它是<code>javac</code>的一个工具，<strong>lombok</strong>是其中的一种。</li>
+<li><strong>jdwp</strong>(java Debug wire protocol)java调试线协议</li>
+<li><strong>ecj</strong>(the eclipse standalone compiler for java)</li>
+</ol>
+<h3 id="下载与安装">下载与安装</h3>
+<ol>
+<li>安装<em><strong>vscode</strong></em></li>
+<li>安装<em><strong>jdk</strong></em>(可以配置环境变量也可以不配置，直接在vscode配置文件中指定jdk路径)</li>
+<li>安装<em><strong>maven</strong></em>，配置文件加载优先级，先加载.m2文件下的setting.xml配置，然后加载maven安装目录下的config/settings.xml配置，
+同样，maven的bin目录环境变量也可以在vscode配置文件中指定</li>
+</ol>
+<h4 id="安装vscode扩展java-extension-pack">安装vscode扩展(Java Extension Pack)</h4>
+<p>微软作为VS Code的官方，直接为我们提供了一个<strong>Java Extension Pack</strong>的扩展，该扩展其实就是包含了6 个扩展的组合包，这些扩展并不全是微软开发的，只是方便我们一次安装到位而已：</p>
+<ol>
+<li>
+<p><strong>Language Support for Java™ by Red Hat</strong></p>
+<p>代码导航、自动完成、重构、代码片段</p>
+</li>
+<li>
+<p><strong>Debugger for Java</strong></p>
+<p>运行和调试</p>
+</li>
+<li>
+<p><strong>Java Test Runner</strong></p>
+<p>运行和测试</p>
+</li>
+<li>
+<p><strong>Maven for Java</strong></p>
+<p>项目支持、自定义目标</p>
+</li>
+<li>
+<p><strong>Java Dependency Viewer</strong></p>
+<p>项目视图，依赖库，资源文件等显示。</p>
+</li>
+<li>
+<p><strong>Visual Studio IntelliCode</strong></p>
+<p>开发智能助手</p>
+</li>
+</ol>
+<h3 id="apt工具lombok">APT工具(lombok)</h3>
+<p>由于项目使用了<strong>lombok</strong>数据注解处理工具，但是微软插件marketplace提供的lombok的插件过于陈旧，所以直接安装的话在项目中会提示，一堆的<code>class</code>找不到。因此我们需要手动配置<code>java.jdt.ls.vmargs</code>配置java虚拟机的参数。因为项目使用maven下载了lombok的依赖，所以我们直接配置vscode的user settings:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a31515">&#34;java.jdt.ls.vmargs&#34;</span><span style="">:</span> <span style="color:#a31515">&#34;-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:\&#34;C:\\Users\\Administrator\\.m2\\repository\\org\\projectlombok\\lombok\\1.18.6\\lombok-1.18.6.jar\&#34;&#34;</span><span style="">,</span>
+</code></pre></div><p>然后重新编译整个项目，当使用debugger工具调试的时候<code>Java Language Server</code>就会带上参数<code>-javaagent</code></p>
+<blockquote>
+<p>关于lombok的配置可以参考官网的<!-- raw HTML omitted -->操作
+<img src="../../pictures/432637A0-75CF-43d3-93EC-C7D3A0BBFB1E.png" alt="图片" title="点我显示"></p>
+</blockquote>
+<h3 id="vscode的配置">vscode的配置</h3>
+<p>当使用<code>Debugger for Java</code>调试程序的时候，需要使用<code>Language Support for Java by Red Hat</code>。语言服务要求我们使用最新版本的jdk，
+会弹出让我们下载<code>AdoptOpenJDK</code>，并且需要配置<code>java.home</code>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">//这个配置节，使用最新的jdk来启动Java</span> <span style="">Language</span> <span style="">Server.</span>
+<span style="color:#a31515">&#34;java.home&#34;</span><span style="">:</span> <span style="color:#a31515">&#34;C:\\Program Files\\AdoptOpenJDK\\jdk-11.0.9.11-hotspot&#34;</span><span style="">,</span>
+</code></pre></div><p>由于项目本身使用是<code>jdk8</code>,因此需要将<em><strong>Java Execution Environments</strong></em>映射到本地jdk</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a31515">&#34;java.configuration.runtimes&#34;</span><span style="">:</span> [
+	{
+		&#34;name&#34;: <span style="color:#a31515">&#34;JavaSE-1.8&#34;</span>,
+		&#34;path&#34;: <span style="color:#a31515">&#34;C:\\Program Files\\Java\\jdk1.8.0_261&#34;</span>,
+		&#34;default&#34;: <span style="color:#00f">true</span>,
+	},
+]<span style="">,</span>
+</code></pre></div><p>还要配置mave的可执行环境路径</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a31515">&#34;maven.executable.path&#34;</span><span style="">:</span> <span style="color:#a31515">&#34;D:\\Program Files (x86)\\apache-maven-3.6.3\\bin\\mvn&#34;</span><span style="">,</span>
+<span style="color:#a31515">&#34;maven.terminal.customEnv&#34;</span><span style="">:</span> [
+	{
+		&#34;environmentVariable&#34;: <span style="color:#a31515">&#34;JAVA_HOME&#34;</span>,
+		&#34;value&#34;: <span style="color:#a31515">&#34;C:\\Program Files\\Java\\jdk1.8.0_261&#34;</span>
+	}
+]<span style="">,</span>
+</code></pre></div><h3 id="workspace的作用">workspace的作用</h3>
+<p>使用vscode的时候，可以将当前文件夹保存未工作区。并且针对不同的工作区可以禁用掉不使用的插件，这下工作区显示的干净多了，不会再加载不必要的插件了。</p>
+<p>有两个选项</p>
+<ol>
+<li>第一个选项“禁用”为你的用户设置</li>
+<li>第二个选项“禁用（工作区）”为工作区设置</li>
+</ol>
+<p>选择“禁用（工作区）”。</p>
+<h3 id="结尾">结尾</h3>
+<p>现在可以使用vscode尽情的玩耍了</p>
+<h3 id="参考文献">参考文献</h3>
+<blockquote>
+<p><a href="https://juejin.im/post/6844904104725053453#heading-22">打造IDE</a><br>
+<a href="https://juejin.im/post/6844903923233341453%3E">jdt-apt编译时注解处理器</a><br>
+<a href="'https://github.com/redhat-developer/vscode-java'">vscode配置</a><br>
+<a href="'https://projectlombok.org/setup/ecj'">lombok</a></p>
+</blockquote>
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/blog/post/190707gocommand/">go命令详解</a></li>
+        
+        <li><a href="/blog/post/180618vssetup/">调整VS工具栏宽度</a></li>
+        
+        <li><a href="/blog/post/180329dllnotcopy/">发布项目dll未被msbuild拷贝到输出目录</a></li>
+        
+        <li><a href="/blog/post/171124vs2017setup/">vs2017支持.editorconfig配置</a></li>
+        
+        <li><a href="/blog/post/171123consoleprogbar/">console应用程序progressbar（进度条的实现）</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href='https://gerrywp.github.io/blog/tags/javavs'>javavs</a></li>
+                                
+                                <li><a href='https://gerrywp.github.io/blog/tags/vs'>vs</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "gerrywp/blog"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="https://gerrywp.github.io/blog/search/" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://gerrywp.github.io/blog">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/201031javaide/" title="VsCode搭建Java开发环境">VsCode搭建Java开发环境</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200912winhook/" title="SetWindowsHookEx">SetWindowsHookEx</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200912string/" title="string">string</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200912deadlock/" title="死锁">死锁</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200912task/" title="浅谈Task">浅谈Task</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200824msbuild/" title="msbuid(5)-不同环境配置管理">msbuid(5)-不同环境配置管理</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200808ftp/" title="FTP模式">FTP模式</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200708wide/" title="宽与窄">宽与窄</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/article/">article (15)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/csharp/">csharp (12)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/golang/">golang (5)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/java/">java (1)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/javascript/">javascript (16)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (12)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/windows/">windows (12)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://gerrywp.github.io/blog/tags/2019/">2019</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/asm/">asm</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/cms/">cms</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/cpp/">cpp</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/git/">git</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/go/">go</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/iis/">IIS</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/java/">java</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/javavs/">javavs</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/js/">js</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/markdown/">markdown</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/msbuild/">msbuild</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/nodejs/">nodejs</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/shell/">shell</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/sql/">sql</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/ssh/">ssh</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/utf8/">utf8</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vim/">vim</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vpn/">vpn</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vs/">vs</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/%E8%B5%84%E6%96%99%E6%94%B6%E9%9B%86/">资料收集</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/%E9%9A%8F%E7%AC%94/">随笔</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://gerrywp.github.io/blog/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="https://gerrywp.github.io/blog">云亦海 By gerry</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function () {
+            $("pre code").parent().addClass("line-numbers")
+        }());
+
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script type="text/javascript" src="/blog/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/blog/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+<script type="text/javascript">
+(function(){
+	if (typeof self === 'undefined' || !self.Prism || !self.document) {
+		return;
+	}
+
+	if (!Prism.plugins.toolbar) {
+		console.warn('Copy to Clipboard plugin loaded before Toolbar plugin.');
+
+		return;
+	}
+
+	var ClipboardJS = window.ClipboardJS || undefined;
+
+	if (!ClipboardJS && typeof require === 'function') {
+		ClipboardJS = require('clipboard');
+	}
+
+	var callbacks = [];
+
+	if (!ClipboardJS) {
+		var script = document.createElement('script');
+		var head = document.querySelector('head');
+
+		script.onload = function() {
+			ClipboardJS = window.ClipboardJS;
+
+			if (ClipboardJS) {
+				while (callbacks.length) {
+					callbacks.pop()();
+				}
+			}
+		};
+
+		script.src = 'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js';
+		head.appendChild(script);
+	}
+
+	Prism.plugins.toolbar.registerButton('copy-to-clipboard', function (env) {
+		var linkCopy = document.createElement('button');
+		linkCopy.textContent = '复制代码';
+
+		if (!ClipboardJS) {
+			callbacks.push(registerClipboard);
+		} else {
+			registerClipboard();
+		}
+
+		return linkCopy;
+
+		function registerClipboard() {
+			var clip = new ClipboardJS(linkCopy, {
+				'text': function () {
+					return env.code;
+				}
+			});
+
+			clip.on('success', function() {
+				linkCopy.textContent = '复制成功!';
+
+				resetText();
+			});
+			clip.on('error', function () {
+				linkCopy.textContent = '按 Ctrl+C 复制';
+
+				resetText();
+			});
+		}
+
+		function resetText() {
+			setTimeout(function () {
+				linkCopy.textContent = '复制代码';
+			}, 5000);
+		}
+	});
+})();
+
+</script>
+</body>
+</html>
