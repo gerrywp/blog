@@ -11,15 +11,14 @@ categories = [ "java" ]
 ### 专有名词解释
 1. **jdt**(java development tools)
 2. **ls**(language server)语言服务器
-3. **APT**(annotation processing tool)编译时数据注解处理器。它是`javac`的一个工具，**lombok**是其中的一种。
+3. **APT**(annotation processing tool)编译时数据注解处理器。它是 ***javac*** 的一个工具，**lombok**是其中的一种。
 4. **jdwp**(java Debug wire protocol)java调试线协议
 5. **ecj**(the eclipse standalone compiler for java)
 
 ### 下载与安装
 1. 安装***vscode***
 2. 安装***jdk***(可以配置环境变量也可以不配置，直接在vscode配置文件中指定jdk路径)
-3. 安装***maven***，配置文件加载优先级，先加载.m2文件下的setting.xml配置，然后加载maven安装目录下的config/settings.xml配置，
-同样，maven的bin目录环境变量也可以在vscode配置文件中指定
+3. 安装***maven***，配置文件加载优先级，先加载.m2文件下的setting.xml配置，然后加载maven安装目录下的config/settings.xml配置。(maven的bin目录环境变量也可以在vscode配置文件中指定)
 
 #### 安装vscode扩展(Java Extension Pack)
 微软作为VS Code的官方，直接为我们提供了一个**Java Extension Pack**的扩展，该扩展其实就是包含了6 个扩展的组合包，这些扩展并不全是微软开发的，只是方便我们一次安装到位而已： 
@@ -94,6 +93,19 @@ categories = [ "java" ]
 2. 第二个选项“禁用（工作区）”为工作区设置
 
 选择“禁用（工作区）”。 
+
+### REST Client
+好用的**webapi**请求扩展，使用起来比PostMAN方便多了。  
+创建 _.http_ 或 _.rest_ 扩展名结尾的文件
+
+工作区(workspace)配置推荐插件
+```json
+"extensions": {
+	"recommendations": [
+		"humao.rest-client",
+	]
+}
+``` 
 
 ### 结尾
 现在可以使用vscode尽情的玩耍了

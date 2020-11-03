@@ -97,7 +97,7 @@
 <ol>
 <li><strong>jdt</strong>(java development tools)</li>
 <li><strong>ls</strong>(language server)语言服务器</li>
-<li><strong>APT</strong>(annotation processing tool)编译时数据注解处理器。它是<code>javac</code>的一个工具，<strong>lombok</strong>是其中的一种。</li>
+<li><strong>APT</strong>(annotation processing tool)编译时数据注解处理器。它是 <em><strong>javac</strong></em> 的一个工具，<strong>lombok</strong>是其中的一种。</li>
 <li><strong>jdwp</strong>(java Debug wire protocol)java调试线协议</li>
 <li><strong>ecj</strong>(the eclipse standalone compiler for java)</li>
 </ol>
@@ -105,8 +105,7 @@
 <ol>
 <li>安装<em><strong>vscode</strong></em></li>
 <li>安装<em><strong>jdk</strong></em>(可以配置环境变量也可以不配置，直接在vscode配置文件中指定jdk路径)</li>
-<li>安装<em><strong>maven</strong></em>，配置文件加载优先级，先加载.m2文件下的setting.xml配置，然后加载maven安装目录下的config/settings.xml配置，
-同样，maven的bin目录环境变量也可以在vscode配置文件中指定</li>
+<li>安装<em><strong>maven</strong></em>，配置文件加载优先级，先加载.m2文件下的setting.xml配置，然后加载maven安装目录下的config/settings.xml配置。(maven的bin目录环境变量也可以在vscode配置文件中指定)</li>
 </ol>
 <h4 id="安装vscode扩展java-extension-pack">安装vscode扩展(Java Extension Pack)</h4>
 <p>微软作为VS Code的官方，直接为我们提供了一个<strong>Java Extension Pack</strong>的扩展，该扩展其实就是包含了6 个扩展的组合包，这些扩展并不全是微软开发的，只是方便我们一次安装到位而已：</p>
@@ -173,7 +172,16 @@
 <li>第二个选项“禁用（工作区）”为工作区设置</li>
 </ol>
 <p>选择“禁用（工作区）”。</p>
-<h3 id="结尾">结尾</h3>
+<h3 id="rest-client">REST Client</h3>
+<p>好用的<strong>webapi</strong>请求扩展，使用起来比PostMAN方便多了。<br>
+创建 <em>.http</em> 或 <em>.rest</em> 扩展名结尾的文件</p>
+<p>工作区(workspace)配置推荐插件</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#a31515">&#34;extensions&#34;</span><span style="">:</span> {
+	&#34;recommendations&#34;: [
+		<span style="color:#a31515">&#34;humao.rest-client&#34;</span>,
+	]
+}
+</code></pre></div><h3 id="结尾">结尾</h3>
 <p>现在可以使用vscode尽情的玩耍了</p>
 <h3 id="参考文献">参考文献</h3>
 <blockquote>

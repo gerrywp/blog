@@ -167,8 +167,7 @@ ErpUpdater -s Start
 
 ### 结束
 
-打开浏览器访问<http://localhost:80/version>成功返回配置文件`json`格式字符串。  
-完毕!
+打开浏览器访问<http://localhost:80/version>成功返回配置文件`json`格式字符串。
 
 
 
