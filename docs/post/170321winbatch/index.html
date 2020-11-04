@@ -171,7 +171,16 @@ FOR /F %k in (<span style="color:#a31515">&#39;dir /s /b *.java&#39;</span>) DO 
 </code></pre></div><h3 id="wshwindows-script-host">WSH(windows script host)</h3>
 <p>bat批处理脚本功能实在有限，远不如Linux-shell那般强大！且本文前半部分有些&quot;学究式&quot;，只为探讨for-loop以及变量延迟，
 非常不适用！dos-bat性能低下，处理一些复制、粘贴、改名等重复性操作尚可，如涉及到稍微复杂的需求还是要寻求更加高级脚本语言。</p>
-<h4 id="环境支持">环境支持</h4>
+<h3 id="powershell">Powershell</h3>
+<p>让 <em><strong>.ps1</strong></em> 文件双击可以运行，需要修改注册表如下：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">HKEY_CLASSES_ROOT<span style="color:#a31515">\M</span>icrosoft.PowerShellScript.1<span style="color:#a31515">\S</span>hell<span style="color:#a31515">\o</span>pen<span style="color:#a31515">\c</span>ommand
+<span style="color:#008000">###默认编辑值如下</span>
+<span style="color:#a31515">&#34;C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe&#34;</span> -noLogo -ExecutionPolicy unrestricted -file <span style="color:#a31515">&#34;%1&#34;</span>
+</code></pre></div><p>powershell相关命令</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+<span style="color:#008000">#显示当前可执行策略</span>
+Get-ExecutionPolicy
+</code></pre></div><h4 id="环境支持">环境支持</h4>
 <p>windows98以后(98,2000,xp)都支持WSH,可以告别批处理了!</p>
 <ol>
 <li>宿主环境是wscript.exe或cscript.exe</li>

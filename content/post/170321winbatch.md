@@ -27,11 +27,9 @@ set /A b=16
 )
 ```
 #### 2. 预处理
-
 批处理运作方式:批处理命令式按行读取的，所有的复合语句被当做一行来处理。并且执行该行之前，要对行变量进行预处理(变量赋值),然后再执行
 
 #### 3. 变量延迟和!variable!
-
 结合1、2可知,预处理变量会造成变量不会根据上下文进行动态更新，这个问题在for/if等syntax语法构造里面尤为突出。因此需要变量延迟，
 即延迟了对变量的预处理，相当于让复合语句，能够一条一条的预处理->执行，这样就可以解决问题。  
 读取延迟变量的语法为: `!variable!`
@@ -66,7 +64,6 @@ echo 10
 ```
 
 ### 管道(pipe)命令
-
 cmd下的管道命令|，以这种方式传输,请看以下代码：
 
 ```bash
@@ -91,7 +88,6 @@ C:\Windows\system32\cmd.exe /C /S /D "batch_command"
 这会产生一系列的副作用
 
 ### linux下的xargs在cmd下的替代
-
 首先明确一下什么是管道命令，管道命令就是，需要从键盘输入(stdin)参数的命令就是管道命令，因此`dir`不是一个管道命令。   
 管道|作用："将前面的标准输出(stdout)作为后面的标准输入(stdin)"  
 xargs作用："将标准输入作为命令的参数"  
@@ -106,7 +102,6 @@ FOR /F %k in ('dir /s /b *.java') DO accurev keep -c "comment" %k
 ["pipe xargs" in DOS](https://davidpthomas.wordpress.com/2007/01/04/xargs-in-dos/ '点我访问')
 
 ### 重定向
-
 有时候我们希望不显示信息到输出界面，可以将输出流定向到垃圾桶
 
 ```bash
@@ -115,12 +110,24 @@ del /s  bin\*.exe >nul 2>&1
 ```
 
 ### WSH(windows script host)
-
 bat批处理脚本功能实在有限，远不如Linux-shell那般强大！且本文前半部分有些"学究式"，只为探讨for-loop以及变量延迟，
 非常不适用！dos-bat性能低下，处理一些复制、粘贴、改名等重复性操作尚可，如涉及到稍微复杂的需求还是要寻求更加高级脚本语言。
 
-#### 环境支持
+### Powershell
+让 ***.ps1*** 文件双击可以运行，需要修改注册表如下：
+```sh
+HKEY_CLASSES_ROOT\Microsoft.PowerShellScript.1\Shell\open\command
+###默认编辑值如下
+"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -noLogo -ExecutionPolicy unrestricted -file "%1"
+```
+powershell相关命令
+```sh
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+#显示当前可执行策略
+Get-ExecutionPolicy
+```
 
+#### 环境支持
 windows98以后(98,2000,xp)都支持WSH,可以告别批处理了!
 1. 宿主环境是wscript.exe或cscript.exe
 2. 开发语言可以使用jscript(微软的垃圾玩意.js)和vbscript(.vbs)
