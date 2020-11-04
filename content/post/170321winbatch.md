@@ -126,6 +126,28 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 #显示当前可执行策略
 Get-ExecutionPolicy
 ```
+按任意键继续
+```sh
+echo "powershell scripts"
+Read-Host "Press Enter key to exit"
+```
+#### npm script运行.ps1脚本
+两种方式运行powershell脚本
+1. 修改上方文档提到的注册表内容，将ps1文件关联到powershell命令(相当于将文件变成了可执行文件)。
+```sh
+"scripts": {
+"路径存放方式1":"文件放入系统环境变量目录内，配置如下",
+"pstask":"pstask.ps1"
+"路径存放方式2":"文件放再package.json同目录，配置如下",
+"pstask":".\pstask.ps1"
+}
+```
+2. 不修改注册表，使用`powershell`加载脚本
+```sh
+"scripts": {
+"pstask":"powershell -noLogo  -ExecutionPolicy Unrestricted -Command .\pstask.ps1"
+}
+```
 
 #### 环境支持
 windows98以后(98,2000,xp)都支持WSH,可以告别批处理了!
