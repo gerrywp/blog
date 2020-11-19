@@ -2,7 +2,7 @@
 title = "javascript中精准的定时器"
 date = "2017-04-21"
 tags = [ "js" ]
-categories = [ "javascript" ]
+categories = [ "js" ]
 +++
 
 今天偶然看到了一篇讲解javascript各定时器的文章。文章使用对话的方式阐述了`setInterval`不足，颇有意思。

@@ -2,7 +2,7 @@
 title = "nodejs之旅(3)-gulp及调试"
 date = "2018-06-17"
 tags = [ "nodejs" ]
-categories = [ "javascript" ]
+categories = [ "js" ]
 +++
 
 　　gulp通过任务的形式来完成前端的构建，如何调试？

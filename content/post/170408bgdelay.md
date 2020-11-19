@@ -2,7 +2,7 @@
 title = "背景图片全屏造成的滚动(滑动)卡顿"
 date = "2017-04-08"
 tags = [ "js" ]
-categories = [ "javascript" ]
+categories = [ "js" ]
 +++
 
 web app中用到全屏幕的背景的图片需要占据整个视口(view-port)，必然会用到position:fixed的定位。

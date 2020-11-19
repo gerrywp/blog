@@ -2,7 +2,7 @@
 title = "nodejs之旅(1)"
 date = "2018-03-22"
 tags = [ "nodejs" ]
-categories = [ "javascript" ]
+categories = [ "js" ]
 +++
 
 　　这个系列会一步一步开始使用expressjs+nodejs搭建一个游戏背景音乐在线听网站。从零开始记录每一个细节：包括IDE工具使用细节、环境配置细节、expressjs

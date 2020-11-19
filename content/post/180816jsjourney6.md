@@ -2,7 +2,7 @@
 title = "nodejs之旅(6)热替换与热加载"
 date = "2018-08-16"
 tags = [ "nodejs" ]
-categories = [ "javascript" ]
+categories = [ "js" ]
 +++
 
 　　在开发阶段，我们希望每次更改了代码后页面立即做出相应改变，这种方式在webpack里面叫做

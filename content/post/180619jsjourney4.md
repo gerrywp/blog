@@ -2,7 +2,7 @@
 title = "nodejs之旅(4)-webpack、babel和antd库的结合"
 date = "2018-06-19"
 tags = [ "nodejs" ]
-categories = [ "javascript" ]
+categories = [ "js" ]
 +++
 
 　　前端(browser)模块性的开发，目前来说就不得不用到webpack(module bundle)打包工具。因为使用了react的`JSX`语法，所以必须要用到babel进行转码,因为browser是不认识`JSX`语法的。并且由于目前大部分的浏览器对ES6语法(例如：`import`和`export`等语法并不支持)，也必须用到babel对这类型新的ES6语法进行转码。鉴于前端技术发展的太快了，在此只做基本使用理念的介绍，不对细节做过多的处理！具体的各工具的使用，以在线参考文档为主！  

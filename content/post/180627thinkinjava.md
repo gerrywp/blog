@@ -2,7 +2,7 @@
 title = "Think in java(Java编程思想)笔记"
 date = "2018-06-27"
 tags = [ "java" ]
-categories = [ "others" ]
+categories = [ "java" ]
 +++
 
 　　阅读java编程思想，用笔记辅助记忆！  

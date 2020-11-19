@@ -8,12 +8,12 @@
   </url>
   
   <url>
-    <loc>https://gerrywp.github.io/blog/categories/java/</loc>
+    <loc>https://gerrywp.github.io/blog/tags/java/</loc>
     <lastmod>2020-10-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://gerrywp.github.io/blog/tags/javavs/</loc>
+    <loc>https://gerrywp.github.io/blog/categories/java/</loc>
     <lastmod>2020-10-31T00:00:00+00:00</lastmod>
   </url>
   
@@ -268,7 +268,7 @@
   </url>
   
   <url>
-    <loc>https://gerrywp.github.io/blog/categories/javascript/</loc>
+    <loc>https://gerrywp.github.io/blog/categories/js/</loc>
     <lastmod>2018-08-16T00:00:00+00:00</lastmod>
   </url>
   
@@ -305,11 +305,6 @@
   <url>
     <loc>https://gerrywp.github.io/blog/post/180703linear7hash/</loc>
     <lastmod>2018-07-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gerrywp.github.io/blog/tags/java/</loc>
-    <lastmod>2018-06-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>

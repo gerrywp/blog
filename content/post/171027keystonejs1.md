@@ -2,7 +2,7 @@
 title = "keystonejs(1)隐晦配置"
 date = "2017-10-27"
 tags = [ "cms" ]
-categories = [ "javascript" ]
+categories = [ "js" ]
 +++
 
 keystonejs跨平台内容管理系统开发的又一利器。通过定义数据model层，即可完成一个企业型应用站点的开发，并自动生成后台管理界面。

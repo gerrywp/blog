@@ -2,7 +2,7 @@
 title = "前端那些事儿"
 date = "2017-11-24"
 tags = [ "nodejs" ]
-categories = [ "javascript" ]
+categories = [ "js" ]
 +++
 
 　　微软系软件开发使用的Visual Studio(VS) IDE强大到令人发指！隐藏了许多技术细节，必然很难定制。nodejs出现之前，创建一个asp.net mvc的项目，client(browser)和server(csharp+iis)是组织在一起的。很少有公司在做asp.net mvc项目的时候会定制msbuild去完成浏览器端代码的构建和发布，比如：

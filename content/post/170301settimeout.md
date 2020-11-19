@@ -2,7 +2,7 @@
 title = "setTimeout定时器的使用"
 date = "2017-03-01"
 tags = [ "js" ]
-categories = [ "javascript" ]
+categories = [ "js" ]
 +++
 
 增量随机，很好实现。那如果要实现时间间隔随机，应该如何处理？我们可以使用setTimeout递归调用来实现

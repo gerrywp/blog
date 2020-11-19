@@ -16,5 +16,23 @@
       <description>&lt;p&gt;破解版的IDEA注册失效，需要重新安装IDEA。开发环境客制化的配置丢失了，一怒之下,果断换到vscode开发java!&lt;/p&gt;</description>
     </item>
     
+    <item>
+      <title>Think in java(Java编程思想)笔记</title>
+      <link>https://gerrywp.github.io/blog/post/180627thinkinjava/</link>
+      <pubDate>Wed, 27 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/180627thinkinjava/</guid>
+      <description>&lt;p&gt;　　阅读java编程思想，用笔记辅助记忆！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>java那些事儿</title>
+      <link>https://gerrywp.github.io/blog/post/180625javaer/</link>
+      <pubDate>Mon, 25 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/180625javaer/</guid>
+      <description>&lt;p&gt;　　最近在系统的学习java这门语言，涉及的东西也比较多。集成开发环境使用的是&lt;code&gt;Intellij(读音：Intel li year) Idea&lt;/code&gt;，循序渐进地学习语法、jsp、servlet、maven、gradle。构建工具到后期需要着重学习，只有这样才能真正了解IDE的project构建过程，实现工程自动化的自定义。阅读的书籍主要是《Java web 高级编程》和《Java 编程思想》，前者注重实战操作后者注重基础知识！学习必然会遇到问题，google下并记录下来。&lt;/p&gt;</description>
+    </item>
+    
   </channel>
 </rss>

@@ -1,7 +1,7 @@
 +++
 title = "VsCode搭建Java开发环境"
 date = "2020-10-31"
-tags = [ "javavs","vs" ]
+tags = [ "java","vs" ]
 categories = [ "java" ]
 +++
 
