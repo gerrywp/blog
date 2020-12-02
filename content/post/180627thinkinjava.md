@@ -53,12 +53,12 @@ java com.aiyoe.Student
 ### 深刻理解classpath  
 项目文件夹结构如下
  
-|+- src  
-|+-+|+- com  
-|+-++-+|+- aiyoe  
-|+-++-++-+|+- Main.java  
-|+-++-+|+- util  
-|+-++-++-+|+- Console.java  
+|+- ***src***  
+|-+-|+- ***com***  
+|-+-|-+-|+- ***aiyoe***  
+|-+-|-+-|-+-|+- ***Main.java***  
+|-+-|-+-|+- ***util***  
+|-+-|-+-|-+-|+- ***Console.java***  
 ```java
 //Main.java
 import static util.Console
