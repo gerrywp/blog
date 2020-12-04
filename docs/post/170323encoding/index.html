@@ -112,9 +112,9 @@
 <p>在中文操作系统下，我们在notepad++下，使用asci码输入中文，其实使用的是操作系统默认GBK编码。<br>
 使用notepad++可以看到，&ldquo;我&quot;在ansi下的编码16进制为:ce d2,这个编码正是&quot;我&quot;在GBK编码字符集中的编码。</p>
 <h3 id="notepadansi编码输入中文程序无响应">notepad++，ansi编码输入中文程序无响应</h3>
-<p>在ansi编码下，默认中文字符会被拆成2个字符。且这个使用的设置是:&ldquo;自动完成-&gt;单词自动完成&rdquo;
-且后边是从&quot;第1个字符开始&quot;的时候会默认从这个<strong>未知字符</strong>开始自动完成，notepad++就卡死了。<br>
-解决方法：改变从&quot;第1个字符开始&quot;成&quot;第2个字符开始&quot;回车即可。</p>
+<p>在ansi编码下，默认中文字符会被拆成2个字符。当我们设置:<br>
+&ldquo;首选项-&gt;自动完成-&gt;单词自动完成&quot;并且从&quot;第1个字符开始&quot;的时候,会默认从<strong>未知字符</strong>开始自动完成,notepad++就卡死了。</p>
+<p>解决方法：将<code>&quot;从第1个字符开始&quot;</code>改成<code>&quot;从第2个字符开始&quot;</code>即可</p>
 <p><img src="../../pictures/QQ20170323220207.png" alt="首选项"></p>
 <blockquote>
 <p>参考文献</p>

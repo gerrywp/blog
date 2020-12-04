@@ -36,6 +36,9 @@ categories = [ "others" ]
 [用webpack构建nodejs后端代码，使其支持js新特性并实现热重载](https://zhuanlan.zhihu.com/p/20782320 "点我访问")
 
 [Backend Apps with Webpack](http://jlongster.com/Backend-Apps-with-Webpack--Part-I "点我访问")
+### notepad++插件
+1. **xml tool** 格式化xml
+2. **Explorer** 树形目录结构
 
 ### web后台开发框架
 
