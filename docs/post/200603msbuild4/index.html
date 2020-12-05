@@ -218,6 +218,23 @@
 <p>说明: 直接在<code>version.targets</code>里面定义Name=&ldquo;BeforeBuild&quot;的Target，在Import引入的时候并会不被msbuild自动执行，
 因此必须以依赖的方式成为BeforeBuild前置任务。</p>
 </blockquote>
+<h3 id="clickonce部署自增minimumrequiredversion">ClickOnce部署自增MinimumRequiredVersion</h3>
+<p>在发布新版本的时候,需要强制用户更新,因此需要设置最小必须版本,在主<strong>csproj</strong>文件添加如下<strong>Target</strong>。</p>
+<p>main.csproj</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">&lt;Target Name=<span style="color:#a31515">&#34;AutoSetMinimumRequiredVersion&#34;</span> BeforeTargets=<span style="color:#a31515">&#34;GenerateDeploymentManifest&#34;</span>&gt;
+	&lt;FormatVersion Version=<span style="color:#a31515">&#34;$(ApplicationVersion)&#34;</span> Revision=<span style="color:#a31515">&#34;$(ApplicationRevision)&#34;</span>&gt;
+	  &lt;Output PropertyName=<span style="color:#a31515">&#34;MinimumRequiredVersion&#34;</span> TaskParameter=<span style="color:#a31515">&#34;OutputVersion&#34;</span> /&gt;
+	&lt;/FormatVersion&gt;
+	&lt;FormatVersion Version=<span style="color:#a31515">&#34;$(ApplicationVersion)&#34;</span> Revision=<span style="color:#a31515">&#34;$(ApplicationRevision)&#34;</span>&gt;
+	  &lt;Output PropertyName=<span style="color:#a31515">&#34;_DeploymentBuiltMinimumRequiredVersion&#34;</span> TaskParameter=<span style="color:#a31515">&#34;OutputVersion&#34;</span> /&gt;
+	&lt;/FormatVersion&gt;
+&lt;/Target&gt;
+</code></pre></div><p><strong>GenerateDeploymentManifest</strong>(Target)所在文件路径如下:<br>
+<code>C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets</code><br>
+属性变量**_DeploymentBuiltMinimumRequiredVersion**也在该文件中定义。</p>
+<blockquote>
+<p><a href="https://stackoverflow.com/questions/8929669/clickonce-deployment-minumum-required-version-auto-increment-with-msbuild">https://stackoverflow.com/questions/8929669/clickonce-deployment-minumum-required-version-auto-increment-with-msbuild</a></p>
+</blockquote>
                         </div>
 
                         
