@@ -133,7 +133,7 @@
   &lt;/Target&gt;
 </code></pre></div><ol>
 <li>AssemblyAttributes引用的是自定义工程文件里面的ItemGroup</li>
-<li><code>$(IntermediateOutputPath)</code>是目录路径，为中间路径(./obj/debug)</li>
+<li><code>$(IntermediateOutputPath)</code>为中间输出路径(./obj/debug)</li>
 <li><code>Output</code>将任务生成的文件(TaskParameter),添加到ItemGroup下的<code>Complie</code>元素里面，这样就可以将cs代码编译进程序集文件</li>
 </ol>
 <blockquote>
@@ -206,14 +206,14 @@
     &lt;/WriteCodeFragment&gt;
   &lt;/Target&gt;
 &lt;/Project&gt;
-</code></pre></div><p>修改项目工程文件，引入<code>version.target</code></p>
+</code></pre></div><p>修改项目工程文件，引入<code>version.targets</code></p>
 <p><strong>projname.csproj</strong></p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">//引入自定义工程文件
-  &lt;Import Project=<span style="color:#a31515">&#34;..\version.props&#34;</span> /&gt;
+  &lt;Import Project=<span style="color:#a31515">&#34;..\version.targets&#34;</span> /&gt;
 //添加target目标依赖
   &lt;Target Name=<span style="color:#a31515">&#34;BeforeBuild&#34;</span> DependsOnTargets=<span style="color:#a31515">&#34;GenerateVersion&#34;</span>&gt;&lt;/Target&gt;
 </code></pre></div><blockquote>
-<p>说明: 直接在<code>version.target</code>里面定义Name=&ldquo;BeforeBuild&quot;的Target，在Import引入的时候并会不被msbuild自动执行，
+<p>说明: 直接在<code>version.targets</code>里面定义Name=&ldquo;BeforeBuild&quot;的Target，在Import引入的时候并会不被msbuild自动执行，
 因此必须以依赖的方式成为BeforeBuild前置任务。</p>
 </blockquote>
                         </div>
