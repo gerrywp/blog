@@ -156,12 +156,12 @@
 <ol>
 <li>Inputs输入的文件，这里是所有待编译的cs文件</li>
 <li>Outputs输出的文件(移除OutputDirectory，不要将生成的文件放入<code>obj\debug</code>等临时目录)。<br>
-假如放入临时目录，每次重新生成的时候都会提前删除了Version.cs文件，造成每次都会重新编译，使用增量更新失效。</li>
+假如放入临时目录，每次重新生成的时候都会清理掉Version.cs文件，造成每次都重新编译，使增量更新失效。</li>
 <li>将Inputs和Outputs的时间戳进行比对，如果Inputs文件较新就重新生成Version.cs文件。</li>
 <li>在<code>.gitignore</code>文件中添加对<code>BuildVersion.cs</code>文件的忽略。</li>
 </ol>
 <h4 id="在task中动态修改properties和items">在Task中动态修改Properties和Items</h4>
-<p>所有的Propertied和Items值在build之前都已经被替换成了字符串常量(我们称之为静态值)，之后一直会保持不会的。
+<p>所有的Propertied和Items值在<code>build</code>之前都已经被替换成了字符串常量(我们称之为静态值)，之后会一直保持不变。
 我们可以通过<code>Task</code>的子元素<code>Output</code>(也可称为Property)动态修改指定的Item或Property。</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">&lt;PropertyGroup&gt;
 	&lt;FileName&gt;temp.cs&lt;/FileName&gt;
@@ -181,10 +181,12 @@
 <li>将名为FileName的Property值更改为了<em><strong>BuildVersion.cs</strong></em></li>
 </ol>
 <h3 id="propertygroup缓存问题">PropertyGroup缓存问题</h3>
-<p>上文的设置由于PropertyGroup缓存，是存在问题的，每次更新了代码后，BuildVersion.cs里面的版本时间并未得到有效的更新。</p>
-<h4 id="方案1">方案1:</h4>
+<p>以上设置由于PropertyGroup缓存问题，每次更新了代码后，BuildVersion.cs里面的版本时间并未得到及时有效的更新。</p>
+<h3 id="结论">结论</h3>
 <p>将Property所有变量全部移到Target里面，让每次运行都获取一下当前时间。</p>
-<p><strong>version.targets</strong>(重命名<code>vsersion.props</code>为<code>version.targets</code>)</p>
+<ul>
+<li><strong>version.targets</strong>(重命名<code>vsersion.props</code>为<code>version.targets</code>)</li>
+</ul>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#00f">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
 &lt;Project ToolsVersion=<span style="color:#a31515">&#34;12.0&#34;</span> DefaultTargets=<span style="color:#a31515">&#34;Build&#34;</span> xmlns=<span style="color:#a31515">&#34;http://schemas.microsoft.com/developer/msbuild/2003&#34;</span>&gt;
   &lt;Target Name=<span style="color:#a31515">&#34;GenerateVersion&#34;</span> Inputs=<span style="color:#a31515">&#34;@(Compile)&#34;</span> Outputs=<span style="color:#a31515">&#34;BuildVersion.cs&#34;</span>&gt;

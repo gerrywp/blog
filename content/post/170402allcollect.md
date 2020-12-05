@@ -31,24 +31,20 @@ categories = [ "others" ]
 
 7. QT入门之基础篇    
 [QT入门基础](<https://www.cnblogs.com/lxmwb/p/6352220.html> '点我访问')
-
 ### nodejs
-[用webpack构建nodejs后端代码，使其支持js新特性并实现热重载](https://zhuanlan.zhihu.com/p/20782320 "点我访问")
-
-[Backend Apps with Webpack](http://jlongster.com/Backend-Apps-with-Webpack--Part-I "点我访问")
+1. [用webpack构建nodejs后端代码，使其支持js新特性并实现热重载](https://zhuanlan.zhihu.com/p/20782320 "点我访问")
+2. [Backend Apps with Webpack](http://jlongster.com/Backend-Apps-with-Webpack--Part-I "点我访问")
 ### notepad++插件
 1. **xml tool** 格式化xml
 2. **Explorer** 树形目录结构
-
+### 图标网站
+[easyicon](https://www.easyicon.net/ '点我访问')
 ### web后台开发框架
-
 收费
-
 1. [easyweb](https://www.easyweb.vip/index "点我访问") 基于layui
 2. [layui-admin](https://www.layui.com/admin/ '点我访问')
 
 免费
-
 1. [vue-element-admin](https://panjiachen.github.io/vue-element-admin-site/zh/guide/ '点我访问')
 2. [adminlte](https://adminlte.io/docs/3.0/index.html '点我访问')(github文档)
 3. [ligerui](http://www.ligerui.com/ '点我访问')
@@ -57,7 +53,6 @@ categories = [ "others" ]
 
 1. `const`组合引用    
 引用结合const,const关键字只有一个位置：指向常量的引用
-
 ```c
 const int i=7;
 const int& ci=i;
@@ -65,7 +60,6 @@ const int& ci=i;
 
 2. `const`组合指针(因为指针是object类型)
 指针结合const,const关键字有两个位置：(1)指向常量的指针 (2)指向常量的常指针
-
 ```c
 //指向常量的指针
 const int i=7;
