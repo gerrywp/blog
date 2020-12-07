@@ -221,8 +221,8 @@ sudo apt-add-repository --remove <span style="color:#a31515">\
 </span><span style="color:#a31515">       stable&#34;</span>
 </code></pre></div><p>直接访问下<code>https://download.docker.com/linux/ubuntu</code>会发现目录地下有个dists目录，apt默认会到此目录地下寻找软件安装包。</p>
 <p><img src="../../pictures/QQ20170411213604.png" alt="图片4" title="点我访问"></p>
-<p>进入<!-- raw HTML omitted -->dists/<!-- raw HTML omitted -->目录，就有对应的系统版本号(distribution)：trusty/、xenial/、yakkety/<br>
-在进入<!-- raw HTML omitted -->xenial/<!-- raw HTML omitted -->目录，有对应的节点(section):edge/、pool/、stable/、test/</p>
+<p>进入<u>dists/</u>目录，就有对应的系统版本号(distribution)：trusty/、xenial/、yakkety/<br>
+在进入<u>xenial/</u>目录，有对应的节点(section):edge/、pool/、stable/、test/</p>
 <h4 id="apt-search-packagename搜索apt服务器上指定名称的包">apt search packagename(搜索apt服务器上指定名称的包)</h4>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">apt search curl <span style="color:#008000">#列出当前apt server或镜像站点里面的包信息</span>
 apt list        <span style="color:#008000">#列出apt server上所有的包</span>

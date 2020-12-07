@@ -118,7 +118,7 @@
     Console.WriteLine(<span style="color:#a31515">$&#34;parallel is completed: {result.IsCompleted}! &#34;</span>);
 }
 </code></pre></div><ol>
-<li>据官方文档可知，List<!-- raw HTML omitted -->的实例成员就不是线程安全的。</li>
+<li>据官方文档可知，List<T>的实例成员就不是线程安全的。</li>
 <li>所以上述代码在死循环下会抛出异常，为什么会抛出异常不在这次的讨论范围内。</li>
 <li>所以对一个非线程安全的对象进行write操作(写操作包括更新、删除)在多次测试下是会抛出异常的，所以对非线程安全的对象进行写操作的代码是错误的代码！</li>
 </ol>

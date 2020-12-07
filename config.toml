@@ -22,13 +22,12 @@ hasCJKLanguage = true
   localSearch = true
   
 [params.utteranc]
-    enable = true
-    repo = "gerrywp/blog"    # 存储评论的Repo，格式为 owner/repo
-    issueTerm = "pathname"  #表示你选择以那种方式让github issue的评论和你的文章关联。
-    theme = "github-light" # 样式主题，有github-light和github-dark两种
+  enable = true
+  repo = "gerrywp/blog"    # 存储评论的Repo，格式为 owner/repo
+  issueTerm = "pathname"  #表示你选择以那种方式让github issue的评论和你的文章关联。
+  theme = "github-light" # 样式主题，有github-light和github-dark两种
 	
 [menu]
-
   [[menu.main]]
   identifier = "archives"
   name = "归档"
@@ -38,3 +37,6 @@ hasCJKLanguage = true
 [markup]
   [markup.highlight]
   style = "vs"
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

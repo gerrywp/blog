@@ -135,7 +135,7 @@ git show d921970^2 <span style="color:#008000">#代表&#34;d921970&#34;的第二
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git log refA...refB
 </code></pre></div><h3 id="httphttps记住用户名密码">http/https记住用户名密码</h3>
 <p><code>git config --global credential.helper</code><br>
-**&ldquo;store&rdquo;**模式接受一个 --file <!-- raw HTML omitted --> 参数，可以自定义存放密码的文件路径（默认是<code>~/.git-credentials</code>）。</p>
+**&ldquo;store&rdquo;**模式接受一个 --file <path> 参数，可以自定义存放密码的文件路径（默认是<code>~/.git-credentials</code>）。</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git config --global credential.helper store --file ~/.my-credentials
 </code></pre></div><h3 id="撤销和重置操作">撤销和重置操作</h3>
 <p>checkout、reset都可以对workstation工作区的文件进行撤销更改。<br>

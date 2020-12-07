@@ -164,12 +164,12 @@ xsd文件让编辑xml配置的时候有了intellisence智能感知能力。<br>
 <strong>其次</strong>:真正有用的是jar包<code>META-INF</code>目录下的<code>spring.handlers</code>它定义了名称空间到实际jar里面<code>class</code>名称的具体映射，xml文件里面的节点(section)都是实际通过俱象class俱象method进行处理的。<br>
 拿<code>spring-webmvc-5.0.7.RELEASE.jar</code>包来说，<code>META-INF/spring.handlers</code>文件定义如下：</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">http\://www.springframework.org/schema/mvc=org.springframework.web.servlet.config.MvcNamespaceHandler
-</code></pre></div><p>指定了使用<code>org.springframework.web.servlet.config</code>包下的<code>MvcNamespaceHandler</code>处理程序来处理<!-- raw HTML omitted -->下面的配置节。我们可以查阅源码！</p>
+</code></pre></div><p>指定了使用<code>org.springframework.web.servlet.config</code>包下的<code>MvcNamespaceHandler</code>处理程序来处理<bean>下面的配置节。我们可以查阅源码！</p>
 <ol>
 <li>schema/tool -&gt; 指向了 org.springframework.beans.factory.xml/sping-tools.xsd文件</li>
 </ol>
 <h3 id="如何使用消息避免分布式事务">如何使用消息避免分布式事务</h3>
-<p><!-- raw HTML omitted -->文章转载<!-- raw HTML omitted --></p>
+<p><a href="http://www.cnblogs.com/LBSer/p/4715395.html" title="点我访问" target="_blank">文章转载</a></p>
 <blockquote>
 <p>参考<br>
 <a href="https://blog.csdn.net/hengyunabc/article/details/22295749" title="点我访问">为什么在Spring的配置里，最好不要配置xsd文件的版本号</a><br>
