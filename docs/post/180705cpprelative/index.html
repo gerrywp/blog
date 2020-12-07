@@ -92,7 +92,7 @@
                         
                         
                         <div class="post-content">
-                            <p>　　在windows下做c++开发，不想使用微软系的IDE开发工具。</p>
+                            <p>在windows下做c++开发，不想使用微软系的IDE开发工具。</p>
 <h3 id="mingwminimalist-gnu-for-windows">minGW(Minimalist GNU for Windows)</h3>
 <p>目的：开发Window原生应用，可以使用<code>gcc</code>、<code>g++</code>编译器，不使用<del>微软的cl编译器</del>。使用qt开发windows应用,若仅使用标准c++库，
 并用minGW编译可实现跨平台。<br>
@@ -102,10 +102,10 @@
 <ul>
 <li>64位版本
 <a href="https://sourceforge.net/projects/mingw-w64/files/">mingw64</a> 找到<strong>MinGW-W64 GCC-8.1.0</strong>下64位的下载包即可。<br>
-说明：各版本的区别(会看到下载版本部分名称不同)
+说明：各版本(下载的文件版本名称)的区别
 <ol>
-<li>DWARF:DWARF-2(DW2)EH这需要使用DWARF-2(或DWARF-3)调试信息DW-2EH可以导致可执行文件略显膨胀，因为大的调用堆栈表必须包含在可执行文件中</li>
-<li>setjmp/longjmp(SJLJ)。基于SJLJ的EH比DW2 EH慢得多(在没有异常时会惩罚甚至正常执行)，但是可以在没有使用GCC编译的代码或没有调用堆栈的代码上工作</li>
+<li>DWARF或DWARF-2(DW2)EH这需要使用DWARF-2(或DWARF-3)调试信息DW-2EH可以导致可执行文件略显膨胀，因为大的调用堆栈表必须包含在可执行文件中</li>
+<li>setjmp/longjmp(SJLJ)基于SJLJ的EH比DW2 EH慢得多(在没有异常时会惩罚甚至正常执行)，但是可以在没有使用GCC编译的代码或没有调用堆栈的代码上工作</li>
 <li>结构化异常处理SEH(Structured Exception Handling)Windows使用自己的异常处理机制。</li>
 </ol>
 </li>
@@ -117,16 +117,14 @@
 <p>目的：提供完整的类Unix环境，适用于在windows桌面下，开发运行于linux系统上的应用<br>
 功能：提供了一整套的类linux环境，GCC、GNU工具 <br>
 下载：<a href="https://cygwin.com/install.html" title="点我访问">Cygwin</a></p>
-<blockquote>
-<p>备注:Cyg是<strong>cygnus solutions</strong>公司的简称(Cygnus有中文含义:天鹅)</p>
-</blockquote>
+<p><strong>备注</strong>:Cyg是<em>cygnus solutions</em>公司的简称(Cygnus有中文含义:天鹅)</p>
 <h3 id="安装android-sdk">安装android-sdk</h3>
 <p><a href="https://blog.csdn.net/naipeng/article/details/72722682" title="点我访问">安装android sdk</a></p>
 <h3 id="qt实战教程">QT实战教程</h3>
 <p><a href="https://blog.csdn.net/liang19890820/article/details/50277095" title="点我访问">QT实战123</a>
 <a href="https://www.cnblogs.com/lxmwb/p/6352220.html" title="点我访问">QT入门基础</a></p>
-<h3 id="makefile实战">makefile实战</h3>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mk" data-lang="mk"><span style="color:#008000">#获取所有cpp文件
+<h3 id="实战make">实战make</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-makefile" data-lang="makefile"><span style="color:#008000">#获取所有cpp文件
 </span><span style="color:#008000"></span>files=<span style="color:#00f">$(</span>wildcard *.cpp<span style="color:#00f">)</span>
 objs=<span style="color:#00f">$(</span>patsubst %.cpp,%.o,<span style="color:#00f">$(</span>files<span style="color:#00f">))</span>
 BIN=./bin/
@@ -159,20 +157,14 @@ clean:
 	
 debug:
 	echo <span style="color:#00f">$(</span>OS<span style="color:#00f">)</span>
-</code></pre></div><p><code>objects=*.o</code>表示通配符同样可以用在变量中。但是*.o不会展开！object的值就是<code>*.o</code>。如果你要让通配符在变量中展开，
-也就是让objects的值是所有.o的文件名的集合，那么你可以这样：</p>
+</code></pre></div><p><code>objects=*.o</code>通配符同样可以用在变量中,但是*.o不会展开！object的值就是<code>*.o</code>。<br>
+如果你要让通配符在变量中展开,也就是让objects的值是所有.o的文件名的集合，那么你可以这样(参考<a href="https://www.gnu.org/software/make/manual/make.html#toc-An-Introduction-to-Makefiles" title="点我访问">文档</a>第13页 )：</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-makefile" data-lang="makefile">objects:=<span style="color:#00f">$(</span>wildcard *.o<span style="color:#00f">)</span>
-</code></pre></div><p>具体请参考下面的文档第13页!</p>
-<p>说明：<strong>在makefile文件中的linux命令，每一行都被当成是一条单独的指令，运行在各自不同的shell实例当中。因此当多条指令被当做一条指令执行的时候必须使用
-<code>\</code>换行组合多条指令。这样shell会把这样的命令当作长字符串，回车将会被删除。所以<code>\</code>与指令之间需要有一个空格，因缺少回车每个指令的结尾需强制用分号
-隔离命令！</strong></p>
-<blockquote>
-<p>参考</p>
-</blockquote>
-<p><a href="https://seisman.github.io/how-to-write-makefile/Makefile.pdf" title="点我访问">跟我一起写Makefile</a></p>
-<p><a href="https://seisman.github.io/how-to-write-makefile/introduction.html" title="点我访问">在线Html版本</a></p>
-<p><a href="https://www.gnu.org/software/make/manual/make.html#toc-An-Introduction-to-Makefiles" title="点我访问">官方文档</a></p>
-<p>上面的创建目录的makefile文件处理的并不优雅，其实有更好的方式来处理目录的创建！目录是一个真实存在的文件，因此也可以作为一个target来进行创建</p>
+</code></pre></div><p><strong>说明</strong>：在makefile文件中的linux命令，每一行都被当成是一条单独的指令，运行在各自不同的shell实例中。当使用
+<code>\</code>换行组合多条指令,shell会把多行指令作为长字符串，回车将会被删除。所以<code>\</code>与指令之间需要有一个空格，因缺少回车每个指令的结尾需强制用分号
+隔离命令！</p>
+<h4 id="通过target创建目录">通过target创建目录</h4>
+<p>上文makefile文件创建目录部分代码不够优雅，有更好的方式来处理目录的创建！因为目录是真实存在的文件,所以可以通过target来创建</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-makefile" data-lang="makefile"><span style="color:#008000">#此处只列出目录创建部分
 </span><span style="color:#008000"></span>OBJDIR=obj
 BINDIR=bin
@@ -186,7 +178,7 @@ $(OBJDIR)/%.o:%.cpp
 	<span style="color:#00f">$(</span>CXX<span style="color:#00f">)</span> -c <span style="color:#00f">$(</span>OUTPUT_OPTION<span style="color:#00f">)</span> $&lt;
 $(OBJDIR):
 	mkdir $@
-</code></pre></div><p>这里使用了makefile内置变量替换了g++命令和参数，并且使用了pipe管道定义了一个$(OBJDIR)的<code>order-only-prerequisite</code>先决条件，只有第一次构造targets才会使用<code>order-only-prerequisite</code>,后面即使<code>order-only-prerequisite</code>发生了改变时间戳是最新的，也不会重新构造targets！</p>
+</code></pre></div><p>脚本用makefile内置变量替换了g++命令和参数，并用pipe管道定义了一个$(OBJDIR)的<code>order-only-prerequisite</code>先决条件。仅第一次构造targets会使用<code>order-only-prerequisite</code>,往后即使<code>order-only-prerequisite</code>时间戳发生了改变，也不会重新构造targets！</p>
 <h4 id="phony">.PHONY</h4>
 <p>伪目标：如果没有真实存在的<strong>文件</strong>与target目标形成一一对应关系，最好就是将该目标设置成<strong>伪目标</strong>。这样每次make phonyname都会被执行！而不管真实文件存在与否</p>
 <h4 id="常用变量">常用变量</h4>
@@ -195,15 +187,12 @@ $(OBJDIR):
   ifeq (<span style="color:#00f">$(</span>OS<span style="color:#00f">)</span>,Windows_NT)
       del /s *.o *.d *.elf *.map *.log
   endif
-</code></pre></div><h3 id="vs2017创建vc-general-makefile-project">VS2017创建vc++ general makefile project</h3>
+</code></pre></div><h4 id="vs2017创建vc-general-makefile-project">VS2017创建vc++ general makefile project</h4>
 <ol>
-<li>首先需要安装<code>Windows Universal C Runtime</code>。
-打开vs安装程序，选中<code>Individual Components</code>-&gt;<code>Windows Universal C Runtime</code></li>
-</ol>
-<blockquote>
-<p>如果不安装在创建makefile project的时候就会提示找不到很多头文件！</p>
-</blockquote>
-<ol start="2">
+<li>
+<p>首先需要安装<code>Windows Universal C Runtime</code>。
+打开vs安装程序，选中<code>Individual Components</code>-&gt;<code>Windows Universal C Runtime</code>(若不安装创建makefile project的时候就会提示找不到很多头文件！)</p>
+</li>
 <li>
 <p>在项目下新建makefile文件，并编写编译过程。</p>
 </li>
@@ -230,7 +219,11 @@ rebuild:
 clean:
 
 .PHONY:build build-release rebuild rebuild-release clean
-</code></pre></div>
+</code></pre></div><blockquote>
+<p><a href="https://seisman.github.io/how-to-write-makefile/Makefile.pdf" title="点我访问">跟我一起写Makefile</a></p>
+<p><a href="https://seisman.github.io/how-to-write-makefile/introduction.html" title="点我访问">在线Html版本</a></p>
+<p><a href="https://www.gnu.org/software/make/manual/make.html#toc-An-Introduction-to-Makefiles" title="点我访问">官方文档</a></p>
+</blockquote>
                         </div>
 
                         
@@ -261,6 +254,8 @@ clean:
                             <ul class="clearfix">
                                 
                                 <li><a href='https://gerrywp.github.io/blog/tags/cpp'>cpp</a></li>
+                                
+                                <li><a href='https://gerrywp.github.io/blog/tags/make'>make</a></li>
                                 
                             </ul>
                             
@@ -388,6 +383,8 @@ clean:
     <a href="https://gerrywp.github.io/blog/tags/java/">java</a>
     
     <a href="https://gerrywp.github.io/blog/tags/js/">js</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/make/">make</a>
     
     <a href="https://gerrywp.github.io/blog/tags/markdown/">markdown</a>
     
