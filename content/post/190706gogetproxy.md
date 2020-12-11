@@ -1,7 +1,7 @@
 +++
 title = "go get代理设置"
 date = "2019-07-06"
-tags = [ "2019","go" ]
+tags = ["go"]
 categories = [ "golang" ]
 +++
 

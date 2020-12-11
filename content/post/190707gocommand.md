@@ -1,7 +1,7 @@
 +++
 title = "go命令详解"
 date = "2019-07-07"
-tags = [ "2019","go","vs" ]
+tags = ["go","vs" ]
 categories = [ "golang" ]
 +++
 

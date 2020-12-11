@@ -1,7 +1,7 @@
 +++
 title = "死锁"
 date = "2020-09-12"
-tags = [ "多线程" ]
+tags = [ "algorithm" ]
 categories = [ "windows" ]
 +++
 

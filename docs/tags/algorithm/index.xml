@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>algorithm on 云亦海</title>
+    <link>https://gerrywp.github.io/blog/tags/algorithm/</link>
+    <description>Recent content in algorithm on 云亦海</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 18 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://gerrywp.github.io/blog/tags/algorithm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>一致性哈希</title>
+      <link>https://gerrywp.github.io/blog/post/200918hash/</link>
+      <pubDate>Fri, 18 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/200918hash/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;一致性哈希&lt;/strong&gt; 是一种特殊的&lt;code&gt;hash&lt;/code&gt;算法(散列)。在&lt;code&gt;HashTable&lt;/code&gt;(&lt;code&gt;HashMap&lt;/code&gt;)等槽位扩容或缩容的时候，只需对平均&lt;code&gt;K/n&lt;/code&gt;个关键字进行映射，其中&lt;strong&gt;K&lt;/strong&gt;是关键字的数量，&lt;em&gt;n&lt;/em&gt;是槽位数量。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>死锁</title>
+      <link>https://gerrywp.github.io/blog/post/200912deadlock/</link>
+      <pubDate>Sat, 12 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/200912deadlock/</guid>
+      <description>&lt;p&gt;多线程死锁&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>浅谈Task</title>
+      <link>https://gerrywp.github.io/blog/post/200912task/</link>
+      <pubDate>Sat, 12 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/200912task/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;TAP(Task-based async pattern)&lt;/strong&gt; 基于任务的异步编程模型&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>集群和分布式</title>
+      <link>https://gerrywp.github.io/blog/post/190713clusterdistribute/</link>
+      <pubDate>Sat, 13 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/190713clusterdistribute/</guid>
+      <description>&lt;p&gt;看过很多篇幅的文章说集群和分布式，但是有时候这两个东西还是会搞混淆，并且不是那么容易说的清楚，在这里对这两个
+概念做一个归纳和总结。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>数据结构</title>
+      <link>https://gerrywp.github.io/blog/post/190620algorithms/</link>
+      <pubDate>Thu, 20 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/190620algorithms/</guid>
+      <description>&lt;p&gt;　　算法心得，使用golang实现常用的算法。算法导论中阐述了经典常用的数据结构和典型算法。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>线性存储</title>
+      <link>https://gerrywp.github.io/blog/post/180703linear7hash/</link>
+      <pubDate>Tue, 03 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/180703linear7hash/</guid>
+      <description>&lt;p&gt;　　数组就是典型的线性结构。对数组中特定&lt;strong&gt;值&lt;/strong&gt;的查询，线性查询无疑是最慢的查询方式，时间复杂度为O(n):n为数组长度。
+最合适的算法自然就是使用散列表了(HashTable)。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>线程安全与非线程安全</title>
+      <link>https://gerrywp.github.io/blog/post/171203threadsafe/</link>
+      <pubDate>Sun, 03 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/171203threadsafe/</guid>
+      <description>&lt;p&gt;　　c#的多线程编程由于其高级的语法糖(synax)而变化的相对简单，然而又有些神秘莫测。对于线程安全与否与同步(synchronize)经常有人将其混为一谈，其实这是2个不同的概念。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

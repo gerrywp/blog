@@ -1,7 +1,7 @@
 +++
 title = "nodejs之旅(6)热替换与热加载"
 date = "2018-08-16"
-tags = [ "nodejs" ]
+tags = [ "node" ]
 categories = [ "js" ]
 +++
 

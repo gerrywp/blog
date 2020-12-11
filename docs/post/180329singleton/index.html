@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.75.1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>nodejs如何创建单例实例 | 云亦海</title>
+    <meta property="og:title" content="nodejs如何创建单例实例 - 云亦海">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2018-03-29T00:00:00&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2018-03-29T00:00:00&#43;08:00">
+        
+    <meta name="Keywords" content="golang,go语言,go语言笔记,项目管理,软件架构,公众号,小程序">
+    <meta name="description" content="nodejs如何创建单例实例">
+        
+    <meta name="author" content="gerry">
+    <meta property="og:url" content="https://gerrywp.github.io/blog/post/180329singleton/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/blog/css/normalize.css">
+    
+        <link rel="stylesheet" href="/blog/css/prism.css">
+    
+    <link rel="stylesheet" href="/blog/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://gerrywp.github.io/blog">
+                        云亦海
+                    </a>
+                
+                <p class="description">专注于Go语言(golang)、csharp、移动互联网、项目管理、软件架构</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://gerrywp.github.io/blog">首页</a>
+                    
+                    <a  href="https://gerrywp.github.io/blog/archives/" title="归档">归档</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+        
+        
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">nodejs如何创建单例实例</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2018年3月29日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href='https://gerrywp.github.io/blog/categories/js'>js</a></span>
+                            
+                        </div>
+                        
+                        
+                        <div class="post-meta">
+                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
+                        </div>
+                        
+                        
+                        <div class="post-content">
+                            <p>　　How to create singleton in Node.js?这个问题实际是错误的！因为nodejs模块缓存的原因，require('')每次出来的都是单例的！</p>
+<h3 id="单例模式">单例模式</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">var</span> HelloWorld = (<span style="color:#00f">function</span> () {
+
+  <span style="color:#00f">this</span>.greeting = <span style="">“</span>Hello, World<span style="">”</span>;
+
+  <span style="color:#00f">return</span> <span style="color:#00f">this</span>;
+
+})();
+
+module.exports = HelloWorld;
+</code></pre></div><p>模块缓存的作用，造成了每次require(&lsquo;helloworld.js&rsquo;)的时候返回的都是同一个对象！
+<a href="https://nodejs.org/api/modules.html#modules_caching" title="点我访问">module-cache</a></p>
+<blockquote>
+<p>原文：Modules are cached after the first time they are loaded. This means (among other things) that every call to require(&lsquo;foo&rsquo;) will get exactly the same object returned, if it would resolve to the same file.</p>
+</blockquote>
+<h3 id="如何创建非单例模式">如何创建非单例模式？</h3>
+<p>不要暴露一个对象出来，而是暴露一个function出来并call它。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">function</span> HelloWorld() {
+
+  <span style="color:#00f">this</span>.greeting = <span style="">“</span>Hello, World<span style="">”</span>;
+
+  <span style="color:#00f">return</span> <span style="color:#00f">this</span>;
+
+}
+
+module.exports = HelloWorld;
+</code></pre></div><blockquote>
+<p><a href="https://medium.com/@iaincollins/how-not-to-create-a-singleton-in-node-js-bd7fde5361f5" title="点我访问">How (not) to create a singleton in Node.js</a></p>
+</blockquote>
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/blog/post/180327jsjourney2/">nodejs之旅(2)</a></li>
+        
+        <li><a href="/blog/post/180322jsjourney1/">nodejs之旅(1)</a></li>
+        
+        <li><a href="/blog/post/171124fullstack/">前端那些事儿</a></li>
+        
+        <li><a href="/blog/post/161223node1/"> windows环境下node.exe配置</a></li>
+        
+        <li><a href="/blog/post/180329dllnotcopy/">发布项目dll未被msbuild拷贝到输出目录</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href='https://gerrywp.github.io/blog/tags/node'>node</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "gerrywp/blog"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="https://gerrywp.github.io/blog/search/" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://gerrywp.github.io/blog">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/201031javaide/" title="VsCode搭建Java开发环境">VsCode搭建Java开发环境</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200912winhook/" title="SetWindowsHookEx">SetWindowsHookEx</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200912string/" title="string">string</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200912deadlock/" title="死锁">死锁</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200912task/" title="浅谈Task">浅谈Task</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200824msbuild/" title="msbuid(5)-不同环境配置管理">msbuid(5)-不同环境配置管理</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200808ftp/" title="FTP模式">FTP模式</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200708wide/" title="宽与窄">宽与窄</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/article/">article (15)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/csharp/">csharp (12)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/golang/">golang (5)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/java/">java (3)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/js/">js (16)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (14)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (10)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/windows/">windows (12)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://gerrywp.github.io/blog/tags/algorithm/">algorithm</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/cms/">cms</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/cpp/">cpp</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/git/">git</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/go/">go</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/java/">java</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/js/">js</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/mix/">mix</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/msbuild/">msbuild</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/node/">node</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/shell/">shell</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/sql/">sql</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/tool/">tool</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vpn/">vpn</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vs/">vs</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/%E9%9A%8F%E7%AC%94/">随笔</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://gerrywp.github.io/blog/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="https://gerrywp.github.io/blog">云亦海 By gerry</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function () {
+            $("pre code").parent().addClass("line-numbers")
+        }());
+
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script type="text/javascript" src="/blog/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/blog/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+<script type="text/javascript">
+(function(){
+	if (typeof self === 'undefined' || !self.Prism || !self.document) {
+		return;
+	}
+
+	if (!Prism.plugins.toolbar) {
+		console.warn('Copy to Clipboard plugin loaded before Toolbar plugin.');
+
+		return;
+	}
+
+	var ClipboardJS = window.ClipboardJS || undefined;
+
+	if (!ClipboardJS && typeof require === 'function') {
+		ClipboardJS = require('clipboard');
+	}
+
+	var callbacks = [];
+
+	if (!ClipboardJS) {
+		var script = document.createElement('script');
+		var head = document.querySelector('head');
+
+		script.onload = function() {
+			ClipboardJS = window.ClipboardJS;
+
+			if (ClipboardJS) {
+				while (callbacks.length) {
+					callbacks.pop()();
+				}
+			}
+		};
+
+		script.src = 'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js';
+		head.appendChild(script);
+	}
+
+	Prism.plugins.toolbar.registerButton('copy-to-clipboard', function (env) {
+		var linkCopy = document.createElement('button');
+		linkCopy.textContent = '复制代码';
+
+		if (!ClipboardJS) {
+			callbacks.push(registerClipboard);
+		} else {
+			registerClipboard();
+		}
+
+		return linkCopy;
+
+		function registerClipboard() {
+			var clip = new ClipboardJS(linkCopy, {
+				'text': function () {
+					return env.code;
+				}
+			});
+
+			clip.on('success', function() {
+				linkCopy.textContent = '复制成功!';
+
+				resetText();
+			});
+			clip.on('error', function () {
+				linkCopy.textContent = '按 Ctrl+C 复制';
+
+				resetText();
+			});
+		}
+
+		function resetText() {
+			setTimeout(function () {
+				linkCopy.textContent = '复制代码';
+			}, 5000);
+		}
+	});
+})();
+
+</script>
+</body>
+</html>

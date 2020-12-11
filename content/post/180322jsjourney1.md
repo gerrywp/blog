@@ -1,7 +1,7 @@
 +++
 title = "nodejs之旅(1)"
 date = "2018-03-22"
-tags = [ "nodejs" ]
+tags = [ "node" ]
 categories = [ "js" ]
 +++
 

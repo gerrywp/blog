@@ -1,7 +1,7 @@
 +++
-title = "资料和笔记"
+title = "百宝箱"
 date = "2017-04-02"
-tags = [ "资料收集" ]
+tags = [ "mix" ]
 categories = [ "others" ]
 +++
 
@@ -48,9 +48,9 @@ categories = [ "others" ]
 1. [vue-element-admin](https://panjiachen.github.io/vue-element-admin-site/zh/guide/ '点我访问')
 2. [adminlte](https://adminlte.io/docs/3.0/index.html '点我访问')(github文档)
 3. [ligerui](http://www.ligerui.com/ '点我访问')
-
+### golang
+[目录结构](https://makeoptim.com/golang/standards/project-layout '点我访问')
 ### c++中const组合引用和指针
-
 1. `const`组合引用    
 引用结合const,const关键字只有一个位置：指向常量的引用
 ```c

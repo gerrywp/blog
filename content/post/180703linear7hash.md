@@ -1,7 +1,7 @@
 +++
 title = "线性存储"
 date = "2018-07-03"
-tags = [ "数据结构" ]
+tags = [ "algorithm" ]
 categories = [ "others" ]
 +++
 

@@ -1,7 +1,7 @@
 +++
 title = "markdown相关"
 date = "2017-01-11"
-tags = [ "markdown" ]
+tags = [ "tool" ]
 categories = [ "others" ]
 +++
 

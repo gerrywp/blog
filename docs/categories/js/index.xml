@@ -57,10 +57,10 @@
     
     <item>
       <title>nodejs如何创建单例实例</title>
-      <link>https://gerrywp.github.io/blog/post/180329singletoninnodejs/</link>
+      <link>https://gerrywp.github.io/blog/post/180329singleton/</link>
       <pubDate>Thu, 29 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://gerrywp.github.io/blog/post/180329singletoninnodejs/</guid>
+      <guid>https://gerrywp.github.io/blog/post/180329singleton/</guid>
       <description>&lt;p&gt;　　How to create singleton in Node.js?这个问题实际是错误的！因为nodejs模块缓存的原因，require(&#39;&#39;)每次出来的都是单例的！&lt;/p&gt;</description>
     </item>
     

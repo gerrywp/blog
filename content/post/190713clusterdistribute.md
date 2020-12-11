@@ -1,7 +1,7 @@
 +++
 title = "集群和分布式"
 date = "2019-07-13"
-tags = [ "分布式" ]
+tags = [ "algorithm" ]
 categories = [ "linux" ]
 +++
 

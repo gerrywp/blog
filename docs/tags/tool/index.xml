@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tool on 云亦海</title>
+    <link>https://gerrywp.github.io/blog/tags/tool/</link>
+    <description>Recent content in tool on 云亦海</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 08 Aug 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://gerrywp.github.io/blog/tags/tool/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>FTP模式</title>
+      <link>https://gerrywp.github.io/blog/post/200808ftp/</link>
+      <pubDate>Sat, 08 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/200808ftp/</guid>
+      <description>&lt;p&gt;FTP文件传输两种模式：(1). PORT(主动)模式 (2). PASV(被动)模式.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>c&#43;&#43;开发环境</title>
+      <link>https://gerrywp.github.io/blog/post/180705cpprelative/</link>
+      <pubDate>Thu, 05 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/180705cpprelative/</guid>
+      <description>&lt;p&gt;在windows下做c++开发，不想使用微软系的IDE开发工具。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>vim使用的一些技巧</title>
+      <link>https://gerrywp.github.io/blog/post/171030vimuse/</link>
+      <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/171030vimuse/</guid>
+      <description>&lt;p&gt;  以普通用户身份vim编辑的文件,如何强制保存？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>markdown相关</title>
+      <link>https://gerrywp.github.io/blog/post/170111jkhilight/</link>
+      <pubDate>Wed, 11 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/170111jkhilight/</guid>
+      <description>&lt;p&gt;使用markdown编写日志的时候，通常需要插入代码块。针对不同的语言，jekyll可以提供不同的语法高亮样式。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

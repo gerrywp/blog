@@ -25,5 +25,14 @@
       <description>&lt;p&gt;使用谷歌GCP平台搭建的SSR-VPN过一段时间就没法访问了，几经波折原来是因为TCP端口被封了的缘故。&lt;/p&gt;</description>
     </item>
     
+    <item>
+      <title> NAT模式下代理</title>
+      <link>https://gerrywp.github.io/blog/post/161230vmware/</link>
+      <pubDate>Fri, 30 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/161230vmware/</guid>
+      <description>&lt;p&gt;兲朝&amp;quot;科学上网&amp;quot;:[Vmware-Ubuntu]使用Nat模式，也能使用本机的shadowsocks proxy&lt;/p&gt;</description>
+    </item>
+    
   </channel>
 </rss>

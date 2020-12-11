@@ -1,7 +1,7 @@
 +++
 title = "线程安全与非线程安全"
 date = "2017-12-03"
-tags = [ "多线程" ]
+tags = [ "algorithm" ]
 categories = [ "csharp" ]
 +++
 

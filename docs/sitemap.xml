@@ -43,6 +43,11 @@
   </url>
   
   <url>
+    <loc>https://gerrywp.github.io/blog/tags/algorithm/</loc>
+    <lastmod>2020-09-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://gerrywp.github.io/blog/categories/others/</loc>
     <lastmod>2020-09-18T00:00:00+00:00</lastmod>
   </url>
@@ -53,22 +58,17 @@
   </url>
   
   <url>
-    <loc>https://gerrywp.github.io/blog/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
-    <lastmod>2020-09-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gerrywp.github.io/blog/tags/asm/</loc>
-    <lastmod>2020-09-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://gerrywp.github.io/blog/tags/cpp/</loc>
     <lastmod>2020-09-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://gerrywp.github.io/blog/categories/csharp/</loc>
+    <lastmod>2020-09-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gerrywp.github.io/blog/tags/mix/</loc>
     <lastmod>2020-09-12T00:00:00+00:00</lastmod>
   </url>
   
@@ -89,11 +89,6 @@
   
   <url>
     <loc>https://gerrywp.github.io/blog/categories/windows/</loc>
-    <lastmod>2020-09-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gerrywp.github.io/blog/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
     <lastmod>2020-09-12T00:00:00+00:00</lastmod>
   </url>
   
@@ -123,7 +118,7 @@
   </url>
   
   <url>
-    <loc>https://gerrywp.github.io/blog/tags/iis/</loc>
+    <loc>https://gerrywp.github.io/blog/tags/tool/</loc>
     <lastmod>2020-08-08T00:00:00+00:00</lastmod>
   </url>
   
@@ -228,18 +223,8 @@
   </url>
   
   <url>
-    <loc>https://gerrywp.github.io/blog/tags/%E5%88%86%E5%B8%83%E5%BC%8F/</loc>
-    <lastmod>2019-07-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://gerrywp.github.io/blog/post/190713clusterdistribute/</loc>
     <lastmod>2019-07-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gerrywp.github.io/blog/tags/2019/</loc>
-    <lastmod>2019-07-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -273,7 +258,7 @@
   </url>
   
   <url>
-    <loc>https://gerrywp.github.io/blog/tags/nodejs/</loc>
+    <loc>https://gerrywp.github.io/blog/tags/node/</loc>
     <lastmod>2018-08-16T00:00:00+00:00</lastmod>
   </url>
   
@@ -299,11 +284,6 @@
   
   <url>
     <loc>https://gerrywp.github.io/blog/post/180705cpprelative/</loc>
-    <lastmod>2018-07-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gerrywp.github.io/blog/tags/make/</loc>
     <lastmod>2018-07-05T00:00:00+00:00</lastmod>
   </url>
   
@@ -363,7 +343,7 @@
   </url>
   
   <url>
-    <loc>https://gerrywp.github.io/blog/post/180329singletoninnodejs/</loc>
+    <loc>https://gerrywp.github.io/blog/post/180329singleton/</loc>
     <lastmod>2018-03-29T00:00:00+00:00</lastmod>
   </url>
   
@@ -440,11 +420,6 @@
   <url>
     <loc>https://gerrywp.github.io/blog/post/171102uselinux/</loc>
     <lastmod>2017-11-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gerrywp.github.io/blog/tags/vim/</loc>
-    <lastmod>2017-10-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -533,17 +508,7 @@
   </url>
   
   <url>
-    <loc>https://gerrywp.github.io/blog/tags/%E8%B5%84%E6%96%99%E6%94%B6%E9%9B%86/</loc>
-    <lastmod>2017-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://gerrywp.github.io/blog/post/170323encoding/</loc>
-    <lastmod>2017-03-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gerrywp.github.io/blog/tags/utf8/</loc>
     <lastmod>2017-03-23T00:00:00+00:00</lastmod>
   </url>
   
@@ -598,22 +563,12 @@
   </url>
   
   <url>
-    <loc>https://gerrywp.github.io/blog/tags/markdown/</loc>
-    <lastmod>2017-01-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://gerrywp.github.io/blog/post/170111jkhilight/</loc>
     <lastmod>2017-01-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://gerrywp.github.io/blog/post/161230vmware/</loc>
-    <lastmod>2016-12-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gerrywp.github.io/blog/tags/ssh/</loc>
     <lastmod>2016-12-30T00:00:00+00:00</lastmod>
   </url>
   

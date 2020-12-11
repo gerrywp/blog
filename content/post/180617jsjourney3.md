@@ -1,7 +1,7 @@
 +++
 title = "nodejs之旅(3)-gulp及调试"
 date = "2018-06-17"
-tags = [ "nodejs" ]
+tags = [ "node" ]
 categories = [ "js" ]
 +++
 
