@@ -163,11 +163,11 @@ windows98以后(98,2000,xp)都支持WSH,可以告别批处理了!
 
 #### 使用jscript写console程序
 
-[jscript for WSH](./jsforWSH.html)
+[jscript for WSH](../170725jsforwsh/)
 
 #### WSH技术指南
 
-[Windows Script Host 2.0 Developer's Guide](../assets/WindowsScriptHost2.0Developer'sGuide.pdf "点我访问")
+[Windows Script Host 2.0 Developer's Guide](../../cmd/WSH2.0DevGuide.pdf "点我访问")
 
 >参考文献
 
