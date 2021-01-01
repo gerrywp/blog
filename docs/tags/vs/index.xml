@@ -69,8 +69,7 @@ github上有很多现成的可以使用。&lt;/p&gt;</description>
       
       <guid>https://gerrywp.github.io/blog/post/170414razor/</guid>
       <description>&lt;p&gt;.cshtml(.vbhtml)文件能够被执行，必须被编译进程序集的具体类型。
-微软使用&lt;code&gt;%windir%\Microsoft.NET\Framework\v4.0.30319&lt;/code&gt;下的aspnet_compiler.exe对view文件进行编译。
-&lt;a href=&#34;https://github.com/ASP-NET-MVC/aspnetwebstack/tree/master/src&#34; title=&#34;点我访问&#34;&gt;aspnet mvc4源码&lt;/a&gt;&lt;/p&gt;</description>
+微软使用&lt;code&gt;%windir%\Microsoft.NET\Framework\v4.0.30319&lt;/code&gt;下的aspnet_compiler.exe对view文件进行编译。&lt;/p&gt;</description>
     </item>
     
     <item>

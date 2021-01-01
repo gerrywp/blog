@@ -6,9 +6,7 @@ categories = [ "js" ]
 +++
 
 今天偶然看到了一篇讲解javascript各定时器的文章。文章使用对话的方式阐述了`setInterval`不足，颇有意思。
-但是觉得不太好理解，原文如下：  
-[setTimeout那些事儿](http://imweb.io/topic/56ac67fbe39ca21162ae6c78 "点我访问")  
-其中的第三点，咱们还是代码见(show you code)。
+但是其中的第三点，觉得不太好理解，咱们还是代码见(show you code)。
 <!--more-->
 ### setInterval能够固定间隔触发吗？
 
@@ -50,4 +48,5 @@ setTimeout(function(){
 },3000);
 ```
 
->结论:动手比较下以上代码的区别，不难看出问题所在！
+> 结论:动手比较下以上代码的区别，不难看出问题所在！  
+[setTimeout那些事儿](http://imweb.io/topic/56ac67fbe39ca21162ae6c78 "点我访问")

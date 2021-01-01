@@ -93,8 +93,7 @@
                         
                         <div class="post-content">
                             <p>.cshtml(.vbhtml)文件能够被执行，必须被编译进程序集的具体类型。
-微软使用<code>%windir%\Microsoft.NET\Framework\v4.0.30319</code>下的aspnet_compiler.exe对view文件进行编译。
-<a href="https://github.com/ASP-NET-MVC/aspnetwebstack/tree/master/src" title="点我访问">aspnet mvc4源码</a></p>
+微软使用<code>%windir%\Microsoft.NET\Framework\v4.0.30319</code>下的aspnet_compiler.exe对view文件进行编译。</p>
 <h3 id="view的动态编译">view的动态编译</h3>
 <p>asp.net mvc采用动态编译的方式编译view。针对某个view的第一次访问会触发针对它的编译，一个view对应一个类型。
 在默认情况下view被编译的程序集放在aspnet的临时目录<code>%windir%\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\</code>目录下，
@@ -170,12 +169,10 @@
 }
 </code></pre></div><p>最终调用的是view生成的dll类型里面的Execute()方法，完成对页面的渲染!</p>
 <blockquote>
-<p>参考</p>
+<p><a href="https://github.com/ASP-NET-MVC/aspnetwebstack/tree/master/src" title="点我访问">aspnet mvc4源码</a><br>
+<a href="http://www.cnblogs.com/artech/archive/2012/09/05/razor-view-engine-02.html" title="点我访问">ASP.NET MVC的Razor引擎：RazorView</a><br>
+<a href="http://stackoverflow.com/questions/28289107/vs2013-does-not-compile-asp-net-mvc5-views" title="点我访问">为什么编译器不编译views？</a></p>
 </blockquote>
-<ol>
-<li><a href="http://www.cnblogs.com/artech/archive/2012/09/05/razor-view-engine-02.html" title="点我访问">ASP.NET MVC的Razor引擎：RazorView</a></li>
-<li><a href="http://stackoverflow.com/questions/28289107/vs2013-does-not-compile-asp-net-mvc5-views" title="点我访问">为什么编译器不编译views？</a></li>
-</ol>
                         </div>
 
                         

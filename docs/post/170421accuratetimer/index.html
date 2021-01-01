@@ -93,9 +93,7 @@
                         
                         <div class="post-content">
                             <p>今天偶然看到了一篇讲解javascript各定时器的文章。文章使用对话的方式阐述了<code>setInterval</code>不足，颇有意思。
-但是觉得不太好理解，原文如下：<br>
-<a href="http://imweb.io/topic/56ac67fbe39ca21162ae6c78" title="点我访问">setTimeout那些事儿</a><br>
-其中的第三点，咱们还是代码见(show you code)。</p>
+但是其中的第三点，觉得不太好理解，咱们还是代码见(show you code)。</p>
 <h3 id="setinterval能够固定间隔触发吗">setInterval能够固定间隔触发吗？</h3>
 <p>习惯了使用setInterval()做定时任务的触发，但是此方法并不能保证2次调用之间的间隔时间是恒定的。以下场景:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">setInterval(<span style="color:#00f">function</span>(){
@@ -127,7 +125,8 @@
   setTimeout(arguments.callee,3000);<span style="color:#008000">//arguments.callee代表当前正在执行的函数，也就是函数本身
 </span><span style="color:#008000"></span>},3000);
 </code></pre></div><blockquote>
-<p>结论:动手比较下以上代码的区别，不难看出问题所在！</p>
+<p>结论:动手比较下以上代码的区别，不难看出问题所在！<br>
+<a href="http://imweb.io/topic/56ac67fbe39ca21162ae6c78" title="点我访问">setTimeout那些事儿</a></p>
 </blockquote>
                         </div>
 
