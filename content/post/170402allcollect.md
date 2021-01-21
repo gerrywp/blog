@@ -68,7 +68,10 @@ const int* pci=&i;
 //指向常量的常指针
 const int* const cpci=&i;
 ```
+### 视频转码
+[ffmpeg](https://www.ruanyifeng.com/blog/2020/01/ffmpeg.html '点我访问')
 
+[mediacoder](http://www.mediacoderhq.com/ '点我访问')
 ### 在线好看的书籍
 
 <https://www.xirenxuan.com/>
