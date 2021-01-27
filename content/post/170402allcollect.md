@@ -8,7 +8,6 @@ categories = [ "others" ]
 计算机相关知识点过于分散，有时候为了找一篇文章，在以后要用到的时候又要去反复查找很耗时。这里罗列出对自己有指导性意见的一些工具及blog文章,以备后用。(热更新)
 <!--more-->
 ### 搜索引擎相关
-
 1. 中文分词分库  
 [http://ictclas.nlpir.org/](http://ictclas.nlpir.org/ "点我访问")
 
@@ -57,7 +56,6 @@ categories = [ "others" ]
 const int i=7;
 const int& ci=i;
 ```
-
 2. `const`组合指针(因为指针是object类型)
 指针结合const,const关键字有两个位置：(1)指向常量的指针 (2)指向常量的常指针
 ```c
@@ -72,14 +70,14 @@ const int* const cpci=&i;
 [ffmpeg](https://www.ruanyifeng.com/blog/2020/01/ffmpeg.html '点我访问')
 
 [mediacoder](http://www.mediacoderhq.com/ '点我访问')
+### bt下载常用网站
+1. <http://www.btbtdy3.com/>
+2. <https://www.dytt89.com/>
 ### 在线好看的书籍
-
 <https://www.xirenxuan.com/>
 
 <https://suxin.taoshumi.com/>
-
 ### 申请免费300$谷歌云平台(GCP)
-
 <https://zhuanlan.zhihu.com/p/58747135>
 
 <https://www.cnblogs.com/shengwang/p/10567446.html>
