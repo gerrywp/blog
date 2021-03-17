@@ -6,7 +6,16 @@
     <description>Recent content in Posts on 云亦海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 31 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://gerrywp.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 05 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gerrywp.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>突围</title>
+      <link>https://gerrywp.github.io/blog/post/210205tuwei/</link>
+      <pubDate>Fri, 05 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/210205tuwei/</guid>
+      <description>&lt;p&gt;冬季原本应该是波澜不惊的，但是这个冬季似乎不那么安宁。沐浴着料峭春寒，迎来了春的希望，带给我无边的寂。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>VsCode搭建Java开发环境</title>
       <link>https://gerrywp.github.io/blog/post/201031javaide/</link>
@@ -172,7 +181,7 @@
     </item>
     
     <item>
-      <title>git push错误</title>
+      <title>git命令常见错误</title>
       <link>https://gerrywp.github.io/blog/post/191007gcmw/</link>
       <pubDate>Mon, 07 Oct 2019 00:00:00 +0000</pubDate>
       
