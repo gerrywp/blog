@@ -113,9 +113,23 @@ env|grep http_proxy
 <p><strong>总结</strong></p>
 <p>自己在电脑里面设置了很多环境变量，包括添加了bashrc.cmd的批处理都已经记不住了，并且记不住是什么时候这样设置的。</p>
 <h3 id="openssl-ssl_connect-connection-was-reset-in-connection-to-githubcom443">OpenSSL SSL_connect: Connection was reset in connection to github.com:443</h3>
-<p><code>git clone</code>代码的时候报的错误，原因是本地开启了v2ray的代理服务，我们只需要设置下git的代理地址即可：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git config --global --add remote.origin.proxy <span style="color:#a31515">&#34;127.0.0.1:10809&#34;</span>
+<p><code>git clone</code>代码的时候报的错误，原因是本地开启了v2ray的代理服务，需设置git的代理为<strong>SOCKS5</strong>即可：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git config --global http.proxy <span style="color:#a31515">&#34;socks5://127.0.0.1:10808&#34;</span>
+<span style="color:#008000">## 或者取消ssl校验</span>
+git config --global http.sslVerify false
+</code></pre></div><p>但是我们自己的仓库是不需要走代理服务器的，可以通过将<strong>remote.<name>.proxy</strong>设置为空，跳过代理</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#008000">## For remotes that require curl (http, https and ftp), the URL to the proxy to use for that remote. Set to the empty string to disable proxying for that remote.</span>
+git config --global remote.origin.proxy <span style="color:#a31515">&#34;&#34;</span>
+<span style="color:#008000">## 以上的sytax写法只在cmd或bash shell中有效</span>
+<span style="color:#008000">## 在powershell中可以使用反引号指定空字符串</span>
+git config --global remote.origin.proxy <span style="color:#a31515">`</span><span style="color:#a31515">&#34;`&#34;</span>
 </code></pre></div><p><em><strong>windows</strong></em>下会将以上的配置信息添加到<code>%HOMEPATH%\.gitconfig</code>文件对应的节点下面。</p>
+<blockquote>
+<p><a href="http://git-scm.com/docs/git-config">http://git-scm.com/docs/git-config</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://stackoverflow.com/questions/16538372/git-proxy-bypass">https://stackoverflow.com/questions/16538372/git-proxy-bypass</a></p>
+</blockquote>
                         </div>
 
                         
