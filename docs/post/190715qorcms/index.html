@@ -125,14 +125,14 @@ AutoRun=chcp 65001 &gt;nul 2&gt;&amp;1
 	}
 	middleware.DefaultLogger = middleware.RequestLogger(&amp;noneColorLoggerFormatter)
 	Router.Use(middleware.Logger)
-</code></pre></div><h3 id="bindatafsbinary-data-file-system">bindatafs(binary-data-file-system)</h3>
-<p>QOR使用bindatafs组件将所有admin后端使用到的文件打包成二进制文件，编译链接进2进制可执行文件里面去。步骤如下：</p>
+</code></pre></div><h3 id="bindatafsbinary-data-file-system">bindataFS(binary-data-file-system)</h3>
+<p>QOR-example使用<code>bindataFS</code>组件,将admin后端全部view(html、css、js)文件打包、编译、链接进2进制可执行文件。步骤如下：</p>
 <ol>
-<li>配置vs-code的launch.json文件，设置可执行文件参数<code>--compile-templates</code>。</li>
-<li>这样会执行<code>bindatafs.AssetFS.Compile()</code>。</li>
-<li>找到所有被引用过的文件，并拷贝到<code>config\bindatafs\templates</code>目录下，然后生成<code>templates-bindatafs.go</code>文件(请阅读生成的源码)。</li>
-<li>生成可执行程序，使用编译tags做条件编译。默认编译不带任何参数是使用<code>templates.go</code>文件进行编译。</li>
-<li>可以配置launch.json文件，<code>&quot;buildFlags&quot;: &quot;-tags \'bindatafs\'&quot;</code>开启条件编译，即可将所有文件编译进target文件。</li>
+<li>配置vs-code的<code>launch.json</code>文件，设置可执行文件参数<code>--compile-templates</code>。</li>
+<li>调试状态下运行<strong>main.go</strong>执行<code>bindatafs.AssetFS.Compile()</code>。</li>
+<li>bindataFS会找到所有被引用过的文件，并拷贝到<code>config\bindatafs\templates</code>目录下，然后生成<code>templates-bindatafs.go</code>文件(请阅读生成的源码)。</li>
+<li>使用条件编译<code>go build -tags bindatafs -o gerry.exe</code>生成最终可执行文件。默认编译不带参数是使用<code>templates.go</code>文件进行编译。</li>
+<li>在<strong>F5</strong>调试模式下配置launch.json文件，<code>&quot;buildFlags&quot;: &quot;-tags \'bindatafs\'&quot;</code>开启条件编译，即可将视图文件编译进<b>__debug_bin</b>临时文件。</li>
 </ol>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#008000">//templates.go
 </span><span style="color:#008000"></span>
@@ -224,10 +224,6 @@ AutoRun=chcp 65001 &gt;nul 2&gt;&amp;1
 <ul class="widget-list">
     
     <li>
-        <a href="https://gerrywp.github.io/blog/post/210205tuwei/" title="突围">突围</a>
-    </li>
-    
-    <li>
         <a href="https://gerrywp.github.io/blog/post/201031javaide/" title="VsCode搭建Java开发环境">VsCode搭建Java开发环境</a>
     </li>
     
@@ -263,6 +259,10 @@ AutoRun=chcp 65001 &gt;nul 2&gt;&amp;1
         <a href="https://gerrywp.github.io/blog/post/200808ftp/" title="FTP模式">FTP模式</a>
     </li>
     
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200708wide/" title="宽与窄">宽与窄</a>
+    </li>
+    
 </ul>
     </section>
 
@@ -272,7 +272,7 @@ AutoRun=chcp 65001 &gt;nul 2&gt;&amp;1
         <h3 class="widget-title">分类</h3>
 <ul class="widget-list">
     
-    <li><a href="https://gerrywp.github.io/blog/categories/article/">article (16)</a></li>
+    <li><a href="https://gerrywp.github.io/blog/categories/article/">article (15)</a></li>
     
     <li><a href="https://gerrywp.github.io/blog/categories/csharp/">csharp (12)</a></li>
     
