@@ -6,7 +6,16 @@
     <description>Recent content in js on 云亦海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 16 Aug 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://gerrywp.github.io/blog/categories/js/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 12 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gerrywp.github.io/blog/categories/js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>突击ECMAScript(1)</title>
+      <link>https://gerrywp.github.io/blog/post/210812ecma1/</link>
+      <pubDate>Thu, 12 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/210812ecma1/</guid>
+      <description>&lt;p&gt;&lt;code&gt;ECMAScript 6.0&lt;/code&gt;（以下简称 ES6）是 &lt;code&gt;JavaScript&lt;/code&gt; 语言的下一代标准，已经在 2015 年 6 月正式发布了。它的目标，是使得 &lt;code&gt;JavaScript&lt;/code&gt; 语言可以用来编写复杂的大型应用程序，成为企业级开发语言。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>nodejs之旅(6)热替换与热加载</title>
       <link>https://gerrywp.github.io/blog/post/180816jsjourney6/</link>

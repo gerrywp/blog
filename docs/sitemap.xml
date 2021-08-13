@@ -4,7 +4,37 @@
   
   <url>
     <loc>https://gerrywp.github.io/blog/categories/</loc>
-    <lastmod>2020-10-31T00:00:00+00:00</lastmod>
+    <lastmod>2021-08-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gerrywp.github.io/blog/tags/js/</loc>
+    <lastmod>2021-08-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gerrywp.github.io/blog/categories/js/</loc>
+    <lastmod>2021-08-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gerrywp.github.io/blog/post/</loc>
+    <lastmod>2021-08-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gerrywp.github.io/blog/tags/</loc>
+    <lastmod>2021-08-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gerrywp.github.io/blog/</loc>
+    <lastmod>2021-08-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gerrywp.github.io/blog/post/210812ecma1/</loc>
+    <lastmod>2021-08-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -18,27 +48,12 @@
   </url>
   
   <url>
-    <loc>https://gerrywp.github.io/blog/post/</loc>
-    <lastmod>2020-10-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gerrywp.github.io/blog/tags/</loc>
-    <lastmod>2020-10-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://gerrywp.github.io/blog/tags/vs/</loc>
     <lastmod>2020-10-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://gerrywp.github.io/blog/post/201031javaide/</loc>
-    <lastmod>2020-10-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gerrywp.github.io/blog/</loc>
     <lastmod>2020-10-31T00:00:00+00:00</lastmod>
   </url>
   
@@ -253,11 +268,6 @@
   </url>
   
   <url>
-    <loc>https://gerrywp.github.io/blog/categories/js/</loc>
-    <lastmod>2018-08-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://gerrywp.github.io/blog/tags/node/</loc>
     <lastmod>2018-08-16T00:00:00+00:00</lastmod>
   </url>
@@ -399,11 +409,6 @@
   
   <url>
     <loc>https://gerrywp.github.io/blog/post/171121es6syntax/</loc>
-    <lastmod>2017-11-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gerrywp.github.io/blog/tags/js/</loc>
     <lastmod>2017-11-21T00:00:00+00:00</lastmod>
   </url>
   
