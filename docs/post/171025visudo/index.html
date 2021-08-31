@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.75.1" />
+    <meta name="generator" content="Hugo 0.76.0-DEV" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -120,7 +120,7 @@ admin  ALL=(ALL)       ALL
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">admin ALL=(root)       NOPASSWD:ALL
 </code></pre></div><p><strong>但是上面的配置很恐怖哦，admin用户可以随意更改root的密码！</strong><br>
 需要限制admin用户哪些指令不能使用，因此改进配置如下</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">admin ALL=(root)       NOPASSWD:ALL,!/usr/bin/passwd,/usr/bin/passwd [A-Za-z]*,!/usr/bin/passwd root,!/usr/sbin/visudo,!/bin/su,!/bin/su (root|-)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">admin ALL=(root)       NOPASSWD:ALL,!/usr/bin/passwd,/usr/bin/passwd [A-Za-z]*,!/usr/bin/passwd root,!/usr/sbin/visudo,!/bin/su *root*,!/bin/su [-]*,<span style="color:#a31515">&#34;&#34;</span>
 </code></pre></div><p>上述配置：使用sudo命令执行不需要密码。但是不能修改root密码、不能使用visudo、不能切换到root用户</p>
                         </div>
 
