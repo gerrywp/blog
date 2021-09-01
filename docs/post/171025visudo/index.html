@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.76.0-DEV" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -120,8 +120,15 @@ admin  ALL=(ALL)       ALL
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">admin ALL=(root)       NOPASSWD:ALL
 </code></pre></div><p><strong>但是上面的配置很恐怖哦，admin用户可以随意更改root的密码！</strong><br>
 需要限制admin用户哪些指令不能使用，因此改进配置如下</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">admin ALL=(root)       NOPASSWD:ALL,!/usr/bin/passwd,/usr/bin/passwd [A-Za-z]*,!/usr/bin/passwd root,!/usr/sbin/visudo,!/bin/su *root*,!/bin/su [-]*,<span style="color:#a31515">&#34;&#34;</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">admin ALL=(root)    NOPASSWD:ALL,!/usr/bin/passwd,!/usr/bin/passwd *root*,<span style="color:#a31515">\
+</span><span style="color:#a31515"></span>!/usr/sbin/visudo,!/usr/bin/su *root*,!/usr/bin/su [-]*,!/usr/bin/su
 </code></pre></div><p>上述配置：使用sudo命令执行不需要密码。但是不能修改root密码、不能使用visudo、不能切换到root用户</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">admin ALL=(root)	NOPASSWD:NOEXEC:ALL,!/usr/bin/passwd,!/usr/bin/passwd *root*,<span style="color:#a31515">\
+</span><span style="color:#a31515"></span>!/usr/sbin/visudo,!/usr/bin/vim */etc/sudoers*
+</code></pre></div><p><strong>NOEXEC</strong>:配置让当前用户不能切换到其它用户的shell,例如：sudo -i,sudo su等</p>
+<p>除了使用<code>NOEXEC</code>tags之外，还可以通过禁用bash来实现</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">admin ALL=(root)	!/bin/bash
+</code></pre></div>
                         </div>
 
                         
