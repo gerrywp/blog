@@ -6,7 +6,17 @@
     <description>Recent content in Posts on 云亦海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 12 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gerrywp.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 09 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gerrywp.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>docker</title>
+      <link>https://gerrywp.github.io/blog/post/211109docker/</link>
+      <pubDate>Tue, 09 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/211109docker/</guid>
+      <description>&lt;p&gt;Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。它是目前最流行的 Linux 容器解决方案。
+Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。有了 Docker，就不用担心环境问题。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>突击ECMAScript(1)</title>
       <link>https://gerrywp.github.io/blog/post/210812ecma1/</link>

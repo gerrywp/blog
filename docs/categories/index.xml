@@ -6,7 +6,16 @@
     <description>Recent content in Categories on 云亦海</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 12 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gerrywp.github.io/blog/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 09 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gerrywp.github.io/blog/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>linux</title>
+      <link>https://gerrywp.github.io/blog/categories/linux/</link>
+      <pubDate>Tue, 09 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/categories/linux/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>js</title>
       <link>https://gerrywp.github.io/blog/categories/js/</link>
@@ -67,15 +76,6 @@
       <pubDate>Wed, 27 May 2020 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/categories/golang/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>linux</title>
-      <link>https://gerrywp.github.io/blog/categories/linux/</link>
-      <pubDate>Sun, 03 May 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://gerrywp.github.io/blog/categories/linux/</guid>
       <description></description>
     </item>
     
