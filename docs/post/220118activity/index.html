@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.75.1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>活动图与流程图的区别 | 黑竹</title>
+    <meta property="og:title" content="活动图与流程图的区别 - 黑竹">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2022-01-18T00:00:00&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2022-01-18T00:00:00&#43;08:00">
+        
+    <meta name="Keywords" content="golang,go语言,go语言笔记,项目管理,软件架构,公众号,小程序">
+    <meta name="description" content="活动图与流程图的区别">
+        
+    <meta name="author" content="gerry">
+    <meta property="og:url" content="https://gerrywp.github.io/blog/post/220118activity/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/blog/css/normalize.css">
+    
+        <link rel="stylesheet" href="/blog/css/prism.css">
+    
+    <link rel="stylesheet" href="/blog/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://gerrywp.github.io/blog">
+                        黑竹
+                    </a>
+                
+                <p class="description">专注于Go语言(golang)、csharp、移动互联网、项目管理、软件架构</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://gerrywp.github.io/blog">首页</a>
+                    
+                    <a  href="https://gerrywp.github.io/blog/archives/" title="归档">归档</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+        
+        
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">活动图与流程图的区别</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2022年1月18日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href='https://gerrywp.github.io/blog/categories/pm'>pm</a></span>
+                            
+                        </div>
+                        
+                        
+                        <div class="post-meta">
+                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
+                        </div>
+                        
+                        
+                        <div class="post-content">
+                            <p>寄蜉蝣于天地，渺沧海之一粟。哀吾生之须臾，羡长江之无穷。</p>
+<h3 id="定义与目的">定义与目的</h3>
+<p><strong>定义</strong>：</p>
+<ol>
+<li>活动图：一种特殊的流程图，用来描述对象（系统或人）逐步的活动和操作，支持分支、迭代和并发。</li>
+<li>流程图：说明给定问题的解决方案模型的图形表示。</li>
+</ol>
+<p><strong>目的</strong>:</p>
+<ol>
+<li>活动图：帮助公司业务与开发团队了解系统的流程和行为。</li>
+<li>流程图：帮助公司成员沟通并了解问题的解决方案。</li>
+</ol>
+<h3 id="流程图图标详解">流程图图标详解</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">图形</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">椭圆形</td>
+<td style="text-align:left">开始、结束</td>
+</tr>
+<tr>
+<td style="text-align:left">矩形</td>
+<td style="text-align:left">操作、过程</td>
+</tr>
+<tr>
+<td style="text-align:left">菱形</td>
+<td style="text-align:left">输入或输出</td>
+</tr>
+</tbody>
+</table>
+<h3 id="活动图图标详解">活动图图标详解</h3>
+<p><img src="../../pictures/activity.png" alt="活动图" title="点我访问"></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">图形</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">右上卷角矩形</td>
+<td style="text-align:left">活动前置或后置约束条件</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>活动名称必须以动词开始</li>
+<li>可以在转移箭头上用[]标示转移条件</li>
+</ol>
+<h3 id="用例图与活动图的关系">用例图与活动图的关系</h3>
+<p>用例图是活动图的基础，先画出用例图并写出用例规约，然后才能根据用例规约画出对应的<strong>活动图</strong>、<strong>状态图</strong>、<strong>泳道图</strong>。</p>
+<h4 id="用例规约">用例规约</h4>
+<p><strong>表1</strong>: 登录用例规约</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">用例编号</th>
+<th style="text-align:left">UC01</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">用例名称</td>
+<td style="text-align:left">登录</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">前置条件</td>
+<td style="text-align:left"></td>
+<td style="text-align:center">可选</td>
+</tr>
+<tr>
+<td style="text-align:left">后置条件</td>
+<td style="text-align:left">学生进入教务系统首页</td>
+<td style="text-align:center">可选</td>
+</tr>
+<tr>
+<td style="text-align:left">基本流程</td>
+<td style="text-align:left">1. 学生点击登录链接；</td>
+<td style="text-align:center">用例执行成功的步骤</td>
+</tr>
+<tr>
+<td style="text-align:left">~</td>
+<td style="text-align:left">2. 系统显示登录页面；</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">~</td>
+<td style="text-align:left">3. 学生输入用户名和密码，点击登录按钮；</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">~</td>
+<td style="text-align:left">4. 系统查询到用户信息，检查用户名与密码相匹配，记录用户登录状态；</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">~</td>
+<td style="text-align:left">5. 系统显示首页。</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">扩展流程</td>
+<td style="text-align:left">4.1 系统检查发现用户不存在，提示“用户不存在”；</td>
+<td style="text-align:center">用例执行失败</td>
+</tr>
+<tr>
+<td style="text-align:left">~</td>
+<td style="text-align:left">4.2 系统检查发现用户名与密码不匹配，提示“密码不正确”。</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="参考">参考</h3>
+<blockquote>
+<p><a href="https://github.com/hzuapps/uml-modeling-2020">https://github.com/hzuapps/uml-modeling-2020</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.bilibili.com/video/BV1cE411G7L5?p=2">https://www.bilibili.com/video/BV1cE411G7L5?p=2</a></p>
+</blockquote>
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/blog/post/211122review/">鹭鸶尘</a></li>
+        
+        <li><a href="/blog/post/211109docker/">docker</a></li>
+        
+        <li><a href="/blog/post/210812ecma1/">突击ECMAScript(1)</a></li>
+        
+        <li><a href="/blog/post/201031javaide/">VsCode搭建Java开发环境</a></li>
+        
+        <li><a href="/blog/post/200918hash/">一致性哈希</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href='https://gerrywp.github.io/blog/tags/uml'>UML</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "gerrywp/blog"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="https://gerrywp.github.io/blog/search/" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://gerrywp.github.io/blog">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/220118activity/" title="活动图与流程图的区别">活动图与流程图的区别</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/211122review/" title="鹭鸶尘">鹭鸶尘</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/211109docker/" title="docker">docker</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/210812ecma1/" title="突击ECMAScript(1)">突击ECMAScript(1)</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/201031javaide/" title="VsCode搭建Java开发环境">VsCode搭建Java开发环境</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200912od/" title="OD使用">OD使用</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200912winhook/" title="SetWindowsHookEx">SetWindowsHookEx</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200912string/" title="string">string</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200912deadlock/" title="死锁">死锁</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/article/">article (15)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/csharp/">csharp (12)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/golang/">golang (5)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/java/">java (3)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/js/">js (17)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (15)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/pm/">pm (1)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/windows/">windows (12)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://gerrywp.github.io/blog/tags/algorithm/">algorithm</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/cms/">cms</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/cpp/">cpp</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/csharp/">csharp</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/git/">git</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/go/">go</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/java/">java</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/js/">js</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/mix/">mix</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/msbuild/">msbuild</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/node/">node</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/shell/">shell</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/sql/">sql</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/tool/">tool</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/uml/">UML</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vpn/">vpn</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vs/">vs</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/%E9%9A%8F%E7%AC%94/">随笔</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://gerrywp.github.io/blog/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2022 <a href="https://gerrywp.github.io/blog">黑竹 By gerry</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function () {
+            $("pre code").parent().addClass("line-numbers")
+        }());
+
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script type="text/javascript" src="/blog/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/blog/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+<script type="text/javascript">
+(function(){
+	if (typeof self === 'undefined' || !self.Prism || !self.document) {
+		return;
+	}
+
+	if (!Prism.plugins.toolbar) {
+		console.warn('Copy to Clipboard plugin loaded before Toolbar plugin.');
+
+		return;
+	}
+
+	var ClipboardJS = window.ClipboardJS || undefined;
+
+	if (!ClipboardJS && typeof require === 'function') {
+		ClipboardJS = require('clipboard');
+	}
+
+	var callbacks = [];
+
+	if (!ClipboardJS) {
+		var script = document.createElement('script');
+		var head = document.querySelector('head');
+
+		script.onload = function() {
+			ClipboardJS = window.ClipboardJS;
+
+			if (ClipboardJS) {
+				while (callbacks.length) {
+					callbacks.pop()();
+				}
+			}
+		};
+
+		script.src = 'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js';
+		head.appendChild(script);
+	}
+
+	Prism.plugins.toolbar.registerButton('copy-to-clipboard', function (env) {
+		var linkCopy = document.createElement('button');
+		linkCopy.textContent = '复制代码';
+
+		if (!ClipboardJS) {
+			callbacks.push(registerClipboard);
+		} else {
+			registerClipboard();
+		}
+
+		return linkCopy;
+
+		function registerClipboard() {
+			var clip = new ClipboardJS(linkCopy, {
+				'text': function () {
+					return env.code;
+				}
+			});
+
+			clip.on('success', function() {
+				linkCopy.textContent = '复制成功!';
+
+				resetText();
+			});
+			clip.on('error', function () {
+				linkCopy.textContent = '按 Ctrl+C 复制';
+
+				resetText();
+			});
+		}
+
+		function resetText() {
+			setTimeout(function () {
+				linkCopy.textContent = '复制代码';
+			}, 5000);
+		}
+	});
+})();
+
+</script>
+</body>
+</html>
