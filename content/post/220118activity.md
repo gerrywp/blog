@@ -53,7 +53,16 @@ categories = [ "pm" ]
 |扩展流程|4.1 系统检查发现用户不存在，提示“用户不存在”；|用例执行失败|
 |~|4.2 系统检查发现用户名与密码不匹配，提示“密码不正确”。||	 
 
+### 总结
+||活动图|流程图|
+|:--|:--:|:--:|
+|定义|支持选择、迭代和并发的逐步活动和操作的工作流的图形表示。|一种图解表示，它说明给定问题的解决方案模型。|
+|用途|有助于了解系统的业务流程或工作流程|有助于分析和设计程序。|
+|关联|与UML相关联|与编程相关联|
+
 ### 参考
 > https://github.com/hzuapps/uml-modeling-2020
 
 > https://www.bilibili.com/video/BV1cE411G7L5?p=2
+
+> https://pediaa.com/what-is-the-difference-between-activity-diagram-and-flowchart/
