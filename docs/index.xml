@@ -6,7 +6,16 @@
     <description>Recent content on 黑竹</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 18 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://gerrywp.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 22 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://gerrywp.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Redmine部署</title>
+      <link>https://gerrywp.github.io/blog/post/220122redmine/</link>
+      <pubDate>Sat, 22 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/220122redmine/</guid>
+      <description>&lt;p&gt;不识庐山真面目，只缘身在此山中。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>活动图与流程图的区别</title>
       <link>https://gerrywp.github.io/blog/post/220118activity/</link>
