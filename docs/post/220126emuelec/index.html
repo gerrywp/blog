@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.75.1" />
+    <meta name="generator" content="Hugo 0.76.0-DEV" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -120,11 +120,41 @@
 <h3 id="扩容失败">扩容失败</h3>
 <p>【人中日月】的镜像第一次启动后会自动扩容，但是/storage文件系统容量未增加。</p>
 <h4 id="使用dfdisk-free命令查看文件系统">使用<code>df</code>（<strong>disk free</strong>）命令查看文件系统：</h4>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#008000"># df -hT</span>
-</code></pre></div><h4 id="但是使用parted命令显示出来的分区容量是扩容后的">但是使用<code>parted</code>命令显示出来的分区容量是扩容后的</h4>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#008000"># parted /dev/sda2 print</span>
-</code></pre></div><h4 id="说明分区容量是扩展了但是文件系统并未扩展使用resize2fs调整文件系统大小">说明，分区容量是扩展了，但是文件系统并未扩展，使用<code>resize2fs</code>调整文件系统大小</h4>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">CoreELEC:~ <span style="color:#008000"># df -hT</span>
+/dev/sda1            vfat          511.7M    508.4M      3.4M  99% /flash
+/dev/sda2            ext4           28.4G     27.9G    486.6M  98% /storage
+/dev/loop0           squashfs      492.3M    492.3M         0 100% /
+tmpfs                tmpfs         903.2M         0    903.2M   0% /dev/shm
+tmpfs                tmpfs         903.2M      8.6M    894.6M   1% /run
+tmpfs                tmpfs         903.2M         0    903.2M   0% /sys/fs/cgroup
+tmpfs                tmpfs         903.2M      2.6M    900.6M   0% /var
+tmpfs                tmpfs         903.2M         0    903.2M   0% /tmp
+none                 overlay        28.4G     27.9G    486.6M  98% /tmp/assets
+none                 overlay        28.4G     27.9G    486.6M  98% /tmp/cores
+none                 overlay        28.4G     27.9G    486.6M  98% /tmp/overlays
+none                 overlay        28.4G     27.9G    486.6M  98% /tmp/joypads
+none                 overlay        28.4G     27.9G    486.6M  98% /tmp/shaders
+none                 overlay        28.4G     27.9G    486.6M  98% /tmp/database
+</code></pre></div><p>如上所示：<strong>/dev/sda2</strong> 容量是27.9G</p>
+<h4 id="但是使用parted命令显示出来的分区容量是扩容后的">但是使用<code>parted</code>命令显示出来的分区容量是扩容后的</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">CoreELEC:~ <span style="color:#008000"># parted /dev/sda2 print</span>
+Model: Unknown (unknown)
+Disk /dev/sda2: 62.4GB
+Sector size (logical/physical): 512B/512B
+Partition Table: loop
+Disk Flags:
+
+Number  Start  End     Size    File system  Flags
+ 1      0.00B  62.4GB  62.4GB  ext4
+
+</code></pre></div><p>如上磁盘分区总共有62.4G,还有30多G不见了</p>
+<h4 id="说明分区容量是扩展了但是文件系统并未扩展使用resize2fs调整文件系统大小">说明，分区容量是扩展了，但是文件系统并未扩展，使用<code>resize2fs</code>调整文件系统大小</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">CoreELEC:~ <span style="color:#008000"># resize2fs /dev/sda2</span>
+resize2fs 1.45.2 (27-May-2019)
+Filesystem at /dev/sda2 is mounted on /storage; on-line resizing required
+old_desc_blocks = 118, new_desc_blocks = 233 <span style="color:#008000">#这里提示有233个blocks</span>
+resize2fs: Permission denied to resize filesystem
+
 </code></pre></div><blockquote>
 <p><a href="https://linux.vbird.org/linux_basic/centos7/0420quota.php#lvm_hint">https://linux.vbird.org/linux_basic/centos7/0420quota.php#lvm_hint</a></p>
 </blockquote>

@@ -36,17 +36,50 @@ categories = [ "linux" ]
 
 #### 使用`df`（**disk free**）命令查看文件系统：
 ```sh
-# df -hT
+CoreELEC:~ # df -hT
+/dev/sda1            vfat          511.7M    508.4M      3.4M  99% /flash
+/dev/sda2            ext4           28.4G     27.9G    486.6M  98% /storage
+/dev/loop0           squashfs      492.3M    492.3M         0 100% /
+tmpfs                tmpfs         903.2M         0    903.2M   0% /dev/shm
+tmpfs                tmpfs         903.2M      8.6M    894.6M   1% /run
+tmpfs                tmpfs         903.2M         0    903.2M   0% /sys/fs/cgroup
+tmpfs                tmpfs         903.2M      2.6M    900.6M   0% /var
+tmpfs                tmpfs         903.2M         0    903.2M   0% /tmp
+none                 overlay        28.4G     27.9G    486.6M  98% /tmp/assets
+none                 overlay        28.4G     27.9G    486.6M  98% /tmp/cores
+none                 overlay        28.4G     27.9G    486.6M  98% /tmp/overlays
+none                 overlay        28.4G     27.9G    486.6M  98% /tmp/joypads
+none                 overlay        28.4G     27.9G    486.6M  98% /tmp/shaders
+none                 overlay        28.4G     27.9G    486.6M  98% /tmp/database
 ```
+如上所示：**/dev/sda2** 容量是27.9G
+
 #### 但是使用`parted`命令显示出来的分区容量是扩容后的
 ```sh
-# parted /dev/sda2 print
+CoreELEC:~ # parted /dev/sda2 print
+Model: Unknown (unknown)
+Disk /dev/sda2: 62.4GB
+Sector size (logical/physical): 512B/512B
+Partition Table: loop
+Disk Flags:
+
+Number  Start  End     Size    File system  Flags
+ 1      0.00B  62.4GB  62.4GB  ext4
+
 ```
+如上磁盘分区总共有62.4G,还有30多G不见了
+
 #### 说明，分区容量是扩展了，但是文件系统并未扩展，使用`resize2fs`调整文件系统大小
 ```sh
+CoreELEC:~ # resize2fs /dev/sda2
+resize2fs 1.45.2 (27-May-2019)
+Filesystem at /dev/sda2 is mounted on /storage; on-line resizing required
+old_desc_blocks = 118, new_desc_blocks = 233 #这里提示有233个blocks
+resize2fs: Permission denied to resize filesystem
 
 ```
 > https://linux.vbird.org/linux_basic/centos7/0420quota.php#lvm_hint
+
 #### resize2fs: Permission denied to resize filesystem
 使用`resize2fs`提示没有权限，解决方案如下：
 1. 卸载文件系统。
