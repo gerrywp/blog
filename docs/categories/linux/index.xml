@@ -6,7 +6,16 @@
     <description>Recent content in linux on 黑竹</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 09 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gerrywp.github.io/blog/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 26 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://gerrywp.github.io/blog/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>EmuELEC杂谈</title>
+      <link>https://gerrywp.github.io/blog/post/220126emuelec/</link>
+      <pubDate>Wed, 26 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/220126emuelec/</guid>
+      <description>&lt;p&gt;夜阑卧听风吹雨，铁马冰河入梦来。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>docker</title>
       <link>https://gerrywp.github.io/blog/post/211109docker/</link>
