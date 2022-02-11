@@ -83,28 +83,28 @@ resize2fs: Permission denied to resize filesystem
 #### resize2fs: Permission denied to resize filesystem
 使用`resize2fs`提示没有权限，解决方案如下：
 1. 卸载文件系统。
-```sh
+```bash
 umount /storage
 ```
 2. 执行文件系统检查。
-```sh
+```bash
 e2fsck -y /dev/sda2
 ```
 3. 调整文件系统大小
-```sh
+```bash
 resize2fs /dev/sda2
 ```
 4. 重新挂载
-```sh
+```bash
 mount /dev/sda2 /storage
 ```
 5. 检查文件系统是否扩容成功
-```sh
+```bash
 df -hT
 ```
 #### umount: can't umount /storage : Device or resource busy
 使用`fuser`查看哪些进程使用了该文件系统，并`kill`掉进程
-```sh
+```bash
 fuser -m /storage
 umount -l /storage #强行解除挂载
 ```
