@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.76.0-DEV" />
+    <meta name="generator" content="Hugo 0.75.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -184,9 +184,7 @@ resize2fs: Permission denied to resize filesystem
 <p>使用<code>fuser</code>查看哪些进程使用了该文件系统，并<code>kill</code>掉进程</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">fuser -m /storage
 umount -l /storage <span style="color:#008000">#强行解除挂载</span>
-</code></pre></div><blockquote>
-<p>参考</p>
-</blockquote>
+</code></pre></div><h3 id="参考">参考</h3>
 <blockquote>
 <p><a href="https://www.thegeekdiary.com/resize2fs-permission-denied-to-resize-filesystem-error-while-online-resize-of-a-filesystem/">https://www.thegeekdiary.com/resize2fs-permission-denied-to-resize-filesystem-error-while-online-resize-of-a-filesystem/</a></p>
 </blockquote>

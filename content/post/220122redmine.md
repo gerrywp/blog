@@ -36,7 +36,7 @@ bundle install --without development test
 1. 配置账号可以远程访问
 2. 创建redmine数据库、用户并配置权限
 
-> 参考
+### 参考
 
 > https://loof.ca/blog/ruby/gems-bundler/
 

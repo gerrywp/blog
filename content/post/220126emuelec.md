@@ -109,7 +109,7 @@ fuser -m /storage
 umount -l /storage #强行解除挂载
 ```
 
-> 参考
+### 参考
 
 > https://www.thegeekdiary.com/resize2fs-permission-denied-to-resize-filesystem-error-while-online-resize-of-a-filesystem/
 
