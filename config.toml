@@ -1,6 +1,6 @@
 baseurl = "https://gerrywp.github.io/blog"
 languageCode = "zh-CN"
-title = "黑竹"
+title = "大仙"
 publishDir = "docs"
 theme = "maupassant"
 
