@@ -117,7 +117,7 @@ env|grep http_proxy
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git config --global http.proxy <span style="color:#a31515">&#34;socks5://127.0.0.1:10808&#34;</span>
 <span style="color:#008000">## 或者取消ssl校验</span>
 git config --global http.sslVerify false
-</code></pre></div><p>但是我们自己的仓库是不需要走代理服务器的，可以通过将<strong>remote.<name>.proxy</strong>设置为空，跳过代理</p>
+</code></pre></div><p>但是我们自己的仓库是不需要走代理服务器的，可以通过将<strong>remote.&lt;name&gt;.proxy</strong>设置为空，跳过代理</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#008000">## For remotes that require curl (http, https and ftp), the URL to the proxy to use for that remote. Set to the empty string to disable proxying for that remote.</span>
 <span style="color:#008000">## 为单个仓库的remote配置空字符串以忽略代理</span>
 git config remote.origin.proxy <span style="color:#a31515">&#34;&#34;</span>
@@ -328,7 +328,7 @@ git config remote.origin.proxy <span style="color:#a31515">`</span><span style="
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2022 <a href="https://gerrywp.github.io/blog">大仙 By gerry</a>.
+        &copy; 2023 <a href="https://gerrywp.github.io/blog">大仙 By gerry</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         
