@@ -184,6 +184,39 @@ resize2fs: Permission denied to resize filesystem
 <p>使用<code>fuser</code>查看哪些进程使用了该文件系统，并<code>kill</code>掉进程</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">fuser -m /storage
 umount -l /storage <span style="color:#008000">#强行解除挂载</span>
+</code></pre></div><h3 id="恢复分区">恢复分区</h3>
+<ol>
+<li>
+<p>在cmd中输入<code>diskpart</code>命令</p>
+</li>
+<li>
+<p><code>list disk</code>显示磁盘信息
+<img src="../../pictures/Snipaste_2023-06-11_19-41-53.png" alt="list disk" title="点我"></p>
+</li>
+<li>
+<p>选中要格式化的那张U盘</p>
+</li>
+</ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#00f">select</span> disk 1
+</code></pre></div><p><img src="../../pictures/Snipaste_2023-06-11_19-50-41.png" alt="select disk" title="点我"></p>
+<ol start="4">
+<li>
+<p>使用<code>list partition</code>校准下是否选择的是正确的磁盘，不要把电脑本身的磁盘给清除了
+<img src="../../pictures/Snipaste_2023-06-11_19-52-51.png" alt="list partition" title="点我"></p>
+</li>
+<li>
+<p>输入<code>clean</code>清除磁盘</p>
+</li>
+<li>
+<p>创建主要分区</p>
+</li>
+</ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">create partition primary
+</code></pre></div><p><img src="../../pictures/Snipaste_2023-06-11_19-59-37.png" alt="create partition primary" title="点我"></p>
+<ol start="7">
+<li>格式化磁盘</li>
+</ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">format fs fat32
 </code></pre></div><h3 id="参考">参考</h3>
 <blockquote>
 <p><a href="https://www.thegeekdiary.com/resize2fs-permission-denied-to-resize-filesystem-error-while-online-resize-of-a-filesystem/">https://www.thegeekdiary.com/resize2fs-permission-denied-to-resize-filesystem-error-while-online-resize-of-a-filesystem/</a></p>

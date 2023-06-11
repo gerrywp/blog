@@ -109,6 +109,34 @@ fuser -m /storage
 umount -l /storage #强行解除挂载
 ```
 
+### 恢复分区
+1. 在cmd中输入`diskpart`命令
+
+2. `list disk`显示磁盘信息
+![list disk](../../pictures/Snipaste_2023-06-11_19-41-53.png '点我')
+
+3. 选中要格式化的那张U盘
+```bash
+select disk 1
+```
+![select disk](../../pictures/Snipaste_2023-06-11_19-50-41.png '点我')
+
+4. 使用`list partition`校准下是否选择的是正确的磁盘，不要把电脑本身的磁盘给清除了
+![list partition](../../pictures/Snipaste_2023-06-11_19-52-51.png '点我')
+
+5. 输入`clean`清除磁盘
+
+6. 创建主要分区
+```bash
+create partition primary
+```
+![create partition primary](../../pictures/Snipaste_2023-06-11_19-59-37.png '点我')
+
+7. 格式化磁盘
+```bash
+format fs fat32
+```
+
 ### 参考
 
 > https://www.thegeekdiary.com/resize2fs-permission-denied-to-resize-filesystem-error-while-online-resize-of-a-filesystem/
