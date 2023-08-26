@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.75.1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>告别迅雷，Motrix | 大仙</title>
+    <meta property="og:title" content="告别迅雷，Motrix - 大仙">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2023-08-26T00:00:00&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2023-08-26T00:00:00&#43;08:00">
+        
+    <meta name="Keywords" content="golang,go语言,go语言笔记,项目管理,软件架构,公众号,小程序">
+    <meta name="description" content="告别迅雷，Motrix">
+        
+    <meta name="author" content="gerry">
+    <meta property="og:url" content="https://gerrywp.github.io/blog/post/230826motrix/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/blog/css/normalize.css">
+    
+        <link rel="stylesheet" href="/blog/css/prism.css">
+    
+    <link rel="stylesheet" href="/blog/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://gerrywp.github.io/blog">
+                        大仙
+                    </a>
+                
+                <p class="description">专注于Go语言(golang)、csharp、移动互联网、项目管理、软件架构</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://gerrywp.github.io/blog">首页</a>
+                    
+                    <a  href="https://gerrywp.github.io/blog/archives/" title="归档">归档</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+        
+        
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">告别迅雷，Motrix</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2023年8月26日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href='https://gerrywp.github.io/blog/categories/windows'>windows</a></span>
+                            
+                        </div>
+                        
+                        
+                        <div class="post-meta">
+                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
+                        </div>
+                        
+                        
+                        <div class="post-content">
+                            <p>这世上的事情最怕“用心”二字。
+有些事，用心了就能做好；有些事，用心了越来越糟糕。</p>
+<p>迅雷下载今天终于让我忍无可忍：乱七八糟的广告一堆；没有充值会员就给你限速。</p>
+<h3 id="motrix您好">Motrix您好</h3>
+<p>一个下载torrent种子的神器，也可以下来磁力链接<code>magnet:?xt=</code>。<br>
+官网链接如下，可自行下载安装：
+<a href="https://motrix.app/zh-CN/download" target="_blank">Motrix官网</a>
+<img src="../../pictures/Snipaste_2023-08-26_20-53-53.png" alt="官网" title="hello">
+界面清爽如下
+<img src="../../pictures/screenshot-task-list-downloading-zh@2x.png" alt="界面" title="主界面"></p>
+<h3 id="下载速度-0-bytes-">下载速度 0 byte/s ？</h3>
+<p>初次使用<code>Motrix</code>下载<code>magnet:?xt=</code>磁力链接的时候会没有速度，这个在官网的常见问题做了说明。
+<a href="https://www.yuque.com/moapp/help/issues" target="_blank">常见问题</a>
+<img src="../../pictures/Snipaste_2023-08-26_21-06-17.png" alt="注意事项" title="提示">
+提示讲述的很清楚，请使用种子文件(也就是**.torrent**后缀的文件)。
+这里提供一个ubuntu的镜像文件给大家做引子来生成**dht.dat**缓存文件。
+<a href="http://releases.ubuntu.com/20.04.3/ubuntu-20.04.3-desktop-amd64.iso.torrent" target="_blank">ubuntu镜像</a>
+下载完种子文件之后，将种子文件拖拽进入Motrix即可，如下图所示：
+<img src="../../pictures/Snipaste_2023-08-26_21-16-11.png" alt="种子文件" title="ubuntu镜像下载">
+同时按照常见问题提示，设置-&gt;偏好设置-&gt;进阶设置-&gt;Tracker服务器，选中7个CDN节点保存！
+<img src="../../pictures/Snipaste_2023-08-26_21-19-31.png" alt="设置" title="Tracker服务器"></p>
+<h3 id="如何知道dhtdat文件是否缓存好">如何知道dht.dat文件是否缓存好？</h3>
+<p>打开你的Motrix设置-&gt;进阶设置，并拖动到最底下，有一个下载会话路径，打开这个路径后面的文件夹图标，dht.dat文件会生成在这个目录底下。
+<img src="../../pictures/Snipaste_2023-08-26_21-24-04.png" alt="dht" title="dht.dat">
+dht.dat文件等你下载完ubuntu.torrent的镜像之后，会在上图目录底下生成一个10KB的文件，如下所示：
+<img src="../../pictures/Snipaste_2023-08-26_21-25-35.png" alt="dht" title="dht.dat"></p>
+<h3 id="玩耍吧">玩耍吧</h3>
+<p>现在你可以尽情的下载，<code>magnet:?xt=</code>开头的磁力文件啦！</p>
+<p><strong>速度与激情10</strong><br>
+<a href="magnet:?xt=urn:btih:716f5fd614a4ca0a37b3e11e4ecf1e95cde5ff33&amp;dn=%5B%E7%94%B5%E5%BD%B1%E5%A4%A9%E5%A0%82www.dytt89.com%5D%E9%80%9F%E5%BA%A6%E4%B8%8E%E6%BF%80%E6%83%8510-2023_HD%E4%B8%AD%E8%8B%B1%E5%8F%8C%E5%AD%97.mp4">magnet:?xt=urn:btih:716f5fd614a4ca0a37b3e11e4ecf1e95cde5ff33&amp;dn=[电影天堂www.dytt89.com]速度与激情10-2023_HD中英双字.mp4</a></p>
+<h3 id="参考链接">参考链接</h3>
+<blockquote>
+<ol>
+<li><a href="https://www.yuque.com/moapp/help/issues">https://www.yuque.com/moapp/help/issues</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/387408041">https://zhuanlan.zhihu.com/p/387408041</a></li>
+</ol>
+</blockquote>
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/blog/post/230611tvshare/">盒子访问共享文件夹</a></li>
+        
+        <li><a href="/blog/post/220126emuelec/">EmuELEC杂谈</a></li>
+        
+        <li><a href="/blog/post/200808ftp/">FTP模式</a></li>
+        
+        <li><a href="/blog/post/180705cpprelative/">c&#43;&#43;开发环境</a></li>
+        
+        <li><a href="/blog/post/171030vimuse/">奇技淫巧</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href='https://gerrywp.github.io/blog/tags/tool'>tool</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "gerrywp/blog"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="https://gerrywp.github.io/blog/search/" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://gerrywp.github.io/blog">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/230826motrix/" title="告别迅雷，Motrix">告别迅雷，Motrix</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/230611tvshare/" title="盒子访问共享文件夹">盒子访问共享文件夹</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/220126emuelec/" title="EmuELEC杂谈">EmuELEC杂谈</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/220122redmine/" title="Redmine部署">Redmine部署</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/220118activity/" title="UML活动图与BPMN流程图的区别">UML活动图与BPMN流程图的区别</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/211122review/" title="鹭鸶尘">鹭鸶尘</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/211109docker/" title="docker">docker</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/210812ecma1/" title="突击ECMAScript(1)">突击ECMAScript(1)</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/201031javaide/" title="VsCode搭建Java开发环境">VsCode搭建Java开发环境</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/200918hash/" title="一致性哈希">一致性哈希</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/article/">article (15)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/csharp/">csharp (12)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/golang/">golang (5)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/java/">java (3)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/js/">js (17)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (16)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/pm/">pm (2)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/windows/">windows (14)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://gerrywp.github.io/blog/tags/algorithm/">algorithm</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/bug/">bug</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/cms/">cms</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/cpp/">cpp</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/csharp/">csharp</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/git/">git</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/go/">go</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/java/">java</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/js/">js</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/mix/">mix</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/msbuild/">msbuild</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/node/">node</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/shell/">shell</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/sql/">sql</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/tool/">tool</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/uml/">UML</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vpn/">vpn</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vs/">vs</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/%E9%9A%8F%E7%AC%94/">随笔</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://gerrywp.github.io/blog/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2023 <a href="https://gerrywp.github.io/blog">大仙 By gerry</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function () {
+            $("pre code").parent().addClass("line-numbers")
+        }());
+
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script type="text/javascript" src="/blog/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/blog/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+<script type="text/javascript">
+(function(){
+	if (typeof self === 'undefined' || !self.Prism || !self.document) {
+		return;
+	}
+
+	if (!Prism.plugins.toolbar) {
+		console.warn('Copy to Clipboard plugin loaded before Toolbar plugin.');
+
+		return;
+	}
+
+	var ClipboardJS = window.ClipboardJS || undefined;
+
+	if (!ClipboardJS && typeof require === 'function') {
+		ClipboardJS = require('clipboard');
+	}
+
+	var callbacks = [];
+
+	if (!ClipboardJS) {
+		var script = document.createElement('script');
+		var head = document.querySelector('head');
+
+		script.onload = function() {
+			ClipboardJS = window.ClipboardJS;
+
+			if (ClipboardJS) {
+				while (callbacks.length) {
+					callbacks.pop()();
+				}
+			}
+		};
+
+		script.src = 'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js';
+		head.appendChild(script);
+	}
+
+	Prism.plugins.toolbar.registerButton('copy-to-clipboard', function (env) {
+		var linkCopy = document.createElement('button');
+		linkCopy.textContent = '复制代码';
+
+		if (!ClipboardJS) {
+			callbacks.push(registerClipboard);
+		} else {
+			registerClipboard();
+		}
+
+		return linkCopy;
+
+		function registerClipboard() {
+			var clip = new ClipboardJS(linkCopy, {
+				'text': function () {
+					return env.code;
+				}
+			});
+
+			clip.on('success', function() {
+				linkCopy.textContent = '复制成功!';
+
+				resetText();
+			});
+			clip.on('error', function () {
+				linkCopy.textContent = '按 Ctrl+C 复制';
+
+				resetText();
+			});
+		}
+
+		function resetText() {
+			setTimeout(function () {
+				linkCopy.textContent = '复制代码';
+			}, 5000);
+		}
+	});
+})();
+
+</script>
+</body>
+</html>
