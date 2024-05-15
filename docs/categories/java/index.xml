@@ -6,7 +6,16 @@
     <description>Recent content in java on 大仙</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 31 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://gerrywp.github.io/blog/categories/java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 15 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://gerrywp.github.io/blog/categories/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IDEA中Wildfly配置异常</title>
+      <link>https://gerrywp.github.io/blog/post/240515wildfly/</link>
+      <pubDate>Wed, 15 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/240515wildfly/</guid>
+      <description>&lt;p&gt;奔跑吧，兄弟。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>VsCode搭建Java开发环境</title>
       <link>https://gerrywp.github.io/blog/post/201031javaide/</link>

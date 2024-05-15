@@ -10,15 +10,17 @@ categories = [ "java" ]
 IDEA中配置Jboss/wildfly application server启动的时候报告各种乱七八糟的错误，例如：port out of range 端口超出范围。
 ### wildfly的配置
 如图所示（IDEA社区版本是没有setting>application server功能的，只能使用Ultimate版本）
-server标签配置如下
+
+**server标签配置如下**
 ![server](../../pictures/企业微信截图_17157433832104.png 'wildfly配置')
-Startup/connection标签配置如下
+**Startup/connection标签配置如下**
 ![Startup/connection](../../pictures/企业微信截图_17157436116328.png 'wildfly配置')
-说明：java命令行编译器，有两种参数，一种是系统参数以-D传递，一种是应用程序参数直接传给main函数的args参数。
+说明：java命令行编译器，有两种参数，一种是**系统参数**以-D传递，另一种是**运行参数**直接传给main函数的args参数。
 
 ### 运行报错
 按照上述图片配置完成后运行会报错，各种奇怪的错误。
-经排查得出结论：因为我的wildfly是直接从公司的公共盘拷贝下载并配置环境变量的，在standalone\configuration里面缺少缺省的standalone.xml文件。
+
+解决办法：因为我的wildfly是直接从公司的公共盘拷贝下载并配置环境变量的，在standalone\configuration里面缺少缺省的standalone.xml文件。
 因公司项目对xml文件做了开发、测试、正式环境的区别，所以需要手动指定xml文件。就算在应用程序参数指定了`-c standalone-local.xml`，在IDEA中standalone.xml也是必须存在的，
 不然会报各种错误！
 ![standalone.xml](../../pictures/企业微信截图_17157441595154.png 'wildfly目录配置')
@@ -34,9 +36,9 @@ mvn ear:help -Ddetail=true -Dgoal=generate-application-xml
 ### goal名字含义
 在 Maven 中，goal 中的冒号前后分别代表以下内容：
 
-	1. **冒号前的部分**：这部分表示插件的 groupId 和 artifactId，用于唯一标识要使用的插件。通常，冒号前的部分指定了要执行的插件。
+1. **冒号前的部分**：这部分表示插件的 groupId 和 artifactId，用于唯一标识要使用的插件。通常，冒号前的部分指定了要执行的插件。
 
-	2. **冒号后的部分**：这部分表示插件中的具体目标（goal），即要执行的任务或操作。冒号后的部分指定了插件中的一个具体目标，告诉 Maven 执行该目标所定义的操作。
+2. **冒号后的部分**：这部分表示插件中的具体目标（goal），即要执行的任务或操作。冒号后的部分指定了插件中的一个具体目标，告诉 Maven 执行该目标所定义的操作。
 
 通过冒号前后的组合，Maven 能够准确地定位要执行的插件和插件中的具体目标，从而执行相应的任务。例如，org.apache.maven.plugins:maven-compiler-plugin:compile 中，org.apache.maven.plugins:maven-compiler-plugin 是插件的 groupId 和 artifactId，compile 是插件中的一个目标（goal），表示要执行编译操作。
 

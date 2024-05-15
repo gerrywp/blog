@@ -7,20 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>console应用程序progressbar（进度条的实现） | 大仙</title>
-    <meta property="og:title" content="console应用程序progressbar（进度条的实现） - 大仙">
+    <title>IDEA中Wildfly配置异常 | 大仙</title>
+    <meta property="og:title" content="IDEA中Wildfly配置异常 - 大仙">
     <meta property="og:type" content="article">
         
-    <meta property="article:published_time" content="2017-11-23T00:00:00&#43;08:00">
+    <meta property="article:published_time" content="2024-05-15T00:00:00&#43;08:00">
         
         
-    <meta property="article:modified_time" content="2017-11-23T00:00:00&#43;08:00">
+    <meta property="article:modified_time" content="2024-05-15T00:00:00&#43;08:00">
         
     <meta name="Keywords" content="golang,go语言,go语言笔记,项目管理,软件架构,公众号,小程序">
-    <meta name="description" content="console应用程序progressbar（进度条的实现）">
+    <meta name="description" content="IDEA中Wildfly配置异常">
         
     <meta name="author" content="gerry">
-    <meta property="og:url" content="https://gerrywp.github.io/blog/post/171123consoleprogbar/">
+    <meta property="og:url" content="https://gerrywp.github.io/blog/post/240515wildfly/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/blog/css/normalize.css">
@@ -72,16 +72,16 @@
                 <div class="res-cons">
                     <article class="post">
                         <header>
-                            <h1 class="post-title">console应用程序progressbar（进度条的实现）</h1>
+                            <h1 class="post-title">IDEA中Wildfly配置异常</h1>
                         </header>
                         <date class="post-meta meta-date">
-                            2017年11月23日
+                            2024年5月15日
                         </date>
                         
                         <div class="post-meta">
                             <span>|</span>
                             
-                                <span class="meta-category"><a href='https://gerrywp.github.io/blog/categories/csharp'>csharp</a></span>
+                                <span class="meta-category"><a href='https://gerrywp.github.io/blog/categories/java'>java</a></span>
                             
                         </div>
                         
@@ -92,32 +92,51 @@
                         
                         
                         <div class="post-content">
-                            <p>　　控制台应用程序，有时候需要做文件上传、压缩等(网络/磁盘)I/O处理。为了得到更友好的界面交互，所以需要用到progress bar 进度条。
-github上有很多现成的可以使用。</p>
-<h3 id="实现机制">实现机制</h3>
-<p>使用的主要方法:</p>
+                            <p>奔跑吧，兄弟。</p>
+<p>IDEA中配置Jboss/wildfly application server启动的时候报告各种乱七八糟的错误，例如：port out of range 端口超出范围。</p>
+<h3 id="wildfly的配置">wildfly的配置</h3>
+<p>如图所示（IDEA社区版本是没有setting&gt;application server功能的，只能使用Ultimate版本）
+server标签配置如下
+<img src="../../pictures/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_17157433832104.png" alt="server" title="wildfly配置">
+Startup/connection标签配置如下
+<img src="../../pictures/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_17157436116328.png" alt="Startup/connection" title="wildfly配置">
+说明：java命令行编译器，有两种参数，一种是系统参数以-D传递，一种是应用程序参数直接传给main函数的args参数。</p>
+<h3 id="运行报错">运行报错</h3>
+<p>按照上述图片配置完成后运行会报错，各种奇怪的错误。
+经排查得出结论：因为我的wildfly是直接从公司的公共盘拷贝下载并配置环境变量的，在standalone\configuration里面缺少缺省的standalone.xml文件。
+因公司项目对xml文件做了开发、测试、正式环境的区别，所以需要手动指定xml文件。就算在应用程序参数指定了<code>-c standalone-local.xml</code>，在IDEA中standalone.xml也是必须存在的，
+不然会报各种错误！
+<img src="../../pictures/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_17157441595154.png" alt="standalone.xml" title="wildfly目录配置"></p>
+<h3 id="maven查看plugin插件的goal目标详细信息">maven查看plugin插件的goal目标详细信息</h3>
+<p>进入包含有具体Maven插件配置的pom.xml文件所在目录，运行以下命令：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mvn ear:help -Ddetail=true -Dgoal=ear
+mvn ear:help -Ddetail=true -Dgoal=generate-application-xml
+</code></pre></div><p><img src="../../pictures/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_17157448964896.png" alt="maven/goal" title="plugin所有goals"></p>
+<h3 id="goal名字含义">goal名字含义</h3>
+<p>在 Maven 中，goal 中的冒号前后分别代表以下内容：</p>
+<pre><code>1. **冒号前的部分**：这部分表示插件的 groupId 和 artifactId，用于唯一标识要使用的插件。通常，冒号前的部分指定了要执行的插件。
+
+2. **冒号后的部分**：这部分表示插件中的具体目标（goal），即要执行的任务或操作。冒号后的部分指定了插件中的一个具体目标，告诉 Maven 执行该目标所定义的操作。
+</code></pre>
+<p>通过冒号前后的组合，Maven 能够准确地定位要执行的插件和插件中的具体目标，从而执行相应的任务。例如，org.apache.maven.plugins:maven-compiler-plugin:compile 中，org.apache.maven.plugins:maven-compiler-plugin 是插件的 groupId 和 artifactId，compile 是插件中的一个目标（goal），表示要执行编译操作。</p>
+<h3 id="artifact和facet">artifact和facet</h3>
+<p>在 Java 开发中，&ldquo;artifact&rdquo; 和 &ldquo;facet&rdquo; 是两个不同的概念：</p>
 <ol>
-<li><code>Console.SetCursourPosition()</code></li>
+<li>
+<p><strong>Artifact（构件）</strong>：在 Java 开发中，&ldquo;artifact&rdquo; 通常指代构建的输出物，例如 JAR 文件、WAR 文件或其他类型的构件。在 Maven 中，&ldquo;artifact&rdquo; 通常指代一个项目的输出物，由 groupId、artifactId、version 和打包类型（如 JAR、WAR）等信息组成。通过 Maven 构建项目时，会生成相应的 artifact，用于部署、共享和使用。</p>
+</li>
+<li>
+<p><strong>Facet（面向）</strong>：在 Java 开发中，&ldquo;facet&rdquo; 是 Eclipse IDE 中的一个概念，用于表示项目的特定功能或特性。通过在 Eclipse 中启用不同的 &ldquo;facet&rdquo;，可以为项目添加特定的功能支持，例如 Web 项目可以添加 Web facet 来启用 Web 开发支持，Enterprise Java 项目可以添加 Java EE facet 来启用 Java EE 功能等。Facet 功能使开发者能够根据项目需求灵活地配置和扩展项目功能。</p>
+</li>
 </ol>
-<p>定位光标的位置，在同一个位置上覆盖输出数据即可！</p>
-<h3 id="nodejs下的console应用程序实现机制也是一样的">nodejs下的console应用程序实现机制也是一样的</h3>
-<ol>
-<li><code>process.stderr</code></li>
-<li><code>stderr.cursorTo(0)</code></li>
-<li><code>stderr.clearLine(1)</code></li>
-</ol>
-<p>参考一下nodejs官方文档的：</p>
-<p><a href="https://nodejs.org/dist/latest-v8.x/docs/api/process.html#process_process_stderr" title="点我访问">process_process_stderr</a></p>
-<p><code>process.stderr</code> 是[Writable Streams] <code>stream</code> 对象的实例。所有的<code>stream</code>对象都继承自<code>EventEmitter</code>，可以监听事件！</p>
-<p><a href="https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_writable_streams" title="点我访问">stream_writable_streams</a></p>
+<p>备注：善于使用Kimi.chat或者ChatGPT提问找答案。</p>
+<h3 id="参考链接">参考链接</h3>
 <blockquote>
-<p>参考</p>
-</blockquote>
 <ol>
-<li><a href="https://github.com/Mpdreamz/shellprogressbar" title="点我访问">shellprogressbar</a></li>
-<li><a href="http://www.cnblogs.com/zhanghuabin/p/5310680.html" title="点我访问">用C#实现控制台进度条</a></li>
-<li><a href="https://github.com/visionmedia/node-progress" title="点我访问">node-progress</a></li>
+<li><a href="https://www.cnblogs.com/danhuang/p/12762333.html">https://www.cnblogs.com/danhuang/p/12762333.html</a></li>
+<li><a href="https://maven.apache.org/plugins/maven-ear-plugin/plugin-info.html">https://maven.apache.org/plugins/maven-ear-plugin/plugin-info.html</a></li>
 </ol>
+</blockquote>
                         </div>
 
                         
@@ -129,15 +148,15 @@ github上有很多现成的可以使用。</p>
     <h2>See Also</h2>
     <ul class="listing">
         
-        <li><a href="/blog/post/170414razor/">razor引擎及view的呈现</a></li>
+        <li><a href="/blog/post/220122redmine/">Redmine部署</a></li>
         
-        <li><a href="/blog/post/170314iisexpress/">iisexpress-config</a></li>
+        <li><a href="/blog/post/230826motrix/">告别迅雷，Motrix</a></li>
         
-        <li><a href="/blog/post/170119delegate1/">委托和反射</a></li>
+        <li><a href="/blog/post/230611tvshare/">盒子访问共享文件夹</a></li>
         
-        <li><a href="/blog/post/171121es6syntax/">es6语法糖(syntax sugar)</a></li>
+        <li><a href="/blog/post/220126emuelec/">EmuELEC杂谈</a></li>
         
-        <li><a href="/blog/post/171113poem/">黄梅解语</a></li>
+        <li><a href="/blog/post/220118activity/">UML活动图与BPMN流程图的区别</a></li>
         
     </ul>
 </div>
@@ -147,7 +166,7 @@ github上有很多现成的可以使用。</p>
                             
                             <ul class="clearfix">
                                 
-                                <li><a href='https://gerrywp.github.io/blog/tags/vs'>vs</a></li>
+                                <li><a href='https://gerrywp.github.io/blog/tags/bug'>bug</a></li>
                                 
                             </ul>
                             
