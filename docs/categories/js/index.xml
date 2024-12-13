@@ -6,7 +6,16 @@
     <description>Recent content in js on 大仙</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 12 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gerrywp.github.io/blog/categories/js/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 12 Dec 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://gerrywp.github.io/blog/categories/js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>npm run到底做了什么？</title>
+      <link>https://gerrywp.github.io/blog/post/241212npmrun/</link>
+      <pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/post/241212npmrun/</guid>
+      <description>&lt;p&gt;大鹏一日同风起，扶摇直上九万里！&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>突击ECMAScript(1)</title>
       <link>https://gerrywp.github.io/blog/post/210812ecma1/</link>

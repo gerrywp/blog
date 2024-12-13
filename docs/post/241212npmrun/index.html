@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.75.1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>npm run到底做了什么？ | 大仙</title>
+    <meta property="og:title" content="npm run到底做了什么？ - 大仙">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2024-12-12T00:00:00&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2024-12-12T00:00:00&#43;08:00">
+        
+    <meta name="Keywords" content="golang,go语言,go语言笔记,项目管理,软件架构,公众号,小程序">
+    <meta name="description" content="npm run到底做了什么？">
+        
+    <meta name="author" content="gerry">
+    <meta property="og:url" content="https://gerrywp.github.io/blog/post/241212npmrun/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/blog/css/normalize.css">
+    
+        <link rel="stylesheet" href="/blog/css/prism.css">
+    
+    <link rel="stylesheet" href="/blog/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://gerrywp.github.io/blog">
+                        大仙
+                    </a>
+                
+                <p class="description">专注于Go语言(golang)、csharp、移动互联网、项目管理、软件架构。微信:wolflow915</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://gerrywp.github.io/blog">首页</a>
+                    
+                    <a  href="https://gerrywp.github.io/blog/archives/" title="归档">归档</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+        
+        
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">npm run到底做了什么？</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2024年12月12日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href='https://gerrywp.github.io/blog/categories/js'>js</a></span>
+                            
+                        </div>
+                        
+                        
+                        <div class="post-meta">
+                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
+                        </div>
+                        
+                        
+                        <div class="post-content">
+                            <p>大鹏一日同风起，扶摇直上九万里！</p>
+<p>使用react-native脚手架创建的示例应用，npm run start 到底做了什么？</p>
+<h3 id="npm-run-start">npm run start</h3>
+<p>当我们用npm（node package manager）来管理JavaScript/TypeScript项目的时候，都会在项目的根目录下生成一个package.json文件。而这个文件里的scripts字段就是用于适配npm run XXX命令的。</p>
+<p>当我们执行<code>npm run start</code>的时候，就会执行对应的<code>react-native start</code>指令。可能有小伙伴会问了，那为什么不能直接执行<code>react-native start</code>命令呢？因为这样会报错，操作系统path环境变量里只有npm相关的命令，不存在<code>react-native</code>这个可执行文件；而我们在下载安装依赖的时候，会在node_modules/.bin目录下创建好名为<code>react-native</code>(或.cmd)(或者ps1)的可执行文件：
+<img src="../../pictures/Snipaste_2024-12-13_18-11-47.png" alt="package.json" title="包文件"></p>
+<p>而在.bin目录下，一般针对一个依赖模块，会有3个可执行文件，没有后缀名的是对应Unix系的shell脚本，<code>.cmd</code>为后缀名的是windows bat脚本，<code>.ps1</code>为后缀名的则是PowerShell中可执行文件（可以跨平台），三者作用都是用node执行一个js文件。我们可以打开名为的这个文件<code>react-native.cmd</code>，看看里面的内容：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">@ECHO off
+GOTO start
+:find_dp0
+SET dp0=%~dp0
+EXIT /b
+:start
+SETLOCAL
+CALL :find_dp0
+
+IF EXIST <span style="color:#a31515">&#34;%dp0%\node.exe&#34;</span> (
+  SET <span style="color:#a31515">&#34;_prog=%dp0%\node.exe&#34;</span>
+) ELSE (
+  SET <span style="color:#a31515">&#34;_prog=node&#34;</span>
+  SET PATHEXT=%PATHEXT:;.JS;=;%
+)
+
+endLocal &amp; goto <span style="color:#008000">#_undefined_# 2&gt;NUL || title %COMSPEC% &amp; &#34;%_prog%&#34;  &#34;%dp0%\..\@react-native-community\cli\build\bin.js&#34; %*</span>
+</code></pre></div><p>假定项目的根目录(root)是<code>D:\Development\Workspace\AwesomeProject</code></p>
+<p><strong>说明</strong></p>
+<ul>
+<li>&ldquo;%_prog%&rdquo; 代表的就是node.exe可执行文件</li>
+<li>%dp0% 代表当前目录root</li>
+<li>title是设置当前命令行窗口的标题</li>
+<li>goto #<em>undefined</em># 2&gt;NUL 不知道有什么作用，感觉没什么实际用途，删掉也不影响命令执行。</li>
+</ul>
+<h3 id="在不同的目录下运行node-binjs报错">在不同的目录下运行node bin.js报错</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">..<span style="color:#a31515">\r</span>oot&gt;<span style="color:#a31515">&#34;node&#34;</span> <span style="color:#a31515">&#34;D:\Development\Workspace\AwesomeProject\node_modules\
+</span><span style="color:#a31515">.bin\\..\@react-native-community\cli\build\bin.js&#34;</span> start <span style="color:#008000">#失败</span>
+
+root<span style="color:#a31515">\&gt;</span><span style="color:#a31515">&#34;node&#34;</span> <span style="color:#a31515">&#34;D:\Development\Workspace\AwesomeProject\node_modules\
+</span><span style="color:#a31515">.bin\\..\@react-native-community\cli\build\bin.js&#34;</span> start   <span style="color:#008000">#成功</span>
+
+root<span style="color:#a31515">\n</span>ode_modules&gt;<span style="color:#a31515">&#34;node&#34;</span> <span style="color:#a31515">&#34;D:\Development\Workspace\AwesomeProject\node_modules\
+</span><span style="color:#a31515">.bin\\..\@react-native-community\cli\build\bin.js&#34;</span> start <span style="color:#008000">#成功</span>
+
+root<span style="color:#a31515">\n</span>ode_modules<span style="color:#a31515">\.</span>bin&gt;<span style="color:#a31515">&#34;node&#34;</span> <span style="color:#a31515">&#34;D:\Development\Workspace\AwesomeProject\node_modules\
+</span><span style="color:#a31515">.bin\\..\@react-native-community\cli\build\bin.js&#34;</span> start <span style="color:#008000">#成功</span>
+
+root<span style="color:#a31515">\n</span>ode_modules<span style="color:#a31515">\@</span>任意目录&gt;<span style="color:#a31515">&#34;node&#34;</span> <span style="color:#a31515">&#34;D:\Development\Workspace\AwesomeProject\node_modules\
+</span><span style="color:#a31515">.bin\\..\@react-native-community\cli\build\bin.js&#34;</span> start <span style="color:#008000">#成功</span>
+
+root<span style="color:#a31515">\n</span>ode_modules<span style="color:#a31515">\非</span>@开头目录&gt;<span style="color:#a31515">&#34;node&#34;</span> <span style="color:#a31515">&#34;D:\Development\Workspace\AwesomeProject\node_modules\
+</span><span style="color:#a31515">.bin\\..\@react-native-community\cli\build\bin.js&#34;</span> start <span style="color:#008000">#失败</span>
+</code></pre></div><p>以上情况显示失败的都会提示找不到<code>start</code>命令</p>
+<h3 id="源码分析">源码分析</h3>
+<p>使用VSCODE打开项目根目录root:<code>D:\Development\Workspace\AwesomeProject</code>
+创建调试启动文件<code>launch.json</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">{
+    <span style="color:#a31515">&#34;version&#34;</span>: <span style="color:#a31515">&#34;0.2.0&#34;</span>,
+    <span style="color:#a31515">&#34;configurations&#34;</span>: [
+
+        {
+            <span style="color:#a31515">&#34;type&#34;</span>: <span style="color:#a31515">&#34;node&#34;</span>,
+            <span style="color:#a31515">&#34;request&#34;</span>: <span style="color:#a31515">&#34;launch&#34;</span>,
+            <span style="color:#a31515">&#34;name&#34;</span>: <span style="color:#a31515">&#34;Launch Program&#34;</span>,
+            <span style="color:#a31515">&#34;skipFiles&#34;</span>: [
+                <span style="color:#a31515">&#34;&lt;node_internals&gt;/**&#34;</span>
+            ],
+            <span style="color:#a31515">&#34;program&#34;</span>: <span style="color:#a31515">&#34;</span><span style="color:#a31515">${</span>workspaceFolder<span style="color:#a31515">}</span><span style="color:#a31515">\\node_modules\\@react-native-community\\cli\\build\\bin.js&#34;</span>,
+            <span style="color:#a31515">&#34;args&#34;</span>: [<span style="color:#a31515">&#34;start&#34;</span>]
+        }
+    ]
+}
+</code></pre></div><p>启动调试在bin.js文件打断点跟踪，最终找到是因为，代码会找项目根目录然后去加载<code>react-native</code>控制台应用，可用的<code>commands</code>。</p>
+<p><strong>备注</strong> 具体细节以后讨论。</p>
+<h3 id="nodejs中orm-sequelize的困惑">nodejs中orm-sequelize的困惑</h3>
+<p>使用<code>sequelize</code>查询数据库的时候</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">categoryModle.findAll()
+.then(m =&gt; {
+  res.render(<span style="color:#a31515">&#39;index&#39;</span>, { title: <span style="color:#a31515">&#39;爱游易&#39;</span>, categoryList:m});
+});
+</code></pre></div><p>findAll方法返回的是一个promise对象，其中m查询结果为，sequelize\lib\model.js对象，而不是原生的数据库表的实体模型
+model对象是对entityModel的一个封装，因此在前端用handlerbar直接读取entityModel的属性是读取不到的。
+以下代码会报错。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">{{#categoryList}}
+&lt;li data-category=<span style="color:#a31515">&#34;{{folderName}}&#34;</span>&gt;&lt;a href=<span style="color:#a31515">&#34;javascript:void(0);&#34;</span>&gt;{{name}}&lt;/a&gt;&lt;/li&gt;
+{{/categoryList}}
+</code></pre></div><p>有两种方式处理该异常</p>
+<ul>
+<li>处理findAll回调函数将数据转成普通对象</li>
+<li>给findAll添加{raw:true}参数</li>
+</ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">categoryModle.findAll({raw:<span style="color:#00f">true</span>})<span style="color:#008000">//return raw objects[]
+</span><span style="color:#008000"></span>.then(m =&gt; {
+  res.render(<span style="color:#a31515">&#39;index&#39;</span>, { title: <span style="color:#a31515">&#39;爱游易&#39;</span>, categoryList:m});
+});
+</code></pre></div><h3 id="参考链接">参考链接</h3>
+<blockquote>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/513706080">https://zhuanlan.zhihu.com/p/513706080</a></li>
+<li><a href="https://www.bookstack.cn/read/es6-3rd/spilt.1.docs-promise.md">https://www.bookstack.cn/read/es6-3rd/spilt.1.docs-promise.md</a></li>
+</ul>
+</blockquote>
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/blog/post/180816jsjourney6/">nodejs之旅(6)热替换与热加载</a></li>
+        
+        <li><a href="/blog/post/180813jsjourney5/">nodejs之旅(5)-form表单</a></li>
+        
+        <li><a href="/blog/post/180619jsjourney4/">nodejs之旅(4)-webpack、babel和antd库的结合</a></li>
+        
+        <li><a href="/blog/post/180617jsjourney3/">nodejs之旅(3)-gulp及调试</a></li>
+        
+        <li><a href="/blog/post/180402deploy/">apache反向代理nodejs-web</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href='https://gerrywp.github.io/blog/tags/npm'>npm</a></li>
+                                
+                                <li><a href='https://gerrywp.github.io/blog/tags/node'>node</a></li>
+                                
+                                <li><a href='https://gerrywp.github.io/blog/tags/react'>react</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "gerrywp/blog"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="https://gerrywp.github.io/blog/search/" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://gerrywp.github.io/blog">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/241212npmrun/" title="npm run到底做了什么？">npm run到底做了什么？</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/240515wildfly/" title="IDEA中Wildfly配置异常">IDEA中Wildfly配置异常</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/230826motrix/" title="告别迅雷，Motrix">告别迅雷，Motrix</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/230611tvshare/" title="盒子访问共享文件夹">盒子访问共享文件夹</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/220126emuelec/" title="EmuELEC杂谈">EmuELEC杂谈</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/220122redmine/" title="Redmine部署">Redmine部署</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/220118activity/" title="UML活动图与BPMN流程图的区别">UML活动图与BPMN流程图的区别</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/211122review/" title="鹭鸶尘">鹭鸶尘</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/211109docker/" title="docker">docker</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/210812ecma1/" title="突击ECMAScript(1)">突击ECMAScript(1)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/article/">article (15)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/csharp/">csharp (12)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/golang/">golang (5)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/java/">java (4)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/js/">js (18)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (16)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/pm/">pm (2)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/windows/">windows (14)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://gerrywp.github.io/blog/tags/algorithm/">algorithm</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/bug/">bug</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/cms/">cms</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/cpp/">cpp</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/csharp/">csharp</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/git/">git</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/go/">go</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/java/">java</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/js/">js</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/mix/">mix</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/msbuild/">msbuild</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/node/">node</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/npm/">npm</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/react/">react</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/shell/">shell</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/sql/">sql</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/tool/">tool</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/uml/">UML</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vpn/">vpn</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vs/">vs</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/%E9%9A%8F%E7%AC%94/">随笔</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://gerrywp.github.io/blog/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2024 <a href="https://gerrywp.github.io/blog">大仙 By gerry</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function () {
+            $("pre code").parent().addClass("line-numbers")
+        }());
+
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script type="text/javascript" src="/blog/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/blog/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+<script type="text/javascript">
+(function(){
+	if (typeof self === 'undefined' || !self.Prism || !self.document) {
+		return;
+	}
+
+	if (!Prism.plugins.toolbar) {
+		console.warn('Copy to Clipboard plugin loaded before Toolbar plugin.');
+
+		return;
+	}
+
+	var ClipboardJS = window.ClipboardJS || undefined;
+
+	if (!ClipboardJS && typeof require === 'function') {
+		ClipboardJS = require('clipboard');
+	}
+
+	var callbacks = [];
+
+	if (!ClipboardJS) {
+		var script = document.createElement('script');
+		var head = document.querySelector('head');
+
+		script.onload = function() {
+			ClipboardJS = window.ClipboardJS;
+
+			if (ClipboardJS) {
+				while (callbacks.length) {
+					callbacks.pop()();
+				}
+			}
+		};
+
+		script.src = 'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js';
+		head.appendChild(script);
+	}
+
+	Prism.plugins.toolbar.registerButton('copy-to-clipboard', function (env) {
+		var linkCopy = document.createElement('button');
+		linkCopy.textContent = '复制代码';
+
+		if (!ClipboardJS) {
+			callbacks.push(registerClipboard);
+		} else {
+			registerClipboard();
+		}
+
+		return linkCopy;
+
+		function registerClipboard() {
+			var clip = new ClipboardJS(linkCopy, {
+				'text': function () {
+					return env.code;
+				}
+			});
+
+			clip.on('success', function() {
+				linkCopy.textContent = '复制成功!';
+
+				resetText();
+			});
+			clip.on('error', function () {
+				linkCopy.textContent = '按 Ctrl+C 复制';
+
+				resetText();
+			});
+		}
+
+		function resetText() {
+			setTimeout(function () {
+				linkCopy.textContent = '复制代码';
+			}, 5000);
+		}
+	});
+})();
+
+</script>
+</body>
+</html>
