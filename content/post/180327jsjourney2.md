@@ -116,7 +116,16 @@ app.engine('.hbs', exphbs({extname: '.hbs',helpers:sectionHelper}));
   </body>
 </html>
 ```
+### Windows下npm install sqlite3失败
 
->使用{ { { } } }语法原样输出handlebar-engine上下文context中的renderSection.js变量!
+在windows下做开发还是绕不开`Visual Studio开发环境`啊，使用`npm intall sqlite3`的时候，需要针对平台编译对应的sqlite3.node文件，因此
+需要有`Visual Studio Build Tools`工具，不然会提示各种错误，最简单的方法就是下载windows下的node.exe安装包，安装的时候勾选如下图所示的选项
+**Automatically install the necessary tools.**
+![node安装](../../pictures/Snipaste_2024-12-17_20-58-52.png 'node安装')
+该选项会安装Chocolatey和Visual Studio Build tools
+![Visual Studio Installer](../../pictures/Snipaste_2024-12-17_21-02-53.png 'Visual Studio Installer')
+安装了MSBuild后再安装npm install sqlite3就会自动编译并生成sqlite3.node文件。
 
-备注：`{ { {} } }`与`{ {} }`的区别，两者都是求值输出变量，前者对html标签不做转义处理，后者对html标签做了转义处理。
+
+> + 使用{ { { } } }语法原样输出handlebar-engine上下文context中的renderSection.js变量!  
+> + `{ { {} } }`与`{ {} }`的区别，两者都是求值输出变量，前者对html标签不做转义处理，后者对html标签做了转义处理。

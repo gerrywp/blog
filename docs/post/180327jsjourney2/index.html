@@ -184,10 +184,20 @@ app.engine(<span style="color:#a31515">&#39;.hbs&#39;</span>, exphbs({extname: <
     { { {renderSection.js} } }
   &lt;/body&gt;
 &lt;/html&gt;
-</code></pre></div><blockquote>
-<p>使用{ { { } } }语法原样输出handlebar-engine上下文context中的renderSection.js变量!</p>
+</code></pre></div><h3 id="windows下npm-install-sqlite3失败">Windows下npm install sqlite3失败</h3>
+<p>在windows下做开发还是绕不开<code>Visual Studio开发环境</code>啊，使用<code>npm intall sqlite3</code>的时候，需要针对平台编译对应的sqlite3.node文件，因此
+需要有<code>Visual Studio Build Tools</code>工具，不然会提示各种错误，最简单的方法就是下载windows下的node.exe安装包，安装的时候勾选如下图所示的选项
+<strong>Automatically install the necessary tools.</strong>
+<img src="../../pictures/Snipaste_2024-12-17_20-58-52.png" alt="node安装" title="node安装">
+该选项会安装Chocolatey和Visual Studio Build tools
+<img src="../../pictures/Snipaste_2024-12-17_21-02-53.png" alt="Visual Studio Installer" title="Visual Studio Installer">
+安装了MSBuild后再安装npm install sqlite3就会自动编译并生成sqlite3.node文件。</p>
+<blockquote>
+<ul>
+<li>使用{ { { } } }语法原样输出handlebar-engine上下文context中的renderSection.js变量!</li>
+<li><code>{ { {} } }</code>与<code>{ {} }</code>的区别，两者都是求值输出变量，前者对html标签不做转义处理，后者对html标签做了转义处理。</li>
+</ul>
 </blockquote>
-<p>备注：<code>{ { {} } }</code>与<code>{ {} }</code>的区别，两者都是求值输出变量，前者对html标签不做转义处理，后者对html标签做了转义处理。</p>
                         </div>
 
                         
