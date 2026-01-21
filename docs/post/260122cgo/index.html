@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.75.1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>替换gorm底层sqlite驱动 | 大仙</title>
+    <meta property="og:title" content="替换gorm底层sqlite驱动 - 大仙">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2026-01-21T00:00:00&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2026-01-21T00:00:00&#43;08:00">
+        
+    <meta name="Keywords" content="golang,go语言,go语言笔记,项目管理,软件架构,公众号,小程序">
+    <meta name="description" content="替换gorm底层sqlite驱动">
+        
+    <meta name="author" content="gerry">
+    <meta property="og:url" content="https://gerrywp.github.io/blog/post/260122cgo/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/blog/css/normalize.css">
+    
+        <link rel="stylesheet" href="/blog/css/prism.css">
+    
+    <link rel="stylesheet" href="/blog/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://gerrywp.github.io/blog">
+                        大仙
+                    </a>
+                
+                <p class="description">专注于Go语言(golang)、csharp、移动互联网、项目管理、软件架构。微信:wolflow915</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://gerrywp.github.io/blog">首页</a>
+                    
+                    <a  href="https://gerrywp.github.io/blog/archives/" title="归档">归档</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+        
+        
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">替换gorm底层sqlite驱动</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2026年1月21日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href='https://gerrywp.github.io/blog/categories/golang'>golang</a></span>
+                            
+                        </div>
+                        
+                        
+                        <div class="post-meta">
+                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
+                        </div>
+                        
+                        
+                        <div class="post-content">
+                            <p>落地开花，富贵荣华。2026加油！</p>
+<p>go项目使用gorm数据库映射框架，框架底层使用的mattn/go-sqlite3是CGO实现的驱动，容易出现编译警告；可以换成纯Go实现的sqlite3驱动，彻底避免C代码编译警告。</p>
+<h3 id="go-run-cmdmaingo出现的警告">go run cmd/main.go出现的警告</h3>
+<p>使用mattn/go-sqlite3启动项（或者debug调试）目的时候，比较繁琐：</p>
+<ol>
+<li>需要C++的编译环境，也就是需要gcc编译器，windows下需使用<code>choco install mingw-w64 -y</code>安装。</li>
+<li>需要设置环境环境变量<code>CGO_ENABLED=1</code>启用cgo。
+做了以上两部操作后，方可使用sqlite数据库。
+但是</li>
+</ol>
+<h3 id="使用clash-verge">使用Clash Verge</h3>
+<p>如图所示：
+<img src="../../pictures/Snipaste_2026-01-21_09-50-19.png" alt="设置" title="Clash设置"></p>
+<h3 id="edge浏览器无法打开copilot">edge浏览器无法打开Copilot</h3>
+<p>需要翻墙才能访问，需要手动将copilot.microsoft.com添加到clash代理规则里面去。</p>
+<p>订阅-&gt;右键规则，添加新的规则即可
+<img src="../../pictures/Snipaste_2026-01-21_10-21-00.png" alt="订阅" title="编辑规则"></p>
+<h3 id="参考链接">参考链接</h3>
+<blockquote>
+<ol>
+<li></li>
+</ol>
+</blockquote>
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/blog/post/240515wildfly/">IDEA中Wildfly配置异常</a></li>
+        
+        <li><a href="/blog/post/220122redmine/">Redmine部署</a></li>
+        
+        <li><a href="/blog/post/170317mssqlsp/">拾遗stored procedure</a></li>
+        
+        <li><a href="/blog/post/170111overfunc/"> Ms-SqlServer开窗函数(over())</a></li>
+        
+        <li><a href="/blog/post/260121microstore/">代理后微软商店无法打开UWP</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href='https://gerrywp.github.io/blog/tags/bug'>bug</a></li>
+                                
+                                <li><a href='https://gerrywp.github.io/blog/tags/sql'>sql</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "gerrywp/blog"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="https://gerrywp.github.io/blog/search/" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://gerrywp.github.io/blog">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/260121microstore/" title="代理后微软商店无法打开UWP">代理后微软商店无法打开UWP</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/260122cgo/" title="替换gorm底层sqlite驱动">替换gorm底层sqlite驱动</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/241212npmrun/" title="npm run到底做了什么？">npm run到底做了什么？</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/240515wildfly/" title="IDEA中Wildfly配置异常">IDEA中Wildfly配置异常</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/230826motrix/" title="告别迅雷，Motrix">告别迅雷，Motrix</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/230611tvshare/" title="盒子访问共享文件夹">盒子访问共享文件夹</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/220126emuelec/" title="EmuELEC杂谈">EmuELEC杂谈</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/220122redmine/" title="Redmine部署">Redmine部署</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/220118activity/" title="UML活动图与BPMN流程图的区别">UML活动图与BPMN流程图的区别</a>
+    </li>
+    
+    <li>
+        <a href="https://gerrywp.github.io/blog/post/211122review/" title="鹭鸶尘">鹭鸶尘</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/article/">article (15)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/csharp/">csharp (12)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/golang/">golang (6)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/java/">java (4)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/js/">js (18)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/linux/">linux (16)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/others/">others (11)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/pm/">pm (2)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/sql/">sql (2)</a></li>
+    
+    <li><a href="https://gerrywp.github.io/blog/categories/windows/">windows (15)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://gerrywp.github.io/blog/tags/algorithm/">algorithm</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/bug/">bug</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/cms/">cms</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/cpp/">cpp</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/csharp/">csharp</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/git/">git</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/go/">go</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/java/">java</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/js/">js</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/mix/">mix</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/msbuild/">msbuild</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/node/">node</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/npm/">npm</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/react/">react</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/shell/">shell</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/sql/">sql</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/tool/">tool</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vpn/">vpn</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/vs/">vs</a>
+    
+    <a href="https://gerrywp.github.io/blog/tags/%E9%9A%8F%E7%AC%94/">随笔</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://gerrywp.github.io/blog/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2026 <a href="https://gerrywp.github.io/blog">大仙 By gerry</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function () {
+            $("pre code").parent().addClass("line-numbers")
+        }());
+
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script type="text/javascript" src="/blog/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/blog/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+<script type="text/javascript">
+(function(){
+	if (typeof self === 'undefined' || !self.Prism || !self.document) {
+		return;
+	}
+
+	if (!Prism.plugins.toolbar) {
+		console.warn('Copy to Clipboard plugin loaded before Toolbar plugin.');
+
+		return;
+	}
+
+	var ClipboardJS = window.ClipboardJS || undefined;
+
+	if (!ClipboardJS && typeof require === 'function') {
+		ClipboardJS = require('clipboard');
+	}
+
+	var callbacks = [];
+
+	if (!ClipboardJS) {
+		var script = document.createElement('script');
+		var head = document.querySelector('head');
+
+		script.onload = function() {
+			ClipboardJS = window.ClipboardJS;
+
+			if (ClipboardJS) {
+				while (callbacks.length) {
+					callbacks.pop()();
+				}
+			}
+		};
+
+		script.src = 'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js';
+		head.appendChild(script);
+	}
+
+	Prism.plugins.toolbar.registerButton('copy-to-clipboard', function (env) {
+		var linkCopy = document.createElement('button');
+		linkCopy.textContent = '复制代码';
+
+		if (!ClipboardJS) {
+			callbacks.push(registerClipboard);
+		} else {
+			registerClipboard();
+		}
+
+		return linkCopy;
+
+		function registerClipboard() {
+			var clip = new ClipboardJS(linkCopy, {
+				'text': function () {
+					return env.code;
+				}
+			});
+
+			clip.on('success', function() {
+				linkCopy.textContent = '复制成功!';
+
+				resetText();
+			});
+			clip.on('error', function () {
+				linkCopy.textContent = '按 Ctrl+C 复制';
+
+				resetText();
+			});
+		}
+
+		function resetText() {
+			setTimeout(function () {
+				linkCopy.textContent = '复制代码';
+			}, 5000);
+		}
+	});
+})();
+
+</script>
+</body>
+</html>
