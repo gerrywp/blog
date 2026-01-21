@@ -24,6 +24,13 @@ categories = [ "others" ]
 2. setjmp/longjmp(SJLJ)基于SJLJ的EH比DW2 EH慢得多(在没有异常时会惩罚甚至正常执行)，但是可以在没有使用GCC编译的代码或没有调用堆栈的代码上工作。
 3. 结构化异常处理SEH(Structured Exception Handling)Windows使用自己的异常处理机制。
 
+* 使用choco安装
+```bash
+# choco必须使用翻墙才能安装软件，不然的话特别慢
+choco search mingw
+choco install mingw-w64 -y
+```
+
 ### Cygwin(cygnus win)
 目的：提供完整的类Unix环境，适用于在windows桌面下，开发运行于linux系统上的应用   
 功能：提供了一整套的类linux环境，GCC、GNU工具    

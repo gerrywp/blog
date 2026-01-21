@@ -112,7 +112,13 @@
 <li>setjmp/longjmp(SJLJ)基于SJLJ的EH比DW2 EH慢得多(在没有异常时会惩罚甚至正常执行)，但是可以在没有使用GCC编译的代码或没有调用堆栈的代码上工作。</li>
 <li>结构化异常处理SEH(Structured Exception Handling)Windows使用自己的异常处理机制。</li>
 </ol>
-<h3 id="cygwincygnus-win">Cygwin(cygnus win)</h3>
+<ul>
+<li>使用choco安装</li>
+</ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># choco必须使用翻墙才能安装软件，不然的话特别慢</span>
+choco search mingw
+choco install mingw-w64 -y
+</code></pre></div><h3 id="cygwincygnus-win">Cygwin(cygnus win)</h3>
 <p>目的：提供完整的类Unix环境，适用于在windows桌面下，开发运行于linux系统上的应用<br>
 功能：提供了一整套的类linux环境，GCC、GNU工具 <br>
 下载：<a href="https://cygwin.com/install.html" title="点我访问">Cygwin</a></p>
