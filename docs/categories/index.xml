@@ -8,6 +8,15 @@
     <language>zh-CN</language>
     <lastBuildDate>Wed, 21 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://gerrywp.github.io/blog/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>golang</title>
+      <link>https://gerrywp.github.io/blog/categories/golang/</link>
+      <pubDate>Wed, 21 Jan 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://gerrywp.github.io/blog/categories/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>windows</title>
       <link>https://gerrywp.github.io/blog/categories/windows/</link>
       <pubDate>Wed, 21 Jan 2026 00:00:00 +0000</pubDate>
@@ -76,15 +85,6 @@
       <pubDate>Wed, 08 Jul 2020 00:00:00 +0000</pubDate>
       
       <guid>https://gerrywp.github.io/blog/categories/article/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>golang</title>
-      <link>https://gerrywp.github.io/blog/categories/golang/</link>
-      <pubDate>Wed, 27 May 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://gerrywp.github.io/blog/categories/golang/</guid>
       <description></description>
     </item>
     

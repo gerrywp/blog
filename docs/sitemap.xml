@@ -3,12 +3,27 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://gerrywp.github.io/blog/tags/bug/</loc>
+    <lastmod>2026-01-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://gerrywp.github.io/blog/categories/</loc>
     <lastmod>2026-01-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
+    <loc>https://gerrywp.github.io/blog/categories/golang/</loc>
+    <lastmod>2026-01-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://gerrywp.github.io/blog/post/</loc>
+    <lastmod>2026-01-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gerrywp.github.io/blog/tags/sql/</loc>
     <lastmod>2026-01-21T00:00:00+00:00</lastmod>
   </url>
   
@@ -38,6 +53,11 @@
   </url>
   
   <url>
+    <loc>https://gerrywp.github.io/blog/post/260122cgo/</loc>
+    <lastmod>2026-01-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://gerrywp.github.io/blog/categories/js/</loc>
     <lastmod>2024-12-12T00:00:00+00:00</lastmod>
   </url>
@@ -60,11 +80,6 @@
   <url>
     <loc>https://gerrywp.github.io/blog/tags/react/</loc>
     <lastmod>2024-12-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gerrywp.github.io/blog/tags/bug/</loc>
-    <lastmod>2024-05-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -108,7 +123,7 @@
   </url>
   
   <url>
-    <loc>https://gerrywp.github.io/blog/tags/uml/</loc>
+    <loc>https://gerrywp.github.io/blog/tags/mix/</loc>
     <lastmod>2022-01-18T00:00:00+00:00</lastmod>
   </url>
   
@@ -188,11 +203,6 @@
   </url>
   
   <url>
-    <loc>https://gerrywp.github.io/blog/tags/mix/</loc>
-    <lastmod>2020-09-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://gerrywp.github.io/blog/post/200912od/</loc>
     <lastmod>2020-09-12T00:00:00+00:00</lastmod>
   </url>
@@ -254,11 +264,6 @@
   
   <url>
     <loc>https://gerrywp.github.io/blog/tags/go/</loc>
-    <lastmod>2020-05-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gerrywp.github.io/blog/categories/golang/</loc>
     <lastmod>2020-05-27T00:00:00+00:00</lastmod>
   </url>
   
@@ -600,11 +605,6 @@
   <url>
     <loc>https://gerrywp.github.io/blog/post/170321winbatch/</loc>
     <lastmod>2017-03-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gerrywp.github.io/blog/tags/sql/</loc>
-    <lastmod>2017-03-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>

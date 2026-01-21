@@ -1,7 +1,7 @@
 +++
 title = "UML活动图与BPMN流程图的区别"
 date = "2022-01-18"
-tags = [ "UML" ]
+tags = [ "mix","tool" ]
 categories = [ "pm" ]
 +++
 寄蜉蝣于天地，渺沧海之一粟。哀吾生之须臾，羡长江之无穷。
