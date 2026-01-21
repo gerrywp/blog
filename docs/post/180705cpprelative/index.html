@@ -100,24 +100,26 @@
 以及对等于Windows SDK（的子集）的头文件和用于 MinGW 版本 linker 的库文件（so、a等，而不是 VC 的 lib）。  <br>
 下载：</p>
 <ul>
-<li>64位版本
-<a href="https://sourceforge.net/projects/mingw-w64/files/">mingw64</a> 找到<strong>MinGW-W64 GCC-8.1.0</strong>下64位的下载包即可。<br>
-说明：各版本(下载的文件版本名称)的区别
+<li>minGW官网 <a href="https://www.mingw-w64.org/" title="点我访问">minGW</a></li>
+</ul>
+<p>在<code>Downloads</code>页签下找到<code>MinGW-W64-builds</code>下载即可，会跳转到Github进行下载。</p>
+<ul>
+<li>sourceforge网站下载 <a href="https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/threads-win32/seh/">MinGW-w64</a></li>
+</ul>
+<p>说明：各版本(下载的文件版本名称)的区别：</p>
 <ol>
-<li>DWARF或DWARF-2(DW2)EH这需要使用DWARF-2(或DWARF-3)调试信息DW-2EH可以导致可执行文件略显膨胀，因为大的调用堆栈表必须包含在可执行文件中</li>
-<li>setjmp/longjmp(SJLJ)基于SJLJ的EH比DW2 EH慢得多(在没有异常时会惩罚甚至正常执行)，但是可以在没有使用GCC编译的代码或没有调用堆栈的代码上工作</li>
+<li>DWARF或DWARF-2(DW2)EH这需要使用DWARF-2(或DWARF-3)调试信息DW-2EH可以导致可执行文件略显膨胀，因为大的调用堆栈表必须包含在可执行文件中。</li>
+<li>setjmp/longjmp(SJLJ)基于SJLJ的EH比DW2 EH慢得多(在没有异常时会惩罚甚至正常执行)，但是可以在没有使用GCC编译的代码或没有调用堆栈的代码上工作。</li>
 <li>结构化异常处理SEH(Structured Exception Handling)Windows使用自己的异常处理机制。</li>
 </ol>
-</li>
-<li>32位版本
-<a href="http://www.mingw.org/" title="点我访问">minGW</a> 
-点击会跳转到sourceforge站点，下载的是一个在线安装器，安装好之后设置环境变量即可</li>
-</ul>
 <h3 id="cygwincygnus-win">Cygwin(cygnus win)</h3>
 <p>目的：提供完整的类Unix环境，适用于在windows桌面下，开发运行于linux系统上的应用<br>
 功能：提供了一整套的类linux环境，GCC、GNU工具 <br>
 下载：<a href="https://cygwin.com/install.html" title="点我访问">Cygwin</a></p>
 <p><strong>备注</strong>:Cyg是<em>cygnus solutions</em>公司的简称(Cygnus有中文含义:天鹅)</p>
+<blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/76613134" title="点我访问">MinGW-w64安装教程</a></p>
+</blockquote>
 <h3 id="安装android-sdk">安装android-sdk</h3>
 <p><a href="https://blog.csdn.net/naipeng/article/details/72722682" title="点我访问">安装android sdk</a></p>
 <h3 id="qt实战教程">QT实战教程</h3>
@@ -427,7 +429,7 @@ clean:
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2024 <a href="https://gerrywp.github.io/blog">大仙 By gerry</a>.
+        &copy; 2026 <a href="https://gerrywp.github.io/blog">大仙 By gerry</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         

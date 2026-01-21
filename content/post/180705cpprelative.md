@@ -12,22 +12,26 @@ categories = [ "others" ]
 并用minGW编译可实现跨平台。  
 功能：用于开发原生(32位)Windows 应用的开发环境。它主要提供了针对win32应用的GCC、GNU (bin,utils)等工具，
 以及对等于Windows SDK（的子集）的头文件和用于 MinGW 版本 linker 的库文件（so、a等，而不是 VC 的 lib）。     
-下载：  
-* 64位版本
-[mingw64](https://sourceforge.net/projects/mingw-w64/files/) 找到**MinGW-W64 GCC-8.1.0**下64位的下载包即可。  
-说明：各版本(下载的文件版本名称)的区别
-	1. DWARF或DWARF-2(DW2)EH这需要使用DWARF-2(或DWARF-3)调试信息DW-2EH可以导致可执行文件略显膨胀，因为大的调用堆栈表必须包含在可执行文件中
-	2. setjmp/longjmp(SJLJ)基于SJLJ的EH比DW2 EH慢得多(在没有异常时会惩罚甚至正常执行)，但是可以在没有使用GCC编译的代码或没有调用堆栈的代码上工作
-	3. 结构化异常处理SEH(Structured Exception Handling)Windows使用自己的异常处理机制。
-* 32位版本
-[minGW](http://www.mingw.org/ '点我访问') 
-点击会跳转到sourceforge站点，下载的是一个在线安装器，安装好之后设置环境变量即可
+下载：
+* minGW官网 [minGW](https://www.mingw-w64.org/ '点我访问')
+
+在`Downloads`页签下找到`MinGW-W64-builds`下载即可，会跳转到Github进行下载。
+* sourceforge网站下载 [MinGW-w64](https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/threads-win32/seh/) 
+
+说明：各版本(下载的文件版本名称)的区别：
+
+1. DWARF或DWARF-2(DW2)EH这需要使用DWARF-2(或DWARF-3)调试信息DW-2EH可以导致可执行文件略显膨胀，因为大的调用堆栈表必须包含在可执行文件中。
+2. setjmp/longjmp(SJLJ)基于SJLJ的EH比DW2 EH慢得多(在没有异常时会惩罚甚至正常执行)，但是可以在没有使用GCC编译的代码或没有调用堆栈的代码上工作。
+3. 结构化异常处理SEH(Structured Exception Handling)Windows使用自己的异常处理机制。
+
 ### Cygwin(cygnus win)
 目的：提供完整的类Unix环境，适用于在windows桌面下，开发运行于linux系统上的应用   
 功能：提供了一整套的类linux环境，GCC、GNU工具    
 下载：[Cygwin](https://cygwin.com/install.html '点我访问')
   
 **备注**:Cyg是*cygnus solutions*公司的简称(Cygnus有中文含义:天鹅)
+
+> [MinGW-w64安装教程](https://zhuanlan.zhihu.com/p/76613134 '点我访问')
 
 ### 安装android-sdk
 [安装android sdk](https://blog.csdn.net/naipeng/article/details/72722682 '点我访问')

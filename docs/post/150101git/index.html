@@ -181,6 +181,30 @@ git push origin:
 git pull
 </code></pre></div><p>上述两个命令都会在.ssh\目录下生成一个known_hosts的文件
 5. 现在可以直接使用vs2017自带的git工具了。</p>
+<h3 id="git冲突合并">git冲突合并</h3>
+<ol>
+<li>设置git的冲突合并工具为vscode</li>
+</ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># 设置差异比较工具为 VS Code</span>
+<span style="color:#008000"># 设置合并工具为 VS Code</span>
+<span style="color:#008000"># 配置 VS Code 作为差异工具的命令</span>
+<span style="color:#008000"># 配置 VS Code 作为合并工具的命令</span>
+git config --global diff.tool vscode
+git config --global merge.tool vscode
+git config --global difftool.vscode.cmd <span style="color:#a31515">&#39;code --wait --diff $LOCAL $REMOTE&#39;</span>
+<span style="color:#008000"># 使用--merge参数 启用vscode的3-way-merge合并</span>
+git config --global mergetool.vscode.cmd <span style="color:#a31515">&#39;code --wait --merge $LOCAL $REMOTE $BASE $MERGED&#39;</span>
+<span style="color:#008000"># 可选：设置不自动备份合并后的文件</span>
+git config --global mergetool.keepBackup false
+</code></pre></div><p>说明：使用&ndash;merge参数，参数顺序依次是-工作区文件，其它分支文件，共同祖先，最终合并结果
+2. vscode需要在设置里面开启git.MergeEditor
+依次点击，设置-&gt;设置&gt;搜索【git.MergeEditor】，选中</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Open the merge editor for files that are currently under conflict.</li>
+</ul>
+<blockquote>
+<p><a href="https://code.visualstudio.com/updates/v1_69#_3-way-merge-editor" title="点我访问">vscode三方合并</a></p>
+</blockquote>
 <h3 id="git无法clone私有库">git无法clone私有库</h3>
 <p>问题背景：公司有一个私有库我需要拷贝下来，使用git-gui图形页面可以克隆但是使用terminal克隆死活克隆不下来</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone http://192.168.0.30:3000
@@ -389,7 +413,7 @@ git pull
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2024 <a href="https://gerrywp.github.io/blog">大仙 By gerry</a>.
+        &copy; 2026 <a href="https://gerrywp.github.io/blog">大仙 By gerry</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         
