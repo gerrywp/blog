@@ -129,21 +129,58 @@ git config --global http.proxy=http://127.0.0.1:1080
 git config --list --show-origin
 </code></pre></div><p>配置文件路径在<code>C:\ProgramData\Git\config</code></p>
 <blockquote>
-<p>参考: <a href="https://github.com/cssmagic/blog/issues/22" title="点我访问">自动换行</a></p>
+<p><a href="https://github.com/cssmagic/blog/issues/22" title="点我访问">自动换行</a></p>
 </blockquote>
 <p>然后<code>go get</code>命令可以直接下载墙外的包了</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000">#下载gRPC包</span>
 go get -v -u google.golang.org/grpc
 </code></pre></div><h3 id="go111之后的代理">go1.11之后的代理</h3>
 <p>go开始使用module包管理工具(版本&gt;go1.11)后;<code>go get</code>下载可以使用镜像代理，链接如下:
-<a href="https://goproxy.io" title="点我访问">goproxy.io</a><br>
 我们必须在windows下设置环境变量<code>GOPROXY</code>：</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">GO111MODULE=<span style="color:#a31515">&#34;on&#34;</span>
-GOPROXY=<span style="color:#a31515">&#34;https://goproxy.io&#34;</span>
+<span style="color:#008000"># 七牛GO代理 https://goproxy.cn</span>
+<span style="color:#008000"># 阿里GO代理 https://mirrors.aliyun.com/goproxy</span>
+GOPROXY=<span style="color:#a31515">&#34;https://goproxy.cn,https://mirrors.aliyun.com/goproxy,direct&#34;</span>
 </code></pre></div><p>这样vscode里面才能使用go module模式通过代理来下载go包：
 在help/Toggle Developer Tools里面我们可以看到环境变量有值了。</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">process.env.GOPROXY
-</code></pre></div>
+</code></pre></div><h3 id="go-模块代理协议">Go 模块代理协议</h3>
+<p>用七牛GO代理作为示例演示</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">操作</th>
+<th style="text-align:left">URL格式</th>
+<th style="text-align:left">实例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">查询最新版</td>
+<td style="text-align:left"><a href="https://goproxy.cn/">https://goproxy.cn/</a>&lt;模块路径&gt;/@latest</td>
+<td style="text-align:left"><a href="https://goproxy.cn/golang.org/x/net/@latest">https://goproxy.cn/golang.org/x/net/@latest</a></td>
+</tr>
+<tr>
+<td style="text-align:left">查询列表</td>
+<td style="text-align:left"><a href="https://goproxy.cn/">https://goproxy.cn/</a>&lt;模块路径&gt;/@v/list</td>
+<td style="text-align:left"><a href="https://goproxy.cn/golang.org/x/net/@v/list">https://goproxy.cn/golang.org/x/net/@v/list</a></td>
+</tr>
+<tr>
+<td style="text-align:left">查特定版本的详情</td>
+<td style="text-align:left"><a href="https://goproxy.cn/">https://goproxy.cn/</a>&lt;模块路径&gt;/@v/&lt;版本号&gt;.info</td>
+<td style="text-align:left"><a href="https://goproxy.cn/golang.org/x/net/@v/v0.49.0.info">https://goproxy.cn/golang.org/x/net/@v/v0.49.0.info</a></td>
+</tr>
+<tr>
+<td style="text-align:left">查特定版本的go.mod文件</td>
+<td style="text-align:left"><a href="https://goproxy.cn/">https://goproxy.cn/</a>&lt;模块路径&gt;/@v/&lt;版本号&gt;.mod</td>
+<td style="text-align:left"><a href="https://goproxy.cn/golang.org/x/net/@v/v0.49.0.mod">https://goproxy.cn/golang.org/x/net/@v/v0.49.0.mod</a></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><a href="https://goproxy.cn" title="点我访问">七牛GO代理</a><br>
+<a href="https://mirrors.aliyun.com/goproxy" title="点我访问">阿里GO代理</a></p>
+</blockquote>
                         </div>
 
                         

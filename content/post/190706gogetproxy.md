@@ -9,6 +9,7 @@ categories = [ "golang" ]
 <!--more-->
 
 ### 设置步骤
+
 #### 1.使用shadowsocks
 
 在windows下配置好shadowsocks并运行
@@ -62,7 +63,7 @@ git config --system core.autocrlf=false
 git config --list --show-origin
 ```
 配置文件路径在`C:\ProgramData\Git\config`
->参考: [自动换行](https://github.com/cssmagic/blog/issues/22 "点我访问")
+> [自动换行](https://github.com/cssmagic/blog/issues/22 "点我访问")
 
 然后`go get`命令可以直接下载墙外的包了
 
@@ -74,12 +75,13 @@ go get -v -u google.golang.org/grpc
 ### go1.11之后的代理
 
 go开始使用module包管理工具(版本>go1.11)后;`go get`下载可以使用镜像代理，链接如下:
-[goproxy.io](https://goproxy.io "点我访问")  
 我们必须在windows下设置环境变量`GOPROXY`：
 
 ```bash
 GO111MODULE="on"
-GOPROXY="https://goproxy.io"
+# 七牛GO代理 https://goproxy.cn
+# 阿里GO代理 https://mirrors.aliyun.com/goproxy
+GOPROXY="https://goproxy.cn,https://mirrors.aliyun.com/goproxy,direct"
 ```
 
 这样vscode里面才能使用go module模式通过代理来下载go包：
@@ -88,3 +90,17 @@ GOPROXY="https://goproxy.io"
 ```bash
 process.env.GOPROXY
 ```
+
+### Go 模块代理协议
+
+用七牛GO代理作为示例演示
+
+|操作|URL格式|实例|
+|:---|:---|:---|
+|查询最新版|https://goproxy.cn/<模块路径>/@latest|https://goproxy.cn/golang.org/x/net/@latest|
+|查询列表|https://goproxy.cn/<模块路径>/@v/list|https://goproxy.cn/golang.org/x/net/@v/list|
+|查特定版本的详情|https://goproxy.cn/<模块路径>/@v/<版本号>.info|https://goproxy.cn/golang.org/x/net/@v/v0.49.0.info|
+|查特定版本的go.mod文件|https://goproxy.cn/<模块路径>/@v/<版本号>.mod|https://goproxy.cn/golang.org/x/net/@v/v0.49.0.mod|
+
+> [七牛GO代理](https://goproxy.cn "点我访问")  
+> [阿里GO代理](https://mirrors.aliyun.com/goproxy "点我访问") 
