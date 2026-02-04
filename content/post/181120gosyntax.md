@@ -32,7 +32,7 @@ fmt.Println("hello","世界")
 |%%|百分号:转义百分号|
 |%p|slice:第一个元素的地址 pointer:指针指向的地址|
 
->惯例：以字母f结尾的格式化函数，如`log.Printf`和`fmt.Errorf`都采用`fmt.Printf`的格式化准则；而以`ln`结尾的格式化函数，则遵循`Println`的方式，
+> **惯例：** 以字母f结尾的格式化函数，如`log.Printf`和`fmt.Errorf`都采用`fmt.Printf`的格式化准则；而以`ln`结尾的格式化函数，则遵循`Println`的方式，
 以跟`%v`差不多的方式格式化参数。
 
 ```go
@@ -72,7 +72,7 @@ Fprintf的前缀**F**表示文件(File)也表明格式化输出结果应该被�
 1. new生成指定类型的指针变量，但是不初始化变量即不给变量分配内存
 2. make生成指定类型变量，并初始化该变量
 
->总结：因此不成文的规定是new必须用在值类型上，make必须用在引用类型上
+> **总结：** 因此不成文的规定是new必须用在值类型上，make必须用在引用类型上
 
 #### make(chan Type)和make(chan Type,0)等价类型
 
@@ -196,4 +196,4 @@ bool value:false
 bool mem size:1
 ```
 
-结论：空结构体是不占用内存空间的
+**结论：** 空结构体是不占用内存空间的

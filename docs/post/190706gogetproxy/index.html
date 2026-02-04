@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.75.1" />
+    <meta name="generator" content="Hugo 0.76.4" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -101,17 +101,15 @@
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Fetching https://google.golang.org/grpc?go-get=1
 Parsing meta tags from https://google.golang.org/grpc?go-get=1 (status code 200)
 </code></pre></div><p>go命令本身走代理是依靠环境变量来设置的，因此：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># cmd 下设置临时环境变量</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># 127.0.0.1:1080为shadowsocks代理的本地路径</span>
+<span style="color:#008000"># cmd 下设置临时环境变量</span>
 set http_proxy=http://127.0.0.1:1080
 
 <span style="color:#008000">#linux下为</span>
 export http_proxy=http://127.0.0.1:1080
-</code></pre></div><blockquote>
-<p>其中：127.0.0.1:1080为shadowsocks代理的本地路径</p>
-</blockquote>
-<p>还可以设置<code>go</code>命令的别名，这样每次打开cmd都不需要设置临时的环境变量</p>
+</code></pre></div><p>还可以设置<code>go</code>命令的别名，这样每次打开cmd都不需要设置临时的环境变量</p>
 <blockquote>
-<p>参考：<a href="https://gerrywp.github.io/iblog/windows/cmdalias.html" title="点我访问">cmd命令别名</a></p>
+<p><a href="https://gerrywp.github.io/iblog/windows/cmdalias.html" title="点我访问">cmd命令别名</a></p>
 </blockquote>
 <h4 id="3设置代理">3.设置代理</h4>
 <p>(1) <strong>配置vscode代理</strong></p>

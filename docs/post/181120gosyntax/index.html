@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.75.1" />
+    <meta name="generator" content="Hugo 0.76.4" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -154,7 +154,7 @@
 </tbody>
 </table>
 <blockquote>
-<p>惯例：以字母f结尾的格式化函数，如<code>log.Printf</code>和<code>fmt.Errorf</code>都采用<code>fmt.Printf</code>的格式化准则；而以<code>ln</code>结尾的格式化函数，则遵循<code>Println</code>的方式，
+<p><strong>惯例：</strong> 以字母f结尾的格式化函数，如<code>log.Printf</code>和<code>fmt.Errorf</code>都采用<code>fmt.Printf</code>的格式化准则；而以<code>ln</code>结尾的格式化函数，则遵循<code>Println</code>的方式，
 以跟<code>%v</code>差不多的方式格式化参数。</p>
 </blockquote>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">f 指 format
@@ -199,7 +199,7 @@ fmt.Printf(<span style="color:#a31515">&#34;%d %[1]x %#[1]x %#[1]X\n&#34;</span>
 <li>make生成指定类型变量，并初始化该变量</li>
 </ol>
 <blockquote>
-<p>总结：因此不成文的规定是new必须用在值类型上，make必须用在引用类型上</p>
+<p><strong>总结：</strong> 因此不成文的规定是new必须用在值类型上，make必须用在引用类型上</p>
 </blockquote>
 <h4 id="makechan-type和makechan-type0等价类型">make(chan Type)和make(chan Type,0)等价类型</h4>
 <p>使用make创建channel时候，不指定len长度的和指定长度为0创建的都是不带buffer(缓冲区)的channel。
@@ -290,7 +290,7 @@ fmt.Println(reflect.ValueOf(ip2).IsValid()) <span style="color:#008000">// true
 <span style="color:#00f">nil</span> <span style="color:#00f">struct</span> mem size:0
 <span style="color:#2b91af">bool</span> value:<span style="color:#00f">false</span>
 <span style="color:#2b91af">bool</span> mem size:1
-</code></pre></div><p>结论：空结构体是不占用内存空间的</p>
+</code></pre></div><p><strong>结论：</strong> 空结构体是不占用内存空间的</p>
                         </div>
 
                         

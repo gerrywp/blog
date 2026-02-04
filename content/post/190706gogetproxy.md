@@ -26,16 +26,16 @@ Parsing meta tags from https://google.golang.org/grpc?go-get=1 (status code 200)
 go命令本身走代理是依靠环境变量来设置的，因此：
 
 ```bash
+# 127.0.0.1:1080为shadowsocks代理的本地路径
 # cmd 下设置临时环境变量
 set http_proxy=http://127.0.0.1:1080
 
 #linux下为
 export http_proxy=http://127.0.0.1:1080
 ```
->其中：127.0.0.1:1080为shadowsocks代理的本地路径
 
 还可以设置`go`命令的别名，这样每次打开cmd都不需要设置临时的环境变量
->参考：[cmd命令别名](https://gerrywp.github.io/iblog/windows/cmdalias.html '点我访问')
+> [cmd命令别名](https://gerrywp.github.io/iblog/windows/cmdalias.html '点我访问')
 
 #### 3.设置代理
 
