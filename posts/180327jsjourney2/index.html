@@ -1,0 +1,165 @@
+<!doctype html><html lang=zh dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>nodejs之旅(2) | 大仙</title><meta name=keywords content="node"><meta name=description content="　　express-handlebars服务端模板引擎的局部渲染。非SPA应用程序，在最原始的动态页面并使用了layout布局的情况下，
+我们通常希望能够将index.hbs里面的UI结构和js逻辑部分组合在一起，并且需要将js逻辑统一放置到layout布局页的最底部。
+handlebars的Block Helper能够帮我们解决这个问题！"><meta name=author content="Gerry"><link rel=canonical href=https://gerrywp.github.io/blog/posts/180327jsjourney2/><meta name=google-site-verification content="XYZabc"><meta name=yandex-verification content="XYZabc"><meta name=msvalidate.01 content="XYZabc"><link crossorigin=anonymous href=/blog/assets/css/stylesheet.47e51c7d8489b002361bac156ce9a0a8776d08c5462c2cee95801efafdd90d35.css integrity="sha256-R+UcfYSJsAI2G6wVbOmgqHdtCMVGLCzulYAe+v3ZDTU=" rel="preload stylesheet" as=style><link rel=icon href=https://gerrywp.github.io/blog/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=16x16 href=https://gerrywp.github.io/blog/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=32x32 href=https://gerrywp.github.io/blog/%3Clink%20/%20abs%20url%3E><link rel=apple-touch-icon href=https://gerrywp.github.io/blog/%3Clink%20/%20abs%20url%3E><link rel=mask-icon href=https://gerrywp.github.io/blog/%3Clink%20/%20abs%20url%3E><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://gerrywp.github.io/blog/posts/180327jsjourney2/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><meta property="og:url" content="https://gerrywp.github.io/blog/posts/180327jsjourney2/"><meta property="og:site_name" content="大仙"><meta property="og:title" content="nodejs之旅(2)"><meta property="og:description" content="　express-handlebars服务端模板引擎的局部渲染。非SPA应用程序，在最原始的动态页面并使用了layout布局的情况下， 我们通常希望能够将index.hbs里面的UI结构和js逻辑部分组合在一起，并且需要将js逻辑统一放置到layout布局页的最底部。 handlebars的Block Helper能够帮我们解决这个问题！"><meta property="og:locale" content="zh_CN"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-03-27T00:00:00+00:00"><meta property="article:modified_time" content="2018-03-27T00:00:00+00:00"><meta property="article:tag" content="Node"><meta property="og:image" content="https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:title content="nodejs之旅(2)"><meta name=twitter:description content="　express-handlebars服务端模板引擎的局部渲染。非SPA应用程序，在最原始的动态页面并使用了layout布局的情况下， 我们通常希望能够将index.hbs里面的UI结构和js逻辑部分组合在一起，并且需要将js逻辑统一放置到layout布局页的最底部。 handlebars的Block Helper能够帮我们解决这个问题！"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://gerrywp.github.io/blog/posts/"},{"@type":"ListItem","position":2,"name":"nodejs之旅(2)","item":"https://gerrywp.github.io/blog/posts/180327jsjourney2/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"nodejs之旅(2)","name":"nodejs之旅(2)","description":"　express-handlebars服务端模板引擎的局部渲染。非SPA应用程序，在最原始的动态页面并使用了layout布局的情况下， 我们通常希望能够将index.hbs里面的UI结构和js逻辑部分组合在一起，并且需要将js逻辑统一放置到layout布局页的最底部。 handlebars的Block Helper能够帮我们解决这个问题！\n","keywords":["node"],"articleBody":"　express-handlebars服务端模板引擎的局部渲染。非SPA应用程序，在最原始的动态页面并使用了layout布局的情况下， 我们通常希望能够将index.hbs里面的UI结构和js逻辑部分组合在一起，并且需要将js逻辑统一放置到layout布局页的最底部。 handlebars的Block Helper能够帮我们解决这个问题！\nBlock Helper 通常我们的layout.hbs文件结构组织如下:\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 \u003c!DOCTYPE html\u003e \u003chtml lang=\"en\"\u003e \u003chead\u003e \u003clink href=\"./*.css\"/\u003e \u003c/head\u003e \u003cbody\u003e \u003cheader\u003e\u003c/header\u003e \u003cmain\u003e { { {body} } } \u003c/main\u003e \u003cfooter\u003e\u003c/footer\u003e \u003cscript src=\"./javascripts/jquery.min.js\"/\u003e \u003c/body\u003e \u003c/html\u003e index.hbs文件结构如下：\n1 2 3 4 5 6 7 8 9 10 \u003cdiv class=\"container\"\u003e \u003cdiv class=\"row\"\u003e \u003cdiv class=\"col-12\"\u003e\u003c/div\u003e \u003c/div\u003e \u003c/div\u003e \u003cscript\u003e $(function(){ //do something here })(); \u003c/script\u003e 很明显index.hbs页面需要在layout.hbs页面的jquery.js加载之后再加载。也就是在物理顺序上index.hbs页面的js逻辑代码， 要放置在laout.hbs中","wordCount":"1472","inLanguage":"zh","image":"https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E","datePublished":"2018-03-27T00:00:00Z","dateModified":"2018-03-27T00:00:00Z","author":{"@type":"Person","name":"Gerry"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://gerrywp.github.io/blog/posts/180327jsjourney2/"},"publisher":{"@type":"Organization","name":"大仙","logo":{"@type":"ImageObject","url":"https://gerrywp.github.io/blog/%3Clink%20/%20abs%20url%3E"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://gerrywp.github.io/blog/ accesskey=h title="Home (Alt + H)"><img src=https://gerrywp.github.io/apple-touch-icon.png alt aria-label=logo height=35>Home</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://gerrywp.github.io/blog/search/ title="搜索 (Alt + /)" accesskey=/><span>搜索</span></a></li><li><a href=https://gerrywp.github.io/blog/archives/ title=归档><span>归档</span></a></li><li><a href=https://gerrywp.github.io/blog/categories/ title=分类><span>分类</span></a></li><li><a href=https://gerrywp.github.io/blog/tags/ title=标签><span>标签</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=https://gerrywp.github.io/blog/>主页</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href=https://gerrywp.github.io/blog/posts/>Posts</a></nav><h1 class="post-title entry-hint-parent">nodejs之旅(2)</h1><div class=post-meta><span title='2018-03-27 00:00:00 +0000 UTC'>三月 27, 2018</span>&nbsp;·&nbsp;<span>3 分钟</span>&nbsp;·&nbsp;<span>1472 字</span>&nbsp;·&nbsp;<span>Gerry</span>&nbsp;|&nbsp;<span>
+<a href=https://github.com/gerrywp/blog/content/posts/180327jsjourney2.md rel="noopener noreferrer edit" target=_blank>Suggest Changes</a></span></div></header><div class="post-content md-content"><p>　　express-handlebars服务端模板引擎的局部渲染。非SPA应用程序，在最原始的动态页面并使用了layout布局的情况下，
+我们通常希望能够将index.hbs里面的UI结构和js逻辑部分组合在一起，并且需要将js逻辑统一放置到layout布局页的最底部。
+handlebars的<strong>Block Helper</strong>能够帮我们解决这个问题！</p><h3 id=block-helper>Block Helper<a hidden class=anchor aria-hidden=true href=#block-helper>#</a></h3><p>通常我们的layout.hbs文件结构组织如下:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-0-1><a class=lnlinks href=#hl-0-1> 1</a>
+</span><span class=lnt id=hl-0-2><a class=lnlinks href=#hl-0-2> 2</a>
+</span><span class=lnt id=hl-0-3><a class=lnlinks href=#hl-0-3> 3</a>
+</span><span class=lnt id=hl-0-4><a class=lnlinks href=#hl-0-4> 4</a>
+</span><span class=lnt id=hl-0-5><a class=lnlinks href=#hl-0-5> 5</a>
+</span><span class=lnt id=hl-0-6><a class=lnlinks href=#hl-0-6> 6</a>
+</span><span class=lnt id=hl-0-7><a class=lnlinks href=#hl-0-7> 7</a>
+</span><span class=lnt id=hl-0-8><a class=lnlinks href=#hl-0-8> 8</a>
+</span><span class=lnt id=hl-0-9><a class=lnlinks href=#hl-0-9> 9</a>
+</span><span class=lnt id=hl-0-10><a class=lnlinks href=#hl-0-10>10</a>
+</span><span class=lnt id=hl-0-11><a class=lnlinks href=#hl-0-11>11</a>
+</span><span class=lnt id=hl-0-12><a class=lnlinks href=#hl-0-12>12</a>
+</span><span class=lnt id=hl-0-13><a class=lnlinks href=#hl-0-13>13</a>
+</span><span class=lnt id=hl-0-14><a class=lnlinks href=#hl-0-14>14</a>
+</span><span class=lnt id=hl-0-15><a class=lnlinks href=#hl-0-15>15</a>
+</span><span class=lnt id=hl-0-16><a class=lnlinks href=#hl-0-16>16</a>
+</span><span class=lnt id=hl-0-17><a class=lnlinks href=#hl-0-17>17</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl><span class=cp>&lt;!DOCTYPE html&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>html</span> <span class=na>lang</span><span class=o>=</span><span class=s>&#34;en&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>head</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=c>&lt;!--引入css文件--&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>link</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;./*.css&#34;</span><span class=p>/&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;/</span><span class=nt>head</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>body</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>header</span><span class=p>&gt;&lt;/</span><span class=nt>header</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>main</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>      { { {body} } }
+</span></span><span class=line><span class=cl>    <span class=p>&lt;/</span><span class=nt>main</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>footer</span><span class=p>&gt;&lt;/</span><span class=nt>footer</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=c>&lt;!--javascript 脚本--&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>script</span>  <span class=na>src</span><span class=o>=</span><span class=s>&#34;./javascripts/jquery.min.js&#34;</span><span class=p>/&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=c>&lt;!--其它页面的脚本放置在这里--&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;/</span><span class=nt>body</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>html</span><span class=p>&gt;</span>
+</span></span></code></pre></td></tr></table></div></div><p>index.hbs文件结构如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-1-1><a class=lnlinks href=#hl-1-1> 1</a>
+</span><span class=lnt id=hl-1-2><a class=lnlinks href=#hl-1-2> 2</a>
+</span><span class=lnt id=hl-1-3><a class=lnlinks href=#hl-1-3> 3</a>
+</span><span class=lnt id=hl-1-4><a class=lnlinks href=#hl-1-4> 4</a>
+</span><span class=lnt id=hl-1-5><a class=lnlinks href=#hl-1-5> 5</a>
+</span><span class=lnt id=hl-1-6><a class=lnlinks href=#hl-1-6> 6</a>
+</span><span class=lnt id=hl-1-7><a class=lnlinks href=#hl-1-7> 7</a>
+</span><span class=lnt id=hl-1-8><a class=lnlinks href=#hl-1-8> 8</a>
+</span><span class=lnt id=hl-1-9><a class=lnlinks href=#hl-1-9> 9</a>
+</span><span class=lnt id=hl-1-10><a class=lnlinks href=#hl-1-10>10</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;container&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;row&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;col-12&#34;</span><span class=p>&gt;&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>script</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=nx>$</span><span class=p>(</span><span class=kd>function</span><span class=p>(){</span>
+</span></span><span class=line><span class=cl>    <span class=c1>//do something here
+</span></span></span><span class=line><span class=cl>  <span class=p>})();</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+</span></span></code></pre></td></tr></table></div></div><p>很明显index.hbs页面需要在layout.hbs页面的jquery.js加载之后再加载。也就是在物理顺序上index.hbs页面的js逻辑代码，
+要放置在laout.hbs中<code>&lt;script>标签</code>最后面引入！<br>handlebar的页面渲染流程：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-2-1><a class=lnlinks href=#hl-2-1>1</a>
+</span><span class=lnt id=hl-2-2><a class=lnlinks href=#hl-2-2>2</a>
+</span><span class=lnt id=hl-2-3><a class=lnlinks href=#hl-2-3>3</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl>  <span class=nx>app</span><span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s1>&#39;/&#39;</span><span class=p>,</span> <span class=kd>function</span> <span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>,</span> <span class=nx>next</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>res</span><span class=p>.</span><span class=nx>render</span><span class=p>(</span><span class=s1>&#39;index&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span></code></pre></td></tr></table></div></div><ol><li>handlebars引擎编译index.hbs生成局部hmtl模板</li><li>引擎编译layout.hbs生成布局html模板</li><li>compine合并步骤(1)&步骤(2)的操作结果,使用步骤(1)结果替换掉步骤(2)中的占位符</li><li>输出最终页面</li></ol><p>解决问题的关键在于:<br>使用handlebar引擎编译index.hbs的时候，<strong>Block Helper</strong>让引擎生成的js脚本不输出到局部的html模板中，
+而是保存在[引擎全局对象]<strong>memory script</strong>上。等到步骤(3)的时候，用<strong>memory script</strong>替换掉步骤(2)中的script占位符即可！<br>具体实现如下：<br>在app.js中注册自定义<strong>Block Helper</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-3-1><a class=lnlinks href=#hl-3-1>1</a>
+</span><span class=lnt id=hl-3-2><a class=lnlinks href=#hl-3-2>2</a>
+</span><span class=lnt id=hl-3-3><a class=lnlinks href=#hl-3-3>3</a>
+</span><span class=lnt id=hl-3-4><a class=lnlinks href=#hl-3-4>4</a>
+</span><span class=lnt id=hl-3-5><a class=lnlinks href=#hl-3-5>5</a>
+</span><span class=lnt id=hl-3-6><a class=lnlinks href=#hl-3-6>6</a>
+</span><span class=lnt id=hl-3-7><a class=lnlinks href=#hl-3-7>7</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kd>var</span> <span class=nx>sectionHelper</span><span class=o>=</span><span class=p>{</span><span class=nx>section</span><span class=o>:</span><span class=kd>function</span><span class=p>(</span><span class=nx>name</span><span class=p>,</span><span class=nx>options</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>  <span class=k>if</span><span class=p>(</span><span class=o>!</span><span class=k>this</span><span class=p>.</span><span class=nx>renderSection</span><span class=p>)</span><span class=k>this</span><span class=p>.</span><span class=nx>renderSection</span><span class=o>=</span><span class=p>{};</span>
+</span></span><span class=line><span class=cl>  <span class=c1>//将引擎渲染的代码块，保存到引擎对象上
+</span></span></span><span class=line><span class=cl>  <span class=k>this</span><span class=p>.</span><span class=nx>renderSection</span><span class=p>[</span><span class=nx>name</span><span class=p>]</span><span class=o>=</span><span class=nx>options</span><span class=p>.</span><span class=nx>fn</span><span class=p>(</span><span class=k>this</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=kc>null</span><span class=p>;</span><span class=c1>//让BlockHelper在此次不渲染
+</span></span></span><span class=line><span class=cl><span class=p>}};</span>
+</span></span><span class=line><span class=cl><span class=nx>app</span><span class=p>.</span><span class=nx>engine</span><span class=p>(</span><span class=s1>&#39;.hbs&#39;</span><span class=p>,</span> <span class=nx>exphbs</span><span class=p>({</span><span class=nx>extname</span><span class=o>:</span> <span class=s1>&#39;.hbs&#39;</span><span class=p>,</span><span class=nx>helpers</span><span class=o>:</span><span class=nx>sectionHelper</span><span class=p>}));</span>
+</span></span></code></pre></td></tr></table></div></div><p>在index.hbs页面使用app.js中注册的section <strong>Block Helper</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-4-1><a class=lnlinks href=#hl-4-1> 1</a>
+</span><span class=lnt id=hl-4-2><a class=lnlinks href=#hl-4-2> 2</a>
+</span><span class=lnt id=hl-4-3><a class=lnlinks href=#hl-4-3> 3</a>
+</span><span class=lnt id=hl-4-4><a class=lnlinks href=#hl-4-4> 4</a>
+</span><span class=lnt id=hl-4-5><a class=lnlinks href=#hl-4-5> 5</a>
+</span><span class=lnt id=hl-4-6><a class=lnlinks href=#hl-4-6> 6</a>
+</span><span class=lnt id=hl-4-7><a class=lnlinks href=#hl-4-7> 7</a>
+</span><span class=lnt id=hl-4-8><a class=lnlinks href=#hl-4-8> 8</a>
+</span><span class=lnt id=hl-4-9><a class=lnlinks href=#hl-4-9> 9</a>
+</span><span class=lnt id=hl-4-10><a class=lnlinks href=#hl-4-10>10</a>
+</span><span class=lnt id=hl-4-11><a class=lnlinks href=#hl-4-11>11</a>
+</span><span class=lnt id=hl-4-12><a class=lnlinks href=#hl-4-12>12</a>
+</span><span class=lnt id=hl-4-13><a class=lnlinks href=#hl-4-13>13</a>
+</span><span class=lnt id=hl-4-14><a class=lnlinks href=#hl-4-14>14</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;container&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;row&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;col-12&#34;</span><span class=p>&gt;&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>//使用注册过section block helper
+</span></span><span class=line><span class=cl>{ { #section &#39;js&#39; } }
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>script</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=nx>$</span><span class=p>(</span><span class=kd>function</span><span class=p>(){</span>
+</span></span><span class=line><span class=cl>    <span class=c1>//do something here
+</span></span></span><span class=line><span class=cl>  <span class=p>})();</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>{ {/section} }
+</span></span><span class=line><span class=cl>//此处只是生成了模板的内存数据，并不会在此处渲染html结构
+</span></span></code></pre></td></tr></table></div></div><p>在layout.hbs页面渲染index.hbs生成的模板内存数据</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-5-1><a class=lnlinks href=#hl-5-1> 1</a>
+</span><span class=lnt id=hl-5-2><a class=lnlinks href=#hl-5-2> 2</a>
+</span><span class=lnt id=hl-5-3><a class=lnlinks href=#hl-5-3> 3</a>
+</span><span class=lnt id=hl-5-4><a class=lnlinks href=#hl-5-4> 4</a>
+</span><span class=lnt id=hl-5-5><a class=lnlinks href=#hl-5-5> 5</a>
+</span><span class=lnt id=hl-5-6><a class=lnlinks href=#hl-5-6> 6</a>
+</span><span class=lnt id=hl-5-7><a class=lnlinks href=#hl-5-7> 7</a>
+</span><span class=lnt id=hl-5-8><a class=lnlinks href=#hl-5-8> 8</a>
+</span><span class=lnt id=hl-5-9><a class=lnlinks href=#hl-5-9> 9</a>
+</span><span class=lnt id=hl-5-10><a class=lnlinks href=#hl-5-10>10</a>
+</span><span class=lnt id=hl-5-11><a class=lnlinks href=#hl-5-11>11</a>
+</span><span class=lnt id=hl-5-12><a class=lnlinks href=#hl-5-12>12</a>
+</span><span class=lnt id=hl-5-13><a class=lnlinks href=#hl-5-13>13</a>
+</span><span class=lnt id=hl-5-14><a class=lnlinks href=#hl-5-14>14</a>
+</span><span class=lnt id=hl-5-15><a class=lnlinks href=#hl-5-15>15</a>
+</span><span class=lnt id=hl-5-16><a class=lnlinks href=#hl-5-16>16</a>
+</span><span class=lnt id=hl-5-17><a class=lnlinks href=#hl-5-17>17</a>
+</span><span class=lnt id=hl-5-18><a class=lnlinks href=#hl-5-18>18</a>
+</span><span class=lnt id=hl-5-19><a class=lnlinks href=#hl-5-19>19</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl><span class=cp>&lt;!DOCTYPE html&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>html</span> <span class=na>lang</span><span class=o>=</span><span class=s>&#34;en&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>head</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=c>&lt;!--引入css文件--&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>link</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;./*.css&#34;</span><span class=p>/&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;/</span><span class=nt>head</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>body</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>header</span><span class=p>&gt;&lt;/</span><span class=nt>header</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>main</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>      { { {body} } }
+</span></span><span class=line><span class=cl>    <span class=p>&lt;/</span><span class=nt>main</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>footer</span><span class=p>&gt;&lt;/</span><span class=nt>footer</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=c>&lt;!--javascript 脚本--&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>script</span>  <span class=na>src</span><span class=o>=</span><span class=s>&#34;./javascripts/jquery.min.js&#34;</span><span class=p>/&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=c>&lt;!--其它页面的脚本放置在这里--&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=c>&lt;!-- 渲染index.hbs页面的section模板到此位置--&gt;</span>
+</span></span><span class=line><span class=cl>    { { {renderSection.js} } }
+</span></span><span class=line><span class=cl>  <span class=p>&lt;/</span><span class=nt>body</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>html</span><span class=p>&gt;</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=windows下npm-install-sqlite3失败>Windows下npm install sqlite3失败<a hidden class=anchor aria-hidden=true href=#windows下npm-install-sqlite3失败>#</a></h3><p>在windows下做开发还是绕不开<code>Visual Studio开发环境</code>啊，使用<code>npm intall sqlite3</code>的时候，需要针对平台编译对应的sqlite3.node文件，因此
+需要有<code>Visual Studio Build Tools</code>工具，不然会提示各种错误，最简单的方法就是下载windows下的node.exe安装包，安装的时候勾选如下图所示的选项
+<strong>Automatically install the necessary tools.</strong>
+<img alt=node安装 loading=lazy src=../../pictures/Snipaste_2024-12-17_20-58-52.png title=node安装>
+该选项会安装Chocolatey和Visual Studio Build tools
+<img alt="Visual Studio Installer" loading=lazy src=../../pictures/Snipaste_2024-12-17_21-02-53.png title="Visual Studio Installer">
+安装了MSBuild后再安装npm install sqlite3就会自动编译并生成sqlite3.node文件。</p><blockquote><ul><li>使用{ { { } } }语法原样输出handlebar-engine上下文context中的renderSection.js变量!</li><li><code>{ { {} } }</code>与<code>{ {} }</code>的区别，两者都是求值输出变量，前者对html标签不做转义处理，后者对html标签做了转义处理。</li></ul></blockquote></div><footer class=post-footer><ul class=post-tags><li><a href=https://gerrywp.github.io/blog/tags/node/>Node</a></li></ul><nav class=paginav><a class=prev href=https://gerrywp.github.io/blog/posts/180329dllnotcopy/><span class=title>« 上一页</span>
+<span>发布项目dll未被msbuild拷贝到输出目录</span>
+</a><a class=next href=https://gerrywp.github.io/blog/posts/180322jsjourney1/><span class=title>下一页 »</span>
+<span>nodejs之旅(1)</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://gerrywp.github.io/blog/>大仙</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script></body></html>
