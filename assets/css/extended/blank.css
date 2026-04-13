@@ -1,3 +1,35 @@
+/* 全局宽屏 */
+:root {
+  --main-width: 960px;
+  --nav-width: 1024px;
+  --toc-width: 260px;
+}
+
+/* 强制让目录固定在右侧（修复 tocSide:right 失效） */
+@media (min-width: 1200px) {
+  /* 容器允许右侧放TOC */
+  .post {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    gap: 1rem;
+  }
+
+  /* TOC 固定右侧、悬浮、不随滚动消失 */
+  .toc {
+    position: fixed;
+    top: 120px;
+    right: 43%;
+    margin-right: calc(-1 * (var(--main-width) / 2 + var(--toc-width) / 2 + 30px));
+    width: var(--toc-width);
+    max-height: calc(100vh - 140px);
+    overflow-y: auto;
+    z-index: 99;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+}
 /* 列表页背景轮播 - 干净无滚动条 */
 body.list {
   position: relative;
