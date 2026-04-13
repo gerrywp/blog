@@ -22,7 +22,7 @@
     background: transparent !important;
   }
 }
-/* 列表页背景轮播 - 干净无滚动条 */
+/* 列表页背景流动 - 干净无滚动条 */
 body.list {
   position: relative;
   z-index: 1;
@@ -36,23 +36,35 @@ body.list::before {
   width: 100%;
   height: 100%;
   z-index: -1;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  animation: bgSlide 40s infinite ease-in-out;
+  background: 
+    linear-gradient(120deg, #2d4b72 0%, #4a6fa5 50%, #9170b8 100%),
+    linear-gradient(240deg, #3a5f8a 0%, #5a7fb3 50%, #a180c8 100%),
+    linear-gradient(0deg, #1d3b62 0%, #3a5f8a 50%, #8160a8 100%);
+  background-size: 300% 300%;
+  background-position: 0% 50%;
+  animation: bgFlow 20s infinite ease-in-out;
   /* 关键：消除滚动条 */
   box-sizing: border-box;
   overflow: hidden;
 }
 
-/* 动画 */
-@keyframes bgSlide {
-  0%   { background: linear-gradient(to bottom, #4a6fa5 0%, #6b8bbf 50%, #3d1fd3 100%); }
-  25%  { background: linear-gradient(to bottom, #3a5f8a 0%, #5a7fb3 50%, #2671d3 100%); }
-  50%  { background: linear-gradient(to bottom, #2d4b72 0%, #4a6fa5 50%, #2764b9 100%); }
-  75%  { background: linear-gradient(to bottom, #3a5f8a 0%, #5a7fb3 50%, #0f60ca 100%); }
-  100% { background: linear-gradient(to bottom, #4a6fa5 0%, #6b8bbf 50%, #3d1fd3 100%); }
+/* 流动动画 */
+@keyframes bgFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 50% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* 内容区域 */
