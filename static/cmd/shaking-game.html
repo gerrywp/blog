@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="content-type" content="text/html" />
+	<title>Shake</title>
+	<style type="text/css">
+	html,body{
+	margin:0;
+	padding:0;
+	}
+	html,body,main{
+	width:100%;
+	height:100%;
+	font-family:Helvetica,Tahoma,Arial,SimSun,sans-serif;
+	font-size:14px;
+	}
+	main > div{
+	vertical-align:middle;
+	text-align:center;
+	}
+	.scroll-tag{
+		margin:1rem;
+		padding:.8rem 1rem;
+		font-size:4rem;
+		border-radius:.6rem;
+	}
+	.scroll-tag span{
+		 border:.6rem solid #edebf4;
+		 font-weight:bolder;
+		 padding:.2rem .5rem;
+		 border-radius:.6rem;
+	}
+	.button{
+		background-color:#4CAF50; 
+		border:none;
+		color:white;
+		padding:1rem 5rem;
+		text-align:center;
+		font-size:2rem;
+		border-radius:.6rem;
+		outline:none;
+	}
+	.button:hover{
+		cursor:pointer;
+		box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+	}
+	.disabled,disabled:hover{
+		opacity: 0.6;
+		cursor: not-allowed!important;
+	}
+	.shaking-result{
+		font-size: 2rem;
+		line-height: 3rem;
+		color: #FF0000;
+		padding: .8rem;
+	}
+	.hide-result{
+		visibility: hidden;
+	}
+	</style>
+</head>
+
+<body>
+	<main>
+		<div class="hide-result shaking-result" id="result">欢迎光临</div>
+		<div class="scroll-tag">
+			<span id="card1">9</span>
+			<span id="card2">9</span>
+			<span id="card3">9</span>
+		</div>
+		<div class="begin">
+			<button class="button" id="btnStart" type="button">Go</button>
+		</div>
+	</main>
+	<script type="text/javascript">	
+		/*
+		/dom class
+		*/
+		(function () {
+			//私有
+			const INITIAL_SPEED = 135;
+			const [domObj,currentSpeed,currentNum] = [Symbol('domObj'),Symbol('currentSpeed'),Symbol('currentNum')];
+			class DomCard {
+				constructor(pElem) {
+					this[domObj] = pElem;
+					this[currentSpeed] = INITIAL_SPEED;
+					this.callback = function () {
+						console.log('Please initialize card callback!');
+					};
+					this.initState();
+				}
+				initState() {
+					this[currentNum] = 9;
+					this.iterator = rollNum();
+					this.latestTimeid = null;
+					this.isRunning = true;
+					this.finalV = 9;
+				}
+				shaking() {
+					let that = this;
+					that.refreshDom();
+					//please note that must be a callback function in setTimeout.
+					that.latestTimeid = setTimeout(function () {
+						that.shaking();
+					}, that[currentSpeed]);
+					if (that.isRunning) {
+						if ((that[currentSpeed] - 60) > 10) {
+							that[currentSpeed] -= 60;
+						}
+					} else {
+						if ((that[currentSpeed] + 60) > INITIAL_SPEED) {
+							if (that[currentNum] === that.finalV) {
+								clearTimeout(that.latestTimeid);
+								that.callback();
+							}
+						} else {
+							that[currentSpeed] += 60;
+						}
+					}
+					that[currentNum] = that.iterator.next().value;
+				}
+				stopShaking(v) {
+					var that = this;
+					that.isRunning = false;
+					this.finalV = v;
+				}
+				refreshDom() {
+					this[domObj].textContent = this[currentNum];
+				}
+			}
+			function* rollNum() {
+				const nums = [9, 8, 7, 6, 5, 4, 3, 2, 1];
+				let currentIndex = 0;
+				while (true) {
+					currentIndex++;
+					if (currentIndex >= 9) {
+						currentIndex = 0;
+					}
+					yield nums[currentIndex];
+				}
+			}
+			window.DomCard = DomCard;
+		})();
+		(function () {
+			let elemResult = document.getElementById('result'), sentryVar = 0, level;
+			let showResult = function (pInfo) {
+				elemResult.textContent = pInfo;
+				elemResult.className = 'shaking-result';
+			}
+			class ShakingGame {
+				constructor(pCards) {
+					this.cards = pCards;
+					this.srcCss = elemResult.className;
+					for (let c of this.cards) {
+						c.callback = this.goFinal;
+					}
+				}
+				start() {
+					level = '三';
+					elemResult.className = this.srcCss;
+					for (let c of this.cards) {
+						c.initState();
+						c.shaking();
+					}
+				}
+				stop() {
+					let randomNum = Math.round(Math.random() * 100);
+					if (randomNum === 100) {
+						//特
+						level = '特';
+						for (let c of this.cards) {
+							c.stopShaking(8);
+						}
+					} else if (randomNum >= 95) {
+						//1
+						level = '一';
+						let arr = [1, 2, 3, 4, 5, 6, 7, 9];
+						let index = Math.floor(Math.random() * arr.length);
+						for (let c of this.cards) {
+							c.stopShaking(arr[index]);
+						}
+					} else if (randomNum >= 80) {
+						//2
+						level = '二';
+						let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+						let index = Math.floor(Math.random() * arr.length);
+						this.cards.sort(function (a, b) {
+							return Math.random() > .5 ? -1 : 1;
+						});
+						for (let i = 0; i < this.cards.length; i++) {
+							if (i === 0) {
+								this.cards[i].stopShaking(arr.splice(index, 1)[0]);
+								index = Math.floor(Math.random() * arr.length);
+							} else {
+								this.cards[i].stopShaking(arr[index]);
+							}
+						}
+					} else {
+						//3
+						level = '三';
+						let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+						let index = Math.floor(Math.random() * arr.length);
+						for (let i = 0; i < this.cards.length; i++) {
+							this.cards[i].stopShaking(arr.splice(index, 1)[0]);
+							index = Math.floor(Math.random() * arr.length);
+						}
+					}
+				}
+				goFinal() {
+					sentryVar++;
+					if (sentryVar === 3) {
+						sentryVar = 0;
+						showResult(level + '等奖');
+					}
+				}
+			}
+			let card1 = new DomCard(document.getElementById('card1'));
+			let card2 = new DomCard(document.getElementById('card2'));
+			let card3 = new DomCard(document.getElementById('card3'));
+			let shakingGame = new ShakingGame([card1, card2, card3]);
+			window.shakingGame = shakingGame;
+		})();
+		let btn = document.getElementById('btnStart');
+		btn.addEventListener('click', function () {
+			let btnState = btn.textContent;
+			if (btnState === 'Go') {
+				btn.textContent = 'Stop';
+				shakingGame.start();
+			} else {
+				btn.textContent = 'Go';
+				shakingGame.stop();
+			}
+		}, false);
+	</script>
+</body>
+
+</html>

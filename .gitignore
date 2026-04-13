@@ -1,0 +1,15 @@
+# Hugo 自动生成的锁文件
+.hugo_build.lock
+
+# Hugo 生成的静态网站文件
+/public/
+
+# 系统垃圾文件
+.DS_Store
+Thumbs.db
+
+# 编辑器临时文件
+.idea/
+.vscode/
+*.swp
+*.bak
