@@ -19,7 +19,7 @@ minify:
 pagination:
   disableAliases: false
   pagerSize: 4
-  
+ 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: ExampleSite
@@ -47,7 +47,7 @@ params:
   hideSummary: false
   showtoc: false
   tocopen: false
-
+  customCSS: ["css/extended/blank.css"]
   assets:
     # disableHLJS: true # to disable highlight.js
     # disableFingerprinting: true
