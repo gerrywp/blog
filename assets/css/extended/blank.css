@@ -40,7 +40,7 @@ body.list::before {
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;
-  animation: bgSlide 60s infinite linear;
+  animation: bgSlide 40s infinite ease-in-out;
   /* 关键：消除滚动条 */
   box-sizing: border-box;
   overflow: hidden;
@@ -48,11 +48,11 @@ body.list::before {
 
 /* 动画 */
 @keyframes bgSlide {
-  0%   { background-image: url('/blog/img/bg1.jpg'); }
-  25%  { background-image: url('/blog/img/bg2.jpg'); }
-  50%  { background-image: url('/blog/img/bg3.jpg'); }
-  75%  { background-image: url('/blog/img/bg4.jpg'); }
-  100% { background-image: url('/blog/img/bg1.jpg'); }
+  0%   { background: linear-gradient(to bottom, #e8f0ff 0%, #c9d9ff 50%, #a8c2ff 100%); }
+  25%  { background: linear-gradient(to bottom, #dde7ff 0%, #bad1ff 50%, #9bb9ff 100%); }
+  50%  { background: linear-gradient(to bottom, #d0e0ff 0%, #aec9ff 50%, #8ab1ff 100%); }
+  75%  { background: linear-gradient(to bottom, #dde7ff 0%, #bad1ff 50%, #9bb9ff 100%); }
+  100% { background: linear-gradient(to bottom, #e8f0ff 0%, #c9d9ff 50%, #a8c2ff 100%); }
 }
 
 /* 内容区域 */
