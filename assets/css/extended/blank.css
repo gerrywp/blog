@@ -7,14 +7,6 @@
 
 /* 强制让目录固定在右侧（修复 tocSide:right 失效） */
 @media (min-width: 1200px) {
-  /* 容器允许右侧放TOC */
-  .post {
-    display: flex;
-    flex-wrap: wrap;
-    position: relative;
-    gap: 1rem;
-  }
-
   /* TOC 固定右侧、悬浮、不随滚动消失 */
   .toc {
     position: fixed;
