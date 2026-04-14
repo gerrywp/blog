@@ -62,14 +62,14 @@ params:
 
   label:
     text: "Home"
-    #icon: img/avatar.png #站点标题图标
-    iconHeight: 35
+    icon: img/logo.ico #站点标题图标
+    iconHeight: 24
 
   # profile-mode
   profileMode:
     enabled: true # needs to be explicitly set
     title: 大仙
-    subtitle: "拥抱未来"
+    subtitle: "千山鸟飞绝，万径人踪灭。孤舟蓑笠翁，独钓寒江雪。"
     imageUrl: "img/avatar.png"
     imageWidth: 120
     imageHeight: 120
