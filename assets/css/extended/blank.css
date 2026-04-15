@@ -21,13 +21,10 @@
     box-shadow: none !important;
     background: transparent !important;
   }
-	.toc ul,li{
-		/* 移除列表项前的标记（圆点、数字等） */
-    list-style-type: none;
-    /* 可选：清除默认的左内边距，让列表对齐更整齐 */
-    padding-left: 0;
-	}
-	.toc .inner{
-		margin:0 1rem;
-	}
+}
+.toc ul,.toc li{
+	/* 移除列表项前的标记（圆点、数字等） */
+	list-style-type: none;
+	/* 可选：清除默认的左内边距，让列表对齐更整齐 */
+	padding-left: 0;
 }
