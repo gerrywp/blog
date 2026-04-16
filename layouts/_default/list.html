@@ -6,7 +6,9 @@
 
 {{- if not .IsHome | and .Title }}
 <header class="page-header">
+  {{- if ne .Section "posts"}}
   {{- partial "breadcrumbs.html" . }}
+  {{- end }}
   <h1>
     {{ i18n .Title }}
     {{- if and (or (eq .Kind `term`) (eq .Kind `section`)) (.Param "ShowRssButtonInSectionTermList") }}
