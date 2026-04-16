@@ -1,8 +1,8 @@
 +++
 title = "发布项目dll未被msbuild拷贝到输出目录"
 date = "2018-03-29"
-tags = [ "vs" ]
-categories = [ "csharp" ]
+tags = [ "VS" ]
+categories = [ "工具与效率" ]
 +++
 
 　　添加了reference的*dll*文件并且`Copy Local`值为True为何不拷贝到输出目录？  

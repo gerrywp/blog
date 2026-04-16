@@ -1,8 +1,8 @@
 +++
 title = "VsCode搭建Java开发环境"
 date = "2020-10-31"
-tags = [ "java","vs" ]
-categories = [ "java" ]
+tags = [ "Java","VS" ]
+categories = [ "工具与效率" ]
 +++
 
 破解版的IDEA注册失效，需要重新安装IDEA。开发环境客制化的配置丢失了，一怒之下,果断换到vscode开发java!

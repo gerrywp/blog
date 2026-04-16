@@ -1,8 +1,8 @@
 +++
 title = "c++开发环境"
 date = "2018-07-05"
-tags = [ "cpp","tool" ]
-categories = [ "others" ]
+tags = [ "Windows","C++" ]
+categories = [ "操作系统" ]
 +++
 
 在windows下做c++开发，不想使用微软系的IDE开发工具。  
@@ -40,8 +40,6 @@ choco install mingw-w64 -y
 
 > [MinGW-w64安装教程](https://zhuanlan.zhihu.com/p/76613134 '点我访问')
 
-### 安装android-sdk
-[安装android sdk](https://blog.csdn.net/naipeng/article/details/72722682 '点我访问')
 
 ### QT实战教程
 [QT实战123](https://blog.csdn.net/liang19890820/article/details/50277095 '点我访问')

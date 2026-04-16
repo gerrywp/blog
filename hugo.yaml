@@ -61,9 +61,9 @@ params:
     #safari_pinned_tab: "<link / abs url>"
 
   label:
-    text: "Home"
-    icon: img/logo.ico #站点标题图标
-    iconHeight: 24
+    text: "主页"
+    icon: img/home.png #站点标题图标
+    iconHeight: 36
 
   # profile-mode
   profileMode:
@@ -75,9 +75,9 @@ params:
     imageHeight: 120
     imageTitle: foreaver
     buttons:
-      - name: Posts
+      - name: 📝文章
         url: posts
-      - name: Tags
+      - name: 🏷️标签
         url: tags
 
   # home-info mode
@@ -146,19 +146,19 @@ languages:
       menu:
         main:
           - identifier: search
-            name: 搜索
+            name: 🔍搜索
             url: /search/
             weight: 10
           - identifier: archives
-            name: 归档
+            name: 📅归档
             url: /archives/
             weight: 20
           - identifier: categories
-            name: 分类
+            name: 📂分类
             url: /categories/
             weight: 30
           - identifier: tags
-            name: 标签
+            name: 🏷️标签
             url: /tags/
             weight: 40
 

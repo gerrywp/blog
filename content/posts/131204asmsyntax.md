@@ -1,8 +1,8 @@
 +++
 title = "汇编指令lea"
 date = "2013-01-04"
-tags = [ "mix" ]
-categories = [ "windows" ]
+tags = [ "汇编" ]
+categories = [ "编程语言" ]
 +++
 
 个别汇编指令英文全称说明，便于使用和记忆

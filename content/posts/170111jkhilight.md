@@ -1,8 +1,8 @@
 +++
 title = "markdown相关"
 date = "2017-01-11"
-tags = [ "tool" ]
-categories = [ "others" ]
+tags = [ "Markdown" ]
+categories = [ "编程语言" ]
 +++
 
 使用markdown编写日志的时候，通常需要插入代码块。针对不同的语言，jekyll可以提供不同的语法高亮样式。

@@ -1,8 +1,8 @@
 +++
 title = "静夜思"
 date = "2020-07-02"
-tags = [ "随笔" ]
-categories = [ "article" ]
+tags = [ "散文" ]
+categories = [ "写作" ]
 +++
 
 其实人跟树是一样的，越是向往高处的阳光，它的根就越要伸向黑暗的地底！

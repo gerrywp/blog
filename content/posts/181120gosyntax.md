@@ -1,8 +1,8 @@
 +++
 title = "GO语言圣经笔记"
 date = "2018-11-20"
-tags = [ "go" ]
-categories = [ "golang" ]
+tags = [ "Go" ]
+categories = [ "编程语言" ]
 +++
 
 　　本书翻译的版本看的有些别扭，在此把相似的东西进行归类做好常用知识点的笔记！

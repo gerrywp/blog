@@ -1,8 +1,8 @@
 +++
 title = "cmd实现类似linux下的alias并模拟加载bashrc文件"
 date = "2017-11-26"
-tags = [ "shell" ]
-categories = [ "windows" ]
+tags = [ "Shell","Linux" ]
+categories = [ "工具与效率" ]
 +++
 
 　　cmd可以使用`doskey`命令来定义命令的别名，但是windows要实现自动加载配置文件，似乎只能通过修改注册表来达到目的。

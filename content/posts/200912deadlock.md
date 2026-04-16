@@ -1,8 +1,8 @@
 +++
 title = "死锁"
 date = "2020-09-12"
-tags = [ "algorithm" ]
-categories = [ "windows" ]
+tags = [ "操作系统" ]
+categories = [ "计算机基础" ]
 +++
 
 多线程死锁

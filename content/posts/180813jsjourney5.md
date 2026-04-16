@@ -1,8 +1,8 @@
 +++
 title = "nodejs之旅(5)-form表单"
 date = "2018-08-13"
-tags = [ "node" ]
-categories = [ "js" ]
+tags = [ "Nodejs" ]
+categories = [ "后端开发" ]
 +++
 
 　　在web开发中，最重要的数据交互方式首推就该属表单了。html通过表单实现了客户端与服务器端数据的交互。谈及表单就不得不说`MIME`类型，此类型

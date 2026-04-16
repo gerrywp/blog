@@ -1,8 +1,8 @@
 +++
 title = "拾遗stored procedure"
 date = "2017-03-17"
-tags = [ "sql" ]
-categories = [ "sql" ]
+tags = [ "SqlServer" ]
+categories = [ "数据库" ]
 +++
 
 长久以来仅仅使用了数据库最简单的功能，譬如增删改查。最近因项目需要，须将所有的查询都改用存储过程。也就是说要将所有的业务逻辑放在数据库端来处理。

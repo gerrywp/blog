@@ -1,8 +1,8 @@
 +++
 title = "盒子访问共享文件夹"
 date = "2023-06-11"
-tags = [ "tool" ]
-categories = [ "windows" ]
+tags = [ "" ]
+categories = [ "操作系统" ]
 +++
 世上无难事，只要肯打工。
 <!--more-->

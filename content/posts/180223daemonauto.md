@@ -1,8 +1,8 @@
 +++
 title = "Linux守护进程和自启动"
 date = "2018-02-23"
-tags = [ "shell" ]
-categories = [ "linux" ]
+tags = [ "Linux","Shell" ]
+categories = [ "操作系统" ]
 +++
 
 　　Linux的服务也是以etc配置的形式完成的，启动一个daemon(守护进程)来提供service(服务)。服务的管理是一个既复杂又细致的工作，Linux提供了两种方式来

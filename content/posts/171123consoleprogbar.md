@@ -1,8 +1,8 @@
 +++
 title = "console应用程序progressbar（进度条的实现）"
 date = "2017-11-23"
-tags = [ "vs" ]
-categories = [ "csharp" ]
+tags = [ "C#","Nodejs" ]
+categories = [ "编程语言" ]
 +++
 
 　　控制台应用程序，有时候需要做文件上传、压缩等(网络/磁盘)I/O处理。为了得到更友好的界面交互，所以需要用到progress bar 进度条。

@@ -1,8 +1,8 @@
 +++
 title = "go命令详解"
 date = "2019-07-07"
-tags = ["go","vs" ]
-categories = [ "golang" ]
+tags = ["Go","VS" ]
+categories = [ "工具与效率" ]
 +++
 
 go命令使用笔记，对命令的使用做一个总结和归纳

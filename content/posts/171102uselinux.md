@@ -1,8 +1,8 @@
 +++
 title = "Ubuntu的使用"
 date = "2017-11-02"
-tags = [ "shell" ]
-categories = [ "linux" ]
+tags = [ "Ubuntu" ]
+categories = [ "操作系统" ]
 +++
 
 Ubuntu系统使用过程中的常用设置。其中包括启动项目的管理、启动项对应的文件、`systemd`(d结尾的就是守护进程daemon)service、`systemd-sysv-generator`命令依据旧的SysV脚本生成新的`systemd`脚本等等。

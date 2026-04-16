@@ -1,8 +1,8 @@
 +++
 title = "go语言开发windows服务程序"
 date = "2020-05-27"
-tags = [ "go" ]
-categories = [ "golang" ]
+tags = [ "Go","Windows" ]
+categories = [ "编程语言" ]
 +++
 
 使用go语言原生的包，开发一个webapi应用的windows service服务。给客户软件提供版本升级，下载的功能。

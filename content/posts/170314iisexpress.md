@@ -1,8 +1,8 @@
 +++
 title = "iisexpress-config"
 date = "2017-03-14"
-tags = [ "vs" ]
-categories = [ "others" ]
+tags = [ "VS" ]
+categories = [ "工具与效率" ]
 +++
 
 iisexpress轻量，易于安装，安装包不到5M。

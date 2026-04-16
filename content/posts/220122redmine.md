@@ -1,8 +1,8 @@
 +++
 title = "Redmine部署"
 date = "2022-01-22"
-tags = [ "bug" ]
-categories = [ "pm" ]
+tags = [ "Redmine" ]
+categories = [ "工具与效率" ]
 +++
 不识庐山真面目，只缘身在此山中。
 <!--more-->

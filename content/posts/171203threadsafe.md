@@ -1,8 +1,8 @@
 +++
 title = "线程安全与非线程安全"
 date = "2017-12-03"
-tags = [ "algorithm" ]
-categories = [ "csharp" ]
+tags = [ "操作系统" ]
+categories = [ "计算机基础" ]
 +++
 
 　　c#的多线程编程由于其高级的语法糖(synax)而变化的相对简单，然而又有些神秘莫测。对于线程安全与否与同步(synchronize)经常有人将其混为一谈，其实这是2个不同的概念。

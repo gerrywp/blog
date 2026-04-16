@@ -1,8 +1,8 @@
 +++
 title = "Linux(daemon)和管线命令(pipe)"
 date = "2017-01-20"
-tags = [ "shell" ]
-categories = [ "linux" ]
+tags = [ "Linux" ]
+categories = [ "操作系统" ]
 +++
 
 如何将应用程序启动为守护进程(daemon),换言之作为服务(service)启动。

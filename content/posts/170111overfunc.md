@@ -1,8 +1,8 @@
 +++
 title = " Ms-SqlServer开窗函数(over())"
 date = "2017-01-11"
-tags = [ "sql" ]
-categories = [ "sql" ]
+tags = [ "SqlServer" ]
+categories = [ "数据库" ]
 +++
 
 开窗函数用在ms的group by分组无法迄及的地方。

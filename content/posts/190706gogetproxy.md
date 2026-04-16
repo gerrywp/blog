@@ -1,8 +1,8 @@
 +++
 title = "go get代理设置"
 date = "2019-07-06"
-tags = ["go"]
-categories = [ "golang" ]
+tags = ["Go","VS"]
+categories = [ "工具与效率" ]
 +++
 
 　　go大部分站点在国内被墙，想要直接使用`go get`命令下载包，就必须使用代理，本文使用的是shadowsocks代理访问外部网。

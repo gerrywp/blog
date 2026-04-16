@@ -1,8 +1,8 @@
 +++
 title = "cmd批处理"
 date = "2017-03-21"
-tags = [ "shell" ]
-categories = [ "windows" ]
+tags = [ "Shell" ]
+categories = [ "操作系统" ]
 +++
 
 最近被外甥问到一个初中的奥数题目，涉及到高中的排列组合问题。因想求证一下答案，故考虑到使用"穷举法"编程来解决这个问题。

@@ -1,8 +1,8 @@
 +++
 title = "Jscript for WSH"
 date = "2017-07-25"
-tags = [ "shell" ]
-categories = [ "windows" ]
+tags = [ "Shell" ]
+categories = [ "编程语言" ]
 +++
 
 告别批处理，使用WSH做更强大的脚本。为什么不直接使用VBScript呢？因为不喜欢它的语法，所以选择易懂的Jscript作首选语言！

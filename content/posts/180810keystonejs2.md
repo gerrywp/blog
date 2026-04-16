@@ -1,8 +1,8 @@
 +++
 title = "keystonejs(2)dotenv等常用库"
 date = "2018-08-10"
-tags = [ "cms" ]
-categories = [ "js" ]
+tags = [ "Nodejs","JavaScript" ]
+categories = [ "后端开发" ]
 +++
 
 　　透过keystonejs接触了很多常用的库，查阅npm文档了解它们的基本用法。dotenv从.env文件中加载并设置环境变量。

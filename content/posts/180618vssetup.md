@@ -1,8 +1,8 @@
 +++
 title = "调整VS工具栏宽度"
 date = "2018-06-18"
-tags = [ "vs" ]
-categories = [ "windows" ]
+tags = [ "VS" ]
+categories = [ "工具与效率" ]
 +++
 
 　　Visual Studio的**Solution Configurations**这个选项在工具栏下的宽度很窄，多几个字符就看不见后面的名称，需要达成的目标就是定制宽度！(好记性不如烂笔头，记忆力衰退太厉害了)

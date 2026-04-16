@@ -1,8 +1,8 @@
 +++
 title = "数据结构"
 date = "2019-06-20"
-tags = [ "algorithm" ]
-categories = [ "others" ]
+tags = [ "数据结构" ]
+categories = [ "计算机基础" ]
 +++
 
 　　算法心得，使用golang实现常用的算法。算法导论中阐述了经典常用的数据结构和典型算法。

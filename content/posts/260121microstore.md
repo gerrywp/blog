@@ -1,8 +1,8 @@
 +++
 title = "代理后微软商店无法打开UWP"
 date = "2026-01-21"
-tags = [ "tool" ]
-categories = [ "windows" ]
+tags = [ "Windows","UWP" ]
+categories = [ "工具与效率" ]
 +++
 落地开花，富贵荣华。2026加油！
 <!--more-->

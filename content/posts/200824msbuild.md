@@ -1,8 +1,8 @@
 +++
 title = "msbuid(5)-不同环境配置管理"
 date = "2020-08-24"
-tags = [ "msbuild" ]
-categories = [ "csharp" ]
+tags = [ "build","Windows" ]
+categories = [ "实战" ]
 +++
 
 vs解决方案下，不同的环境，使用不同的配置文件。

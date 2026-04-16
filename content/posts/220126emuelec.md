@@ -1,8 +1,8 @@
 +++
 title = "EmuELEC杂谈"
 date = "2022-01-26"
-tags = [ "tool" ]
-categories = [ "linux" ]
+tags = [ "Linux","Shell" ]
+categories = [ "计算机基础" ]
 +++
 夜阑卧听风吹雨，铁马冰河入梦来。
 <!--more-->

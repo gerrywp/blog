@@ -1,8 +1,8 @@
 +++
 title = "linux下的软件管理"
 date = "2017-04-11"
-tags = [ "shell" ]
-categories = [ "linux" ]
+tags = [ "Linux" ]
+categories = [ "操作系统" ]
 +++
 
 linux界的 2 大主流软件管理方式(命令):RPM(RedHat Package Manager)和DPKG(Debian Packager)。  

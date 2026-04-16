@@ -1,8 +1,8 @@
 +++
 title = "nodejs之旅(2)"
 date = "2018-03-27"
-tags = [ "node" ]
-categories = [ "js" ]
+tags = [ "ExpressJS" ]
+categories = [ "实战" ]
 +++
 
 　　express-handlebars服务端模板引擎的局部渲染。非SPA应用程序，在最原始的动态页面并使用了layout布局的情况下，

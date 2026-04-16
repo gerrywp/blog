@@ -1,8 +1,8 @@
 +++
 title = "nodejs如何创建单例实例"
 date = "2018-03-29"
-tags = [ "node" ]
-categories = [ "js" ]
+tags = [ "Nodejs" ]
+categories = [ "编程语言" ]
 +++
 
 　　How to create singleton in Node.js?这个问题实际是错误的！因为nodejs模块缓存的原因，require('')每次出来的都是单例的！

@@ -1,8 +1,8 @@
 +++
 title = "线性存储"
 date = "2018-07-03"
-tags = [ "algorithm" ]
-categories = [ "others" ]
+tags = [ "算法" ]
+categories = [ "计算机基础" ]
 +++
 
 　　数组就是典型的线性结构。对数组中特定**值**的查询，线性查询无疑是最慢的查询方式，时间复杂度为O(n):n为数组长度。

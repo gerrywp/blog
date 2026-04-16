@@ -1,8 +1,8 @@
 +++
 title = "SetWindowsHookEx"
 date = "2020-09-12"
-tags = [ "cpp" ]
-categories = [ "windows" ]
+tags = [ "操作系统","Windows" ]
+categories = [ "计算机基础" ]
 +++
 
 ***SetWindowsHookEx***安装钩子程序，通过对操作系统消息的拦截,实现跨进程的操作。

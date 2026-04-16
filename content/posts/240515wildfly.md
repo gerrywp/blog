@@ -1,8 +1,8 @@
 +++
 title = "IDEA中Wildfly配置异常"
 date = "2024-05-15"
-tags = [ "bug" ]
-categories = [ "java" ]
+tags = [ "Idea" ]
+categories = [ "工具与效率" ]
 +++
 奔跑吧，兄弟。
 <!--more-->

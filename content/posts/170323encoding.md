@@ -1,8 +1,8 @@
 +++
 title = "unicode编码字符集和utf-8、asci编码方式"
 date = "2017-03-23"
-tags = [ "mix" ]
-categories = [ "windows" ]
+tags = [ "Unicode","编码" ]
+categories = [ "操作系统" ]
 +++
 
 Unicode是一个编码字符集，统一维护着世界上所有的'字符'。Unicode只是一个符号集，它只规定了符号的二进制代码，

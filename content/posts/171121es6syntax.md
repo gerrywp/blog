@@ -1,8 +1,8 @@
 +++
 title = "es6语法糖(syntax sugar)"
 date = "2017-11-21"
-tags = [ "js" ]
-categories = [ "js" ]
+tags = [ "JavaScript","ES6" ]
+categories = [ "编程语言" ]
 +++
 
 　　es6引入了大量的语法糖，其中有不少是不好理解的，一边实践一边用文字记录之。
