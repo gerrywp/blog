@@ -11,14 +11,36 @@
     </image>
     <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 27 May 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 29 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://gerrywp.github.io/blog/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>go-wails开发企业级应用</title>
+      <link>https://gerrywp.github.io/blog/posts/260329wails/</link>
+      <pubDate>Sun, 29 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/260329wails/</guid>
+      <description>&lt;p&gt;技术方案：wails2,svelte5.55.0,sveltekit2.55.0,skeleton4.13.0,tailwindcss4.2.2,vite7.3.1&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>替换gorm底层sqlite驱动</title>
+      <link>https://gerrywp.github.io/blog/posts/260122cgo/</link>
+      <pubDate>Thu, 22 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/260122cgo/</guid>
+      <description>&lt;p&gt;落地开花，富贵荣华。2026加油！&lt;/p&gt;</description>
+    </item>
     <item>
       <title>go语言开发windows服务程序</title>
       <link>https://gerrywp.github.io/blog/posts/200527gowinserv/</link>
       <pubDate>Wed, 27 May 2020 00:00:00 +0000</pubDate>
       <guid>https://gerrywp.github.io/blog/posts/200527gowinserv/</guid>
       <description>&lt;p&gt;使用go语言原生的包，开发一个webapi应用的windows service服务。给客户软件提供版本升级，下载的功能。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>QOR踩坑日记</title>
+      <link>https://gerrywp.github.io/blog/posts/190715qorcms/</link>
+      <pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/190715qorcms/</guid>
+      <description>&lt;p&gt;QOR-CMS Open source has lots of bugs.to fix these bugs cost me lots of time.So record them into this
+article!&lt;/p&gt;</description>
     </item>
     <item>
       <title>go命令详解</title>

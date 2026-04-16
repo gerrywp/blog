@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Wails on 大仙</title>
+    <link>https://gerrywp.github.io/blog/tags/wails/</link>
+    <description>Recent content in Wails on 大仙</description>
+    <image>
+      <title>大仙</title>
+      <url>https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 29 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://gerrywp.github.io/blog/tags/wails/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>go-wails开发企业级应用</title>
+      <link>https://gerrywp.github.io/blog/posts/260329wails/</link>
+      <pubDate>Sun, 29 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/260329wails/</guid>
+      <description>&lt;p&gt;技术方案：wails2,svelte5.55.0,sveltekit2.55.0,skeleton4.13.0,tailwindcss4.2.2,vite7.3.1&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

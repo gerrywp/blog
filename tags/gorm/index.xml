@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Gorm on 大仙</title>
+    <link>https://gerrywp.github.io/blog/tags/gorm/</link>
+    <description>Recent content in Gorm on 大仙</description>
+    <image>
+      <title>大仙</title>
+      <url>https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 15 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://gerrywp.github.io/blog/tags/gorm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>QOR踩坑日记</title>
+      <link>https://gerrywp.github.io/blog/posts/190715qorcms/</link>
+      <pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/190715qorcms/</guid>
+      <description>&lt;p&gt;QOR-CMS Open source has lots of bugs.to fix these bugs cost me lots of time.So record them into this
+article!&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

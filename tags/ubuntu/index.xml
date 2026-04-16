@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Ubuntu on 大仙</title>
+    <link>https://gerrywp.github.io/blog/tags/ubuntu/</link>
+    <description>Recent content in Ubuntu on 大仙</description>
+    <image>
+      <title>大仙</title>
+      <url>https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 02 Nov 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://gerrywp.github.io/blog/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ubuntu的使用</title>
+      <link>https://gerrywp.github.io/blog/posts/171102uselinux/</link>
+      <pubDate>Thu, 02 Nov 2017 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/171102uselinux/</guid>
+      <description>&lt;p&gt;Ubuntu系统使用过程中的常用设置。其中包括启动项目的管理、启动项对应的文件、&lt;code&gt;systemd&lt;/code&gt;(d结尾的就是守护进程daemon)service、&lt;code&gt;systemd-sysv-generator&lt;/code&gt;命令依据旧的SysV脚本生成新的&lt;code&gt;systemd&lt;/code&gt;脚本等等。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>安装curl并开启ssl(https)支持</title>
+      <link>https://gerrywp.github.io/blog/posts/170715curl/</link>
+      <pubDate>Sat, 15 Jul 2017 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/170715curl/</guid>
+      <description>&lt;p&gt;ubuntu系统下想要使用curl-ssl只能是自己下载源码进行安装，因为开启ssl(&amp;ndash;with-ssl)需要openssl的库文件。默认ubuntu安装的openssl未包含库(lib)文件和头文件(include)。使用curl下载https文件的时候,会报以下错误：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Protocol https not supported or disabled in libcurl&lt;/li&gt;
+&lt;li&gt;Unsupport protocol&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+  </channel>
+</rss>

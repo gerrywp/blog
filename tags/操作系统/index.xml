@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>操作系统 on 大仙</title>
+    <link>https://gerrywp.github.io/blog/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
+    <description>Recent content in 操作系统 on 大仙</description>
+    <image>
+      <title>大仙</title>
+      <url>https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 12 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://gerrywp.github.io/blog/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SetWindowsHookEx</title>
+      <link>https://gerrywp.github.io/blog/posts/200912winhook/</link>
+      <pubDate>Sat, 12 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/200912winhook/</guid>
+      <description>&lt;p&gt;&lt;em&gt;&lt;strong&gt;SetWindowsHookEx&lt;/strong&gt;&lt;/em&gt;安装钩子程序，通过对操作系统消息的拦截,实现跨进程的操作。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>死锁</title>
+      <link>https://gerrywp.github.io/blog/posts/200912deadlock/</link>
+      <pubDate>Sat, 12 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/200912deadlock/</guid>
+      <description>&lt;p&gt;多线程死锁&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>线程安全与非线程安全</title>
+      <link>https://gerrywp.github.io/blog/posts/171203threadsafe/</link>
+      <pubDate>Sun, 03 Dec 2017 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/171203threadsafe/</guid>
+      <description>&lt;p&gt;　　c#的多线程编程由于其高级的语法糖(synax)而变化的相对简单，然而又有些神秘莫测。对于线程安全与否与同步(synchronize)经常有人将其混为一谈，其实这是2个不同的概念。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

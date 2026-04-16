@@ -2,15 +2,15 @@
 
 ## Posts
 - [go-wails开发企业级应用](https://gerrywp.github.io/blog/posts/260329wails/)
-- [代理后微软商店无法打开UWP](https://gerrywp.github.io/blog/posts/260121microstore/)
 - [替换gorm底层sqlite驱动](https://gerrywp.github.io/blog/posts/260122cgo/)
+- [代理后微软商店无法打开UWP](https://gerrywp.github.io/blog/posts/260121microstore/)
 - [npm run到底做了什么？](https://gerrywp.github.io/blog/posts/241212npmrun/)
 - [IDEA中Wildfly配置异常](https://gerrywp.github.io/blog/posts/240515wildfly/)
 - [告别迅雷，Motrix](https://gerrywp.github.io/blog/posts/230826motrix/)
 - [盒子访问共享文件夹](https://gerrywp.github.io/blog/posts/230611tvshare/)
 - [EmuELEC杂谈](https://gerrywp.github.io/blog/posts/220126emuelec/)
 - [Redmine部署](https://gerrywp.github.io/blog/posts/220122redmine/)
-- [UML活动图与BPMN流程图的区别](https://gerrywp.github.io/blog/posts/220118activity/)
+- [UML与BPMN的区别](https://gerrywp.github.io/blog/posts/220118activity/)
 - [鹭鸶尘](https://gerrywp.github.io/blog/posts/211122review/)
 - [docker](https://gerrywp.github.io/blog/posts/211109docker/)
 - [突击ECMAScript(1)](https://gerrywp.github.io/blog/posts/210812ecma1/)

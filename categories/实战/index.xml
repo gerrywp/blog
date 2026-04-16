@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>实战 on 大仙</title>
+    <link>https://gerrywp.github.io/blog/categories/%E5%AE%9E%E6%88%98/</link>
+    <description>Recent content in 实战 on 大仙</description>
+    <image>
+      <title>大仙</title>
+      <url>https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 29 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://gerrywp.github.io/blog/categories/%E5%AE%9E%E6%88%98/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>go-wails开发企业级应用</title>
+      <link>https://gerrywp.github.io/blog/posts/260329wails/</link>
+      <pubDate>Sun, 29 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/260329wails/</guid>
+      <description>&lt;p&gt;技术方案：wails2,svelte5.55.0,sveltekit2.55.0,skeleton4.13.0,tailwindcss4.2.2,vite7.3.1&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>msbuid(5)-不同环境配置管理</title>
+      <link>https://gerrywp.github.io/blog/posts/200824msbuild/</link>
+      <pubDate>Mon, 24 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/200824msbuild/</guid>
+      <description>&lt;p&gt;vs解决方案下，不同的环境，使用不同的配置文件。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>msbuid(4)-winform版本更新</title>
+      <link>https://gerrywp.github.io/blog/posts/200603msbuild4/</link>
+      <pubDate>Wed, 03 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/200603msbuild4/</guid>
+      <description>&lt;p&gt;让windows应用生成时自动构建版本号。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>QOR踩坑日记</title>
+      <link>https://gerrywp.github.io/blog/posts/190715qorcms/</link>
+      <pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/190715qorcms/</guid>
+      <description>&lt;p&gt;QOR-CMS Open source has lots of bugs.to fix these bugs cost me lots of time.So record them into this
+article!&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>nodejs之旅(4)-webpack、babel和antd库的结合</title>
+      <link>https://gerrywp.github.io/blog/posts/180619jsjourney4/</link>
+      <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/180619jsjourney4/</guid>
+      <description>&lt;p&gt;　　前端(browser)模块性的开发，目前来说就不得不用到webpack(module bundle)打包工具。因为使用了react的&lt;code&gt;JSX&lt;/code&gt;语法，所以必须要用到babel进行转码,因为browser是不认识&lt;code&gt;JSX&lt;/code&gt;语法的。并且由于目前大部分的浏览器对ES6语法(例如：&lt;code&gt;import&lt;/code&gt;和&lt;code&gt;export&lt;/code&gt;等语法并不支持)，也必须用到babel对这类型新的ES6语法进行转码。鉴于前端技术发展的太快了，在此只做基本使用理念的介绍，不对细节做过多的处理！具体的各工具的使用，以在线参考文档为主！&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>nodejs之旅(3)-gulp及调试</title>
+      <link>https://gerrywp.github.io/blog/posts/180617jsjourney3/</link>
+      <pubDate>Sun, 17 Jun 2018 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/180617jsjourney3/</guid>
+      <description>&lt;p&gt;　　gulp通过任务的形式来完成前端的构建，如何调试？&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>msbuild(3)-用命令行部署web</title>
+      <link>https://gerrywp.github.io/blog/posts/180611msbuild3/</link>
+      <pubDate>Mon, 11 Jun 2018 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/180611msbuild3/</guid>
+      <description>&lt;p&gt;　　msbuild除了可以构建.proj文件之外，还可用解决方案.sln文件构建目标！&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title> msbuild(2)-In Visual Studio</title>
+      <link>https://gerrywp.github.io/blog/posts/180610msbuild2/</link>
+      <pubDate>Sun, 10 Jun 2018 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/180610msbuild2/</guid>
+      <description>&lt;p&gt;　　使用&lt;strong&gt;Visual Stuido&lt;/strong&gt;(以下简称VS)发布(publish)web application到文件系统(File System)的时候，我们希望可以定制待发布的前端文件，并且在msbuild deploy的时候对构建流程进行处理！如何做呢？&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>msbuild(1)-基本使用</title>
+      <link>https://gerrywp.github.io/blog/posts/180609msbuild1/</link>
+      <pubDate>Sat, 09 Jun 2018 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/180609msbuild1/</guid>
+      <description>&lt;p&gt;使用MS的开发工具&lt;strong&gt;VisualStudio&lt;/strong&gt;(以下简称VS)不得不使用msbuild进行项目的构建。VS能简化很多工作，同时也隐藏了很多内部实现细节。其中包括点击&amp;quot;部署&amp;quot;(publish)的时候VS通过msbuild为我们做了哪些工作？&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>nodejs之旅(2)</title>
+      <link>https://gerrywp.github.io/blog/posts/180327jsjourney2/</link>
+      <pubDate>Tue, 27 Mar 2018 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/180327jsjourney2/</guid>
+      <description>&lt;p&gt;　　express-handlebars服务端模板引擎的局部渲染。非SPA应用程序，在最原始的动态页面并使用了layout布局的情况下，
+我们通常希望能够将index.hbs里面的UI结构和js逻辑部分组合在一起，并且需要将js逻辑统一放置到layout布局页的最底部。
+handlebars的&lt;strong&gt;Block Helper&lt;/strong&gt;能够帮我们解决这个问题！&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>nodejs之旅(1)</title>
+      <link>https://gerrywp.github.io/blog/posts/180322jsjourney1/</link>
+      <pubDate>Thu, 22 Mar 2018 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/180322jsjourney1/</guid>
+      <description>&lt;p&gt;　　这个系列会一步一步开始使用expressjs+nodejs搭建一个游戏背景音乐在线听网站。从零开始记录每一个细节：包括IDE工具使用细节、环境配置细节、expressjs
+配置细节等等。目的只是为了单纯的练习和使用expressjs+nodejs，在摸索中前进！&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

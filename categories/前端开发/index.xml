@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>前端开发 on 大仙</title>
+    <link>https://gerrywp.github.io/blog/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/</link>
+    <description>Recent content in 前端开发 on 大仙</description>
+    <image>
+      <title>大仙</title>
+      <url>https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 12 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://gerrywp.github.io/blog/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>突击ECMAScript(1)</title>
+      <link>https://gerrywp.github.io/blog/posts/210812ecma1/</link>
+      <pubDate>Thu, 12 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/210812ecma1/</guid>
+      <description>&lt;p&gt;&lt;code&gt;ECMAScript 6.0&lt;/code&gt;（以下简称 ES6）是 &lt;code&gt;JavaScript&lt;/code&gt; 语言的下一代标准，已经在 2015 年 6 月正式发布了。它的目标，是使得 &lt;code&gt;JavaScript&lt;/code&gt; 语言可以用来编写复杂的大型应用程序，成为企业级开发语言。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>前端那些事儿</title>
+      <link>https://gerrywp.github.io/blog/posts/171124fullstack/</link>
+      <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/171124fullstack/</guid>
+      <description>&lt;p&gt;　　微软系软件开发使用的Visual Studio(VS) IDE强大到令人发指！隐藏了许多技术细节，必然很难定制。nodejs出现之前，创建一个asp.net mvc的项目，client(browser)和server(csharp+iis)是组织在一起的。很少有公司在做asp.net mvc项目的时候会定制msbuild去完成浏览器端代码的构建和发布，比如：
+打包压缩js+css文件,拷贝文件到指定的dist目录,修改view或html文件中的js、css引用路径给路径添加上hash码，同时也拷贝到dist目录。但是通常情况下都是使用的IDE自动构建和一键式发布来deploy website应用。这种情况下想实现client端和server端的分而治之，压根是不可能实现的。nodejs的出现彻底改变了这一现状！&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>背景图片全屏造成的滚动(滑动)卡顿</title>
+      <link>https://gerrywp.github.io/blog/posts/170408bgdelay/</link>
+      <pubDate>Sat, 08 Apr 2017 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/170408bgdelay/</guid>
+      <description>&lt;p&gt;web app中用到全屏幕的背景的图片需要占据整个视口(view-port)，必然会用到position:fixed的定位。
+但是由此引发了一个问题，在PC端，没有任何问题，但是在手机端下滑的时候出现了页面卡顿的现象，这个是没法忍受的。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Jquery的jsonp示例</title>
+      <link>https://gerrywp.github.io/blog/posts/121120jsonp/</link>
+      <pubDate>Tue, 20 Nov 2012 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/121120jsonp/</guid>
+      <description>&lt;p&gt;jsonp实际上就是服务器端实现对客户端函数的回调(callback)&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

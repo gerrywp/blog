@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>ExpressJS on 大仙</title>
+    <link>https://gerrywp.github.io/blog/tags/expressjs/</link>
+    <description>Recent content in ExpressJS on 大仙</description>
+    <image>
+      <title>大仙</title>
+      <url>https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 27 Mar 2018 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://gerrywp.github.io/blog/tags/expressjs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>nodejs之旅(2)</title>
+      <link>https://gerrywp.github.io/blog/posts/180327jsjourney2/</link>
+      <pubDate>Tue, 27 Mar 2018 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/180327jsjourney2/</guid>
+      <description>&lt;p&gt;　　express-handlebars服务端模板引擎的局部渲染。非SPA应用程序，在最原始的动态页面并使用了layout布局的情况下，
+我们通常希望能够将index.hbs里面的UI结构和js逻辑部分组合在一起，并且需要将js逻辑统一放置到layout布局页的最底部。
+handlebars的&lt;strong&gt;Block Helper&lt;/strong&gt;能够帮我们解决这个问题！&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>nodejs之旅(1)</title>
+      <link>https://gerrywp.github.io/blog/posts/180322jsjourney1/</link>
+      <pubDate>Thu, 22 Mar 2018 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/180322jsjourney1/</guid>
+      <description>&lt;p&gt;　　这个系列会一步一步开始使用expressjs+nodejs搭建一个游戏背景音乐在线听网站。从零开始记录每一个细节：包括IDE工具使用细节、环境配置细节、expressjs
+配置细节等等。目的只是为了单纯的练习和使用expressjs+nodejs，在摸索中前进！&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

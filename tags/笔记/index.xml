@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>笔记 on 大仙</title>
+    <link>https://gerrywp.github.io/blog/tags/%E7%AC%94%E8%AE%B0/</link>
+    <description>Recent content in 笔记 on 大仙</description>
+    <image>
+      <title>大仙</title>
+      <url>https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 08 Jan 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://gerrywp.github.io/blog/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>市场笔记</title>
+      <link>https://gerrywp.github.io/blog/posts/200108gp/</link>
+      <pubDate>Wed, 08 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/200108gp/</guid>
+      <description>&lt;p&gt;参与股票市场交易的同时，将最近的心得和体会记录下来，加深自己对后市技术层面的印象。便于在未来有投资行情的时候能够很好的剖析。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>双11</title>
+      <link>https://gerrywp.github.io/blog/posts/171106double11/</link>
+      <pubDate>Mon, 06 Nov 2017 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/171106double11/</guid>
+      <description>&lt;p&gt;  在无聊的日子，搞些乐子出来！！！有关于双11今天突然闲扯了一些比较有意思的文字，所以想把它记录下来。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>而立之年</title>
+      <link>https://gerrywp.github.io/blog/posts/170503erli/</link>
+      <pubDate>Wed, 03 May 2017 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/170503erli/</guid>
+      <description>&lt;p&gt;书写完标题良久头脑还是一片混乱。万千思绪如潮水般一拥而上，更多的是迷茫和彷徨。而且这种消极的思想，越来越强烈！&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

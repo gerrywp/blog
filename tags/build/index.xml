@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Build on 大仙</title>
+    <link>https://gerrywp.github.io/blog/tags/build/</link>
+    <description>Recent content in Build on 大仙</description>
+    <image>
+      <title>大仙</title>
+      <url>https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 24 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://gerrywp.github.io/blog/tags/build/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>msbuid(5)-不同环境配置管理</title>
+      <link>https://gerrywp.github.io/blog/posts/200824msbuild/</link>
+      <pubDate>Mon, 24 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/200824msbuild/</guid>
+      <description>&lt;p&gt;vs解决方案下，不同的环境，使用不同的配置文件。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>msbuid(4)-winform版本更新</title>
+      <link>https://gerrywp.github.io/blog/posts/200603msbuild4/</link>
+      <pubDate>Wed, 03 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/200603msbuild4/</guid>
+      <description>&lt;p&gt;让windows应用生成时自动构建版本号。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>msbuild(3)-用命令行部署web</title>
+      <link>https://gerrywp.github.io/blog/posts/180611msbuild3/</link>
+      <pubDate>Mon, 11 Jun 2018 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/180611msbuild3/</guid>
+      <description>&lt;p&gt;　　msbuild除了可以构建.proj文件之外，还可用解决方案.sln文件构建目标！&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title> msbuild(2)-In Visual Studio</title>
+      <link>https://gerrywp.github.io/blog/posts/180610msbuild2/</link>
+      <pubDate>Sun, 10 Jun 2018 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/180610msbuild2/</guid>
+      <description>&lt;p&gt;　　使用&lt;strong&gt;Visual Stuido&lt;/strong&gt;(以下简称VS)发布(publish)web application到文件系统(File System)的时候，我们希望可以定制待发布的前端文件，并且在msbuild deploy的时候对构建流程进行处理！如何做呢？&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>msbuild(1)-基本使用</title>
+      <link>https://gerrywp.github.io/blog/posts/180609msbuild1/</link>
+      <pubDate>Sat, 09 Jun 2018 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/180609msbuild1/</guid>
+      <description>&lt;p&gt;使用MS的开发工具&lt;strong&gt;VisualStudio&lt;/strong&gt;(以下简称VS)不得不使用msbuild进行项目的构建。VS能简化很多工作，同时也隐藏了很多内部实现细节。其中包括点击&amp;quot;部署&amp;quot;(publish)的时候VS通过msbuild为我们做了哪些工作？&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>前端那些事儿</title>
+      <link>https://gerrywp.github.io/blog/posts/171124fullstack/</link>
+      <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/171124fullstack/</guid>
+      <description>&lt;p&gt;　　微软系软件开发使用的Visual Studio(VS) IDE强大到令人发指！隐藏了许多技术细节，必然很难定制。nodejs出现之前，创建一个asp.net mvc的项目，client(browser)和server(csharp+iis)是组织在一起的。很少有公司在做asp.net mvc项目的时候会定制msbuild去完成浏览器端代码的构建和发布，比如：
+打包压缩js+css文件,拷贝文件到指定的dist目录,修改view或html文件中的js、css引用路径给路径添加上hash码，同时也拷贝到dist目录。但是通常情况下都是使用的IDE自动构建和一键式发布来deploy website应用。这种情况下想实现client端和server端的分而治之，压根是不可能实现的。nodejs的出现彻底改变了这一现状！&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

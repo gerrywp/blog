@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>后端开发 on 大仙</title>
+    <link>https://gerrywp.github.io/blog/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/</link>
+    <description>Recent content in 后端开发 on 大仙</description>
+    <image>
+      <title>大仙</title>
+      <url>https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 09 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://gerrywp.github.io/blog/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>docker</title>
+      <link>https://gerrywp.github.io/blog/posts/211109docker/</link>
+      <pubDate>Tue, 09 Nov 2021 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/211109docker/</guid>
+      <description>&lt;p&gt;Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。它是目前最流行的 Linux 容器解决方案。
+Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。有了 Docker，就不用担心环境问题。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>nodejs之旅(6)热替换与热加载</title>
+      <link>https://gerrywp.github.io/blog/posts/180816jsjourney6/</link>
+      <pubDate>Thu, 16 Aug 2018 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/180816jsjourney6/</guid>
+      <description>&lt;p&gt;　　在开发阶段，我们希望每次更改了代码后页面立即做出相应改变，这种方式在webpack里面叫做
+&lt;strong&gt;热替换HMR&lt;/strong&gt;(hot module replacement)!在react开发中，希望每次更改代码的时候不要刷新整个页面，而是让网页中的React组件渲染代码替换成新的代码。这种方式就叫做热加载(hot load)。本文不使用&lt;code&gt;webpack-dev-server&lt;/code&gt;的&lt;strong&gt;hot&lt;/strong&gt;模式，
+而是在自己搭建的expressjs服务器上，实现热更新和react组件的热加载！&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>nodejs之旅(5)-form表单</title>
+      <link>https://gerrywp.github.io/blog/posts/180813jsjourney5/</link>
+      <pubDate>Mon, 13 Aug 2018 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/180813jsjourney5/</guid>
+      <description>&lt;p&gt;　　在web开发中，最重要的数据交互方式首推就该属表单了。html通过表单实现了客户端与服务器端数据的交互。谈及表单就不得不说&lt;code&gt;MIME&lt;/code&gt;类型，此类型
+关系到服务器端和浏览器端处理数据的方式和手段！&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>keystonejs(2)dotenv等常用库</title>
+      <link>https://gerrywp.github.io/blog/posts/180810keystonejs2/</link>
+      <pubDate>Fri, 10 Aug 2018 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/180810keystonejs2/</guid>
+      <description>&lt;p&gt;　　透过keystonejs接触了很多常用的库，查阅npm文档了解它们的基本用法。dotenv从.env文件中加载并设置环境变量。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>nginx和apache端口80冲突的问题</title>
+      <link>https://gerrywp.github.io/blog/posts/171202nginx/</link>
+      <pubDate>Sat, 02 Dec 2017 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/171202nginx/</guid>
+      <description>&lt;p&gt;　　今天在将nodejs程序部署到远程linux服务器上遇到了问题，很长时间才得以解决！&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>keystonejs(1)隐晦配置</title>
+      <link>https://gerrywp.github.io/blog/posts/171027keystonejs1/</link>
+      <pubDate>Fri, 27 Oct 2017 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/171027keystonejs1/</guid>
+      <description>&lt;p&gt;keystonejs跨平台内容管理系统开发的又一利器。通过定义数据model层，即可完成一个企业型应用站点的开发，并自动生成后台管理界面。
+我们需要做的只是做前端UI，给定模板套样式即可。下面一步一步学习并搭建一个站点起来，并进行二次开发，以一系列文章记录下来。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

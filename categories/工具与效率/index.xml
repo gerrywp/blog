@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>工具与效率 on 大仙</title>
+    <link>https://gerrywp.github.io/blog/categories/%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%95%88%E7%8E%87/</link>
+    <description>Recent content in 工具与效率 on 大仙</description>
+    <image>
+      <title>大仙</title>
+      <url>https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 21 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://gerrywp.github.io/blog/categories/%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%95%88%E7%8E%87/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>代理后微软商店无法打开UWP</title>
+      <link>https://gerrywp.github.io/blog/posts/260121microstore/</link>
+      <pubDate>Wed, 21 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/260121microstore/</guid>
+      <description>&lt;p&gt;落地开花，富贵荣华。2026加油！&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>npm run到底做了什么？</title>
+      <link>https://gerrywp.github.io/blog/posts/241212npmrun/</link>
+      <pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/241212npmrun/</guid>
+      <description>&lt;p&gt;大鹏一日同风起，扶摇直上九万里！&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>IDEA中Wildfly配置异常</title>
+      <link>https://gerrywp.github.io/blog/posts/240515wildfly/</link>
+      <pubDate>Wed, 15 May 2024 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/240515wildfly/</guid>
+      <description>&lt;p&gt;奔跑吧，兄弟。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>告别迅雷，Motrix</title>
+      <link>https://gerrywp.github.io/blog/posts/230826motrix/</link>
+      <pubDate>Sat, 26 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/230826motrix/</guid>
+      <description>&lt;p&gt;这世上的事情最怕“用心”二字。
+有些事，用心了就能做好；有些事，用心了越来越糟糕。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Redmine部署</title>
+      <link>https://gerrywp.github.io/blog/posts/220122redmine/</link>
+      <pubDate>Sat, 22 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/220122redmine/</guid>
+      <description>&lt;p&gt;不识庐山真面目，只缘身在此山中。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>UML与BPMN的区别</title>
+      <link>https://gerrywp.github.io/blog/posts/220118activity/</link>
+      <pubDate>Tue, 18 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/220118activity/</guid>
+      <description>&lt;p&gt;寄蜉蝣于天地，渺沧海之一粟。哀吾生之须臾，羡长江之无穷。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>VsCode搭建Java开发环境</title>
+      <link>https://gerrywp.github.io/blog/posts/201031javaide/</link>
+      <pubDate>Sat, 31 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/201031javaide/</guid>
+      <description>&lt;p&gt;破解版的IDEA注册失效，需要重新安装IDEA。开发环境客制化的配置丢失了，一怒之下,果断换到vscode开发java!&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>OD使用</title>
+      <link>https://gerrywp.github.io/blog/posts/200912od/</link>
+      <pubDate>Sat, 12 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/200912od/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Ollydbg&lt;/strong&gt;使用技巧&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>批量更名</title>
+      <link>https://gerrywp.github.io/blog/posts/191211shell/</link>
+      <pubDate>Wed, 11 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/191211shell/</guid>
+      <description>&lt;p&gt;想使用&lt;code&gt;git mv&lt;/code&gt;批量更改目录下的1000多个markdown文件名。很久没有写过linux的&lt;code&gt;shell scripts&lt;/code&gt;了，已经忘记的差不多了，记录一下关键点，以备不时之需。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>git命令常见错误</title>
+      <link>https://gerrywp.github.io/blog/posts/191007gcmw/</link>
+      <pubDate>Mon, 07 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/191007gcmw/</guid>
+      <description>&lt;p&gt;git push代码的时候，使用了git credential manager for windows工具自动保存密码，但是每次会报告一个错误：HttpRequestException encountered.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>go命令详解</title>
+      <link>https://gerrywp.github.io/blog/posts/190707gocommand/</link>
+      <pubDate>Sun, 07 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/190707gocommand/</guid>
+      <description>&lt;p&gt;go命令使用笔记，对命令的使用做一个总结和归纳&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>go get代理设置</title>
+      <link>https://gerrywp.github.io/blog/posts/190706gogetproxy/</link>
+      <pubDate>Sat, 06 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/190706gogetproxy/</guid>
+      <description>&lt;p&gt;　　go大部分站点在国内被墙，想要直接使用&lt;code&gt;go get&lt;/code&gt;命令下载包，就必须使用代理，本文使用的是shadowsocks代理访问外部网。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>调整VS工具栏宽度</title>
+      <link>https://gerrywp.github.io/blog/posts/180618vssetup/</link>
+      <pubDate>Mon, 18 Jun 2018 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/180618vssetup/</guid>
+      <description>&lt;p&gt;　　Visual Studio的&lt;strong&gt;Solution Configurations&lt;/strong&gt;这个选项在工具栏下的宽度很窄，多几个字符就看不见后面的名称，需要达成的目标就是定制宽度！(好记性不如烂笔头，记忆力衰退太厉害了)&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>apache反向代理nodejs-web</title>
+      <link>https://gerrywp.github.io/blog/posts/180402deploy/</link>
+      <pubDate>Mon, 02 Apr 2018 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/180402deploy/</guid>
+      <description>&lt;p&gt;　　将nodejs-web站点部署到linux服务器上如何反向代理？应用程序运行在3000端口，通过域名访问！&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>发布项目dll未被msbuild拷贝到输出目录</title>
+      <link>https://gerrywp.github.io/blog/posts/180329dllnotcopy/</link>
+      <pubDate>Thu, 29 Mar 2018 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/180329dllnotcopy/</guid>
+      <description>&lt;p&gt;　　添加了reference的&lt;em&gt;dll&lt;/em&gt;文件并且&lt;code&gt;Copy Local&lt;/code&gt;值为True为何不拷贝到输出目录？&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>cmd实现类似linux下的alias并模拟加载bashrc文件</title>
+      <link>https://gerrywp.github.io/blog/posts/171126cmdalias/</link>
+      <pubDate>Sun, 26 Nov 2017 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/171126cmdalias/</guid>
+      <description>&lt;p&gt;　　cmd可以使用&lt;code&gt;doskey&lt;/code&gt;命令来定义命令的别名，但是windows要实现自动加载配置文件，似乎只能通过修改注册表来达到目的。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>vs2017支持.editorconfig配置</title>
+      <link>https://gerrywp.github.io/blog/posts/171124vs2017setup/</link>
+      <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/171124vs2017setup/</guid>
+      <description>&lt;p&gt;　　visual studio无法全局设置编码，新建的文件有的时候并不是使用utf-8编码的，所有在有的环境下会出现乱码。比如使用babel转嘛js代码的时候。网上找到的解决方案，下载&lt;code&gt;ForeUTF8&lt;/code&gt;插件并不能解决问题，当我们新建文件的时候，还要一个个手动通过高级保存，保存为我们想要的编码。所幸百般查找，发现vs是可以支持&lt;code&gt;.editorconfig&lt;/code&gt;配置文件的。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>奇技淫巧</title>
+      <link>https://gerrywp.github.io/blog/posts/171030vimuse/</link>
+      <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/171030vimuse/</guid>
+      <description>&lt;p&gt;  linux常用操作指南！&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>putty配置并使用</title>
+      <link>https://gerrywp.github.io/blog/posts/171029putty/</link>
+      <pubDate>Sun, 29 Oct 2017 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/171029putty/</guid>
+      <description>&lt;p&gt;配置putyy能够自动登陆、开启显示密码、在下达完整个命令之后才发送至服务端！&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>安装curl并开启ssl(https)支持</title>
+      <link>https://gerrywp.github.io/blog/posts/170715curl/</link>
+      <pubDate>Sat, 15 Jul 2017 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/170715curl/</guid>
+      <description>&lt;p&gt;ubuntu系统下想要使用curl-ssl只能是自己下载源码进行安装，因为开启ssl(&amp;ndash;with-ssl)需要openssl的库文件。默认ubuntu安装的openssl未包含库(lib)文件和头文件(include)。使用curl下载https文件的时候,会报以下错误：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Protocol https not supported or disabled in libcurl&lt;/li&gt;
+&lt;li&gt;Unsupport protocol&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>百宝箱</title>
+      <link>https://gerrywp.github.io/blog/posts/170402allcollect/</link>
+      <pubDate>Sun, 02 Apr 2017 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/170402allcollect/</guid>
+      <description>&lt;p&gt;计算机相关知识点过于分散，有时候为了找一篇文章，在以后要用到的时候又要去反复查找很耗时。这里罗列出对自己有指导性意见的一些工具及blog文章,以备后用。(热更新)&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>iisexpress-config</title>
+      <link>https://gerrywp.github.io/blog/posts/170314iisexpress/</link>
+      <pubDate>Tue, 14 Mar 2017 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/170314iisexpress/</guid>
+      <description>&lt;p&gt;iisexpress轻量，易于安装，安装包不到5M。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title> NAT模式下代理</title>
+      <link>https://gerrywp.github.io/blog/posts/161230vmware/</link>
+      <pubDate>Fri, 30 Dec 2016 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/161230vmware/</guid>
+      <description>&lt;p&gt;兲朝&amp;quot;科学上网&amp;quot;:[Vmware-Ubuntu]使用Nat模式，也能使用本机的shadowsocks proxy&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title> windows环境下node.exe配置</title>
+      <link>https://gerrywp.github.io/blog/posts/161223node1/</link>
+      <pubDate>Fri, 23 Dec 2016 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/161223node1/</guid>
+      <description>&lt;p&gt;node.exe-nodejs的可执行环境，其实仅仅只依靠&lt;strong&gt;node.exe&lt;/strong&gt;这个可执行文件就可以了。&lt;strong&gt;npm&lt;/strong&gt;只不过是运行于&lt;strong&gt;node.exe&lt;/strong&gt;环境中的「包管理程序」。
+那么windows下node是如何加载模块的，npm是如何管理包的？&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>git常用命令</title>
+      <link>https://gerrywp.github.io/blog/posts/150101git/</link>
+      <pubDate>Thu, 01 Jan 2015 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/150101git/</guid>
+      <description>&lt;p&gt;依据linux、windows系统的不同，对git常用命令进行归类。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

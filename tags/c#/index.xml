@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>C# on 大仙</title>
+    <link>https://gerrywp.github.io/blog/tags/c%23/</link>
+    <description>Recent content in C# on 大仙</description>
+    <image>
+      <title>大仙</title>
+      <url>https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 09 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://gerrywp.github.io/blog/tags/c%23/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>docker</title>
+      <link>https://gerrywp.github.io/blog/posts/211109docker/</link>
+      <pubDate>Tue, 09 Nov 2021 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/211109docker/</guid>
+      <description>&lt;p&gt;Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。它是目前最流行的 Linux 容器解决方案。
+Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。有了 Docker，就不用担心环境问题。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>浅谈Task</title>
+      <link>https://gerrywp.github.io/blog/posts/200912task/</link>
+      <pubDate>Sat, 12 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/200912task/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;TAP(Task-based async pattern)&lt;/strong&gt; 基于任务的异步编程模型&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>console应用程序progressbar（进度条的实现）</title>
+      <link>https://gerrywp.github.io/blog/posts/171123consoleprogbar/</link>
+      <pubDate>Thu, 23 Nov 2017 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/171123consoleprogbar/</guid>
+      <description>&lt;p&gt;　　控制台应用程序，有时候需要做文件上传、压缩等(网络/磁盘)I/O处理。为了得到更友好的界面交互，所以需要用到progress bar 进度条。
+github上有很多现成的可以使用。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>razor引擎及view的呈现</title>
+      <link>https://gerrywp.github.io/blog/posts/170414razor/</link>
+      <pubDate>Fri, 14 Apr 2017 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/170414razor/</guid>
+      <description>&lt;p&gt;.cshtml(.vbhtml)文件能够被执行，必须被编译进程序集的具体类型。
+微软使用&lt;code&gt;%windir%\Microsoft.NET\Framework\v4.0.30319&lt;/code&gt;下的aspnet_compiler.exe对view文件进行编译。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>委托和反射</title>
+      <link>https://gerrywp.github.io/blog/posts/170119delegate1/</link>
+      <pubDate>Thu, 19 Jan 2017 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/170119delegate1/</guid>
+      <description>&lt;p&gt;反射的性能问题一直是广为诟病的，但反射所消耗的这一点性能并不算什么。因为通常情况下的业务逻辑都不会很复杂，我们只是使用反射
+来处理一些常规编码难以迄及的特殊场景。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Jquery的jsonp示例</title>
+      <link>https://gerrywp.github.io/blog/posts/121120jsonp/</link>
+      <pubDate>Tue, 20 Nov 2012 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/121120jsonp/</guid>
+      <description>&lt;p&gt;jsonp实际上就是服务器端实现对客户端函数的回调(callback)&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

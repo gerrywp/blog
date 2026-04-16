@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Nginx on 大仙</title>
+    <link>https://gerrywp.github.io/blog/tags/nginx/</link>
+    <description>Recent content in Nginx on 大仙</description>
+    <image>
+      <title>大仙</title>
+      <url>https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 03 May 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://gerrywp.github.io/blog/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>v2ray跨越GFW</title>
+      <link>https://gerrywp.github.io/blog/posts/200503v2ray/</link>
+      <pubDate>Sun, 03 May 2020 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/200503v2ray/</guid>
+      <description>&lt;p&gt;一片祥和全赖墙，吾辈凤歌影疏狂。今朝方公倾其智，吓哭当年秦始皇！&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>nginx和apache端口80冲突的问题</title>
+      <link>https://gerrywp.github.io/blog/posts/171202nginx/</link>
+      <pubDate>Sat, 02 Dec 2017 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/171202nginx/</guid>
+      <description>&lt;p&gt;　　今天在将nodejs程序部署到远程linux服务器上遇到了问题，很长时间才得以解决！&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

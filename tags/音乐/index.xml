@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>音乐 on 大仙</title>
+    <link>https://gerrywp.github.io/blog/tags/%E9%9F%B3%E4%B9%90/</link>
+    <description>Recent content in 音乐 on 大仙</description>
+    <image>
+      <title>大仙</title>
+      <url>https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 15 Mar 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://gerrywp.github.io/blog/tags/%E9%9F%B3%E4%B9%90/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>固定唱名 or 首调唱名</title>
+      <link>https://gerrywp.github.io/blog/posts/170315article/</link>
+      <pubDate>Wed, 15 Mar 2017 00:00:00 +0000</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/170315article/</guid>
+      <description>&lt;p&gt;从西方传入的五线谱，是用来记录音符在键盘上位置的一种音乐语言。对于弹奏来说可以很直观的反映音符在键盘上所对应的位置，
+就连对应的是黑键还是白键都一眼就能看出来(&lt;code&gt;♯&lt;/code&gt; or &lt;code&gt;♭&lt;/code&gt;)。不必知道这个音的唱名(&lt;strong&gt;do re mi &amp;hellip;&lt;/strong&gt;),只用记住五根线上(间)所对应的音名(&lt;strong&gt;C D E F G A B&lt;/strong&gt;)即可。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
