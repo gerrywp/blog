@@ -11,8 +11,15 @@
     </image>
     <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 12 Dec 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 18 Apr 2026 10:55:52 +0800</lastBuildDate>
     <atom:link href="https://gerrywp.github.io/blog/tags/react/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>React Native环境(1)</title>
+      <link>https://gerrywp.github.io/blog/posts/260418react/</link>
+      <pubDate>Sat, 18 Apr 2026 10:55:52 +0800</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/260418react/</guid>
+      <description>&lt;p&gt;不安装Android Studio，直接使用commandlinetools-win搭建安卓开发环境，不使用Android Studio默认的模拟器，改用第三方Mumu模拟器&lt;/p&gt;</description>
+    </item>
     <item>
       <title>npm run到底做了什么？</title>
       <link>https://gerrywp.github.io/blog/posts/241212npmrun/</link>
