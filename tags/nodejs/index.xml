@@ -11,8 +11,15 @@
     </image>
     <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 18 Apr 2026 10:55:52 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 19 Apr 2026 21:03:57 +0800</lastBuildDate>
     <atom:link href="https://gerrywp.github.io/blog/tags/nodejs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Expo for RN(2)</title>
+      <link>https://gerrywp.github.io/blog/posts/260419expo/</link>
+      <pubDate>Sun, 19 Apr 2026 21:03:57 +0800</pubDate>
+      <guid>https://gerrywp.github.io/blog/posts/260419expo/</guid>
+      <description>&lt;p&gt;天下武功无坚不摧，唯快不破。快速开发React Native最佳选择。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>React Native环境(1)</title>
       <link>https://gerrywp.github.io/blog/posts/260418react/</link>
