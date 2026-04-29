@@ -21,6 +21,8 @@ categories = [ "工具与效率" ]
 ### nodejs
 1. [用webpack构建nodejs后端代码，使其支持js新特性并实现热重载](https://zhuanlan.zhihu.com/p/20782320 "点我访问")
 2. [Backend Apps with Webpack](http://jlongster.com/Backend-Apps-with-Webpack--Part-I "点我访问")
+
+现在都不用webpack了，大前端统一，现在直接用vite就可以了，webpack的配置太复杂了。
 ### notepad++插件
 1. **xml tool** 格式化xml
 2. **Explorer** 树形目录结构
@@ -33,8 +35,12 @@ categories = [ "工具与效率" ]
 
 免费
 1. [vue-element-admin](https://panjiachen.github.io/vue-element-admin-site/zh/guide/ '点我访问')
-2. [adminlte](https://adminlte.io/docs/3.0/index.html '点我访问')(github文档)
+2. [tabler](https://tabler.io/admin-template '点我访问')
 3. [ligerui](http://www.ligerui.com/ '点我访问')
+
+主流web开发都开始用工程化的项目了，基本不再使用框架开发，现在都是基于Nodejs的前端项目。
+
+技术选型都是vite+vue+对应框架(nextjs)+tailwindcss,或者svelte+skeletonUI,或者react+nuxtjs,或者tabler啦。
 ### golang
 [目录结构](https://makeoptim.com/golang/standards/project-layout '点我访问')
 ### c++中const组合引用和指针
