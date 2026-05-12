@@ -32,7 +32,7 @@
       <link>https://gerrywp.github.io/blog/posts/260329wails/</link>
       <pubDate>Sun, 29 Mar 2026 00:00:00 +0000</pubDate>
       <guid>https://gerrywp.github.io/blog/posts/260329wails/</guid>
-      <description>&lt;p&gt;技术方案：wails2,svelte5.55.0,sveltekit2.55.0,skeleton4.13.0,tailwindcss4.2.2,vite7.3.1&lt;/p&gt;</description>
+      <description>&lt;p&gt;技术方案：wails2,svelte5.55.0,skeleton4.13.0,tailwindcss4.2.2,vite7.3.1&lt;/p&gt;</description>
     </item>
     <item>
       <title>msbuid(5)-不同环境配置管理</title>
