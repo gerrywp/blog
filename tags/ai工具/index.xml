@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>工作与效率 on 大仙</title>
-    <link>https://gerrywp.github.io/blog/categories/%E5%B7%A5%E4%BD%9C%E4%B8%8E%E6%95%88%E7%8E%87/</link>
-    <description>Recent content in 工作与效率 on 大仙</description>
+    <title>AI工具 on 大仙</title>
+    <link>https://gerrywp.github.io/blog/tags/ai%E5%B7%A5%E5%85%B7/</link>
+    <description>Recent content in AI工具 on 大仙</description>
     <image>
       <title>大仙</title>
       <url>https://gerrywp.github.io/blog/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
@@ -12,7 +12,7 @@
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <lastBuildDate>Thu, 14 May 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://gerrywp.github.io/blog/categories/%E5%B7%A5%E4%BD%9C%E4%B8%8E%E6%95%88%E7%8E%87/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://gerrywp.github.io/blog/tags/ai%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Claude Code 接入国产大模型</title>
       <link>https://gerrywp.github.io/blog/posts/260514ccuse/</link>
