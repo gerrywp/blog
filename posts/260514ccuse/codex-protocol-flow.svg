@@ -1,0 +1,78 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 340" font-family="'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif">
+  <defs>
+    <linearGradient id="codex-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#4f46e5"/>
+    </linearGradient>
+    <linearGradient id="echobird-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+    <linearGradient id="ccx-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+    <linearGradient id="model-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="120%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-opacity="0.15"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="340" rx="16" fill="#f8fafc"/>
+
+  <!-- Title -->
+  <text x="400" y="38" text-anchor="middle" font-size="18" font-weight="700" fill="#1e293b">Codex 对接国产大模型 —— 协议转换流程</text>
+
+  <!-- Step 1: Codex -->
+  <rect x="50" y="70" width="200" height="80" rx="12" fill="url(#codex-grad)" filter="url(#shadow)"/>
+  <text x="150" y="100" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">Codex / Agents</text>
+  <text x="150" y="120" text-anchor="middle" font-size="11" fill="#c7d2fe">Responses API</text>
+  <text x="150" y="136" text-anchor="middle" font-size="10" fill="#a5b4fc">/v1/responses</text>
+
+  <!-- Arrow 1 -->
+  <line x1="250" y1="110" x2="320" y2="110" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- Step 2: Protocol Box -->
+  <rect x="325" y="55" width="150" height="110" rx="12" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="6,3" filter="url(#shadow)"/>
+  <text x="400" y="82" text-anchor="middle" font-size="12" font-weight="600" fill="#475569">协议转换层</text>
+  <text x="400" y="98" text-anchor="middle" font-size="10" fill="#64748b">Responses → Chat Completions</text>
+
+  <!-- Echobird -->
+  <rect x="335" y="112" width="130" height="24" rx="6" fill="url(#echobird-grad)"/>
+  <text x="400" y="129" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Echobird (推荐)</text>
+
+  <!-- CCX -->
+  <rect x="335" y="140" width="130" height="20" rx="6" fill="url(#ccx-grad)"/>
+  <text x="400" y="154" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">CCX (备选)</text>
+
+  <!-- Arrow 2 -->
+  <line x1="475" y1="110" x2="545" y2="110" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- Step 3: Chinese Models -->
+  <rect x="550" y="60" width="200" height="100" rx="12" fill="url(#model-grad)" filter="url(#shadow)"/>
+  <text x="650" y="86" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">国产大模型 API</text>
+  <text x="650" y="106" text-anchor="middle" font-size="11" fill="#bfdbfe">Chat Completions</text>
+  <text x="650" y="122" text-anchor="middle" font-size="10" fill="#93c5fd">/v1/chat/completions</text>
+  <text x="650" y="144" text-anchor="middle" font-size="10" fill="#93c5fd">DeepSeek · 智谱 · Kimi</text>
+
+  <!-- Legend -->
+  <rect x="50" y="200" width="700" height="120" rx="10" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="70" y="226" font-size="13" font-weight="700" fill="#334155">配置示例</text>
+
+  <text x="70" y="252" font-size="11" fill="#475569">
+    <tspan font-family="'Courier New', monospace" fill="#6366f1">OPENAI_BASE_URL</tspan> = http://localhost:11434/v1  &lt;-- Echobird 本地地址
+  </text>
+  <text x="70" y="272" font-size="11" fill="#475569">
+    <tspan font-family="'Courier New', monospace" fill="#059669">OPENAI_API_KEY</tspan> = sk-xxxxxxxxx   &lt;-- 国产模型 API Key
+  </text>
+  <text x="70" y="292" font-size="11" fill="#475569">
+    <tspan font-family="'Courier New', monospace" fill="#d97706">OPENAI_MODEL</tspan> = deepseek-chat / glm-5  &lt;-- 目标模型名称
+  </text>
+</svg>
