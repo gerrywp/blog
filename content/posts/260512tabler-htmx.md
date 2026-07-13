@@ -642,7 +642,7 @@ http {
 
 ## 参考资料
 
-- [Gin官方文档](https://gin-gonic.com/docs/)
+- [Gin官方文档](https://gin-gonic.com/zh-cn/docs/)
 - [Tabler官方文档](https://tabler.io/docs)
 - [HTMX官方文档](https://htmx.org/docs/)
 - [Alpine.js官方文档](https://alpinejs.dev/)
