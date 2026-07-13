@@ -21,11 +21,11 @@
       <description>本文详细介绍如何使用 Claude Code CLI 接入国产大模型 GLM-5、DeepSeek-V4-Pro，以及 Copilot 和 Codex 的国产模型对接方案。</description>
     </item>
     <item>
-      <title>使用Gin、Tabler和HTMX构建现代化的后端管理应用程序</title>
+      <title>Gin/HTMX/alpinejs/Tabler(GHAT)后台</title>
       <link>https://gerrywp.github.io/blog/posts/260512tabler-htmx/</link>
       <pubDate>Tue, 12 May 2026 00:00:00 +0000</pubDate>
       <guid>https://gerrywp.github.io/blog/posts/260512tabler-htmx/</guid>
-      <description>本文将详细介绍如何使用Gin框架、Tabler前端框架和HTMX技术构建一个现代化的后端管理应用程序，实现前后端分离的动态交互体验。</description>
+      <description>本文将详细介绍如何使用Gin、HTMX、Alpine.js和Tabler技术构建一个现代化的后端管理应用程序，实现前后端分离的动态交互体验。</description>
     </item>
     <item>
       <title>Expo for RN(2)</title>

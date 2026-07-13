@@ -14,11 +14,11 @@
     <lastBuildDate>Tue, 12 May 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://gerrywp.github.io/blog/tags/tabler/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>使用Gin、Tabler和HTMX构建现代化的后端管理应用程序</title>
+      <title>Gin/HTMX/alpinejs/Tabler(GHAT)后台</title>
       <link>https://gerrywp.github.io/blog/posts/260512tabler-htmx/</link>
       <pubDate>Tue, 12 May 2026 00:00:00 +0000</pubDate>
       <guid>https://gerrywp.github.io/blog/posts/260512tabler-htmx/</guid>
-      <description>本文将详细介绍如何使用Gin框架、Tabler前端框架和HTMX技术构建一个现代化的后端管理应用程序，实现前后端分离的动态交互体验。</description>
+      <description>本文将详细介绍如何使用Gin、HTMX、Alpine.js和Tabler技术构建一个现代化的后端管理应用程序，实现前后端分离的动态交互体验。</description>
     </item>
   </channel>
 </rss>
